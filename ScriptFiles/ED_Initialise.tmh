@@ -1,0 +1,284 @@
+
+//--------------------------------------------------------------------------------------//
+//	CMDR Clicker's Elite Dangerous Enhanced Script - T16000, TWCSThrottle, TFRP Rudder	//
+//--------------------------------------------------------------------------------------//
+
+// This file: ED_Initialise.tmh ... supports Elite Dangerous (Ascendancy)
+
+// Refer Change Log.txt in parent folder
+
+// LEGEND: 
+// ========================================================================
+// fnName()								refer to ED_Functions file
+// initName()							refer to ED_Initialise file
+// stfnName()							refer to ED_StateTracker file
+// tgName()								refer to ED_Toggles file
+// mName								refer to ED_Macros file
+// MapKey statements					refer to ED_MapKeyAssignment file
+// Global State and Boolean Defines		refer to ED_ScriptDefines file
+// Global Game Key Bind Defines			refer to ED_GameBindings file 
+// Global Script Variables				refer to ED_GlobalVars file
+// User Config Settings					refer to ED_UserSettings file
+// ========================================================================
+
+// Index:	Line		FUNCTION
+//			Line 45:	int CheckControllers()
+//			Line 142: 	int initJoystickAxis()
+//			Line 171: 	int initThrottleAxis()
+//			Line 193:	int initSliderAxis()
+//			Line 208:	int initSlewAxis()
+//			Line 223: 	int initRudderAxis()
+//			Line 249: 	int initTextToSpeech()
+//			Line 267: 	int initSoundFX()
+
+// START
+
+//--------------------------//
+// INITIALISATION FUNCTIONS //
+//--------------------------//
+
+// Check what controllers we have connected
+// Define All Axis Curves/Trim/Deadzones for Included Devices
+
+//   !!!   THE SCRIPT WILL ABORT IF NO COMPATIBLE JOYSTICK OR THROTTLE IS FOUND   !!!
+
+	int CheckControllers() {
+		
+		// There are 4 Joystick combos compatible with this script...
+
+		printf("\x0a++	Start Hardware Check\x0a");
+
+
+		&MyJoystick = &joy0;													// set to equivalent of 'nul' by default
+		
+		if (&T16000 != &joy0) {
+			&MyJoystick = &T16000;
+			if (YAWDeviceOverride == DISABLED) {
+				YAWDevice = "JSTwist";
+			}
+			printf("\x0a\++	Connected joystick	is T16000M TCS\x0a");
+		}
+		else if (&T16000L != &joy0) {
+			&MyJoystick = &T16000L;
+			if (YAWDeviceOverride == DISABLED) {
+				YAWDevice = "JSTwist";
+			}
+			printf("++	Connected joystick	is T16000L\x0a");
+		}
+		else {
+			printf("\x0a\	//////////////////////////////////////////////////////////////////////////////////\x0a");
+			printf("	!!! WARNING:	This script will not run without a compatible Joystick connected !!!\x0a");
+			printf("	//////////////////////////////////////////////////////////////////////////////////\x0a\x0a");
+			printf("	Please connect one of the following compatible JOYSTICKS:-\x0a");
+			printf("	1) T16000M TCS\x0a");
+			printf("	2) T16000L\x0a");
+
+			if (ControllerCheck) {												// if DISABLED allows script to run without connected controllers. 
+				Abort();
+			}
+		}
+
+//===================================================================================================
+
+		// There is only one Throttle compatible with this script...
+		
+		&MyThrottle = &joy0;													// set to equivalent of 'nul' by default
+		
+		if (&TWCSThrottle == &joy0) {
+			printf("\x0a\	/////////////////////////////////////////////////////////////////////////////////\x0a");
+			printf("	!!! WARNING:	This script will not run without the TWCS Throttle connected    !!!\x0a");
+			printf("	/////////////////////////////////////////////////////////////////////////////////\x0a\x0a");
+			
+			if (ControllerCheck) {												// if DISABLED allows script to run without connected controllers.
+				Abort();
+			}
+		}
+		else {
+			&MyThrottle = &TWCSThrottle;
+			if (YAWDeviceOverride == DISABLED) {
+				YAWDevice = "THRPaddles";
+			}
+			printf("++	Connected throttle	is TWCS Throttle\x0a");
+		}
+
+//===================================================================================================
+
+		// If no rudder is found the script will not abort.
+		// There are two Rudders compatible with this script...
+		
+		&MyRudder = &joy0;														// set to equivalent of 'nul' by default
+		
+		if (&TFRPRudder != &joy0) {
+			&MyRudder = &TFRPRudder;
+			if (YAWDeviceOverride == DISABLED) {
+				YAWDevice = "RudderPedals";
+			}
+			printf("++	Connected rudder	is TFRPRudder\x0a");
+		}
+		else if (&TFRPHARudder != &joy0) {
+			&MyRudder = &TFRPHARudder;
+			if (YAWDeviceOverride == DISABLED) {
+				YAWDevice = "RudderPedals";
+			}
+			printf("++	Connected rudder	is TFRPHARudder\x0a");
+		}
+		else {
+			printf("++	No compatible rudder connected. Use alt YAW control.\x0a");
+			printf("	NOTE: set YAWDevice define at top of script to JSTwist or THRPaddles\x0a");
+		}
+
+		printf("\x0a++	Hardware checks		- COMPLETE\x0a");
+	
+	}
+
+//----------------------//
+// End CheckControllers //
+//----------------------//
+
+// ------------------- //
+// INITIALISE all AXES //
+// ------------------- //
+
+	// FUNCTION: Initialise Joystick Axes 
+	int initJoystickAxis() { 																	// Set Default Joystick Axis
+		if (StartupLock) {
+			printf("\x0a\Initialising: v%d.%d.%d.%s\x0a", VMajor, VMinor, VPoint, VBranch);
+			printf("-----------------------------------------------------------------------------------------------------------------------------------------------\x0a");
+		}	
+
+		MapAxis(&MyJoystick, JOYX, DX_X_AXIS, AXIS_NORMAL, MAP_ABSOLUTE);
+		MapAxis(&MyJoystick, JOYY, DX_Y_AXIS, AXIS_NORMAL, MAP_ABSOLUTE);
+
+		if (strcmp(YAWDevice, "JSTwist") == 0) {
+			MapAxis(&MyJoystick, RUDDER, DX_Z_AXIS, AXIS_REVERSED, MAP_ABSOLUTE);	// Set YAWDevice define to JSTwist above		
+		}
+		else {
+			MapAxis(&MyJoystick, RUDDER, 0);										// Otherwise, not used
+		}
+		
+		MapAxis(&MyJoystick, THR, 0);												// Slider = not used
+
+		if (StartupLock) {
+			printf("Joystick Axes	... done		");
+		}
+		else {
+			printf("Joystick Axes	... re set\x0a");
+		}
+	}
+
+
+	//FUNCTION: Initialise Throttle Axes
+	int initThrottleAxis() {														// Set Default Throttle Axis
+		
+		// Throttle mapping...
+		MapAxis(&MyThrottle, TTHR, DX_THROTTLE_AXIS, AXIS_NORMAL, MAP_ABSOLUTE);	// Set Left Throttle. 
+
+		if (strcmp(YAWDevice, "THRPaddles") == 0) {
+			MapAxis(&MyThrottle, TRDR, DX_Z_AXIS, AXIS_NORMAL, MAP_ABSOLUTE);		// Set YAWDevice define to THRPaddles above			
+		}
+		else {
+			MapAxis(&MyThrottle, TRDR, 0);											// Otherwise = not used
+		}
+		
+		if (StartupLock) {
+//			printf("Throttle Axes	... done\x0a");
+			printf("Throttle Axes	... done");
+		}
+		else {
+			printf("Throttle Axes	... re set\x0a");
+		}
+	}
+
+	// FUNCTION: Initialise Rudder Axis 
+	int initRudderAxis() {															// Initialise Thrustmaster TFRP or TFRPHA Rudder
+		
+		if (strcmp(YAWDevice, "RudderPedals") == 0) {
+			MapAxis(&MyRudder, TRUDDER, DX_Z_AXIS, AXIS_NORMAL, MAP_ABSOLUTE);		// Set YAWDevice define to RudderPedals above			
+		}
+		else {
+			MapAxis(&MyRudder, TRUDDER, 0);											// Otherwise = not used
+		}
+		
+		MapAxis(&MyRudder, TRPRIGHT, 0);											// Right foot pedal - not used
+		MapAxis(&MyRudder, TRPLEFT, 0);												// Left foot pedal  - not used
+	
+		if (EnableMyRudder) {
+			if (StartupLock) printf("		Rudder Axis	... done\x0a");
+		}
+		else {
+			if (StartupLock) printf("Rudder Axis	... disabled\x0a");		
+		}
+	}
+
+
+	int initSliderAxis() {
+	
+		// Slider Mapping...
+		
+		MapAxis(&MyThrottle, TANT, DX_SLIDER_AXIS, AXIS_REVERSED);					// Pinky wheel
+		
+		fnSetSliderCurve(1);
+		if (StartupLock) {
+			printf("Slider Axis	... done		");
+		}
+		else {
+			printf("Slider Axis	... re set\x0aa");
+		}
+	}
+
+	int initSlewAxis() {
+	
+		// Slew Control Mapping...
+		MapAxis(&MyThrottle, TMSTX, DX_XROT_AXIS, AXIS_NORMAL, MAP_ABSOLUTE);						// Set Slew Control X Axis (Left/Right)	
+		MapAxis(&MyThrottle, TMSTY, DX_YROT_AXIS, AXIS_NORMAL, MAP_ABSOLUTE);						// Set Slew Control Y Axis (Up/Down)
+
+		if (StartupLock) {
+			printf("Slew Axis	... done		");
+		}
+		else {
+			printf("Slew Axis	... re set\x0a");
+		}
+		
+		if (StartupLock) printf("YAW set to	... %s\x0a", YAWDevice);								// This is here for formatting reasons
+
+		if (StartupLock) printf("-----------------------------------------------------------------------------------------------------------------------------------------------\x0a");
+	}	
+
+
+	// FUNCTION: Initialise Text To Speech Engine	
+	int initTextToSpeech() {
+		VoiceExists = fopen(&VoicePath, "r");
+		if (VoiceExists) {
+			fclose(VoiceExists);
+			SerialText = 1;
+			fnVPOutput("Text to speech function enabled");
+			printf("Voice.exe present at %s\x0a\x0a", &VoicePath);
+		}
+		else {
+			EnableVoice = DISABLED;
+			printf("\x0a\Voice.exe not present at %s\x0a", &VoicePath);
+			printf("Set correct path in ED_UserSettings.tmh if you have installed voice packs.\x0a");
+			printf("\x0a\Voice feedback via 'fnTextToSpeech()' not available until this is fixed\x0a");
+		}
+	}
+
+
+	// FUNCTION: Initialise Sound Effacts Engine 
+	int initSoundFX() {
+		SounderExists = fopen(&SoundPath, "r");
+		if (SounderExists) {
+			fclose(SounderExists);
+			SerialText = 1;
+			fnVPOutput("Script based sound FX enabled");			
+			printf("Sounder.exe present at %s\x0a", &SoundPath);
+		}
+		else {
+			EnableSoundFX = DISABLED;
+			printf("\x0a\Sounder.exe not present at %s\x0a", &SoundPath);
+			printf("Set correct path in ED_UserSettings.tmh if you want this script to use the fnSoundFX() function\x0a");
+			printf("\x0a\Sound Effects via fnSoundFX() not available\x0a");
+		}
+	}
+
+	
+//	END
