@@ -174,7 +174,7 @@
 		MapAxis(&MyThrottle, TTHR, DX_THROTTLE_AXIS, AXIS_NORMAL, MAP_ABSOLUTE);	// Set Left Throttle. 
 
 		if (strcmp(YAWDevice, "THRPaddles") == 0) {
-			MapAxis(&MyThrottle, TRDR, DX_Z_AXIS, AXIS_NORMAL, MAP_ABSOLUTE);		// Set YAWDevice define to THRPaddles above			
+			MapAxis(&MyThrottle, TRDR, DX_Z_AXIS, AXIS_REVERSED, MAP_ABSOLUTE);		// Set YAWDevice define to THRPaddles above			
 		}
 		else {
 			MapAxis(&MyThrottle, TRDR, 0);											// Otherwise = not used
