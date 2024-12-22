@@ -486,9 +486,9 @@
 		}
 		else {
 			MapKeyUMD(&MyThrottle, THAT2U,
-				EXEC("fnPIPMode(NEXT);"),											// U - Increment PIPMode
+				EXEC("fnPIPMode(INCREASE);"),										// U - Increment PIPMode
 				EXEC("fnPIPManager(ENG);"),											// M - Fire Engine focussed PIP sequence
-				EXEC("fnPIPMode(PREVIOUS);")										// D - Decrement PIPMode 
+				EXEC("fnPIPMode(DECREASE);")										// D - Decrement PIPMode 
 				);					
 		}
 		if (MapKeyProfile == BASIC) {			// 
