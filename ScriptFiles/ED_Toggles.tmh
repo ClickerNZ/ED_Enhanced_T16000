@@ -524,8 +524,8 @@
 		int VoiceTxt;
 				
 		if (JumpType) {
-			fnName = "Warp Drive";
-			EngineText = "Warp Drive:	";
+			fnName = "Hyper Drive";
+			EngineText = "Hyper Drive:	";
 			WarpDrive = HyperJump;				// USB[0x0D] = "J"
 		}
 		else {
