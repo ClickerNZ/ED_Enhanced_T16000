@@ -26,10 +26,6 @@
 //			Line 91: 	int fnSetCurves()
 //			Line 188: 	int fnSetSliderCurve()
 //			Line 219: 	int fnGetFlightMode()
-//			Line 240:	int fnLEDBrightness()		// WARTHOG Only 
-//			Line 260: 	int fnFlashLED()			// WARTHOG Only 
-//			Line 277: 	int fnSetLEDs()				// WARTHOG Only 
-//			Line 308: 	int fnFlashStart()			// WARTHOG Only 
 //			Line 346: 	int fnTextToSpeech()
 //			Line 378: 	int fnVoiceVolume()
 //			Line 438: 	int fnSoundFX()
@@ -53,7 +49,6 @@
 //			Line 1163:	int fnVPOutput()
 //			Line 1175: 	int fnPrintState()
 //			Line 1186: 	int fnStateDump()
-//			Line 1349: 	int fnDebug()
 //			Line 1374:	int fnGetTOD()
 //			Line 1392:	int fnGetDate()
 //			Line 1415:	int findstr()
@@ -144,7 +139,7 @@
 		//		scale = -20 to +20. Negative value limits travel on axis. Positive will reach minimum and maximum values quicker
 		// Refer: Values options set in ED_UserSettings.tmh
 		// SetCustomCurve() Syntax:
-		// SetCustomCurve(&device, axis name, LIST(Axis physical position 1, Axis output value 1, Axis physical position 2, Axis output value 2, â€¦);
+		// SetCustomCurve(&device, axis name, LIST(Axis physical position 1, Axis output value 1, Axis physical position 2, Axis output value 2, …);
 		// values are %  
 
 		// Set Joystick curves and force re-read of axes
@@ -800,7 +795,11 @@
 			printf("=	    Power to shields	=\x0a\x0a");
 		}
 		else {
-			reason = "we are in no position to request docking";
+			if(fSupercruise) reason = "Supercruise";
+			else if (!fMainShip)	reason = "we are not in the ship";
+			else if (fDocked)		reason = "we are already docked";
+			else if (fLanded)		reason = "we are already landed";
+			else 					reason = "we are in no position to request docking";
 			fnNotValid(fnName, reason);
 		}
 	}
@@ -1123,14 +1122,14 @@
 				if (fDocked)						SP = "DOCKED  ";
 				if (!fLanded & !fDocked & fLatLong)	SP = "ORBIT   ";
 
-				printf("MAIN SHIP:	%s	Shields:		%s		Mass Locked:	%s\x0a", SP, SH, ML);
+				printf("MAIN SHIP:	%s	Shields:	%s		Mass Locked:	%s\x0a", SP, SH, ML);
 				if (fLatLong) {
 					printf("Altitude:		%04d		Heading: 	%03d		Lat/Long:	%0.3f, %0.3f\x0a", AL, HD, LT, LN);
 				}
 				printf("HUD Mode:	%s	Ship Lights:	%s		Night Vision:	%s\x0a", HM, SL, NV);
 				printf("Cargo Scoop:	%s	Landing Gear:	%s	Hardpoints:	%s\x0a", CR, LG, HP);
 				printf("FSS Mode:	%s		Supercruise:	%s	Silent Running:	%s\x0a", FM, WD, SR);
-				printf("Flight Assist:	%s		Thrust Vector:	%s	Speed Brake:	%s\x0a", FA, RT, SB);
+				printf("Flight Assist:%s		Thrust Vector:%s	Speed Brake:	%s\x0a", FA, RT, SB);
 			}
 			else if (fSRV) {		
 				if (!fLights) {
