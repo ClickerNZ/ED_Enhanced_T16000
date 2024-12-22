@@ -30,8 +30,6 @@
 //			Line 1113: 	int stfnProcessGuiFocus()
 //			Line 1140: 	int stfnStartCheck()
 //			Line 1213:	int stfnMyStates()
-//			Line 1307:	int stfnDumpFlags()
-//			Line 1370:	int stfnDumpFlags2()
 	
 // START
 
