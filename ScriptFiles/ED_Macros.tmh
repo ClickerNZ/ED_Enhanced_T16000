@@ -97,7 +97,7 @@
 
 		// MACRO: Display the combined On Screen Display FPS & Bandwidth meters
 		m_ShowGameStats = CHAIN(								// Keystroke sequence = 
-			PULSE+ShowFramerate, D(500),						// L_CTRL+F
+			PULSE+ShowFramerate, D(750),						// L_CTRL+F
 			PULSE+ShowConnectionStatus);						// L_CTRL+B
 
 		// MACRO: Menulog to OPEN
