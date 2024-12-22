@@ -37,8 +37,8 @@
 //-------------------//
 
 	int 	EnableMyRudder		= ENABLED;				// Set to DISABLED if you do not have a Thrustmaster TFRP or TFRPHA Rudder.
-	define	YAWDeviceOverride	ENABLED					// If ENABLED, overrides autodetection and sets YAWDevice on next line 
-	int		YAWDevice			= "JSTwist";			// Options = "JSTwist",  "THRPaddles", "RudderPedals"
+	define	YAWDeviceOverride	DISABLED				// If ENABLED, overrides autodetection and sets YAWDevice on next line 
+	int		YAWDevice			= "THRPaddles";			// Options = "JSTwist",  "THRPaddles", "RudderPedals"
 
 //--------------//
 // LED settings //
