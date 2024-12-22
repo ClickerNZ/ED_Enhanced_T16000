@@ -46,7 +46,7 @@
 // TOGGLES //
 //---------//
 
-//	// TOGGLE: Turn Text to Speech function ON/OFF 
+	// TOGGLE: Turn Text to Speech function ON/OFF 
 	
 	int tgTxt2Speech() {
 		int VoiceTxt;
@@ -67,6 +67,7 @@
 			printf("Voice.exe is not present\x0a");
 		}
 	}
+
 
 	// TOGGLE: 		Flight/Drive Assist OFF/ON
 	// Parameter:	0 = Standard FA-Off, 1 = FA-Off with Joystick-Mouse Emulation
@@ -121,6 +122,7 @@
 		}	
 	}
 
+
 	// TOGGLE:		Cycle between 'Discovery Scanner', 'Mining Laser' and 'Pulse Wave Scanner' modes
 	// Parameter:	1 = Primary Trigger Action, 2 = Secondary Trigger Action
 	// Notes:		Disco Scanner mode holds the trigger for 6.1 seconds
@@ -163,6 +165,7 @@
 		
 		fnVPOutput(VoiceTxt);		
 	}
+
 	
 	// TOGGLE: Ship Lights
 	// Parameter: 0 = Lights, 1 = Night Vision
@@ -213,6 +216,7 @@
 		}
 	}
 
+
 	// TOGGLE: Silent Running
 	// Parameter: 'x' = OFF, ON, STROBE
 	// NOTE: Aligns across menulog/restart
@@ -258,6 +262,7 @@
 		}
 	}
 
+
 	// TOGGLE: Cargo Scoop
 	// Parameter: 'x' = DEPLOY (1), RETRACT (0) 
 	// NOTE: Aligns across menulog/restart <-- ED causes CargoScoop reset when menu log
@@ -284,6 +289,7 @@
 			fnNotValid(fnName, reason);			
 		}		
 	}
+
 
 	// TOGGLE: Landing Gear
 	// Parameter: 'Speedbrake'. Valid: 0 = Gear, 1 = Speedbrake. Only used for printf purposes
@@ -322,6 +328,7 @@
 			fnNotValid(fnName, reason);			
 		}
 	}
+
 
 	// TOGGLE: 		Reverse Thrusters
 	// Parameter:	EnableSpeedBrake
@@ -369,6 +376,7 @@
 		}
 	}
 
+
 	// TOGGLE:	Engine Boost in normal flight mode. 
 	//			Activate/Deactivate SuperCruise Overcharge when in Supercruise 
 	
@@ -397,6 +405,7 @@
 			fnNotValid(fnName, reason);
 		}
 	}
+
 
 	// TOGGLE:	Hardpoints
 
@@ -451,6 +460,7 @@
 		ActKey(PULSE+KEYON+HUDMode);							// Switch HUD Modes
 	}
 
+
 	// TOGGLE: Enter/Exit FSS Mode
 
 	int tgFSSMode() {
@@ -477,6 +487,7 @@
 		}
 	}
 
+
 	//TOGGLE: Planet view front/back.
 
 	int tgPlanetView() {
@@ -495,6 +506,7 @@
 			fnNotValid(fnName, reason);
 		}
 	}
+
 
 	// TOGGLE: Warp Drive
 	// Parameter: 'JumpType'. Valid: 0 = Supercruise, 1 = Hyperjump 
@@ -574,6 +586,7 @@
 		}
 	}
 
+
 	// TOGGLE: External Camera View - ON/OFF
 
 	int tgExtCamera() {
@@ -588,6 +601,7 @@
 			printf("External Camera:	OFF\x0a");
 		}
 	}
+
 	
 	// TOGGLE:		Toggle X-Axis between Roll and Yaw
 	// Parameter:	RESET	= Don't toggle SwapRoll4Yaw flag

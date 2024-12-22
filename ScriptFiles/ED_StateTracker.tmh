@@ -101,8 +101,8 @@
 						json10	= (NewMaxJson % 100) / 10;
 						json1 	= (NewMaxJson % 100) % 10;
 
-						sprintf(&jason, "jason %d %d%d", json100, json10, json1);	// Speaks each digit ... eg 5,9,8
-//						fnTextToSpeech(&jason);
+				//		sprintf(&jason, "jason %d %d%d", json100, json10, json1);	// Speaks each digit ... eg 5,9,8
+				//		fnTextToSpeech(&jason);
 						
 						loop = 0;
 						stfnWriteMaxJson();
@@ -298,10 +298,8 @@
 
 
 	// FUNCTION: Read and process "Flags" value from "status.json"
-//	// Input: 'UpdateLEDs', 1 = update, 0 = no update (default)
 	// Output: Flags variables set/reset
 
-//	int stfnProcessFlags(int UpdateLEDs = NO) {
 	int stfnProcessFlags() {
 
 		int VoiceTxt;
@@ -368,9 +366,6 @@
 					ReverseThrust = 0;									// Game always resets Reverse Thrust, so we should too
 				}
 				
-//				fnSetLEDs();															// Turn off Status LEDs, then...
-//				ActKey(PULSE+KEYON+LED(&MyThrottle, LED_ONOFF, LED_CURRENT-LED0)); 		// set GLOBAL LED OFF
-
 				stfnMyStates(SAVE);
 			}
 		}
@@ -511,7 +506,6 @@
 					else {																	// Initiated drop
 						SelectDrop  = NO;
 					}
-//					UpdateLEDs = YES;
 				}	
 				fnGetFlightMode();															// Line up slider curves
 			}
@@ -785,21 +779,11 @@
 				}				
 			}
 						
-			// Detect if we need to update the LEDs						
-//			if ((lFAOff != fFAOff) | (lLights != fLights) | (lSilentRunning != fSilentRunning) | (lCargoScoop != fCargoScoop) | (lLandingGear != fLandingGear) | (lMainShip != fMainShip)) UpdateLEDs = YES;
-
 			if(!GameLoaded) {											// Game started...as opposed to re-started.
 				fnGameStarted();
 			}
-//			else if(UpdateLEDs == YES) {
-//				fnSetLEDs();
-//			}
 			
-			OldFlags = Flags;											// Keep track of last Flags Value to track when Flag bits change
-			
-//			if (ShowFlags) {											// Printout active flag bits when 'ShowFlags' is set 
-//				stfnDumpFlags();
-//			}
+			OldFlags = Flags;											// Keep track of last Flags Value to track when Flag bits change			
 		}
 	}
 	
@@ -844,12 +828,12 @@
 
 		// Process 'Flags2' value...most significant bit order
 		
-//		if (Flags2 < 0) {														// Most significant bit is set 
-//			fRESERVED			= ON;
-//		}
-//		else {
-//			fRESERVED			= OFF;
-//		}
+	//	if (Flags2 < 0) {														// Most significant bit is set 
+	//		fRESERVED			= ON;
+	//	}
+	//	else {
+	//		fRESERVED			= OFF;
+	//	}
 
 		// Bitwise-And of the negative number works for all bits other than most significant bit 
 
@@ -878,19 +862,19 @@
 		fPhysicalMulticrew		= ((Flags2 & ED_PhysicalMulticrew) > 0);
 		fFSDHyperdriveChg		= ((Flags2 & ED_FSDHyperdriveChg) > 0);
 
-//		fRESERVED				= ((Flags2 & ED_RESERVED) > 0);
-//		fRESERVED				= ((Flags2 & ED_RESERVED) > 0);
-//		fRESERVED				= ((Flags2 & ED_RESERVED) > 0);
-//		fRESERVED				= ((Flags2 & ED_RESERVED) > 0);
+	//	fRESERVED				= ((Flags2 & ED_RESERVED) > 0);
+	//	fRESERVED				= ((Flags2 & ED_RESERVED) > 0);
+	//	fRESERVED				= ((Flags2 & ED_RESERVED) > 0);
+	//	fRESERVED				= ((Flags2 & ED_RESERVED) > 0);
 
-//		fRESERVED				= ((Flags2 & ED_RESERVED) > 0);
-//		fRESERVED				= ((Flags2 & ED_RESERVED) > 0);
-//		fRESERVED				= ((Flags2 & ED_RESERVED) > 0);
-//		fRESERVED				= ((Flags2 & ED_RESERVED) > 0);
+	//	fRESERVED				= ((Flags2 & ED_RESERVED) > 0);
+	//	fRESERVED				= ((Flags2 & ED_RESERVED) > 0);
+	//	fRESERVED				= ((Flags2 & ED_RESERVED) > 0);
+	//	fRESERVED				= ((Flags2 & ED_RESERVED) > 0);
 
-//		fRESERVED				= ((Flags2 & ED_RESERVED) > 0);
-//		fRESERVED				= ((Flags2 & ED_RESERVED) > 0);
-//		fRESERVED				= ((Flags2 & ED_RESERVED) > 0);
+	//	fRESERVED				= ((Flags2 & ED_RESERVED) > 0);
+	//	fRESERVED				= ((Flags2 & ED_RESERVED) > 0);
+	//	fRESERVED				= ((Flags2 & ED_RESERVED) > 0);
 
 		if (OldFlags2 != Flags2) {
 			if (fOnFoot != lOnFoot) {									// Track when on foot
@@ -1072,10 +1056,6 @@
 					// FSD Hyperdrive no longer charging									
 				}
 			}
-
-//			if (ShowFlags) {											// Printout active flag bits when 'ShowFlags' is set 
-//				stffnDumpFlags2();
-//			}				
 		}
 
 		OldFlags2 = Flags2;												// Keep track of last Flags2 Value to track when Flags2 bits change		
@@ -1153,10 +1133,10 @@
 				json10	= (NewMaxJson % 100) / 10;
 				json1 	= (NewMaxJson % 100) % 10;
 
-//				sprintf(&jason, "jason %d %d%d", json100, json10, json1);						// Speaks each digit
+		//		sprintf(&jason, "jason %d %d%d", json100, json10, json1);						// Speaks each digit
 				
-//				SerialText = 1;
-//				fnTextToSpeech(&jason);
+		//		SerialText = 1;
+		//		fnTextToSpeech(&jason);
 				
 				SerialText = 1;				
 				fnTextToSpeech("Waiting for game to load");
@@ -1176,7 +1156,6 @@
 		int		sVolume;
 		int 	sDismissed;
 		int 	sCurves;
-//		int 	sLEDLevel;												// Not used in T16000 scripts
 		int		sMaxJsonLength;
 		int		sPIPMode;
 	}
@@ -1198,7 +1177,6 @@
 			MyStates.sVolume			=	VoiceVolume;
 			MyStates.sDismissed 		=	ShipDismissed;
 			MyStates.sCurves			=	OldCurves;
-//			MyStates.sLEDLevel			=	LEDLevel;
 			MyStates.sMaxJsonLength 	= 	NewMaxJson;					// I save a copy of status.json as NewMaxJson.json via stfnWriteMaxJson() above
 			MyStates.sPIPMode			=	PIPMode;
 			
@@ -1218,7 +1196,6 @@
 					printf("VoiceVolume		= %d\x0a", VoiceVolume);
 					printf("ShipDismissed		= %d\x0a", ShipDismissed);
 					printf("OldCurves		= %d\x0a", OldCurves);
-//					printf("LEDLevel		= %d\x0a", LEDLevel);
 					printf("NewMaxJson		= %d\x0a", NewMaxJson);
 					printf("PIPMode		= %d\x0a\x0a", PIPMode);
 				}
@@ -1244,9 +1221,8 @@
 					VoiceVolume		= MyStates.sVolume;
 					ShipDismissed	= MyStates.sDismissed;
 					OldCurves		= MyStates.sCurves;
-//					LEDLevel		= MyStates.sLEDLevel;
 					NewMaxJson		= MyStates.sMaxJsonLength;
-//					NewMaxJson		= 603;								// To reset NewMaxJson, uncomment this line and comment out the line immediately above it (save/compile/run).
+			//		NewMaxJson		= 603;								// To reset NewMaxJson, uncomment this line and comment out the line immediately above it (save/compile/run).
 																		// Start then stop the game, then undo this, save/recompile/run then start game again.
 					PIPMode			= MyStates.sPIPMode;
 					
@@ -1255,7 +1231,6 @@
 					printf("VoiceVolume		= %d\x0a", VoiceVolume);
 					printf("ShipDismissed		= %d\x0a", ShipDismissed);
 					printf("OldCurves		= %d\x0a", OldCurves);
-//					printf("LEDLevel		= %d\x0a", LEDLevel);
 					printf("NewMaxJson		= %d\x0a", NewMaxJson);
 					printf("PIPMode		= %d\x0a\x0a", PIPMode);					
 				}
@@ -1277,109 +1252,5 @@
 		}
 	}
 
-//	// FUNCTION:	Dump currently set Flags and Flags2 Key Values to console
-//	
-//	int stfnDumpFlags() {
-//
-//		int GUIFocus;
-//		int prttxt;
-//		
-//		GUIFocus = stfnGetKeyValue("GuiFocus", INTEGER);
-//		if (GUIFocus == -1) {
-//			prttxt = "Key not found";
-//		}
-//		else {		
-//			if (GUIFocus == GUI_None)			prttxt = "No Focus";
-//			if (GUIFocus == GUI_SystemPanel)	prttxt = "System Panel";
-//			if (GUIFocus == GUI_TargetPanel)	prttxt = "Target Panel";
-//			if (GUIFocus == GUI_CommsPanel)		prttxt = "Comms Panel";
-//			if (GUIFocus == GUI_RolePanel)		prttxt = "Role Panel";
-//			if (GUIFocus == GUI_StationSvcs)	prttxt = "Station Services";
-//			if (GUIFocus == GUI_GalaxyMap)		prttxt = "Galaxy Map";
-//			if (GUIFocus == GUI_SystemMap)		prttxt = "System Map";
-//			if (GUIFocus == GUI_OrreryMap)		prttxt = "Orrery Map";
-//			if (GUIFocus == GUI_FSSMode) 		prttxt = "FSS Mode";		
-//			if (GUIFocus == GUI_SAAMode) 		prttxt = "SAA Mode";		
-//			if (GUIFocus == GUI_Codex)			prttxt = "Codex";		
-//		}
-//		printf("\x0a\GUI Focus = %s\x0a\x0a", prttxt);
-//		
-//		printf("\x0a\Flags	=	%d\x0a", Flags);
-//		printf("=========================\x0a");
-//		printf("Bits set in FLAGS:\x0a");				
-//		if (fSRVHiBeam) 			printf("SRVHiBeam\x0a");
-//		if (fFSDJump) 				printf("Hyperjump\x0a");
-//		if (fAltFromAvgRad) 		printf("Radius-ALT\x0a");
-//		if (fNightVision) 			printf("Night Vision\x0a");
-//		if (fHUDAnalysis) 			printf("AnalysisHUD\x0a");
-//		if (fSRV) 					printf("In SRV\x0a");
-//		if (fFighter) 				printf("In Fighter\x0a");
-//		if (fMainShip) 				printf("In MainShip\x0a");
-//		if (fInterdicted) 			printf("Being Interdicted\x0a");
-//		if (fDanger) 				printf("!!! DANGER !!!\x0a");
-//		if (fLatLong) 				printf("Lat\\Lon available\x0a");
-//		if (fOverHeating) 			printf("Over Heating\x0a");
-//		if (fLowFuel) 				printf("Low Fuel\x0a");
-//		if (fFSDCooldown) 			printf("FSD Cooldown\x0a");
-//		if (fFSDCharging) 			printf("FSD Charging\x0a");
-//		if (fMassLocked) 			printf("FSD Masslocked\x0a");
-//		if (fSRVDriveAssist) 		printf("SRV Drive Assist\x0a");
-//		if (fSRVTurretRetracted) 	printf("SRV Turret Retracted\x0a");
-//		if (fSRVTurretView) 		printf("SRV Turret View\x0a");
-//		if (fSRVHandbrake) 			printf("SRV Handbrake\x0a");
-//		if (fFuelScoop) 			printf("Fuel Scoop Deployed\x0a");
-//		if (fSilentRunning) 		printf("Silent Running\x0a");
-//		if (fCargoScoop) 			printf("Cargo Scoop Deployed\x0a");
-//		if (fLights) 				printf("Lights On\x0a");
-//		if (fInWing) 				printf("In Wing\x0a");
-//		if (fHardpoints) 			printf("Hardpoints Deployed\x0a");
-//		if (fFAOff) 				printf("Flight Assist OFF\x0a");
-//		if (fSupercruise) 			printf("Supercruise Engaged\x0a");
-//		if (fShieldsUp) 			printf("Shields Up\x0a");
-//		if (fLandingGear) 			printf("Landing Gear Deployed\x0a");
-//		if (fLanded) 				printf("Landed on planet\x0a");
-//		if (fDocked) 				printf("Docked\x0a");
-//		printf("=========================\x0a");
-//	}
-//	
-//	int stfnDumpFlags2 () {
-//
-//		printf("\x0a\Flags2	=	%d\x0a", Flags2);
-//		printf("=========================\x0a");
-//		printf("Bits set in FLAGS2:\X0A");
-//		if (fOnFoot)	 			printf("On Foot\x0a");
-//		if (fInTaxi) 				printf("In Taxi\x0a");
-//		if (fInMultiCrew) 			printf("In Multi Crew\x0a");
-//		if (fOnFootInStation) 		printf("On Foot In Station\x0a");
-//		if (fOnFootOnPlanet) 		printf("On Foot On Planet\x0a");
-//		if (fAimDownSight) 			printf("Aim Down Sight\x0a");
-//		if (fLowOxygen) 			printf("Low Oxygen\x0a");
-//		if (fLowHealth) 			printf("Low Health\x0a");
-//		if (fCold) 					printf("Cold\x0a");
-//		if (fHot) 					printf("Hot\x0a");
-//		if (fVeryCold) 				printf("Very Cold\x0a");
-//		if (fVeryHot) 				printf("Very Hot\x0a");
-//		if (fGlideMode)				printf("Glide Mode\x0a");
-//		if (fOnFootInHanger)		printf("On Foot In Hanger\x0a");
-//		if (fOnFootSocialSpace)		printf("On Foot in Social Space\x0a");
-//		if (fOnFootExterior)		printf("On Foot Exterior\x0a");
-//		if (fBreathableAtmosphere)	printf("Breathable Atmosphere\x0a");
-//		if (fTelepresenceMulticrew)	printf("Telepresence Multicrew\x0a");
-//		if (fPhysicalMulticrew)		printf("Physical Multicrew\x0a");
-//		if (fFSDHyperdriveChg)		printf("FSD Hyperdrive Charging\x0a");
-//		if (fRESERVED) 				printf("RESERVED\x0a");
-//		if (fRESERVED) 				printf("RESERVED\x0a");
-//		if (fRESERVED) 				printf("RESERVED\x0a");
-//		if (fRESERVED) 				printf("RESERVED\x0a");
-//		if (fRESERVED) 				printf("RESERVED\x0a");
-//		if (fRESERVED) 				printf("RESERVED\x0a");
-//		if (fRESERVED) 				printf("RESERVED\x0a");
-//		if (fRESERVED) 				printf("RESERVED\x0a");
-//		if (fRESERVED) 				printf("RESERVED\x0a");
-//		if (fRESERVED) 				printf("RESERVED\x0a");
-//		if (fRESERVED) 				printf("RESERVED\x0a");
-//		if (fRESERVED) 				printf("RESERVED\x0a");
-//		printf("=========================\x0a");
-//	}
 
 // END

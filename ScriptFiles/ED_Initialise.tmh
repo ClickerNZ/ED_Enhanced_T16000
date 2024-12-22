@@ -181,7 +181,6 @@
 		}
 		
 		if (StartupLock) {
-//			printf("Throttle Axes	... done\x0a");
 			printf("Throttle Axes	... done");
 		}
 		else {

@@ -48,22 +48,6 @@
 //---------------//			// NOTE: Keys pressed are also defined within the game's bind file and MUST match what we're using here. 
 
 	int fnCustomCommands() {
-
-//		// I've put the 'TrainingMode' announcement here rather than create yet another function in EDFunctions.tmh
-//		// Selects MapKey Assignment profile
-//		
-//		if (Flags == 0 & TrainingMode == ENABLED) {
-//			if (AnnounceTraining) {
-//				fnTextToSpeech("Training mode enabled, press a button or switch to hear what it does");
-//			}
-//			TrainingMap();										// Selects Training MapKey Profile
-//		}
-//		else {
-//			if (AnnounceTraining) {
-//				fnTextToSpeech("Training mode disabled. Enable this feature via E D User Settings file");
-//			}
-//			MainKeyMap();										// Selects Main Mapkey Profile if TrainingMode is disabled 
-//		}
 		
 		// Define macros...
 
@@ -138,9 +122,9 @@
 			PULSE+UIRight, D(650),
 			PULSE+UISelect, D(650),
 			PULSE+UIRight, D(650),								// Highlights #1 Top option
-//			PULSE+UIDown, D(650),								// Remove comment to highlight 2nd option in list
-//			PULSE+UIDown, D(650),								// Remove comment to highlight 3rd option in list
-//			PULSE+UIDown, D(650),								// etc. Add copies of this line if you prefer to use a specific option in list 
+		//	PULSE+UIDown, D(650),								// Remove comment to highlight 2nd option in list
+		//	PULSE+UIDown, D(650),								// Remove comment to highlight 3rd option in list
+		//	PULSE+UIDown, D(650),								// etc. Add copies of this line if you prefer to use a specific option in list 
 			PULSE+UISelect, D(650),								// Selects Private Group
 			LOCK);
 

@@ -148,11 +148,7 @@
 		// values are %  
 
 		// Set Joystick curves and force re-read of axes
-		
-//		SetSCurve(&MyJoystick,	JOYX,		0, 1, 0, 3, 0);					// Mild curve for PITCH
-//		SetSCurve(&MyJoystick,	JOYY,		0, 1, 0, 3, 0);					// Mild curve for ROLL
-
-		
+				
 		SetSCurve(&MyJoystick, JOYX,		Joystick_L_DZ,	Joystick_C_DZ,	Joystick_R_DZ,	Joystick_Curve[profile],	Joystick_Zoom);
 		SetSCurve(&MyJoystick, JOYY,		Joystick_L_DZ,	Joystick_C_DZ,	Joystick_R_DZ,	Joystick_Curve[profile],	Joystick_Zoom);		
 		DefEventHandler(EV_HID_INPUT_DATA, &MyJoystick, JOYX);
@@ -250,94 +246,7 @@
 		fnSetSliderCurve(FlightMode);	
 	}
 
-//	////////////////////////////////////////
-//	// LED Functions are for WARTHOG only //
-//	////////////////////////////////////////
-//	
-//	// FUNCTION:	Increase LED Brightness
-//	// Parameter:	x = INCREASE, DECREASE, NOCHANGE (Default)
-//	
-//	int fnLEDBrightness(int x = NOCHANGE) {
-//		if (x == INCREASE) {
-//			LEDLevel = LEDLevel + 1;
-//			if (LEDLevel > 5) LEDLevel = 0;								// Wraps around to 0 if > 5
-//		}
-//		if (x == DECREASE) {
-//			LEDLevel = LEDLevel - 1;
-//			if (LEDLevel < 0) LEDLevel = 5;								// Wraps around to 5 if < 0
-//		}
-//		SetLED = (42*LEDLevel)+LEDLevel;
-//		ActKey(PULSE+KEYON+LED(&MyThrottle, LED_INTENSITY, SetLED));		// Set LED brightness to selected level
-//		if (!StartupLock) {
-//			printf("LED Brightness [Level %d]:	%d\x0a", LEDLevel, SetLED);
-//		}
-//	}
-//	
-//	
-//	// FUNCTION:	Flashes status LED when toggled - WARTHOG ONLY
-//	// Parameter:	"LEDx" where x = 1 - 5
-//
-//	int fnFlashLED(int x) {																				// Flashes LED# (parsed as parameter when calling) odd number of times.
-//		int counter = 0;
-//		if (FlashLEDs) {
-//			while (counter < 11) {																		// Odd number TOGGLES LED.
-//				DeferCall(counter*100, &ActKey, PULSE+KEYON+LED(&MyThrottle, LED_ONOFF, LED_CURRENT^x));	// Loop effectively issues 'counter' DeferCalls at ~100 mSec apart
-//				counter = counter + 1;
-//			}
-//		}
-//		else {
-//			ActKey(PULSE+KEYON+LED(&MyThrottle, LED_ONOFF, LED_CURRENT^x));								// No Flash, just toggle the LED on or off
-//		}
-//	}
-//
-//
-//	// FUNCTION: Sets Status LEDs according to state flags - WARTHOG ONLY
-//	// Parameter: dummy ... required so we can use defercall which must have a parameter parsed 
-//	
-//	int fnSetLEDs(int dummy=NUL) {
-//	
-//		ActKey(PULSE+KEYON+LED(&MyThrottle, LED_ONOFF, LED_CURRENT+LED0)); 		// set GLOBAL LED ON, then...
-//		ActKey(PULSE+KEYON+LED(&MyThrottle, LED_ONOFF, LED_CURRENT-LED1)); 		// set LED 1 OFF
-//		ActKey(PULSE+KEYON+LED(&MyThrottle, LED_ONOFF, LED_CURRENT-LED2)); 		// set LED 2 OFF
-//		ActKey(PULSE+KEYON+LED(&MyThrottle, LED_ONOFF, LED_CURRENT-LED3)); 		// set LED 3 OFF
-//		ActKey(PULSE+KEYON+LED(&MyThrottle, LED_ONOFF, LED_CURRENT-LED4)); 		// set LED 4 OFF
-//		ActKey(PULSE+KEYON+LED(&MyThrottle, LED_ONOFF, LED_CURRENT-LED5)); 		// set LED 5 OFF
-//
-//		if (Flags != 0) {
-//			if (fFAOff) {
-//				fnFlashLED(LED1);												// [Flight Assist]		LED ON = FA-OFF
-//			}
-//			if (fLights) {
-//				fnFlashLED(LED2);												// [Ship Lights]		LED ON = Lights ON
-//			}
-//			if (fSilentRunning) {
-//				fnFlashLED(LED3);												// [Silent Running]		LED ON = Silent Running active
-//			}
-//			if (fCargoScoop) {
-//				fnFlashLED(LED4);												// [Cargo Scoop]		LED ON = Cargo Scoop deployed
-//			}
-//			if (fLandingGear) {
-//				fnFlashLED(LED5);												// [Landing Gear]		LED ON = Landing Gear deployed
-//			}
-//		}
-//	}
-//
-//
-//	// FUNCTION: Flashes all LEDs on Throttle to signify game has loaded - WARTHOG ONLY
-//
-//	int fnFlashStart() {
-//		int i = 0;
-//		
-//		if (FlashLEDs) {
-//			while (i < 5) {
-//				DeferCall(200*i, &ActKey, PULSE+KEYON+LED(&MyThrottle, LED_ONOFF, LED_CURRENT^LED0));
-//				DeferCall((200*i)+100, &ActKey, PULSE+KEYON+LED(&MyThrottle, LED_ONOFF, LED_CURRENT^LED0));
-//				i = i + 1;
-//			}
-//		}
-//	}
-//
-//
+
 	// FUNCTION: 	Text to Speech using voice.exe
 	// Requires: 	Voice.exe available in path set in ED_UserSettings (VoicePath)
 	//				VoiceCMD must also be set correctly in ED_UserSettings.tmh 
@@ -940,33 +849,6 @@
 	}
 
 
-//	// FUNCTION:	If in Ship Enter Hanger/Lift Off Macros
-//	//				if in SRV apply/release handbrake
-//	// Parameter:	x = ENTER (Hanger Services), EXIT (Lift off) 
-//
-//	int fnIdleLock(int x) {
-//		int VoiceTxt;
-//		int fName = "Idle Lock";
-//		
-//		if (fMainShip) {
-//			fnHangerServices(x);
-//		}
-//		else if (fSRV) {
-//			if (fSRVHandbrake) {
-//				VoiceTxt = "Handbrake:	OFF";
-//			}
-//			else {
-//				VoiceTxt = "Handbrake:	ON";
-//			}
-//			fnVPOutput(VoiceTxt);
-//			ActKey(PULSE+KEYON+SRVHandbrake);		// Toggle SRV Handbrake
-//		}
-//		else {
-//			fnNotValid(fName);		
-//		}
-//	}
-//
-//
 	// FUNCTION:	Checks FSD starts spooling up after hitting FSD
 	// CALLED FROM:	tgWarpDrive() as AutoRepeat so can be cancelled by StopAutoRepeat(hFSDCharge)
 	// PARAMETER:	EngineText - Supercruise or Warpdrive selection 
@@ -1168,7 +1050,6 @@
 		printf("\x0a");
 		printf("SCRIPT LOADED:	v%d.%d.%d.%s     TARGET Mappings, Macros & Functions Loaded \x0a", VMajor, VMinor, VPoint, VBranch);
 		printf("==================================================================================\x0a");
-//		printf("USER PREFERENCES: JS-Curves: %s     DX-Slider Curve: %d     PIPMode(%d): %s     LED Level: %d\x0a\x0a", JSCurveSetting, DXCurveSetting, PIPMode, PIPTxt, LEDLevel);
 		printf("USER PREFERENCES: JS-Curves: %s     DX-Slider Curve: %d     PIPMode(%d): %s\x0a\x0a", JSCurveSetting, DXCurveSetting, PIPMode, PIPTxt);
 		fnStateDump();
 	}
@@ -1274,9 +1155,6 @@
 				printf("FIGHTER:\x0a");
 				printf("Fighter states not yet coded in this version\x0a\x0a");
 			}
-//			else {
-//				stfnDumpFlags();
-//			}
 		}
 		
 		if (Odyssey & Flags2 != 0) {
@@ -1335,32 +1213,6 @@
 	}
 
 
-//	// FUNCTION:	Turn Debug and ShowFlags ON/OFF 
-//	// Parameter:	x = 0 - 3. Refer MapKey EFLNORM
-//
-//	int fnDebug(int x) {
-//	
-//		if (x == 0) {
-//			Debug = DISABLED;
-//			ShowFlags = DISABLED;
-//			fnVPOutput("Debug OFF");
-//		}
-//		if (x == 1) {
-//			Debug = ENABLED;
-//			fnVPOutput("Debug ON");
-//		}
-//		if (x == 2) {
-//			ShowFlags = ENABLED;
-//			fnVPOutput("ShowFlags ON");			
-//		}
-//		if (x == 3) {
-//			Debug = ENABLED;
-//			ShowFlags = ENABLED;
-//			fnVPOutput("Debug and Showflags ON");
-//		}	
-//	}
-//	
-//
 	// FUNCTION:	Get Time of Day
 	// Usage1:		"int variablename = fnGetTOD();"
 	// Usage2:		"printf("The local PC time is %s", fnTOD());"
@@ -1381,29 +1233,6 @@
 	}
 	
 	
-//	// FUNCTION:	Get Today's Date
-//	// Usage1:		"int variablename = fnGetDate();"
-//	// Usage2:		"printf("Todays date is %s", fnGetDate());"
-//	
-//	int fnGetDate() {
-//		char date;
-//		Dim(&date, 14);
-//		date[0]=0;
-//		
-//		int today = "00/00";							// Set type and format
-//		
-//		system("date /T > C:\\today.txt");				// Create local date stamp
-//		
-//		int fp = fopen("c:\\today.txt", "r");
-//		if (fp) {
-//			fread(&date, 1, 13, fp);					// Read local date stamp
-//			fclose(fp);
-//			strsub(today, &date, 4, 8);
-//			return today;
-//		}	
-//	}
-//
-//
 	//	FUNCTION:	Find substring within a string and return first char position or -1 if not found
 	//	NOTE:		sys.tmh has strstr() listed to provide this functionality, however it seems to always
 	//				return a '0' no matter what you plug in. So, I decided to write my own.
