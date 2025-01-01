@@ -53,8 +53,8 @@
 				
 //===================================================================================================
 
-//		Joystick Stick Buttons
-//		----------------------
+//		Joystick Buttons
+//		----------------
 
 //		(Trigger Switch 1 - Primary Fire)
 //		---------------------------------
@@ -132,7 +132,7 @@
 		}
 		else {									// 
 			MapKeyUMD(&MyJoystick, TS4, 
-				EXEC("tgHUDMode();"),												// U - Toggle - Analysis/Combat Mode
+				EXEC("tgHUDMode(0);"),												// U - Toggle - Analysis/Combat Mode
 				EXEC("tgHardpoints();"),											// M - Deploy/Retract Hard-points - Toggles HUD Mode in Supercruise
 				EXEC("tgXAxis(SET);")												// D - Toggle Joystick X-Axis between Roll and Yaw
 				);
@@ -596,8 +596,8 @@
 
 //===================================================================================================
 
-//		Joystick Stick Buttons
-//		----------------------
+//		Joystick Buttons
+//		----------------
 
 //		(Trigger Switch 1 - Primary Fire)
 //		---------------------------------
