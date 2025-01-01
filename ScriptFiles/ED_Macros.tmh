@@ -20,20 +20,20 @@
 // ========================================================================
 
 // Index:	Line			FUNCTION
-//			Line 52:		fnCustomCommands()
-//			Line 71: 		m_RequestDock
-//			Line 84: 		m_DeploySRV
-//			Line 96: 		m_BoardShip
-//			Line 115: 		m_ShowGameStats
-//			Line 120: 		m_FastModeSwitch0
-//			Line 131: 		m_FastModeSwitch1
-//			Line 148: 		m_FastModeSwitch2
-//			Line 161: 		m_ReportCrimesToggle
-//			Line 182: 		m_NAVBeaconWing
-//			Line 208: 		m_NAVBeaconOff
-//			Line 233: 		m_EnterHanger
-//			Line 249: 		m_Launch
-//			Line 260:		m_ChangeColours
+//			Line 50:		fnCustomCommands()
+//			Line 55: 		m_RequestDock
+//			Line 68: 		m_DeploySRV
+//			Line 80: 		m_BoardShip
+//			Line 99: 		m_ShowGameStats
+//			Line 104: 		m_FastModeSwitch0
+//			Line 115: 		m_FastModeSwitch1
+//			Line 132: 		m_FastModeSwitch2
+//			Line 145: 		m_ReportCrimesToggle
+//			Line 166: 		m_NAVBeaconWing
+//			Line 192: 		m_NAVBeaconOff
+//			Line 217: 		m_EnterHanger
+//			Line 233: 		m_Launch
+//			Line 244:		m_ChangeColours
 
 
 // START
@@ -114,18 +114,18 @@
 		// MACRO: Menulog to PRIVATE GROUP
 		m_FastModeSwitch1 = CHAIN(
 			LOCK+PULSE+RolePanel, D(250),						// Select any panel to ensure GUIFocus is set (!=0) <-- Required???
-			PULSE+MenuLog, D(600),								// Keystroke sequence = p, up, spc, spc, <wait>, spc, right, spc, spc, right, spc
+			PULSE+MenuLog, D(600),								// Keystroke sequence = 3, p, up, spc, spc, <wait>, spc, right, spc, spc, right, spc
 			PULSE+UIUp, D(600),
 			PULSE+UISelect, D(650),
 			PULSE+UISelect, D(8500),							// ** Depending on the load times of your PC, this value may need to be
 			PULSE+UISelect, D(650),								//    changed/increased
 			PULSE+UIRight, D(650),
 			PULSE+UISelect, D(650),
-			PULSE+UIRight, D(650),								// Highlights #1 Top option
+			PULSE+UIRight, D(650),								// Highlights #1 Top option			
 		//	PULSE+UIDown, D(650),								// Remove comment to highlight 2nd option in list
 		//	PULSE+UIDown, D(650),								// Remove comment to highlight 3rd option in list
 		//	PULSE+UIDown, D(650),								// etc. Add copies of this line if you prefer to use a specific option in list 
-			PULSE+UISelect, D(650),								// Selects Private Group
+			PULSE+UISelect, D(1000),							// Selects Private Group
 			LOCK);
 
 		// MACRO: Menulog to SOLO
