@@ -920,7 +920,7 @@
 	<BuggyTurretMouseDeadzone Value="0.05000000" />
 	<BuggyTurretMouseLinearity Value="1.00000000" />
 	<DriveSpeedAxis>
-		<Binding Device="ThrustMasterWarthogCombined" Key="Joy_RZAxis" />
+		<Binding Device="ThrustMasterWarthogCombined" Key="Joy_UAxis" />
 		<Inverted Value="1" />
 		<Deadzone Value="0.00000000" />
 	</DriveSpeedAxis>
