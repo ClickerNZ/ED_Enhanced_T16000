@@ -23,13 +23,13 @@
 
 // Index:	Line		FUNCTION
 //			Line 45:	int CheckControllers()
-//			Line 142: 	int initJoystickAxis()
+//			Line 143: 	int initJoystickAxis()
 //			Line 171: 	int initThrottleAxis()
-//			Line 193:	int initSliderAxis()
-//			Line 208:	int initSlewAxis()
-//			Line 223: 	int initRudderAxis()
-//			Line 249: 	int initTextToSpeech()
-//			Line 267: 	int initSoundFX()
+//			Line 192: 	int initRudderAxis()
+//			Line 213:	int initSliderAxis()
+//			Line 228:	int initSlewAxis()
+//			Line 248: 	int initTextToSpeech()
+//			Line 266: 	int initSoundFX()
 
 // START
 
