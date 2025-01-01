@@ -22,14 +22,14 @@
 // ========================================================================
 
 // Index:	Line		FUNCTION
-//			Line 53: 	int stfnReadStatusJson()
-//			Line 155:	int stfnWriteMaxJson()
-//			Line 196: 	int stfnGetKeyValue()
-//			Line 304: 	int stfnProcessFlags()
-//			Line 836:	int stfnProcessFlags2()
-//			Line 1113: 	int stfnProcessGuiFocus()
-//			Line 1140: 	int stfnStartCheck()
-//			Line 1213:	int stfnMyStates()
+//			Line 51: 	int stfnReadStatusJson()
+//			Line 153:	int stfnWriteMaxJson()
+//			Line 194: 	int stfnGetKeyValue()
+//			Line 301: 	int stfnProcessFlags()
+//			Line 794:	int stfnProcessFlags2()
+//			Line 1067: 	int stfnProcessGuiFocus()
+//			Line 1094: 	int stfnStartCheck()
+//			Line 1164:	int stfnMyStates()
 	
 // START
 
@@ -481,7 +481,7 @@
 				}
 				else {
 					printf("Supercruise flag reset\x0a");
-					SCO = 0;
+//					SCO = 0;
 					if (SelectDrop == NO) {													// Uninitiated drop				
 						if (OrbitalCruise & !fInterdicted) {
 							VoiceTxt = "Entering Glide Mode";
@@ -492,7 +492,7 @@
 						fnVPOutput(VoiceTxt);												//  Announce drop type
 						if (fInterdicted | fDanger) {
 							if (fHUDAnalysis) {	
-								tgHUDMode();												// Select Combat HUD
+								tgHUDMode(0);												// Select Combat HUD
 							}
 							if (!fHardpoints) {
 								tgHardpoints();												// Deploy weapons
@@ -664,10 +664,10 @@
 
 			if ((fLatLong != lLatLong) & fMainShip) {									// Detect when we cross the Orbital Cruise boundary
 				if (fLatLong) {
-					OrbitalCruise = 1;
+					OrbitalCruise = YES;
 				}
 				else {
-					OrbitalCruise = 0;
+					OrbitalCruise = NO;
 				}	
 			}
 
@@ -754,7 +754,7 @@
 			}
 
 			// Cannot select FSDJump when SCO is in Overcharge mode. This is announced in-game.
-			// There is currently no status.json flag for this
+			// There is currently no status.json flag for SCO 
 			if (fFSDJump != lFSDJump) {										// Detect when Supercruise or Hyperjump has been toggled
 				if (!fFSDJump) {											// Detect when FSD Jump flag gets reset
 					printf("FSD Jump flag reset\x0a");
@@ -762,8 +762,8 @@
 				else {														// Detect when FSD Jump flag gets set
 					printf("FSD Jump flag set\x0a");
 					
-					if (!fHUDAnalysis & AutoHUD) {
-						tgHUDMode();		
+					if (!fHUDAnalysis & AutoHUD) {							// Toggle HUD to Discovery mode if AutoHUD is set in ED_ UserSettings	
+						DeferCall(500, &tgHUDMode, 0);				
 					}
 				}
 			}
