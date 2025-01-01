@@ -82,17 +82,6 @@
 	define hSoundFX								5						// Used in ED_MapKeyAssignment.tmh 				- TBTN2 & TBTN3 reminder sound
 	define hBeepFX								6						// Used in ED_Toggles.tmh						- Reverse thrust
 
-//--------------------//
-// YAW Device Defines //
-//--------------------//
-
-	// By Default, CheckControllers() function sets YAWDevice to each found device in order of JSTwist, THRPadddles then RudderPedals 
-	// unless you set YAWDeviceOverride to ENABLED and set YAWDevice
-
-//	define	JSTwist								0						//
-//	define	THRPaddles							1						// These are used to set which device is used for YAW
-//	define	RudderPedals						2						//
-
 //----------------------------------------------------------------------//
 // SCRIPT BOOLEAN and STATE DEFINES										//
 //----------------------------------------------------------------------//
@@ -144,8 +133,10 @@
 	define MEDIUM								2						// used for fnSetCurves()
 	define SLOW									3						// used for fnSetCurves()
 	define SLOWEST								4						// used for fnSetCurves()
+
 	define NOPRINT								0						// suppress console message, or...
 	define PRINT								1						// ...don't
+
 	define SAVE									1						// used in stfnMyStates()
 	define LOAD									0						// used in stfnMyStates()	
 
@@ -155,7 +146,6 @@
 
 	define ControllerCheck						ENABLED					// ENABLED:		Abort script if compatible Joystick or Throttle not found during CheckControllers() function at script start
 																		// DISABLED:	Won't abort script if compatible Joystick or Throttle not found
-
 
 //-----------------------------------------------------------------------------------------------------------------------------//
 //                                                                                                                             //
@@ -280,7 +270,7 @@
 	define ED_PhysicalMulticrew    	0x0000000000040000
 	define ED_FSDHyperdriveChg     	0x0000000000080000
 
-//	define ED_RESERVED          	0x0000000000100000
+//	define ED_RESERVED          	0x0000000000100000			// No Flags2 bits currently assigned
 //	define ED_RESERVED           	0x0000000000200000
 //	define ED_RESERVED           	0x0000000000400000
 //	define ED_RESERVED     			0x0000000000800000
