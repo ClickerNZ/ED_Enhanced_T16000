@@ -39,8 +39,7 @@
 
 	int VoiceExists;					// Declared here and set in initTextToSpeech()
 	int SerialText			= 0;		// Default TextToSpeech action is Parallel (call voice.exe and immediately process next instruction)
-										// Set SerialText prior to calling fnVPOutput() or fnTextToSpeech() to call voice.exe and wait until complete)
-	int TTSDelay			= 0;		// Text To Speech Delay to assist with multiple calls with short timeframe
+										// Set SerialText prior to calling fnVPOutput() or fnTextToSpeech() to call voice.exe and wait until complete
 	
 	int SounderExists;					// Declared here and set in initSoundFX()
 
@@ -53,9 +52,6 @@
 										// PIPMode saved/restored via stfnMyStates()
 	int PIPTxt;							// PIPMode descriptor
 	
-//	int	SetLED;							// WARTHOG Only. SetLED determines LED brightness. Refer fnLEDBrightness()
-
-//	int Debug				= 0;		// Debug mode for testing. 0 = OFF, 1 = ON. Prints additional info to console and announces key flag settings
 	int StartupLock			= 1;		// Prevent triggering keystrokes during initialisation
 	int GameLoaded			= 0;		// Set in fnGameStarted() when game is detected as running
 	
@@ -76,9 +72,9 @@
 	int SilentStrobe		= 0;		// Used to track when we are using the Silent Running Strobe feature
 	int XAxisYAW			= 0;		// Used to track which mode X-Axis is, Roll (default) or Yaw
 	
-	int WDRetries			= 0;		// Failed Warpdrive retry count (eg MassLocked when trying to go to supercruise)
+	int MassLockCounter		= 0;		// Failed Warpdrive retry count (eg MassLocked when trying to go to supercruise)
 	
-	int SCO					= 0;		// Supercruise Overcharge flag
+	int SCO					= 0;		// Supercruise Overcharge flag. Tracks SCO (no flag in status.json)
 	
 			
 // END
