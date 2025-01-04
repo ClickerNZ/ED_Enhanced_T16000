@@ -55,7 +55,7 @@ The following images can be found within the Mapfiles subfolder
 ---  
 
 <figure>
-    <div align= "center"><img src="/MapFiles/TWCSThrottle-ENHANCED-BASIC-ACTIONS.png" width="640"></div>
+    <div align= "center"><img src="/MapFiles/TWCSThrottle-ENHANCED-ACTIONS.png" width="640"></div>
 </figure>  
 
 <p align= "center">ED_ThrottleChart - ENHANCED ACTIONS</p>  
