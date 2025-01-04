@@ -3,7 +3,7 @@
 //	CMDR Clicker's Elite Dangerous Enhanced Script - T16000, TWCSThrottle, TFRP Rudder	//
 //--------------------------------------------------------------------------------------//
 
-// This file: ED_MapKeyAssignment.tmh ... supports Elite Dangerous (Ascendancy)
+// This file: ED_MapKeyAssignment.tmh ... supports Elite Dangerous (Cobra V)
 
 // Contains MapKey Statements for all button and switch actions
 // Contains MapKey Statements to announce via TextToSpeech and printf to console for each button or switch action (training mode)
@@ -114,9 +114,9 @@
 		}
 		else {									// 
 			MapKeyUMD(&MyJoystick, TS3,
-				EXEC("tgEnhancedFAOFF(1);"),										// Engage JSMouseEmulation
-				EXEC("tgEnhancedFAOFF(0);"),										// TOGGLE: FA-OFF/ON
-				SEQ(EXEC("tgSilentRunning(ON);"), EXEC("tgSilentRunning(OFF);"))	// TOGGLE: Silent Running ON/OFF
+				SEQ(EXEC("tgSilentRunning(ON);"), EXEC("tgSilentRunning(OFF);")),	// U - TOGGLE: Silent Running ON/OFF 
+				EXEC("tgEnhancedFAOFF(0);"),										// M - TOGGLE: FA-OFF/ON
+				EXEC("fnVPOutput(\"not used\");")									// D - 
 				);
 		}
 
@@ -127,7 +127,7 @@
 			MapKeyUMD(&MyJoystick, TS4, 
 				PULSE+TargetNextSubsystem,											// U - 'i'
 				PULSE+DeployHardpoints,												// M - 'u' - Left Thumb
-				0 																	// D - 
+				EXEC("fnVPOutput(\"not used\");")									// D - 
 				);	
 		}
 		else {									// 
@@ -218,9 +218,9 @@
 		}
 		else {
 			MapKeyUMD(&MyJoystick, B5, 
-				0,																	// U - 
+				EXEC("fnVPOutput(\"not used\");"),									// U - 
 				PULSE+GalMap,														// LeftShift+';'
-				0																	// D -
+				EXEC("fnVPOutput(\"not used\");")									// D - 
 				);
 		}
 
@@ -229,9 +229,9 @@
 		}
 		else {
 			MapKeyUMD(&MyJoystick, B6,
-				0,																	// U - 
+				EXEC("fnVPOutput(\"not used\");"),									// U - 
 				EXEC("fnDRShip();"),												// M - Dismiss or recall the ship when on foot or in SRV 
-				0																	// D -
+				EXEC("fnVPOutput(\"not used\");")									// D - 
 				);
 		}
 
@@ -240,9 +240,9 @@
 		}
 		else {
 			MapKeyUMD(&MyJoystick, B7,
-				0,																	// U - 
+				EXEC("fnVPOutput(\"not used\");"),									// U - 
 				PULSE+HideShipGUI,													// M - LeftCTRL+LeftALT+'g'
-				0																	// D -
+				EXEC("fnVPOutput(\"not used\");")									// D -
 				);
 		}
 		
@@ -256,9 +256,9 @@
 		}
 		else {
 			MapKeyUMD(&MyJoystick, B8,
-				0,																	// U - 
+				EXEC("fnVPOutput(\"not used\");"),									// U - 
 				EXEC("fnHangerServices(ENTER);"),									// M - 
-				0																	// D -
+				EXEC("fnVPOutput(\"not used\");")									// D -
 				);
 		}
 
@@ -267,9 +267,9 @@
 		}
 		else {
 			MapKeyUMD(&MyJoystick, B9,
-				0,																	// U - 
+				EXEC("fnVPOutput(\"not used\");"),									// U - 
 				EXEC("tgExtCamera();"),												// M - External Camera ON/OFF 
-				0																	// D -
+				EXEC("fnVPOutput(\"not used\");")									// D -
 				);
 		}
 		
@@ -278,9 +278,9 @@
 		}
 		else {
 			MapKeyUMD(&MyJoystick, B10,
-				0,																	// U - 
+				EXEC("fnVPOutput(\"not used\");"),									// U - 
 				PULSE+SystemMap,													// M - ';' 
-				0																	// D -
+				EXEC("fnVPOutput(\"not used\");")									// D -
 				);
 		}
 		
@@ -289,9 +289,9 @@
 		}
 		else {
 			MapKeyUMD(&MyJoystick, B11,
-				0,																	// U - 
+				EXEC("fnVPOutput(\"not used\");"),									// U - 
 				PULSE+m_ShowGameStats,												// M - Show both Frame Rate and Connection Status 
-				0																	// D -
+				EXEC("fnVPOutput(\"not used\");")									// D -
 				);
 		}
 
@@ -300,9 +300,9 @@
 		}
 		else {
 			MapKeyUMD(&MyJoystick, B12,
-				0,																	// U - 
+				EXEC("fnVPOutput(\"not used\");"),									// U - 
 				EXEC("fnClearChatBox(0);"),											// M - Clear the COMMS panel chat box
-				0																	// D -
+				EXEC("fnVPOutput(\"not used\");")									// D -
 				);
 		}
 
@@ -311,9 +311,9 @@
 		}
 		else {
 			MapKeyUMD(&MyJoystick, B13,
-				0,																	// U - 
+				EXEC("fnVPOutput(\"not used\");"),									// U - 
 				SEQ(PULSE+m_NAVBeaconWing, PULSE+m_NAVBeaconOff),					// M - My NAV Beacon - ON/OFF
-				0																	// D -
+				EXEC("fnVPOutput(\"not used\");")									// D -
 				);
 		}
 		
@@ -333,9 +333,9 @@
 		}
 		else {
 			MapKeyUMD(&MyJoystick, B15,
-				0,																	// U - 
+				EXEC("fnVPOutput(\"not used\");"),									// U - 
 				PULSE+m_ChangeColours,												// M - Change Engine and Weapon Colours
-				0																	// D -
+				EXEC("fnVPOutput(\"not used\");")									// D -
 				);
 		}
 		
@@ -363,19 +363,19 @@
 			MapKeyUMD(&MyThrottle, TBTN1, 
 				EXEC("fnRequestDock();"),											// U - Fire Req Dock seq macro
 				PULSE+LookOnOff,													// M - 'o' - Thumb
-				0																	// D - 
+				EXEC("fnVPOutput(\"not used\");")									// D - 
 				);
 		}
 
 		if (MapKeyProfile == BASIC) {			// 
-			MapKey(&MyThrottle, TBTN2, 0);												//  ** DO NOT TOUCH ** Used as ShiftButton for UMD - UP 
+			MapKey(&MyThrottle, TBTN2, 0);											//  ** DO NOT TOUCH ** Used as ShiftButton for UMD - UP 
 		}
 		else {
 			MapKey(&MyThrottle, TBTN2, REXEC(hSoundFX, 3000, "fnSoundFX(\"boop\", 50);", RNOSTOP));	//  ShiftButton: Sound Reminder every 3 seconds
 			MapKeyR(&MyThrottle, TBTN2, EXEC("StopAutoRepeat(hSoundFX);"));		//RELEASE			//  Cancel reminder soundfx
 		}
 		if (MapKeyProfile == BASIC) {			// 
-			MapKey(&MyThrottle, TBTN3, 0);												//  ** DO NOT TOUCH ** Used as ShiftButton for UMD - DOWN 
+			MapKey(&MyThrottle, TBTN3, 0);											//  ** DO NOT TOUCH ** Used as ShiftButton for UMD - DOWN 
 		}
 		else {
 			MapKey(&MyThrottle, TBTN3, REXEC(hSoundFX, 3000, "fnSoundFX(\"boop\", 50);", RNOSTOP));	//  ShiftButton: Sound Reminder every 3 seconds
@@ -384,16 +384,16 @@
 
 		if (MapKeyProfile == BASIC) {			// 
 			MapKeyUMD(&MyThrottle, TBTN4, 
-				0,																	// U - 
+				EXEC("fnVPOutput(\"not used\");"),									// U - 
 				PULSE+EngineBoost,													// M - LeftShift+'b' - Middle Finger UP
-				0																	// D - 
+				EXEC("fnVPOutput(\"not used\");")									// D - 
 				);
 		}
 		else {
 			MapKeyUMD(&MyThrottle, TBTN4, 
-				0,																	// U - 
+				EXEC("fnVoiceVolume(INCREASE);")									// U - Increase Text to Speech Volume
 				EXEC("tgBoost();"),													// M - Boost
-				EXEC("fnVoiceVolume(INCREASE);")									// D - Increase Text to Speech Volume 
+				EXEC("fnVoiceVolume(DECREASE);")									// D - Decrease Text to Speech Volume 
 				);
 		}
 		
@@ -401,27 +401,27 @@
 			MapKeyUMD(&MyThrottle, TBTN5, 
 				PULSE+SRVHandbrake,													// U - 'x'
 				PULSE+ReverseThrottle,												// M - NP '*' - Middle Finger DOWN - set to TOGGLE
-				0																	// D - 
+				EXEC("fnVPOutput(\"not used\");")									// D - 
 				);
 		}
 		else {
 			MapKeyUMD(&MyThrottle, TBTN5, 
-				PULSE+SRVHandbrake,													// U - 'x'
+				EXEC("fnVoiceVolume(DECREASE);"),									// U - Decrease Text to Speech Volume 
 				SEQ(EXEC("tgReverseThrust(1);"), EXEC("tgReverseThrust(3);")),		// M - Standard Reverse	- Deploy Speedbrake if Hardpoints deployed
-				EXEC("fnVoiceVolume(DECREASE);")									// D - Decrease Text to Speech Volume
+				PULSE+SRVHandbrake													// D - 'x'
 				);
 		}
 
 		if (MapKeyProfile == BASIC) {			// 
 			MapKeyUMD(&MyThrottle, TLOCK, 
-				0,																	// U - 
+				EXEC("fnVPOutput(\"not used\");"),									// U - 
 				PULSE+ResetHeadOrientation,											// M - '~' - Slew Control - PRESS 
-				0																	// D - 
+				EXEC("fnVPOutput(\"not used\");")									// D - 
 				);
 		}
 		else{
 			MapKeyUMD(&MyThrottle, TLOCK, 
-				0,																	// U - 
+				EXEC("fnVPOutput(\"not used\");"),									// U - 
 				PULSE+ResetHeadOrientation,											// M - '~' - Slew Control - PRESS 
 				PULSE+EjectCargo													// D - 'END'
 				);
@@ -450,7 +450,7 @@
 			MapKeyUMD(&MyThrottle, THAT1D, 
 				EXEC("tgPlanetView();"),											// U - Front/Back View
 				EXEC("tgWarpDrive(1);"),											// M - Toggle: Initiate Hyper Jump
-				0																	// D - 
+				EXEC("fnVPOutput(\"not used\");")									// D - 
 				);		
 		}
 		
@@ -461,7 +461,7 @@
 			MapKeyUMD(&MyThrottle, THAT1L, 
 				PULSE+FSSZoomOUT,													// U - '['
 				PULSE+SelectNextSystemInRoute,										// M - 'm' - Target next system in jump route
-				0																	// D - 
+				EXEC("fnVPOutput(\"not used\");")									// D - 
 				);					
 		}
 		
@@ -472,7 +472,7 @@
 			MapKeyUMD(&MyThrottle, THAT1R, 
 				PULSE+FSSZoomIN,													// U - ']'
 				PULSE+OrbitLines,													// M - '=' - Toggle Orbit Lines ON/OFF 
-				0																	// D - 
+				EXEC("fnVPOutput(\"not used\");")									// D - 
 				);					
 		}
 		
@@ -498,7 +498,7 @@
 			MapKeyUMD(&MyThrottle, THAT2D, 	
 				EXEC("fnPIPMode(RESET);"),											// U - Reset PIPMode 
 				PULSE+BalancePower,													// M - Balance PIP sequence
-				0																	// D - 
+				EXEC("fnVPOutput(\"not used\");")									// D - 
 				);		
 		}
 		if (MapKeyProfile == BASIC) {			// 
@@ -508,7 +508,7 @@
 			MapKeyUMD(&MyThrottle, THAT2L, 
 				PULSE+TargetPrevSubsystem,											// U - 'k'
 				EXEC("fnPIPManager(SYS);"),											// M - Fire System focussed PIP sequence
-				0																	// D - 
+				EXEC("fnVPOutput(\"not used\");")									// D - 
 				);		
 		}
 		if (MapKeyProfile == BASIC) {			// 
@@ -518,7 +518,7 @@
 			MapKeyUMD(&MyThrottle, THAT2R,
 				PULSE+TargetNextSubsystem,											// U - 'i'
 				EXEC("fnPIPManager(WEP);"),											// M - Fire Weapon focussed PIP sequence
-				0																	// D - 
+				EXEC("fnVPOutput(\"not used\");")									// D - 
 				);		
 		}
 
@@ -647,9 +647,9 @@
 		}
 		else {									// 
 			MapKeyUMD(&MyJoystick, TS3,
-				EXEC("fnVPOutput(\"Engage mouse flight control\");"),				// U - 
-				EXEC("fnVPOutput(\"Flight assist on, off\");"),						// M - 
-				EXEC("fnVPOutput(\"Silent running on, off\");")						// D - 
+				EXEC("fnVPOutput(\"Silent running ON, OFF\");"),					// U - 
+				EXEC("fnVPOutput(\"Flight assist ON, OFF\");"),						// M - 
+				EXEC("fnVPOutput(\"not used\");")									// D - 
 				);
 		}
 
@@ -890,42 +890,42 @@
 		}
 		else {
 			MapKeyUMD(&MyThrottle, TBTN1, 
-				EXEC("fnVPOutput(\"Request docking permission\");"),						// U - 
-				EXEC("fnVPOutput(\"Turn Headlook On, Off\");"),								// M - 
-				EXEC("fnVPOutput(\"not used\");")											// D - 
+				EXEC("fnVPOutput(\"Request docking permission\");"),				// U - 
+				EXEC("fnVPOutput(\"Turn Headlook On, Off\");"),						// M - 
+				EXEC("fnVPOutput(\"not used\");")									// D - 
 				);
 		}
 
-		MapKey(&MyThrottle, TBTN2, EXEC("fnVPOutput(\"UP Shift button\");"));				//  ** DO NOT TOUCH ** Used as ShiftButton for UMD
-		MapKey(&MyThrottle, TBTN3, EXEC("fnVPOutput(\"DOWN Shift button\");"));				//  ** DO NOT TOUCH ** Used as ShiftButton for UMD
+		MapKey(&MyThrottle, TBTN2, EXEC("fnVPOutput(\"UP Shift button\");"));		//  ** DO NOT TOUCH ** Used as ShiftButton for UMD
+		MapKey(&MyThrottle, TBTN3, EXEC("fnVPOutput(\"DOWN Shift button\");"));		//  ** DO NOT TOUCH ** Used as ShiftButton for UMD
 
 		if (MapKeyProfile == BASIC) {			// 
 			MapKeyUMD(&MyThrottle, TBTN4, 
-				EXEC("fnVPOutput(\"not used\");"),											// U - 
-				EXEC("fnVPOutput(\"Engine Boost and S C O\");"),							// LeftShift+'b' - Middle Finger UP
-				EXEC("fnVPOutput(\"not used\");")											// D - 
+				EXEC("fnVPOutput(\"not used\");"),									// U - 
+				EXEC("fnVPOutput(\"Engine Boost and S C O\");"),					// LeftShift+'b' - Middle Finger UP
+				EXEC("fnVPOutput(\"not used\");")									// D - 
 				);
 		}
 		else {
 			MapKeyUMD(&MyThrottle, TBTN4, 
-				EXEC("fnVPOutput(\"not used\");"),											// U - 
-				EXEC("fnVPOutput(\"Engine Boost and S C O\");"),							// M -
-				EXEC("fnVPOutput(\"Increase text to speech volume\");")						// D - 
+				EXEC("fnVPOutput(\"Increase text to speech volume\");"),			//  - 
+				EXEC("fnVPOutput(\"Engine Boost and S C O\");"),					// M -
+				EXEC("fnVPOutput(\"not used\");")									// D - 
 				);
 		}
 		
 		if (MapKeyProfile == BASIC) {			// 
 			MapKeyUMD(&MyThrottle, TBTN5, 
-				EXEC("fnVPOutput(\"S R V Hand brake\");"),							// U - 'x'
+				EXEC("fnVPOutput(\"not used\");")									// U - 
 				EXEC("fnVPOutput(\"Reverse throttle\");"),							// M - NP '*' - Middle Finger DOWN - set to TOGGLE
-				EXEC("fnVPOutput(\"not used\");")									// D - 
+				EXEC("fnVPOutput(\"S R V Hand brake\");"),							// D - 'x'
 				);
 		}
 		else {
 			MapKeyUMD(&MyThrottle, TBTN5, 
-				EXEC("fnVPOutput(\"S R V Hand brake\");"),							// U - 'x'
+				EXEC("fnVPOutput(\"Decrease text to speech volume\");")				// U - 
 				EXEC("fnVPOutput(\"Reverse throttle\");"),							// M - NP '*' - Middle Finger DOWN - set to TOGGLE
-				EXEC("fnVPOutput(\"Increase text to speech volume\");")				// D - 
+				EXEC("fnVPOutput(\"S R V Hand brake\");")							// D - 'x'				
 				);
 		}
 
