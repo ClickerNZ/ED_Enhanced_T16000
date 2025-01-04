@@ -59,7 +59,7 @@ The zip file contains the following:
 - Changelog.txt
 - ScriptFiles folder contains all supporting script files  
 
-[Script Files Overview] "/SupportFiles/Documents/ScriptFilesOverview.md"  
+[Script Files Overview](./SupportFiles/Documents/ScriptFilesOverview.md)  
 
 - A MapFiles folder which contains  
   * Quick Reference guide spreadsheet  
