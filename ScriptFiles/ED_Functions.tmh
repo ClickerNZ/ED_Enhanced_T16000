@@ -3,7 +3,7 @@
 //	CMDR Clicker's Elite Dangerous Enhanced Script - T16000, TWCSThrottle, TFRP Rudder	//
 //--------------------------------------------------------------------------------------//
 
-// This file: ED_Functions.tmh ... supports Elite Dangerous (Ascendancy)
+// This file: ED_Functions.tmh ... supports Elite Dangerous (Cobra V)
 
 // Refer Change Log.txt in parent folder
 
@@ -22,36 +22,35 @@
 // ========================================================================
 
 // Index:	Line		FUNCTION
-//			Line 68: 	int fnNotValid()
-//			Line 91: 	int fnSetCurves()
-//			Line 188: 	int fnSetSliderCurve()
-//			Line 219: 	int fnGetFlightMode()
-//			Line 346: 	int fnTextToSpeech()
-//			Line 378: 	int fnVoiceVolume()
-//			Line 438: 	int fnSoundFX()
-//			Line 456: 	int fnGameStarted()
-//			Line 550: 	int fnPIPMode()
-//			Line 601: 	int fnPIPManager()
-//			Line 638: 	int fnPIPMapper()
-//			Line 678: 	int fnAdvFireControl()
-//			Line 751: 	int fnAdvancedSCB()
-//			Line 783: 	int fnHeatsink()
-//			Line 799: 	int fnChaff()
-//			Line 817: 	int fnDeploySRV()
-//			line 861:	int fnDRShip()
-//			Line 890: 	int fnRequestDock()
-//			Line 912: 	int fnHangerServices()
-//			Line 956:	int fnIdleLock()			// WARTHOG Only 
-//			Line 988:	int fnCheckFSDCharge()
-//			Line 1020:	int fnCheckFSDMassLocked()
-//			Line 1049:	int fnClearChatBox()
-//			Line 1104: 	int fnModeSwitch()
-//			Line 1163:	int fnVPOutput()
-//			Line 1175: 	int fnPrintState()
-//			Line 1186: 	int fnStateDump()
-//			Line 1374:	int fnGetTOD()
-//			Line 1392:	int fnGetDate()
-//			Line 1415:	int findstr()
+//			Line 62: 	int fnNotValid()
+//			Line 79:	int fnStartupMapKeyMode()
+//			Line 105: 	int fnSetCurves()
+//			Line 198: 	int fnSetSliderCurve()
+//			Line 229: 	int fnGetFlightMode()
+//			Line 271: 	int fnTextToSpeech()
+//			Line 303: 	int fnVoiceVolume()
+//			Line 363: 	int fnSoundFX()
+//			Line 381: 	int fnGameStarted()
+//			Line 449: 	int fnPIPMode()
+//			Line 500: 	int fnPIPManager()
+//			Line 537: 	int fnPIPMapper()
+//			Line 577: 	int fnAdvFireControl()
+//			Line 648: 	int fnAdvancedSCB()
+//			Line 678: 	int fnHeatsink()
+//			Line 691: 	int fnChaff()
+//			Line 707: 	int fnDeploySRV()
+//			line 754:	int fnDRShip()
+//			Line 783: 	int fnRequestDock()
+//			Line 810: 	int fnHangerServices()
+//			Line 859:	int fnCheckFSDCharge()
+//			Line 887:	int fnCheckFSDMassLocked()
+//			Line 915:	int fnClearChatBox()
+//			Line 971: 	int fnModeSwitch()
+//			Line 1034:	int fnVPOutput()
+//			Line 1046: 	int fnPrintState()
+//			Line 1057: 	int fnStateDump()
+//			Line 1218:	int fnGetTOD()
+//			Line 1238:	int findstr()
 
 //------------------//
 // CUSTOM FUNCTIONS //
@@ -267,7 +266,7 @@
 	//
 	// Usage4:		fnTextToSpeech("Test number 4", 0, &David);	//says the text at default volume using "David" voice
 	//
-	// NOTE:		Default 'VoiceVolume' is 75% and can be increased or decreased by using Throttle TBTN4-D (Vol+) or TBTN5-D (Vol-)
+	// NOTE:		Default 'VoiceVolume' is 75% and can be increased or decreased by using Throttle TBTN4-U (Vol+) or TBTN4-D (Vol-)
 
 	int fnTextToSpeech(int text, int VolumeOverride=0, int Voice=DefaultVoice) {
 		char volume; Dim (&volume, 4); volume[0] = NUL;
@@ -277,7 +276,7 @@
 			sprintf(&volume, "%d", VolumeOverride);							// Uses volume setting parsed when calling this function
 		}
 		else {
-			sprintf(&volume, "%d", VoiceVolume);							// Uses the VoiceVolume variable (Default = 75%). Can be changed via TBTN4-D & TBTN5-D on Throttle
+			sprintf(&volume, "%d", VoiceVolume);							// Uses the VoiceVolume variable (Default = 75%). Can be changed via TBTN4-U/D on Throttle
 		}
 		volume[3] = NUL;													// terminate char array 
 		if (EnableVoice) {
@@ -425,13 +424,12 @@
 			Odyssey = 0;												// Therefore, legacy client is running  
 			printf("\x0a\GAME:		HORIZONS\x0a");
 			SerialText = 1;
-			DeferCall(3000, &fnTextToSpeech, "Running legacy client version");
+			DeferCall(3000, &fnTextToSpeech, "Running legacy");
 		}
 		else {
 			Odyssey = 1;
 			printf("\x0a\GAME:		ODYSSEY\x0a");
-			SerialText = 1;
-			DeferCall(3000, &fnTextToSpeech, "Running latest client version");			
+			DeferCall(3000, &fnTextToSpeech, "Running client version, 4");			
 		}
 						
 		fnPrintState();
@@ -490,7 +488,7 @@
 		}
 		if (StartupLock == OFF) {
 			fnTextToSpeech(VoiceTxt);
-			printf("PIPMode(%d):		%s	>>\x0a", PIPMode, PIPTxt);
+			printf("PIPMode(%d):		%s\x0a", PIPMode, PIPTxt);
 		}
 	}
 
@@ -675,10 +673,10 @@
 	}
 
 
-	// FUNCTION: Deploy Heatsink / FSS Zoom
+	// FUNCTION: Deploy Heatsink
 	
 	int fnHeatsink() {
-		if (!fSupercruise & fMainShip & !fDocked & !fLanded) {
+		if (fMainShip & !fDocked & !fLanded) {
 			ActKey(PULSE+KEYON+DeployHeatSink);
 			printf("!!!  Heatsink Fired  !!!\x0a");
 		}
@@ -703,7 +701,7 @@
 	}
 
 
-	// FUNCTION: Deploy/Recover SRV. Set Slider Curve and Lights flag.
+	// FUNCTION: Deploy/Recover SRV. 
 	// Parameter: 0 = Deploy SRV, 1 = Board ship
 
 	int fnDeploySRV(int x) {
@@ -716,10 +714,11 @@
 				if (!fSRV) {				
 					if (fLanded & fMainShip) {									// DEPLOY
 						ActKey(PULSE+KEYON+m_DeploySRV);
-						printf("SRV:				DEPLOYED	>>\x0a");
+						printf("SRV:				DEPLOYED\x0a");
 					}
 					else {
-						reason = "we are not landed";
+						if (!fLanded) reason = "we are not landed";
+						if (fOnFoot) reason = "we are on foot";
 						fnNotValid(fnName, reason);
 					}
 				}
@@ -727,12 +726,12 @@
 					fnVPOutput("SRV already Deployed");				
 				}
 			}
-			else {																// RECOVER
+			else {																// RECOVER and set PIPs to shields in case we're under fire 
 				fnName = "Recover SRV";
 				if (fSRV & fSRVTurretRetracted) {	
 					ActKey(PULSE+KEYON+m_BoardShip);
-					printf("SRV:				RECOVERED	<<\x0a");
-					DeferCall(14000, &fnPIPMapper, SYS);						// PIPs to Shields 
+					printf("SRV:				RECOVERED\x0a");
+					DeferCall(14000, &fnPIPMapper, SYS);						// PIPs to Shields ... is 14 seconds too long?
 				}
 				else {
 					if (!fSRV) {
@@ -795,7 +794,7 @@
 			printf("=	    Power to shields	=\x0a\x0a");
 		}
 		else {
-			if(fSupercruise) reason = "Supercruise";
+			if(fSupercruise) 		reason = "Supercruise";
 			else if (!fMainShip)	reason = "we are not in the ship";
 			else if (fDocked)		reason = "we are already docked";
 			else if (fLanded)		reason = "we are already landed";
@@ -866,7 +865,7 @@
 			if(chkcounter > 6) {
 				reason = "FSD charge failed";
 				fnNotValid(EngineText, reason);
-				printf("%s:	DISENGAGED	<<\x0a", EngineText);
+				printf("%s:	DISENGAGED\x0a", EngineText);
 				chkcounter = 0;
 				StopAutoRepeat(hFSDCharge);				// Stop AutoRepeat once threshold has been breached
 				InitWarpDrive = DISABLED;
@@ -885,28 +884,24 @@
 	// PARAMETER:	EngineText - Supercruise or Warpdrive selection 
 	// NOTE:		Check every 0.5 sec and punch FSD if cleared
 
-	// GLOBAL VARIABLES
-	
-	int MLCount = 0;
-	
 	int fnCheckFSDMasslocked(int EngineText) {
 		int reason;
 		
-		MLCount = MLCount + 1;
+		MassLockCounter = MassLockCounter + 1;
 		
 		if(fMassLocked) {
-			printf("%s	MASSLOCKED	... Retry #%d of 4\x0a", EngineText, MLCount);
-			if(MLCount >= 4) {
+			printf("%s	MASSLOCKED	... Retry #%d of 4\x0a", EngineText, MassLockCounter);
+			if(MassLockCounter > 4) {
 				reason = "we are currently masslocked";
 				fnNotValid(EngineText, reason);
-				printf("%s:	DISENGAGED	<<\x0a", EngineText);
-				MLCount = 0;
+				printf("%s:	DISENGAGED\x0a", EngineText);
+				MassLockCounter = 0;
 				StopAutoRepeat(hMassLocked);				// Stop AutoRepeat that called this function
 				InitWarpDrive = DISABLED;
 			}
 		}
 		else {
-			MLCount = 0;
+			MassLockCounter = 0;
 			StopAutoRepeat(hMassLocked);
 			InitWarpDrive = DISABLED;
 			tgWarpDrive(EngineText); 
@@ -927,7 +922,7 @@
 		ActKey(PULSE+KEYON+										// MACRO: Open chat panel
 			CHAIN(
 				LOCK,
-				PULSE+QuickCommsPanel, D(500),
+				PULSE+QuickCommsPanel, D(500),					// 'QuickCommsPanel' = 'ENTER' key
 				PULSE+QuickCommsPanel, D(500),
 				PULSE+CommsPanel, D(500),
 				PULSE+UILeft, D(),
@@ -980,50 +975,54 @@
 		
 		int GUIMode;
 		int counter = 0;
-		int ReloadDelay;		
+		int ReloadDelay = 11;			// Set default reload delay in seconds 
 		
 		if (fMainShip) {
+			printf("Menulog from Ship\x0a");
 			ReloadDelay = 11;
 		}
 		if (fSRV) {
-			ReloadDelay = 22;
+			printf("Menulog from SRV\x0a");
+			ReloadDelay = 15;
 		}
 		if (fOnFoot){
+			printf("Menulog on foot\x0a");
 			ReloadDelay = 35;			// untested
 		}
-
-		printf("Mode Switch Triggered\x0a");
-
+		Sleep(1000);
+		printf("Menulog Triggered\x0a");
+	
 		if (fDanger | fInterdicted) {		
 			reason = "clogging is not allowed";
 			fnNotValid(fName, reason);
 		}
 		else {
 			if (mode == 0) {
-				fnVPOutput("Mode switch to open selected.. please wait for game reload\x0a");			
+				fnVPOutput("Menulog to open selected.. please wait for game reload\x0a");			
 				ActKey(PULSE+KEYON+m_FastModeSwitch0);												// Selects OPEN mode
 			}
 			else if (mode == 1) {
-				fnVPOutput("Mode switch to private group selected.. please wait for game reload\x0a");			
+				fnVPOutput("Menulog to private group selected.. please wait for game reload\x0a");			
 				ActKey(PULSE+KEYON+m_FastModeSwitch1);												// Selects PRIVATE mode
 			}
 			else {
-				fnVPOutput("Mode switch to solo selected.. please wait for game reload\x0a");			
+				fnVPOutput("Menulog to solo selected.. please wait for game reload\x0a");			
 				ActKey(PULSE+KEYON+m_FastModeSwitch2);												// Selects SOLO mode
 			}
 
 			if (ReverseThrust == ON) {																// Game always resets Reverse Thrust
 				ReverseThrust = OFF;
 			}
+
+			printf("Waiting for game to reload\x0a");
 			
 			while (counter < ReloadDelay) {															// Wait for game to finish reloading
 				printf(".");
 				Sleep(1000);																		// Sleep is ok here as game is not effectively running
 				counter = counter + 1;
 			}
-			
 			printf("\x0a\x0a\- Game has reloaded -\x0a");
-			fnGameStarted();
+			fnGameStarted();																		// We're still guessing when game has actually retsrated as Flags and Flags2 do not change 
 		}
 	}
 
@@ -1101,14 +1100,14 @@
 				LN = stfnGetKeyValue("Longitude", FLOAT);			// get fp value
 			}
 
-				HD = stfnGetKeyValue("Heading", INTEGER);			// get as integer
-				if(HD == -1) {
-					HD = "N/A";
-				}
-				AL = stfnGetKeyValue("Altitude", INTEGER);			// get as integer
-				if (AL == -1) {
-					AL = "N/A"; 
-				}
+			HD = stfnGetKeyValue("Heading", INTEGER);			// get as integer
+			if(HD == -1) {
+				HD = "N/A";
+			}
+			AL = stfnGetKeyValue("Altitude", INTEGER);			// get as integer
+			if (AL == -1) {
+				AL = "N/A"; 
+			}
 
 			if (!fSupercruise & !fFSDJump) WD = "DISENGAGED";
 			else if (fFSDJump) WD = "Hyperjump";
