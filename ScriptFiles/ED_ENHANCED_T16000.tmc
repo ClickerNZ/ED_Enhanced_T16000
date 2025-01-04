@@ -24,23 +24,20 @@
 // ==============================================================================================
 
 // Index:	Line		FUNCTION
-//			Line 61:	include statements
-//			Line 94: 	int main()
-//			Line 133:	initialise flight controls 
-//			Line 178:	int EventHandle()
+//			Line 58:	include statements
+//			Line 90: 	int main()
+//			Line 129:	initialise flight controls 
+//			Line 174:	int EventHandle()
 
 // PREFACE
 //
 // This script is provided as is and without any warranties, explicit or implied.
 //
 // This package contains a single required '.tmc' file (this is it), a '.ttm' which defines MANY constants and variables used by the rest
-// of the script. The whole package is coded within multiple '.tmh' files in order to (hopefully) make the code easier to follow.
+// of the script. The whole package is coded within multiple '.tmh' files in order to (hopefully) make the code easier to follow and maintain.
 //
 // Also included within the package is a change log to document where I've added features (intended and unintended!) and some sample 
 // Windows batch files to assist in lanching this script, the game itself and any attendant apps you may wish to use at run time.
-//
-// I am not a proffessional coder/programmer, however the philosophy I've chosen for this script package is to try to keep the code
-// within a '.tmh' file relevant to the function title thereby making each function transferrable.
 //
 // Indexes near the top of each file should assist in finding functions of interest.
 //
@@ -65,8 +62,8 @@
 // 		when loaded, hid.tmh includes "sys.tmh"
 //		...this ensures these critical files are loaded in the correct order
 
-//      The above 4x .tmh files are bundled with the TARGET software.
-//		90% of the rest have been written by me.
+//      The above 4x .tmh files are bundled with the TARGET software and will be replaced each time you apply an update.
+//		90% of the rest of this package has been written by me.
 //		10% borrowed from code found on line
 
 /////////////////////////////////////////////////////////////////////////////
@@ -85,7 +82,6 @@ include "ED_Initialise.tmh"
 include "ED_Functions.tmh"
 include "ED_StateTracker.tmh"
 include "ED_Toggles.tmh"
-include "ED_JSMouseEmulation.tmh"		////////// TESTING //////////
 	
 //--------------//
 // Main Program //
@@ -126,6 +122,8 @@ include "ED_JSMouseEmulation.tmh"		////////// TESTING //////////
 
 		SetShiftButton(&MyJoystick, 0, &MyThrottle, TBTN2, TBTN3);				// ** DO NOT TOUCH **  No IO, TWCSThrottle Buttons 2 and 3 = UMD
 
+		fnPIPMode(RESET);														// Reset PIPMode. Refer ED_UserSettings.tmh to set your preferred default PIP Mode
+																				// Do this before calling stfnMyStates(LOAD) call
 		printf("\x0a\++	Load MyStates from file...\x0a");
 		stfnMyStates(LOAD);														// Load my status variables
 
@@ -153,8 +151,6 @@ include "ED_JSMouseEmulation.tmh"		////////// TESTING //////////
 		fnCustomCommands();														// Initialise Custom Macros (See ED_Macros.tmh)
 		
 		fnStartupMapKeyMode();													// Select MapKey assignments on script startup
-
-		fnPIPMode(RESET);														// Reset PIPMode
 		
 // ----------------- //
 // Check Game State  //
@@ -179,20 +175,6 @@ include "ED_JSMouseEmulation.tmh"		////////// TESTING //////////
 	
 	    DefaultMapping(&o, x);
 	
-    // REQUIRED for ED_fa_off_stick_mouse_advanced
-
-		if (MouseEmulation) {
-	
-		 	if (&o==&MyJoystick) {
-
-				if (x == JOYY) {
-					ApplyEdgeJoystickInputY(); // check to see if we need pitch authority
-				}
-				if (x == JOYX) { 
-					ApplyEdgeJoystickInputX(); // check to see if we need yaw authority
-				}
-			}
-		}		
 	}
 
 //---------------//
