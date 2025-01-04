@@ -3,7 +3,7 @@
 //	CMDR Clicker's Elite Dangerous Enhanced Script - T16000, TWCSThrottle, TFRP Rudder	//
 //--------------------------------------------------------------------------------------//
 
-// This file: ED_Macros.ttm ... supports Elite Dangerous (Ascendancy)
+// This file: ED_Macros.ttm ... supports Elite Dangerous (Cobra V)
 
 // LEGEND: 
 // ========================================================================
@@ -27,13 +27,13 @@
 //			Line 99: 		m_ShowGameStats
 //			Line 104: 		m_FastModeSwitch0
 //			Line 115: 		m_FastModeSwitch1
-//			Line 132: 		m_FastModeSwitch2
-//			Line 145: 		m_ReportCrimesToggle
-//			Line 166: 		m_NAVBeaconWing
-//			Line 192: 		m_NAVBeaconOff
-//			Line 217: 		m_EnterHanger
-//			Line 233: 		m_Launch
-//			Line 244:		m_ChangeColours
+//			Line 135: 		m_FastModeSwitch2
+//			Line 148: 		m_ReportCrimesToggle
+//			Line 169: 		m_NAVBeaconWing
+//			Line 195: 		m_NAVBeaconOff
+//			Line 220: 		m_EnterHanger
+//			Line 236: 		m_Launch
+//			Line 247:		m_ChangeColours
 
 
 // START
@@ -92,7 +92,7 @@
 			PULSE+UIDown, D(200),
 			PULSE+UIUp, D(200),
 			PULSE+UIUp, D(200),									// should now be positioned at 'Board Ship'
-//			PULSE+UISelect, D(500),								// remove comment if macro is reliable for you
+		//	PULSE+UISelect, D(500),								// remove comment if macro is reliable for you
 			LOCK);
 
 		// MACRO: Display the combined On Screen Display FPS & Bandwidth meters
@@ -121,10 +121,13 @@
 			PULSE+UISelect, D(650),								//    changed/increased
 			PULSE+UIRight, D(650),
 			PULSE+UISelect, D(650),
-			PULSE+UIRight, D(650),								// Highlights #1 Top option			
-		//	PULSE+UIDown, D(650),								// Remove comment to highlight 2nd option in list
+			PULSE+UIRight, D(650),								// Top option selected by default 
+		//	PULSE+UIDown, D(650),								// Remove comment to highlight 2nd option in list...
+		//	PULSE+UISelect, D(650),								// ...and select it 
 		//	PULSE+UIDown, D(650),								// Remove comment to highlight 3rd option in list
-		//	PULSE+UIDown, D(650),								// etc. Add copies of this line if you prefer to use a specific option in list 
+		//	PULSE+UISelect, D(650),								// ...and select it 
+		//	PULSE+UIDown, D(650),								// etc. ... and so on 
+		//	PULSE+UISelect, D(650),								// ...and select it 
 			PULSE+UISelect, D(1000),							// Selects Private Group
 			LOCK);
 
