@@ -376,7 +376,7 @@
 	}
 
 
-	// FUNCTION:	Announce Game Start and initialise script and controller
+	// FUNCTION:	Announce Game Start,, TTS and SoundFX status, Game version
 	
 	int fnGameStarted() {
 
@@ -531,7 +531,7 @@
 	}
 
 
-	// FUNCTION: Sets Auto-PIP Mapping & then Sends Keystrokes.
+	// FUNCTION: Sets Auto-PIP Mapping & then Sends Keystrokes
 	// Parameters:  (Max, Min, Bal). Valid = SYS, ENG, WEP, MID (refer EDGlabalVars.tmh)
 
 	int fnPIPMapper(int maxPIPx=0, int minPIPy=0, int balPIPz=0) {
@@ -642,7 +642,7 @@
 	}
 
 
-	// FUNCTION:	Normal flight: 		Fire Shield Cell Bank or two and followup with a heatsink
+	// FUNCTION:	Fire Shield Cell Bank or two and followup with a heatsink
 	// Parameter:	x = 0 (1xSCB, 0xHS), 1 (1xSCB, 1xHS) or 2 (2xSCB, 1xHS)
 
 	int fnAdvancedSCB(int x=0) {
@@ -701,7 +701,7 @@
 	}
 
 
-	// FUNCTION: Deploy/Recover SRV. 
+	// FUNCTION: Deploy/Recover SRV 
 	// Parameter: 0 = Deploy SRV, 1 = Board ship
 
 	int fnDeploySRV(int x) {
