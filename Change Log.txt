@@ -9,7 +9,6 @@ v1.0.0.0_main
 	-	Removed Commented code
 	-	Test all mapped Joystick and Throttle switches and buttons and make any required corrections
 	-	Enabled Heatsinks in Supercruise
-	-	Test/Fix JSMouseEmulation for Alt-FA-OFF
 	-	Test Menulog
 	-	
 	-	Refactor indexes
