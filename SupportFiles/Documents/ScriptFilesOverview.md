@@ -69,9 +69,9 @@ If you'd like more context than is provided, or simply wish to better understand
 
 This file contains the following general purpose routines;  
 
-- fnNotValid()						Announce if function called is not valid  
-- fnStartupMapKeyMode()				Sets Mapkey Mode on Script start  
-- fnSetCurves()						Sets Joystick, Throttle and Rudder curves for all axes  
+- fnNotValid()*Tabspace**Tabspace**Tabspace**Tabspace**Tabspace**Tabspace*Announce if function called is not valid  
+- fnStartupMapKeyMode()*Tabspace**Tabspace**Tabspace**Tabspace*Sets Mapkey Mode on Script start  
+- fnSetCurves()*Tabspace**Tabspace**Tabspace**Tabspace**Tabspace**Tabspace*Sets Joystick, Throttle and Rudder curves for all axes  
 - fnSetSliderCurve()				Set context driven DX-SLIDER curves (Radar sensitivity)  
 - fnGetFlightMode()					Determine current flight mode and set Slider Curves appropriately  
 - fnTextToSpeech()					Converts Text to Speech using voice.exe  
