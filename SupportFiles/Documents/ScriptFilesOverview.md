@@ -69,17 +69,17 @@ If you'd like more context than is provided, or simply wish to better understand
 
 This file contains the following general purpose routines;  
 
-|Function                        | Purpose                                                                                             |  
-|:------------------------------:|:----------------------------------------------------------------------------------------------------|  
-|fnNotValid() |Announce if function called is not valid |  
-|fnStartupMapKeyMode() |Sets Mapkey Mode on Script start |  
-|fnSetCurves() |Sets Joystick, Throttle and Rudder curves for all axes |  
+|Function | Purpose |  
+|:-------:|:--------|  
+|fnNotValid()						|Announce if function called is not valid|  
+|fnStartupMapKeyMode()				|Sets Mapkey Mode on Script start|  
+|fnSetCurves() 						|Sets Joystick, Throttle and Rudder curves for all axes|  
+|fnSetSliderCurve()					|Set context driven DX-SLIDER curves (Radar sensitivity)|  
+|fnGetFlightMode()					|Determine current flight mode and set Slider Curves appropriately|  
+|fnTextToSpeech()					|Converts Text to Speech using voice.exe|  
+|fnVoiceVolume()					|Volume Controller for 'voice' exe / fnTextToSpeech()|  
 
 
-- fnSetSliderCurve()				Set context driven DX-SLIDER curves (Radar sensitivity)  
-- fnGetFlightMode()					Determine current flight mode and set Slider Curves appropriately  
-- fnTextToSpeech()					Converts Text to Speech using voice.exe  
-- fnVoiceVolume()					Volume Controller for 'voice' exe / fnTextToSpeech()  
 - fnSoundFX()						Plays WAV file sound effects  
 - fnGameStarted()					Announce Game Start, TTS and SoundFX status, Game version  
 - fnPIPMode()						Sets PIP Mode profiles  
