@@ -29,7 +29,7 @@
 //			Line 794:	int stfnProcessFlags2()
 //			Line 1067: 	int stfnProcessGuiFocus()
 //			Line 1094: 	int stfnStartCheck()
-//			Line 1164:	int stfnMyStates()
+//			Line 1165:	int stfnMyStates()
 	
 // START
 
@@ -213,7 +213,6 @@
 
 		float	fkeyvalue;											// floating point key values
 		int		ikeyvalue;											// integer key value
-		int		PseudoText = "";
 		int		myResult;
 		
 		// Find the Key (pattern) ...
@@ -292,6 +291,7 @@
 			return 0;													// ...use the global &keyvalue on return
 		}
 	}
+	
 	// End of stfnGetKeyValue()
 
 
@@ -481,7 +481,6 @@
 				}
 				else {
 					printf("Supercruise flag reset\x0a");
-//					SCO = 0;
 					if (SelectDrop == NO) {													// Uninitiated drop				
 						if (OrbitalCruise & !fInterdicted) {
 							VoiceTxt = "Entering Glide Mode";
@@ -511,10 +510,10 @@
 			if (fMainShip & (fFAOff != lFAOff)) {											// Handled within tgAdvancedFAOff()	
 				if (fMainShip) {															// Announced via in game setting
 					if (fFAOff) {
-						printf("Flight Assist:	ON\x0a");
+						printf("Flight Assist:	OFF\x0a");
 					}
 					else {
-						printf("Flight Assist:	OFF\x0a");					
+						printf("Flight Assist:	ON\x0a");					
 					}
 				}
 			}
@@ -558,10 +557,10 @@
 
 			if (fCargoScoop != lCargoScoop & ((fMainShip | fSRV) & !fSupercruise)) {					
 				if(fCargoScoop) {
-					printf("Cargo scoop:	DEPLOYED\x0a");					// Vocalised in game
+					printf("Cargo scoop:		DEPLOYED\x0a");					// Vocalised in game
 				}
 				else {
-					printf("Cargo scoop:	RETRACTED\x0a");
+					printf("Cargo scoop:		RETRACTED\x0a");
 				}				
 			}
 
@@ -682,7 +681,7 @@
 			
 			if (fInterdicted != lInterdicted) {
 				if (fInterdicted) {
-					printf("INTERDICTION!\x0a");										// perhaps there's no point announcing this!
+					printf("INTERDICTION!\x0a");										// There's no point announcing this!
 				}
 				else {
 					fnVPOutput("Interdiction event now over");
@@ -737,10 +736,10 @@
 			
 			if ((fNightVision != lNightVision) & (fMainShip | fSRV)) {
 				if (fNightVision & ((fSRV == lSRV) | (fMainShip == lMainShip))) {
-					fnVPOutput("Night vision");
+					fnVPOutput("Night vision:		ON");
 				}
 				else if (!fNightVision & ((fSRV == lSRV) | (fMainShip == lMainShip))){
-					fnVPOutput("Night vision: OFF");
+					fnVPOutput("Night vision:		OFF");
 				}				
 			}
 
@@ -755,6 +754,7 @@
 
 			// Cannot select FSDJump when SCO is in Overcharge mode. This is announced in-game.
 			// There is currently no status.json flag for SCO 
+			
 			if (fFSDJump != lFSDJump) {										// Detect when Supercruise or Hyperjump has been toggled
 				if (!fFSDJump) {											// Detect when FSD Jump flag gets reset
 					printf("FSD Jump flag reset\x0a");
