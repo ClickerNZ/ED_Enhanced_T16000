@@ -3,7 +3,7 @@
 //	CMDR Clicker's Elite Dangerous Enhanced Script - T16000, TWCSThrottle, TFRP Rudder	//
 //--------------------------------------------------------------------------------------//
 
-// This file: ED_Toggles.tmh ... supports Elite Dangerous (Ascendancy)
+// This file: ED_Toggles.tmh ... supports Elite Dangerous (Cobra V)
 
 // Refer Change Log.txt in parent folder
 
@@ -24,20 +24,20 @@
 // Index:	Line		FUNCTION
 //			Line 51: 	int tgTxt2Speech()
 //			Line 75: 	int tgEnhancedFAOFF()
-//			Line 178: 	int tgTriggerMode()
-//			Line 220: 	int tgLights()
-//			Line 270: 	int tgSilentRunning()
-//			Line 316: 	int tgCargoScoop()
-//			Line 343: 	int tgLandingGear()
-//			Line 386: 	int tgReverseThrust()
-//			Line 429:	int tgBoost()
-//			Line 458: 	int tgHardpoints()
-//			Line 496: 	int tgHUDMode()
-//			Line 512: 	int tgFSSMode()
-//			Line 539: 	int tgPlanetView()
-//			Line 565: 	int tgWarpDrive()
-//			Line 638: 	int tgExtCamera()
-//			Line 658:	int tgXAxis()
+//			Line 111: 	int tgTriggerMode()
+//			Line 153: 	int tgLights()
+//			Line 197: 	int tgSilentRunning()
+//			Line 243: 	int tgCargoScoop()
+//			Line 270: 	int tgLandingGear()
+//			Line 313: 	int tgReverseThrust()
+//			Line 356:	int tgBoost()
+//			Line 375: 	int tgHardpoints()
+//			Line 414: 	int tgHUDMode()
+//			Line 430: 	int tgFSSMode()
+//			Line 457: 	int tgPlanetView()
+//			Line 483: 	int tgWarpDrive()
+//			Line 556: 	int tgExtCamera()
+//			Line 576:	int tgXAxis()
 	
 	
 // START
@@ -70,9 +70,9 @@
 
 
 	// TOGGLE: 		Flight/Drive Assist OFF/ON
-	// Parameter:	0 = Standard FA-Off, 1 = FA-Off with Joystick-Mouse Emulation
+	// Parameter:	0 = Standard FA-Off, 1 = for future development
 
-	int tgEnhancedFAOFF(int param=0) {
+	int tgEnhancedFAOFF(int dummy = 0) {
 		int fnName = "Flight Assist";
 		int reason;
 		int printtxt;
@@ -89,85 +89,18 @@
 			ActKey(PULSE+KEYON+DriveAssist);										// 'z' - Toggles Drive Assist in SRV 		
 		}
 		else if (fMainShip) {
+		
 			if (fFAOff) {															// Turn FA-OFF OFF, reset Roll4YAW to default, Reinitialise Joystick, Set JSCurves to default  
 				if (CurveInfo == PRINT) {
 						printf("FA-ON Curves:\x0a");
 					}
-					if (MouseEmulation) {
-						MouseEmulation = RESET;										// Turn off MouseEmulation
-						if (!SwapRoll4Yaw) {										// If DEFAULT X-Axis is ROLL...
-							if(XAxisYAW) tgXAxis(RESET);							// ...Toggle X-Axis to ROLL if set to YAW.
-						}
-					}
-					initJoystickAxis();
 					fnSetCurves(OldCurves, CurveInfo, TRUE, FALSE);					// Announce curve profile, don't save curve info					
 				}
 			}
-			else {																	// Turn FA-Off ON 
-				if (param==1) {														// Use Joystick Mouse Emulation and toggle Roll for YAW 
-					MouseEmulation = SET;											// Turn ON MouseEmulation 				
-					tgMouseEmulation();												// TESTING - refer ED_JSMouseEmulation.tmh 
-					if (CurveInfo == PRINT) {
-						printf("MouseEmulation Curves:\x0a");
-					}
-					if (!SwapRoll4Yaw) {											// If DEFAULT X-Axis is ROLL...
-						if(!XAxisYAW) tgXAxis(RESET);								// ...Toggle X-Axis to YAW if set to ROLL 
-					}
-					fnSetCurves(FAOFFMouseCurves, CurveInfo, TRUE, FALSE);			// Announce curve profile, don't save curve info
-				}
-//				else {																// Standard FA-OFF 
-//					// standard FA-Off 
-//				}
-			}
-			ActKey(PULSE+KEYON+FlightAssist);										// 'z' - FA-OFF On/Off 
-		}
-
-
-//		if (fMainShip)	{
-//			if (!fSupercruise) {
-//				if (fFAOff) {
-//					if (CurveInfo == PRINT) {
-//						printf("FA-ON Curves:\x0a");
-//					}
-//					fnSetCurves(OldCurves, CurveInfo, TRUE, FALSE);					// Announce curve profile, don't save curve info
-//					if (MouseEmulation) {
-//						MouseEmulation = RESET;										// Turn off MouseEmulation
-//						if (!SwapRoll4Yaw) {										// If DEFAULT X-Axis is ROLL...
-//							if(XAxisYAW) tgXAxis(RESET);							// ...Toggle X-Axis to ROLL if set to YAW.
-//						}
-//					}
-//				}
-//				else {
-//					if (CurveInfo == PRINT) {
-//						printf("FA-OFF Curves:\x0a");
-//					}
-//					fnSetCurves(FAOFFCurves, CurveInfo, TRUE, FALSE);				// Announce curve profile, don't save curve info
-//				}
-//				
-//				ActKey(PULSE+KEYON+FlightAssist);									// 'z' - FA-OFF On/Off 
-//
-//				if (param==1) {
-//					MouseEmulation = SET;											// Turn ON MouseEmulation 				
-//					tgMouseEmulation();												// TESTING - refer ED_JSMouseEmulation.tmh 
-//					if (CurveInfo == PRINT) {
-//						printf("MouseEmulation Curves:\x0a");
-//					}
-//					if (!SwapRoll4Yaw) {											// If DEFAULT X-Axis is ROLL...
-//						if(!XAxisYAW) tgXAxis(RESET);								// ...Toggle X-Axis to YAW if set to ROLL 
-//					}
-//					fnSetCurves(FAOFFMouseCurves, CurveInfo, TRUE, FALSE);			// Announce curve profile, don't save curve info
-//				}
-//			}
-//			else {
-//				reason = "we are currently in Supercruise";
-//				fnNotValid(fnName, reason);
-//			}
-//		}
-//		else if (fSRV) {
-//			ActKey(PULSE+KEYON+DriveAssist);										// 'z' - Toggles Drive Assist in SRV 
-//		}	
-//	}
-
+			
+		ActKey(PULSE+KEYON+FlightAssist);											// 'z' - FA-OFF On/Off 
+			
+	}
 
 	// TOGGLE:		Cycle between 'Discovery Scanner', 'Mining Laser' and 'Pulse Wave Scanner' modes
 	// Parameter:	1 = Primary Trigger Action, 2 = Secondary Trigger Action
@@ -223,22 +156,18 @@
 		
 		int ltext  = "";
 		int lstate = "";
-		int arrows = "";
 		if (x == 0) {						// Toggle Lights
 			if (fSRV) {						// If we're in the SRV...
 				ltext = "SRV";
 				if (!fLights) {				// Transition: Off to LO
 					lstate = "LO";
-					arrows = ">>";
 				}
 				else {
 					if (fSRVHiBeam) {		// Transition: HI to OFF
 						lstate = "OFF";
-						arrows = "<<";
 					}
 					else {					// Transition: LO to HI
 						lstate = "HI";
-						arrows = ">>";					
 					}
 				}
 			}
@@ -246,15 +175,13 @@
 				ltext = "Ship";
 				if (!fLights) {				// If lights are off, turn them on...
 					lstate = "ON";
-					arrows = ">>";
 				}
 				else {						// ...otherwise, turn them off
 					lstate = "OFF";
-					arrows = "<<";
 				}
 			}
 			ActKey(PULSE+KEYON+ShipLights);
-			printf("%s Lights:		%s		%s\x0a", ltext, lstate, arrows);
+			printf("%s Lights:		%s\x0a", ltext, lstate);
 			
 		}
 		if (x == 1) {						// Toggle Night Vision - checked/reported in ED_Statracker
@@ -348,11 +275,11 @@
 		if (!fSupercruise & !fSRV & !fLanded & !fDocked) {							// Test for normal flight mode 
 			if(Speedbrake) GearString = "Speed Brake";
 			if (!fLandingGear) {													// Was RETRACTED, Deploy...
-				printf("%s:		DEPLOYED	>>\x0a", GearString);
+				printf("%s:		DEPLOYED\x0a", GearString);
 				if (!Speedbrake) fnTextToSpeech("Landing gear deployed");
 			}
 			else {																	// Was DEPLOYED, Retract...
-				printf("%s:		RETRACTED	<<\x0a", GearString);
+				printf("%s:		RETRACTED\x0a", GearString);
 				if (Speedbrake) {													// Speedbrake retract...
 					SpeedbrakeDeployed = NO;										// ...reset the flag (avoids having to use 2nd DeferCall() in tgReverseThrust())
 				}
@@ -397,7 +324,7 @@
 		if (!fSupercruise & !fOnFoot & !fLanded & !fDocked) {
 				ActKey(PULSE+KEYON+ReverseThrottle);										// or press NUMPAD *
 			if (ReverseThrust) {
-				printf("Throttle:			REVERSE	>>\x0a");
+				printf("Throttle:			REVERSE\x0a");
 				
 				AutoRepeat(hBeepFX, 1000, &fnSoundFX, "beep");								// Sound Reversing "beep" until reverse cancelled
 				
@@ -409,7 +336,7 @@
 				}
 			}
 			else {
-				printf("Throttle:			FORWARD	>>\x0a");
+				printf("Throttle:			FORWARD\x0a");
 				StopAutoRepeat(hBeepFX);
 			}
 		}
@@ -432,16 +359,6 @@
 		
 		if (fMainShip & !fLandingGear) {											// Test for normal flight mode 
 			ActKey(PULSE+KEYON+EngineBoost);
-//			if (fSupercruise) {
-//				if (SCO) {
-//					fnVPOutput("Supercruise Overcharge Disengaged");
-//					SCO = OFF;
-//				}
-//				else {
-//					fnVPOutput("Supercruise Overcharge");				
-//					SCO = ON;
-//				}
-//			}
 		}
 		else {																		// Boost function not valid 
 			if (fLandingGear)	reason = "Landing gear";
@@ -463,10 +380,10 @@
 			if(fMainShip) {
 				fnName = "Deploy Hardpoints";
 				if (!fHardpoints) {
-					printf("Hardpoints:		DEPLOYED	>>\x0a");
+					printf("Hardpoints:		DEPLOYED\x0a");
 				}
 				else {
-					printf("Hardpoints:		RETRACTED	>>\x0a");
+					printf("Hardpoints:		RETRACTED\x0a");
 				}
 			}
 			if(fSRV) {
@@ -477,10 +394,10 @@
 				}
 				else {
 					if (!fSRVTurretView) {
-						printf("Turret View:		Enabled		>>\x0a");
+						printf("Turret View:		Enabled\x0a");
 					}
 					else {
-						printf("Turret View:		Disabled		<<\x0a");
+						printf("Turret View:		Disabled\x0a");
 					}
 				}						
 			}
@@ -496,13 +413,13 @@
 
 	int tgHUDMode(int dummy=0) {
 		if (fHUDAnalysis) {
-			printf("HUD Mode:		COMBAT	>>\x0a");			// Switching to Combat Mode
+			printf("HUD Mode:		COMBAT\x0a");			// Switching to Combat Mode
 			if (FSSMode) {
 				FSSMode = OFF;
 			}
 		}
 		else {
-			printf("HUD Mode:		ANALYSIS	>>\x0a");		// Swicthing to Analysis Mode
+			printf("HUD Mode:		ANALYSIS\x0a");		// Swicthing to Analysis Mode
 		}
 		ActKey(PULSE+KEYON+HUDMode);							// Switch HUD Modes
 	}
@@ -519,12 +436,12 @@
 			if (!fHUDAnalysis) tgHUDMode(0);
 			if (!FSSMode) {	
 				ActKey(PULSE+KEYON+FSSModeON);
-				printf("FSS Mode:		ON		>>\x0a");
+				printf("FSS Mode:		ON\x0a");
 				DeferCall(500, &fnSetSliderCurve, 0);
 			}
 			else {
 				ActKey(PULSE+KEYON+FSSModeOFF);
-				printf("FSS Mode:		OFF		>>\x0a");
+				printf("FSS Mode:		OFF\x0a");
 				DeferCall(500, &fnSetSliderCurve, 2);
 			}
 		}
@@ -582,7 +499,7 @@
 		}
 
 		if (fFSDCharging | InitWarpDrive == ENABLED) {
-			printf("%s	CANCELLED	<<\x0a", EngineText);
+			printf("%s	CANCELLED\x0a", EngineText);
 			ActKey(PULSE+KEYON+WarpDrive);
 			fnTextToSpeech("FSD Charge sequence cancelled");
 			StopAutoRepeat(hFSDCharge);											// Stop FSDCharge check if hit cancel inside 3 seconds 
@@ -590,19 +507,19 @@
 			return 0;
 		}
 		if (fFSDCooldown) {
-			printf("%s	COOLDOWN	<<\x0a", EngineText);
+			printf("%s	COOLDOWN\x0a", EngineText);
 			reason = "cooldown in progress";
 			fnNotValid(fnName, reason);
 			return 0;
 		}
 		if (fDocked) {
-			printf("%s	DOCKED	<<\x0a", EngineText);
+			printf("%s	DOCKED\x0a", EngineText);
 			reason = "we are currently docked";
 			fnNotValid(fnName, reason);
 			return 0;
 		}
 		if (fLanded) {
-			printf("%s	LANDED	<<\x0a", EngineText);
+			printf("%s	LANDED\x0a", EngineText);
 			reason = "we are currently landed";
 			fnNotValid(fnName, reason);
 			return 0;
@@ -612,13 +529,13 @@
 			return 0;
 		}
 		if (fFSDJump) {
-			printf("%s	HYPERSPACE	<<\x0a", EngineText);
+			printf("%s	HYPERSPACE\x0a", EngineText);
 			return 0;		
 		}
 		if (fSupercruise & !JumpType) {
 			ActKey(PULSE+KEYON+WarpDrive);										// This *should* work even if we don't drop due to velocity
 			SelectDrop = YES;													// Drop selected, not forced
-			printf("%s:	DISENGAGED	<<\x0a", EngineText);
+			printf("%s:	DISENGAGED\x0a", EngineText);
 			InitWarpDrive = DISABLED;
 		}
 		else {
@@ -626,7 +543,7 @@
 			if (fLandingGear)	tgLandingGear(RETRACT);							// Retract landing gear if deployed
 			if (fCargoScoop)	tgCargoScoop(RETRACT);							// Retract cargo scoop if deployed			
 			ActKey(PULSE+KEYON+WarpDrive);										// ...and...punch it!
-			printf("%s:	ENGAGED	>>\x0a", EngineText);
+			printf("%s:	ENGAGED\x0a", EngineText);
 			MassLockCounter = 0;												// Reset failed Warpdrive counter
 			AutoRepeat(hFSDCharge, 500, &fnCheckFSDCharge, EngineText);			// Check for FSD Charge failure
 			InitWarpDrive = ENABLED;
