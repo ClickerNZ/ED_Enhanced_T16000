@@ -71,9 +71,9 @@ This file contains the following general purpose routines;
 
 |Function                        | Purpose                                                                                             |  
 |:------------------------------:|:----------------------------------------------------------------------------------------------------|  
-|fnNotValid()                    |Announce if function called is not valid                                                             |  
-|fnStartupMapKeyMode()           |Sets Mapkey Mode on Script start                                                                     |  
-|fnSetCurves()                   |Sets Joystick, Throttle and Rudder curves for all axes                                               |  
+|fnNotValid() |Announce if function called is not valid |  
+|fnStartupMapKeyMode() |Sets Mapkey Mode on Script start |  
+|fnSetCurves() |Sets Joystick, Throttle and Rudder curves for all axes |  
 
 
 - fnSetSliderCurve()				Set context driven DX-SLIDER curves (Radar sensitivity)  
