@@ -391,17 +391,17 @@
 		}
 		else {
 			MapKeyUMD(&MyThrottle, TBTN4, 
-				EXEC("fnVoiceVolume(INCREASE);")									// U - Increase Text to Speech Volume
+				EXEC("fnVoiceVolume(INCREASE);"),									// U - Increase Text to Speech Volume
 				EXEC("tgBoost();"),													// M - Boost
-				EXEC("fnVoiceVolume(DECREASE);")									// D - Decrease Text to Speech Volume 
+				EXEC("fnVPOutput(\"not used\");")									// D - 
 				);
 		}
 		
 		if (MapKeyProfile == BASIC) {			// 
 			MapKeyUMD(&MyThrottle, TBTN5, 
-				PULSE+SRVHandbrake,													// U - 'x'
+				EXEC("fnVPOutput(\"not used\");"),									// U - 
 				PULSE+ReverseThrottle,												// M - NP '*' - Middle Finger DOWN - set to TOGGLE
-				EXEC("fnVPOutput(\"not used\");")									// D - 
+				PULSE+SRVHandbrake													// D - 'x'
 				);
 		}
 		else {
@@ -488,7 +488,7 @@
 			MapKeyUMD(&MyThrottle, THAT2U,
 				EXEC("fnPIPMode(INCREASE);"),										// U - Increment PIPMode
 				EXEC("fnPIPManager(ENG);"),											// M - Fire Engine focussed PIP sequence
-				EXEC("fnPIPMode(DECREASE);")										// D - Decrement PIPMode 
+				EXEC("fnVPOutput(\"not used\");")									// D - 
 				);					
 		}
 		if (MapKeyProfile == BASIC) {			// 
@@ -496,7 +496,7 @@
 		}
 		else {
 			MapKeyUMD(&MyThrottle, THAT2D, 	
-				EXEC("fnPIPMode(RESET);"),											// U - Reset PIPMode 
+				EXEC("fnPIPMode(DECREASE);"),										// U - Decrement PIPMode  
 				PULSE+BalancePower,													// M - Balance PIP sequence
 				EXEC("fnVPOutput(\"not used\");")									// D - 
 				);		
