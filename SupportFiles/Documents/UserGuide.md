@@ -1,6 +1,6 @@
 # ED_ENHANCED_T16000 - USER GUIDE
 
-At time of release my script uses 46 seperate pre-defined actions mapped to the Joystick grip and Throttle.  
+At time of release my script uses 73 seperate pre-defined actions mapped to the Joystick grip and Throttle.  
 
 Until you build up some muscle memory, I recommend you print the following images and keep them handy.  
 
@@ -78,7 +78,7 @@ Example:
 
 Refer to the following file for a description of each of the ACTIONS listed within the images above.   
 
-[Button Actions Reference](./ButtonActionsReference.md)  
+[Button Actions Reference](/SupportFiles/Documents/ButtonActionsReference.md)  
 
 
 ### SUPPORT  
