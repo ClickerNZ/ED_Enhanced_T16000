@@ -647,7 +647,7 @@
 			}
 
 			if (fOverHeating != lOverHeating) {											// Detect when we start overheation
-				if (fMainShip & fOverHeating) {											// !!! If Heatsinks don't function in Supercruise, add a check here !!!
+				if (fMainShip & fOverHeating) {	
 					if (AutoHeatsink) {													// If 'AutoHeatSink' is set, fire a heatsink if we have one
 						fnVPOutput("OVERHEATING: Auto Heat sink engaged!");
 						ActKey(PULSE+KEYON+DeployHeatSink);
