@@ -1,13 +1,12 @@
 # ED_ENHANCED_T16000 - BUTTON ACTIONS REFERENCE  
 
-Refer to the Joystick and Throttle BUTTONS.
+Refer to the Joystick and Throttle BUTTONS images below.
 
 [Joystick Buttons](/Mapfiles/T16000-Joystick-BUTTONS.png)  
 
 [Throttle Buttons](/MapFiles/TWCSThrottle-BUTTONS.png)  
 
-For a quick reference refer the Enhanced or FULL Keymap refer to the T16000-Joystick-ENHANCED-ACTIONS and TWCSThrottle-ENHANCED-ACTIONS  
-image files alongside the Quick Reference - ENHANCED spreadsheet.  
+For a quick reference for either the Enhanced or FULL Keymap refer to the T16000-Joystick-ENHANCED-ACTIONS and TWCSThrottle-ENHANCED-ACTIONS image files alongside the Quick Reference - ENHANCED spreadsheet.  
 
 In the images and spreadsheets each switch/button is referenced via it's button name (eg TS1) and alongside will be a prefix of U, M or D.  
 - 'U' is called the UP modified action. Press and HOLD Throttle button TBTN2, then press and release the action button  
@@ -16,7 +15,7 @@ In the images and spreadsheets each switch/button is referenced via it's button 
 
 For this reference I will use the modifiers as a suffix, example TS1-U.  
 In the descriptions I will use the following shortcuts;
-For TS1 as an eexample...  
+For TS1 as an example...  
 - TS1-U = TBTN2+TS1  (Press and hold TBTN2, press and release TS1)  
 - TS1-M = TS1  (Press and release TS1)  
 - TS1-D = TBTN3+TS1  (Press and HOLD TBTN3, press and release TS1)
@@ -27,7 +26,7 @@ NOTE: "empty" actions are available should you wish to assign the button an acti
 - Action labels may also be assigned using PULSE+"label" within ED_MapKeyAssignment.tmh. Action labels are defined within ED_GameBindings.ttm  
 
 I do not go into customising my code here, however if you want to know how to add an action to an empty button, first...  
-- Open the ED_MapKeyAssignment.tmh file in notepad and take a look at what's already been done, or...  
+- Open the ED_MapKeyAssignment.tmh file in notepad (I use notepad++) and take a look at what's already been done, or...  
 - PM me in the Elite Dangerous forum.  
 
 
@@ -42,7 +41,7 @@ Modified actions
 - TS1-U: TBTN2+TS1. This increments the firing mode used for TS1-D  
 - TS1-D: TBTN3+TS1. This uses the alternate fire mode as follows...
   *  Modes are  
-    * Discovery Scanner - Press TS1-D to fire the discovery scanner, no need to hold the trigger for 6.1 seconds.  
+  * Discovery Scanner - Press TS1-D to fire the discovery scanner, no need to hold the trigger for 6.1 seconds.  
     * Mining Laser - Press TS1-D to fire the Mining Laser. This holds the trigger dowwn for you. Press TS1 to stop.	 
 	* Pulse Wave Scanner - Press TS1-D to fire the Pulse Wave Scanner. This automatically repeats every 7 seconds. Press TS1 to stop.  
 	
@@ -54,7 +53,7 @@ Standard action
 Modified actions  
 - TS2-U: TBTN2+TS2. This increments the mode used for TS2-D  
 - TS2-D: TBTN3+TS2. This uses the alternate fire mode as follows...
-  *  Modes are  
+  * Modes are  
     * Discovery Scanner - Press TS2-D to fire the discovery scanner, no need to hold the trigger for 6.1 seconds.  
     * Mining Laser - Press TS2-D to fire the Mining Laser. This holds the trigger dowwn for you. Press TS1 to stop.	 
 	* Pulse Wave Scanner - Press TS2-D to fire the Pulse Wave Scanner. This automatically repeats every 7 seconds. Press TS1 to stop.  
