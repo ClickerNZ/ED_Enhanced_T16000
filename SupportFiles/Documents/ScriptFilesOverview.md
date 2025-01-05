@@ -78,96 +78,102 @@ This file contains the following general purpose routines;
 |fnGetFlightMode()					|Determine current flight mode and set Slider Curves appropriately|  
 |fnTextToSpeech()					|Converts Text to Speech using voice.exe|  
 |fnVoiceVolume()					|Volume Controller for 'voice' exe / fnTextToSpeech()|  
-
-
-- fnSoundFX()						Plays WAV file sound effects  
-- fnGameStarted()					Announce Game Start, TTS and SoundFX status, Game version  
-- fnPIPMode()						Sets PIP Mode profiles  
-- fnPIPManager()					Determines PIP Profile, constructs and parses correct parameters to fnPIPMapper()  
-- fnPIPMapper()						Sets Auto-PIP Mapping & then sends sequence of keystrokes to game  
-- fnAdvFireControl()				Perform Primary and Secondary trigger actions  
-- fnAdvancedSCB()					Fire Shield Cell Bank or two and follow up with a heatsink  
-- fnHeatsink()						Deploy a heatsink  
-- fnChaff()							Deploy chaff  
-- fnDeploySRV()						Deploy/Recover SRV  
-- fnDRShip()						Dismiss/Recall Ship   
-- fnRequestDock()					Calls Request Dock macro. Set power to shields  
-- fnHangerServices()				Calls Enter/Exit Hanger macro   
-- fnCheckFSDCharge()				Checks FSD starts spooling up after hitting FSD  
-- fnCheckFSDMassLocked()			Checks we've cleared MassLock for 2 seconds  
-- fnClearChatBox()					Clears the chat boxes in the Comms Panel  
-- fnModeSwitch()					Menulog to Solo, Private Group or Open  
-- fnVPOutput()						Sends output to console and TTS  
-- fnPrintState()					Display header banner for the status of the macro toggles & user preferences at script start  
-- fnStateDump()						Prints state banner to console  
-- fnGetTOD()						Return Time-of-day for console messages  
-- findstr()							Find substring within a string and return first char position or -1 if not found  
+|fnSoundFX()						|Plays WAV file sound effects|  
+|fnGameStarted()					|Announce Game Start, TTS and SoundFX status, Game version|  
+|fnPIPMode()						|Sets PIP Mode profiles|  
+|fnPIPManager()						|Determines PIP Profile, constructs and parses correct parameters to fnPIPMapper()|  
+|fnPIPMapper()						|Sets Auto-PIP Mapping & then sends sequence of keystrokes to game|  
+|fnAdvFireControl()					|Perform Primary and Secondary trigger actions|  
+|fnAdvancedSCB()					|Fire Shield Cell Bank or two and follow up with a heatsink|  
+|fnHeatsink()						|Deploy a heatsink|  
+|fnChaff()							|Deploy chaff|  
+|fnDeploySRV()						|UNUSED: Deploy/Recover SRV|  
+|fnDRShip()							|Dismiss/Recall Ship|   
+|fnRequestDock()					|Calls Request Dock macro. Set power to shields|  
+|fnHangerServices()					|Calls Enter/Exit Hanger macro|   
+|fnCheckFSDCharge()					|Checks FSD starts spooling up after hitting FSD|  
+|fnCheckFSDMassLocked()				|Checks we've cleared MassLock for 2 seconds|  
+|fnClearChatBox()					|Clears the chat boxes in the Comms Panel|  
+|fnModeSwitch()						|Menulog to Solo, Private Group or Open|  
+|fnVPOutput()						|Sends output to console and TTS|  
+|fnPrintState()						|Display header banner for the status of the macro toggles & user preferences at script start|  
+|fnStateDump()						|Prints state banner to console|  
+|fnGetTOD()							|Return Time-of-day for console messages|  
+|findstr()							|Find substring within a string and return first char position or -1 if not found|  
 
 ### ED_Initialise.tmh  
 
 This file contains the following hardware, TTS and SoundFX initialisation routines;  
 
-- CheckControllers()
-- initJoystickAxis()
-- initThrottleAxis()
-- initRudderAxis()
-- initSliderAxis()
-- initSlewAxis()
-- initTextToSpeech()
-- initSoundFX()
+|Function | Purpose |  
+|:-------:|:--------|  
+|CheckControllers()					|Detect controllers we have connected|  
+|initJoystickAxis()					|Initialise Joystick axes|  
+|initThrottleAxis()					|Initialise Throttle axes|  
+|initRudderAxis()					|Initialise Rudder axes|  
+|initSliderAxis()					|Initialise Slider axis|  
+|initSlewAxis()						|Initialise Slew axis|  
+|initTextToSpeech()					|Initialise TTS Engine|  
+|initSoundFX()						|Initialise Sound Effects engine|  
 
 ### ED_Macros.tmh   
 
 This file contains keystroke macro chains;  
 
-- fnCustomCommands()				Container within which we declare our macros
-- m_RequestDock
-- m_DeploySRV
-- m_BoardShip
-- m_ShowGameStats
-- m_FastModeSwitch0
-- m_FastModeSwitch1
-- m_FastModeSwitch2
-- m_ReportCrimesToggle
-- m_NAVBeaconWing
-- m_NAVBeaconOff
-- m_EnterHanger
-- m_Launch
-- m_ChangeColours
+|Function | Purpose |  
+|:-------:|:--------|  
+|fnCustomCommands()					|Container within which we declare the following macros|  
+|m_RequestDock						|Auto docking request|  
+|m_DeploySRV						|UNUSED: SRV deploy macro|  
+|m_BoardShip						|UNUSED: SRV board ship macro|  
+|m_ShowGameStats					|Display the combined On Screen Display FPS & Bandwidth meters|  
+|m_FastModeSwitch0					|Menulog to Open|  
+|m_FastModeSwitch1					|Menulog to Private Group|  
+|m_FastModeSwitch2					|Menulog to Solo|  
+|m_ReportCrimesToggle				|UNUSED: Toggle 'Report Crimes' on/off|  
+|m_NAVBeaconWing					|Toggle 'Wingman Beacon' to TEAM|  
+|m_NAVBeaconOff						|Toggle 'Wingman Beacon' to OFF|  
+|m_EnterHanger						|Refuel/repair/restock, enter hanger and station services|  
+|m_Launch							|UNUSED: Launch the ship (from Launchpad screen)|  
+|m_ChangeColours					|Change Engine and Weapon Colours|  
 
 ### ED_Toggles.tmh  
 
 Contains general purpose routines which serve to turn on/off, open/close, start/stop, deploy/retract ship systems;  
 
-- tgTxt2Speech()
-- tgEnhancedFAOFF()
-- tgTriggerMode()
-- tgLights()
-- tgSilentRunning()
-- tgCargoScoop()
-- tgLandingGear()
-- tgReverseThrust()
-- tgBoost()
-- tgHardpoints()
-- tgHUDMode()
-- tgFSSMode()
-- tgPlanetView()
-- tgWarpDrive()
-- tgExtCamera()
-- tgXAxis()
+|Function | Purpose |  
+|:-------:|:--------|  
+|tgTxt2Speech()						|UNUSED: Turn Text to Speech function ON/OFF|  
+|tgEnhancedFAOFF()					|Flight/Drive Assist OFF/ON|  
+|tgTriggerMode()					|Cycle between 'Discovery Scanner', 'Mining Laser' and 'Pulse Wave Scanner' modes|  
+|tgLights()							|Cycle Lights and Night Vision|  
+|tgSilentRunning()					|Toggle Silent running ON/OFF|  
+|tgCargoScoop()						|Toggle cargo scoop DEPLOYED/RETRACTED|  
+|tgLandingGear()					|Toggle landing gear DEPLOYED/RETRACTED|  
+|tgReverseThrust()					|Toggle Reverse in ship or SRV|  
+|tgBoost()							|Fire engine boost in normal flight and SCO drive in Supercruise|  
+|tgHardpoints()						|Toggle hard points DEPLOYED/RETRACTED|  
+|tgHUDMode()						|Toggle HUD between Combat and Analysis modes|  
+|tgFSSMode()						|ENTER/EXIT FSS Mode|   
+|tgPlanetView()						|Toggle front and rear view of planet in FSS Mode|  
+|tgWarpDrive()						|Engage Frameshift Drive (Supercruise/Hyperjump)|  
+|tgExtCamera()						|Toggle external camera mode ON/OFF|  
+|tgXAxis()							|Toggle Joystick X axis mode between ROLL/YAW|  
 
 ### ED_StateTracker.tmh  
 
 The purpose of this file is to read and process the status.json file and read/write the MyStates file;  
 
-- stfnReadStatusJson()
-- stfnWriteMaxJson()
-- stfnGetKeyValue()
-- stfnProcessFlags()
-- stfnProcessFlags2()
-- stfnProcessGuiFocus()
-- stfnStartCheck()
-- stfnMyStates()
+|Function | Purpose |  
+|:-------:|:--------|  
+|stfnReadStatusJson()				|Read status.json file in journal files folder|  
+|stfnWriteMaxJson()					|Tracks maximum character length of status.json so we set the buffer value correctly|  
+|stfnGetKeyValue()					|Extract json key value by name from status.json|  
+|stfnProcessFlags()					|Read and process "Flags" value from status.json|  
+|stfnProcessFlags2()				|Read and process "Flags2" value from status.json|  
+|stfnProcessGuiFocus()				|Read and process 'GuiFocus' key value in status.json|  
+|stfnStartCheck()					|Initial check to see if game is already running after we've restarted the script|  
+|stfnMyStates()						|Save current status of non-status.json state variables when mode switching or restarting the game|  
 
 ## Button and Switch Assignment  
 
@@ -176,5 +182,7 @@ Each block assigns either BASIC or FULL (Enhanced) button/switch actions dependi
 
 ### ED_MapKeyAssignment.tmh  
 
-- MainKeyMap()
-- TrainingMap()
+|Function | Purpose |  
+|:-------:|:--------|  
+|MainKeyMap()						|This MapKey set is called from fnGameStarted() when we detect Game is running|  
+|TrainingMap()						|This MapKey set is called at script startup and 'TrainingMode' is set to ENABLED in ED_UserSettings.tmh|  
