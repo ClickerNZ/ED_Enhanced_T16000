@@ -41,7 +41,7 @@ Modified actions
 - TS1-U: TBTN2+TS1. This increments the firing mode used for TS1-D  
 - TS1-D: TBTN3+TS1. This uses the alternate fire mode as follows...
   *  Modes are  
-  * Discovery Scanner - Press TS1-D to fire the discovery scanner, no need to hold the trigger for 6.1 seconds.  
+    * Discovery Scanner - Press TS1-D to fire the discovery scanner, no need to hold the trigger for 6.1 seconds.  
     * Mining Laser - Press TS1-D to fire the Mining Laser. This holds the trigger dowwn for you. Press TS1 to stop.	 
 	* Pulse Wave Scanner - Press TS1-D to fire the Pulse Wave Scanner. This automatically repeats every 7 seconds. Press TS1 to stop.  
 	
