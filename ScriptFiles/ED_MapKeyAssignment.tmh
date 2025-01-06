@@ -828,7 +828,7 @@
 			MapKeyUMD(&MyJoystick, B10,
 				EXEC("fnVPOutput(\"not used\");"),											// U -
 				EXEC("fnVPOutput(\"System Map On, Off\");"),								// M -
-				EXEC("fnVPOutput(\"not used\");")											// D - 
+				EXEC("fnVPOutput(\"Print states to console\");")							// D - 
 				);
 		}
 		
