@@ -93,7 +93,7 @@
 	int		EnableVoice			= ENABLED;				// ENABLED or DISABLED. Enable this if you wish to use "voice.exe". 
 														// Also toggled via tgTxt2Speech();
 														
-	alias	VoicePath			= "C:\\Thrustmaster\\ED_TargetScript\\voice.exe";
+	alias	VoicePath			= "C:\\Thrustmaster\\ED_TargetScript\\SupportFiles\\voice.exe";
 	
 	int		VoiceVolume			= 75;					// Default Volume set at 75% Settable via fnVoiceVolume()
 														// Note: VoiceVolume gets saved to MyStatus file when game halts and is reloaded at script start
@@ -146,8 +146,8 @@
 
 	int		EnableSoundFX		= ENABLED; 				// ENABLED or DISABLED. Enable this if you wish to use "sounder.exe"
 	
-	alias	SoundPath			= "C:\\Thrustmaster\\ED_TargetScript\\sounder.exe";
-	alias	WAVPath				= "C:\\Thrustmaster\\ED_TargetScript\\sounds\\";
+	alias	SoundPath			= "C:\\Thrustmaster\\ED_TargetScript\\SupportFiles\\sounder.exe";
+	alias	WAVPath				= "C:\\Thrustmaster\\ED_TargetScript\\SupportFiles\\sounds\\";
 	alias	SoundCMD			= "";
 
 
