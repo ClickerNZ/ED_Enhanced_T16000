@@ -43,7 +43,8 @@ Each mapped button and switch produces an ACTION (not all buttons are mapped).
 These may simply produce a keystroke, however the main advantage of this script is that most call a script function which does more that sending a keystroke.  
 
 Refer to the User Guide in the SupportFiles\Documents subfolder.  
-Refer Button Action Reference file in the SupportFiles\Documents subfolder for more information on ACTIONS.    
+Refer the following file in the SupportFiles\Documents subfolder for more information on ACTIONS.    
+[Button Action Reference](\SupportFiles\Documents\ButtonActionsReference.md)  
 
 ### REQUIREMENTS
 
