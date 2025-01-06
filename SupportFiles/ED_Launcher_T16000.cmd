@@ -1,0 +1,56 @@
+@echo off
+
+echo.
+echo VERSION T16000
+echo.
+
+rem pause
+
+echo Start EDLauncher...
+c:
+cd "\Program Files (x86)\Frontier\EDLaunch"
+start EDLaunch.exe
+
+rem timeout /t 5
+
+echo Starting supporting apps...
+echo.
+rem echo Start EDMC...
+rem c:
+rem cd "\Program Files (x86)\EDMarketConnector\"
+rem start EDMarketConnector.exe
+rem echo.
+
+rem timeout /t 5
+
+rem echo Start Opentrack...
+rem c:
+rem cd "\Program Files (x86)\opentrack\"
+rem start opentrack.exe
+rem echo.
+
+rem timeout /t 5
+
+rem echo Start Voice Attack...
+rem cd "\Program Files (x86)\VoiceAttack\"
+rem start VoiceAttack.exe -shortcutson
+
+rem timeout /t 5
+
+rem echo Start TeamSpeak...
+rem cd "\Users\<username>\AppData\Local\TeamSpeak 3 Client"
+rem start ts3client_win64.exe
+
+echo.
+echo. Start the TARGET script...
+echo. 
+
+c:
+cd "\program files (x86)\thrustmaster\target\x64\"
+start targetgui.exe -r "c:\Thrustmaster\ED_TargetScript\ScriptFiles\ed_enhanced_t16000.tmc"
+
+timeout /t 5
+
+rem pause
+
+exit
