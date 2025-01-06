@@ -275,7 +275,7 @@
 			MapKeyUMD(&MyJoystick, B10,
 				EXEC("fnVPOutput(\"not used\");"),									// U - 
 				PULSE+SystemMap,													// M - ';' 
-				EXEC("fnVPOutput(\"not used\");")									// D -
+				EXEC("fnStateDump();")												// D - Debug function. Prints States Banner
 				);
 		}
 		
