@@ -78,8 +78,8 @@
 
 	int fnStartupMapKeyMode() {
 	
-		// Selects MapKey Assignment profile
-		
+		if(MapKeyProfile==FULL) fnVPOutput("Running full key map"); else fnVPOutput("Running basic key map");
+		// Selects MapKey Assignment profile		
 		if (Flags == 0 & TrainingMode == ENABLED) {
 			if (AnnounceTraining) {
 				fnTextToSpeech("Training mode enabled, press a button or switch to hear what it does");
