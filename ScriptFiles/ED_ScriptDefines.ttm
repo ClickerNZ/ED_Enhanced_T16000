@@ -43,7 +43,7 @@
 	define VMajor		 						1						// Script Version Major Value			ie. 2xx
 	define VMinor		 						0						// Script Version Minor Value			ie. x3x
 	define VPoint								0						// Script Version Point Update			ie. xx4
-	define VBranch								"main"					// Script Version Branch				ie. xxx.01
+	define VBranch								"prod"					// Script Version Branch				ie. xxx.01
 
 
 //---------//
