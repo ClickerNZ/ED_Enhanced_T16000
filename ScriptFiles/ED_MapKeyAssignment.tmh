@@ -86,7 +86,7 @@
 			MapKeyUMD(&MyJoystick, TS2,
 				PULSE+HUDMode,														// U - '/' - Switch between Combat and Discovery HUD modes 
 				SecondaryFire,														// M - DX2 - Rear Thumb
-				PULSE+FSSModeON														// D - LShift+/
+				EXEC("fnVPOutput(\"not used\");")									// D - 				
 				);			
 		}
 		else {									// 
@@ -109,7 +109,7 @@
 			MapKeyUMD(&MyJoystick, TS3,
 				PULSE+SilentRunning,												// U - 'DELETE' - Map "Silent Running" within game binding to TOGGLE		
 				PULSE+FlightAssist,													// M - 'z' - Right Thumb - Set Flight Assist to "TOGGLE" in game binding
-				PULSE+FBView														// D - LShift+\
+				EXEC("fnVPOutput(\"not used\");")									// D - 
 				);			
 		}
 		else {									// 
@@ -125,7 +125,7 @@
 		
 		if (MapKeyProfile == BASIC) {			// 
 			MapKeyUMD(&MyJoystick, TS4, 
-				PULSE+TargetNextSubsystem,											// U - 'i'
+				PULSE+HUDMode,														// U - '/'
 				PULSE+DeployHardpoints,												// M - 'u' - Left Thumb
 				EXEC("fnVPOutput(\"not used\");")									// D - 
 				);	
@@ -179,9 +179,9 @@
 				
 		if (MapKeyProfile == BASIC) {			// 				
 			MapKeyUMD(&MyJoystick, H1L, 
-				PULSE+CargoScoop,													// U - 'HOME' key 
+				PULSE+LandingGear,													// U - 'l' - lowercase L 
 				PULSE+NextFireGroup,												// M - ',' - comma 
-				PULSE+LandingGear													// D - 'l' - lowercase L 
+				PULSE+CargoScoop													// D - 'HOME' key 
 				);
 		}
 		else {
@@ -194,9 +194,9 @@
 		
 		if (MapKeyProfile == BASIC) {			// 
 			MapKeyUMD(&MyJoystick, H1R, 
-				PULSE+NightVision,													// U - LeftAlt+'INSERT'
+				PULSE+ShipLights,													// U - 'INSERT'
 				PULSE+SelectNextShip,												// M - 'g'
-				PULSE+ShipLights													// D - 'INSERT' key
+				PULSE+NightVision													// D - LeftAlt+'INSERT'
 				);
 		}
 		else {
@@ -225,7 +225,7 @@
 		}
 
 		if (MapKeyProfile == BASIC) {			// 		
-			MapKey(&MyJoystick, B6,  0);											//
+			MapKey(&MyJoystick, B6, EXEC("fnVPOutput(\"not used\");"));				//
 		}
 		else {
 			MapKeyUMD(&MyJoystick, B6,
@@ -247,12 +247,7 @@
 		}
 		
 		if (MapKeyProfile == BASIC) {			// 
-			// Press B8 to cycle selection of Wingmen
-			MapKey(&MyJoystick, B8,  SEQ(	PULSE+SelectWingman1,					// '8' 
-											PULSE+SelectWingman2,					// '9'
-											PULSE+SelectWingman3					// '0'
-										)											// close SEQ 
-				);																	// close MapKey
+			MapKey(&MyJoystick, B8, EXEC("fnVPOutput(\"not used\");"));				//
 		}
 		else {
 			MapKeyUMD(&MyJoystick, B8,
@@ -296,7 +291,7 @@
 		}
 
 		if (MapKeyProfile == BASIC) {			// 
-			MapKey(&MyJoystick, B12, 0);											//
+			MapKey(&MyJoystick, B12, EXEC("fnVPOutput(\"not used\");"));			//
 		}
 		else {
 			MapKeyUMD(&MyJoystick, B12,
@@ -307,7 +302,7 @@
 		}
 
 		if (MapKeyProfile == BASIC) {			// 
-			MapKey(&MyJoystick, B13, 0);											//
+			MapKey(&MyJoystick, B13, EXEC("fnVPOutput(\"not used\");"));			//
 		}
 		else {
 			MapKeyUMD(&MyJoystick, B13,
@@ -318,7 +313,7 @@
 		}
 		
 		if (MapKeyProfile == BASIC) {			// 
-			MapKey(&MyJoystick, B14, 0);
+			MapKey(&MyJoystick, B14, EXEC("fnVPOutput(\"not used\");"));			//
 		}
 		else {
 			MapKeyUMD(&MyJoystick, B14, 
@@ -329,7 +324,7 @@
 		}
 
 		if (MapKeyProfile == BASIC) {			// 
-			MapKey(&MyJoystick, B15, 0);											// 
+			MapKey(&MyJoystick, B15, EXEC("fnVPOutput(\"not used\");"));			// 
 		}
 		else {
 			MapKeyUMD(&MyJoystick, B15,
@@ -416,7 +411,7 @@
 			MapKeyUMD(&MyThrottle, TLOCK, 
 				EXEC("fnVPOutput(\"not used\");"),									// U - 
 				PULSE+ResetHeadOrientation,											// M - '~' - Slew Control - PRESS 
-				EXEC("fnVPOutput(\"not used\");")									// D - 
+				PULSE+EjectCargo													// D - 'END'
 				);
 		}
 		else{
@@ -433,7 +428,11 @@
 //		----------------------
 
 		if (MapKeyProfile == BASIC) {			// 
-			MapKey(&MyThrottle, THAT1U, PULSE+Supercruise);							// NP '/'	- Numberpad forward slash key 
+			MapKeyUMD(&MyThrottle, THAT1U, 
+				PULSE+FSSModeON,													// U - LShift+/			
+				PULSE+Supercruise,													// M - NP '/'	- Numberpad forward slash key 
+				PULSE+DSSModeOFF													// D - 'BACKSPACE'
+				);
 		}
 		else {
 			MapKeyUMD(&MyThrottle, THAT1U, 
@@ -444,7 +443,11 @@
 		}
 		
 		if (MapKeyProfile == BASIC) {			// 
-			MapKey(&MyThrottle, THAT1D, PULSE+HyperJump);							// 'j'
+			MapKeyUMD(&MyThrottle, THAT1D, 
+				PULSE+FBView,														// U - LShift+\
+				PULSE+HyperJump,													// M - 'j'
+				EXEC("fnVPOutput(\"not used\");")									// D - 
+				);
 		}
 		else {
 			MapKeyUMD(&MyThrottle, THAT1D, 
@@ -455,7 +458,11 @@
 		}
 		
 		if (MapKeyProfile == BASIC) {			// 
-			MapKey(&MyThrottle, THAT1L, PULSE+SelectNextSystemInRoute);				// 'm'
+			MapKeyUMD(&MyThrottle, THAT1L,
+				PULSE+FSSZoomOUT,													// U - '['
+				PULSE+SelectNextSystemInRoute,										// M - 'm'
+				EXEC("fnVPOutput(\"not used\");")									// D - 
+				);
 		}
 		else {
 			MapKeyUMD(&MyThrottle, THAT1L, 
@@ -466,7 +473,11 @@
 		}
 		
 		if (MapKeyProfile == BASIC) {			// 
-			MapKey(&MyThrottle, THAT1R, PULSE+OrbitLines);							// '='
+			MapKeyUMD(&MyThrottle, THAT1R, 
+				PULSE+FSSZoomIN,													// U - ']'
+				PULSE+OrbitLines,													// M - '='
+				EXEC("fnVPOutput(\"not used\");")									// D - 
+				);
 		}
 		else {
 			MapKeyUMD(&MyThrottle, THAT1R, 
@@ -502,7 +513,11 @@
 				);		
 		}
 		if (MapKeyProfile == BASIC) {			// 
-			MapKey(&MyThrottle, THAT2L, PULSE+PowerSys);							// LeftShift+LEFT	arrow key combo		
+			MapKeyUMD(&MyThrottle, THAT2L,
+				PULSE+TargetPrevSubsystem,											// U - 'k'
+				PULSE+PowerSys,														// LeftShift+LEFT	arrow key combo		
+				EXEC("fnVPOutput(\"not used\");")									// D - 
+				);
 		}
 		else {
 			MapKeyUMD(&MyThrottle, THAT2L, 
@@ -512,7 +527,11 @@
 				);		
 		}
 		if (MapKeyProfile == BASIC) {			// 
-			MapKey(&MyThrottle, THAT2R, PULSE+PowerWep);							// LeftShift+RIGHT	arrow key combo	
+			MapKeyUMD(&MyThrottle, THAT2R,
+				PULSE+TargetNextSubsystem,											// U - 'i'
+				PULSE+PowerWep,														// M - LeftShift+RIGHT	arrow key combo	
+				EXEC("fnVPOutput(\"not used\");")									// D - 				
+				);
 		}
 		else {
 			MapKeyUMD(&MyThrottle, THAT2R,
@@ -693,16 +712,16 @@
 
 		if (MapKeyProfile == BASIC) {			// 		
 			MapKeyUMD(&MyJoystick, H1D, 
-				EXEC("fnVPOutput(\"Select Wingmans Target\");"),					// U - '5'
-				EXEC("fnVPOutput(\"Select next wingman\");"),						// M - '8', "9", "0"
-				EXEC("fnVPOutput(\"Select Wingmans Nav Lock\");")					// D - '6'
+				EXEC("fnVPOutput(\"Select Wing mans Target\");"),					// U - '5'
+				EXEC("fnVPOutput(\"Select next win gman\");"),						// M - '8', "9", "0"
+				EXEC("fnVPOutput(\"Select Wing mans Nav Lock\");")					// D - '6'
 				);
 		}
 		else {
 			MapKeyUMD(&MyJoystick, H1D, 
-				EXEC("fnVPOutput(\"Select Wingmans Target\");"),					// U - '5'
-				EXEC("fnVPOutput(\"Select next wingman\");"),						// M - '8', "9", "0"
-				EXEC("fnVPOutput(\"Select Wingmans Nav Lock\");")					// D - '6'
+				EXEC("fnVPOutput(\"Select Wing mans Target\");"),					// U - '5'
+				EXEC("fnVPOutput(\"Select next wing man\");"),						// M - '8', "9", "0"
+				EXEC("fnVPOutput(\"Select Wing mans Nav Lock\");")					// D - '6'
 				);
 		}
 				
@@ -916,14 +935,14 @@
 		
 		if (MapKeyProfile == BASIC) {			// 
 			MapKeyUMD(&MyThrottle, TBTN5, 
-				EXEC("fnVPOutput(\"not used\");")									// U - 
+				EXEC("fnVPOutput(\"not used\");"),									// U - 
 				EXEC("fnVPOutput(\"Reverse throttle\");"),							// M - NP '*' - Middle Finger DOWN - set to TOGGLE
-				EXEC("fnVPOutput(\"S R V Hand brake\");"),							// D - 'x'
+				EXEC("fnVPOutput(\"S R V Hand brake\");")							// D - 'x'
 				);
 		}
 		else {
 			MapKeyUMD(&MyThrottle, TBTN5, 
-				EXEC("fnVPOutput(\"Decrease text to speech volume\");")				// U - 
+				EXEC("fnVPOutput(\"Decrease text to speech volume\");"),			// U - 
 				EXEC("fnVPOutput(\"Reverse throttle\");"),							// M - NP '*' - Middle Finger DOWN - set to TOGGLE
 				EXEC("fnVPOutput(\"S R V Hand brake\");")							// D - 'x'				
 				);
