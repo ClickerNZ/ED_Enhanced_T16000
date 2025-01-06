@@ -424,12 +424,12 @@
 			Odyssey = 0;												// Therefore, legacy client is running  
 			printf("\x0a\GAME:		HORIZONS\x0a");
 			SerialText = 1;
-			DeferCall(3000, &fnTextToSpeech, "Running legacy");
+			DeferCall(2000, &fnTextToSpeech, "Running Legacy Horizons");
 		}
 		else {
 			Odyssey = 1;
 			printf("\x0a\GAME:		ODYSSEY\x0a");
-			DeferCall(3000, &fnTextToSpeech, "Running client version, 4");			
+			DeferCall(2000, &fnTextToSpeech, "Running Odyssey");			
 		}
 						
 		fnPrintState();
@@ -1121,14 +1121,14 @@
 				if (fDocked)						SP = "DOCKED  ";
 				if (!fLanded & !fDocked & fLatLong)	SP = "ORBIT   ";
 
-				printf("MAIN SHIP:	%s	Shields:	%s		Mass Locked:	%s\x0a", SP, SH, ML);
+				printf("MAIN SHIP:	%s	Shields:		%s		Mass Locked:	%s\x0a", SP, SH, ML);
 				if (fLatLong) {
 					printf("Altitude:		%04d		Heading: 	%03d		Lat/Long:	%0.3f, %0.3f\x0a", AL, HD, LT, LN);
 				}
 				printf("HUD Mode:	%s	Ship Lights:	%s		Night Vision:	%s\x0a", HM, SL, NV);
 				printf("Cargo Scoop:	%s	Landing Gear:	%s	Hardpoints:	%s\x0a", CR, LG, HP);
 				printf("FSS Mode:	%s		Supercruise:	%s	Silent Running:	%s\x0a", FM, WD, SR);
-				printf("Flight Assist:%s		Thrust Vector:%s	Speed Brake:	%s\x0a", FA, RT, SB);
+				printf("Flight Assist:	%s		Thrust Vector:	%s	Speed Brake:	%s\x0a", FA, RT, SB);
 			}
 			else if (fSRV) {		
 				if (!fLights) {
