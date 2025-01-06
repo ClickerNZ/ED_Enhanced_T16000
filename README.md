@@ -86,9 +86,9 @@ The \'MapFiles\' folder contains some images which should help with this, so I r
 
 > Make sure you have already installed the Windows drivers and TARGET software before installing this script  
 
-- Unzip the package to a local drive/folder of your choice.
-- I suggest creating c:\Thrustmaster and copying into there.
-- Create a backup of your current game bind files which can be found at...
+- Unzip the package to a local drive/folder of your choice.  
+- I suggest creating c:\Thrustmaster\ED_TargetScript\ and copying the entire package into there.  
+- Create a backup of your current game bind files which can be found at...  
 	
 	C:\Users\\<username\>\AppData\Local\Frontier Developments\Elite Dangerous\Options\Bindings  
 	(change \<username\> in the above path to your Windows username)
