@@ -194,7 +194,7 @@ Standard action
 
 Modified actions  
 - B10-U: TBTN2+B10. empty  
-- B10-D: TBTN3+B10. empty  
+- B10-D: TBTN3+B10. Print state dump banner to console    
 
 ## Right Hand Buttons  
 
