@@ -43,7 +43,8 @@ Each mapped button and switch produces an ACTION (not all buttons are mapped).
 These may simply produce a keystroke, however the main advantage of this script is that most call a script function which does more that sending a keystroke.  
 
 Refer to the User Guide in the SupportFiles\Documents subfolder.  
-Refer the following file in the SupportFiles\Documents subfolder for more information on ACTIONS.    
+Refer the following file in the SupportFiles\Documents subfolder for more information on ACTIONS.   
+ 
 [Button Action Reference](/SupportFiles/Documents/ButtonActionsReference.md)  
 
 ### REQUIREMENTS
@@ -83,12 +84,13 @@ The zip file contains the following:
 If you have just bought a Thrustmaster T16000 and TWCS Throttle, you can be up a running very quickly.  
 You will, however need to spend some time becoming accustomed to what the buttons and switches all do.  
 
-The \'MapFiles\' folder contains some images which should help with this, so I recommend you print these out.  
+The \'MapFiles\' folder contains some images which should help with this.  
+I recommend you print out the ACTIONS images for the profile you are using and have handy whilst learning which buttons do what.  
 
 > Make sure you have already installed the Windows drivers and TARGET software before installing this script  
 
 - Unzip the package to a local drive/folder of your choice.  
-- I suggest creating c:\Thrustmaster\ED_TargetScript\ and copying the entire package into there.  
+> I suggest creating c:\Thrustmaster\ED_TargetScript\ and copying the entire package into there.  
 - Create a backup of your current game bind files which can be found at...  
 	
 	C:\Users\\<username\>\AppData\Local\Frontier Developments\Elite Dangerous\Options\Bindings  
@@ -98,7 +100,7 @@ The \'MapFiles\' folder contains some images which should help with this, so I r
 
 ### SCRIPT CONTROLLER CHECK 
 
-The script will check for compatible hardware each time it is run (as described under REQUIREMENTS) and will ABORT if you don't have at least;  
+The script will check for compatible controllers each time it is run (as described under REQUIREMENTS) and will ABORT if you don't have at least;  
 
 - Thrustmaster T16000L or T16000M FCS flight stick...  
 - Thrustmaster TWCS Throttle  
@@ -113,20 +115,20 @@ The script will also automatically assign YAW to the most appropriate device in 
 - Throttle Paddles  
 - Joystick Twist axis  
 
-Alternately, you can set this manually via a variable setting in the script itself.  
-(this is covered below, in the next section)  
+Alternately, you can set this manually via a variable in ED_UserSettings.tmh.  
+(this is covered in the next section)  
 
 ### USER SETTINGS  
 
-There are several CRITICAL settings which need to be set before you run teh script or the game.  
-Refer to the User Setting Guide file in teh SupportFile\Documents folder for guidance on these.  
+There are several CRITICAL settings which need to be set before you run the script or the game.  
+Refer to the User Setting Guide file (below) for guidance on these.  
 
-[User Settings Guide](./SupportFiles/Documents/UserSettingsGuide.md)  
+[User Settings Guide](/SupportFiles/Documents/UserSettingsGuide.md)  
 
 ### SCRIPT USAGE
 
 - Open the TARGET Script Editor program.  
-- Open ED_ENHANCED_T16000.tmc file found in the ScriptFiles subfolder  
+- Select Munu, Open, then navigate to where you copied the package and select *ED_ENHANCED_T16000.tmc* file found in the *ScriptFiles* subfolder  
 - Click 'compile'  
 - If you get no errors, hit 'run'  
 
