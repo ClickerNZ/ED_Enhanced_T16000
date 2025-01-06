@@ -44,7 +44,7 @@ These may simply produce a keystroke, however the main advantage of this script 
 
 Refer to the User Guide in the SupportFiles\Documents subfolder.  
 Refer the following file in the SupportFiles\Documents subfolder for more information on ACTIONS.    
-[Button Action Reference](\SupportFiles\Documents\ButtonActionsReference.md)  
+[Button Action Reference](/SupportFiles/Documents/ButtonActionsReference.md)  
 
 ### REQUIREMENTS
 
