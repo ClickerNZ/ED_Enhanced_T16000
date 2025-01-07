@@ -273,7 +273,7 @@ Modified actions
 
 ## TWCS Throttle 
 
-### TBTN1 (Orange button on lower LHS of Throttle body)  
+### TBTN1 (Orange button on lower RHS of Throttle body)  
 
 Standard action  
 - TBTN-M: TBTN1. Toggle Headlook ON/OFF 
@@ -299,7 +299,12 @@ Standard action
 
 Modified ACTIONS  
 - TBTN4-U: TBTN2+TBTN4. Increase Text-To-Speech Volume by 10% (default = 75%, max = 100%)  
-- TBTN4-D: TBTN3+TBTN4. empty  
+- TBTN4-D: TBTN3+TBTN4. empty
+
+> NOTE: TTS default volume can be set in ED_UserSettings.tmh
+
+> NOTE: Volume setting will be saved to MyStates file when you exit the game or menulog
+> It will be reloaded each time you run the script or after game start is detected after a menulog   
 
 ### TBTN5 (Up/Down switch on right of TBTN3)   
 
