@@ -286,9 +286,13 @@ Modified actions
 
 RESERVED AS MODIFIER  
 
+> If the SoundFX feature is ENABLED a low volume "blip" sound effect will sound whilst this button is held  
+
 ### TBTN3 (Orange button on right of TBTN2)  
 
 RESERVED AS MODIFIER  
+
+> If the SoundFX feature is ENABLED a low volume "blip" sound effect will sound whilst this button is held  
 
 ### TBTN4 (Up/Down switch on right of TBTN3)  
 
@@ -311,7 +315,9 @@ Modified ACTIONS
 Select by pressing DOWN.  
 
 Standard action  
-- TBTN5-M: TBTN5. Reverse Thrust ENGAGE/DISENGAGE  
+- TBTN5-M: TBTN5. Reverse Thrust ENGAGE/DISENGAGE
+
+> If the SoundFX feature is ENABLED a "Reversing BEEP" sound effect will sound whilst REVERSE is active  
 
 Modified ACTIONS  
 - TBTN5-U: TBTN2+TBTN5. Decrease Text-To-Speech Volume by 10% (default = 75%, min = 5%)  
