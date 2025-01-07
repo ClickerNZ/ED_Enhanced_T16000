@@ -96,7 +96,7 @@ Each of these positions may also be modified via TBTN2 and TBTN3 as follows;
 Standard action  
 - H1U-M: H1U. Select Target ahead on the radar  
 
-Modofied actions  
+Modified actions  
 - H1U-U: TBTN2+H1U. Selects the highest threat ship on the radar  
 - H1U-D: TBTN3+H1U. Cycles next hostile ship on the radar  
 
@@ -105,7 +105,7 @@ Modofied actions
 Standard action  
 - H1D-M: H1D. Sequence. Selects Wingman 1, then Wingman 2, then Wingman 3, then Wingman 1 again and so on  
 
-Modofied actions  
+Modified actions  
 - H1D-U: TBTN2+H1D. Selects currently selected Wingman's target on the radar  
 - H1D-D: TBTN3+H1D. Selects currently selected Wingman's NAV Lock  
 
@@ -114,7 +114,7 @@ Modofied actions
 Standard action  
 - H1L-M: H1L. Selects Next Firegroup  
 
-Modofied actions  
+Modified actions  
 - H1L-U: TBTN2+H1L. Cycles the landing gear between DEPLOYED and RETRACTED  
 - H1L-D: TBTN3+H1L. Cycles the cargo scoop between DEPLOYED and RETRACTED  
 
@@ -123,7 +123,7 @@ Modofied actions
 Standard action  
 - H1R-M: H1R. Selects the next ship on the radar  
 
-Modofied actions  
+Modified actions  
 - H1R-U: TBTN2+H1R. Cycles the ship or SRV lights (Ship=ON/OFF, SRV=Lo/Hi/Off)  
 - H1R-D: TBTN3+H1R. Cycles night vision ON/OFF  
 
