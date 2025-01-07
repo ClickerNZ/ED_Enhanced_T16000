@@ -18,7 +18,7 @@ I wrote this "ENHANCED" script because it's way better than the feeble attempt p
 It includes;  
 - MapAxis statements for all critical axes  
 - Curve settings for all axes  
-- Mapkey statements for every button (some don't do anything, but they are mapped)  
+- Mapkey statements for every button (some don't do anything, but they are defined)  
   * It uses layers to map up to 3 actions to many buttons  
 - Associated BIND files  
 - Game state engine which checks the game's status.json file every half second  
