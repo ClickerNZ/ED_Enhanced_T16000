@@ -252,7 +252,7 @@ Modified actions
 ### B15  
 
 Standard action  
-- B15-M: B15. Cycles the colours for your engines and weapons if you have purchased via the Frontier store for you ships.  
+- B15-M: B15. Cycles the colours for your engines and weapons if you have purchased via the Frontier store for your ships.  
 
 Modified actions  
 - B15-U: TBTN2+B15. empty  
