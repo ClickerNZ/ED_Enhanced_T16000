@@ -20,7 +20,7 @@ For TS1 as an example...
 - TS1-M = TS1  (Press and release TS1)  
 - TS1-D = TBTN3+TS1  (Press and HOLD TBTN3, press and release TS1)
 
-NOTE: "empty" actions are available should you wish to assign the button an action.
+> NOTE: "empty" actions are available should you wish to assign the button an action.
 - Coded routines in the script which are not currently used are listed in the following document  
 [Script Files Overview](/SupportFiles/Documents/SScriptFilesOverview.md)  
 - Action labels may also be assigned using PULSE+"label" within ED_MapKeyAssignment.tmh.  
