@@ -26,9 +26,9 @@ This script reads status.json every 500 milliseconds and decodes over 50 status 
 MaxStatusFile is a copy of status.json and is written every time status.json exceeds the previously longest length.  
 I track this length in case status.json ever exceeds the read buffer I've set in the script.  
 
-- alias	JournalFolder		= "C:\\Users\\<username>\\Saved Games\\Frontier Developments\\Elite Dangerous\\";  
-- alias	StatusFile			= "C:\\Users\\<username>\\Saved Games\\Frontier Developments\\Elite Dangerous\\status.json";  
-- alias	MaxStatusFile		= "C:\\Users\\<username>\\Saved Games\\Frontier Developments\\Elite Dangerous\\NewMaxJson.json";  
+- alias	JournalFolder		= "C:\\Users\\username\\Saved Games\\Frontier Developments\\Elite Dangerous\\";  
+- alias	StatusFile			= "C:\\Users\\username\\Saved Games\\Frontier Developments\\Elite Dangerous\\status.json";  
+- alias	MaxStatusFile		= "C:\\Users\\username\\Saved Games\\Frontier Developments\\Elite Dangerous\\NewMaxJson.json";  
 
 StatusReadRate is in milliseconds and I use this to set how often we read status.json.  
 If this is set too large you may encounter a lag for some actions.  
