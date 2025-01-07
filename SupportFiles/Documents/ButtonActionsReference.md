@@ -130,7 +130,7 @@ Modified actions
 
 ## Joystick Base Buttons  
 
-Refer to the Joystick BUTTONS image on the position of these buttons   
+Refer to the Joystick BUTTONS image for the layout of these buttons   
 
 LHS Top = B5, B6, B7  
 LHS Bottom = B10, B9, B8  
