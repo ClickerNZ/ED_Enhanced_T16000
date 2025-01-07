@@ -30,13 +30,13 @@ It includes;
 - Customised and advanced PIP management
 - Automated joystick curve profiles depending on which flight mode you are currently in  
   * (ie FA-Off v Normal v Supercruise etc)  
-- On the fly TTS Volume  
 - On the fly manual joystick curve profiles selection to suit your own preferences  
 - On the fly shifted trigger action  
-- Shifted trigger modes...
+- 3 Shifted trigger modes...
   * Discovery Scanner - Momentary trigger pull results in a 6.1 second hold function  
   * Mining Laser - Press to hold, press to release  
   * Pulse Wave Scanner - Momentary trigger pull results in repeating trigger action every 7 seconds. Press to stop  
+- On the fly TTS Volume  
 - and many more  
 
 These all provide additional joystick and throttle functionality and improves the immersion within the game.  
@@ -46,7 +46,6 @@ These all provide additional joystick and throttle functionality and improves th
 Each mapped button and switch produces an ACTION (not all buttons are mapped).  
 These may simply produce a keystroke, however the main advantage of this script is that most call a script function which does more that sending a keystroke.  
 
-Refer to the User Guide in the SupportFiles\Documents subfolder.  
 Refer the following file in the SupportFiles\Documents subfolder for more information on ACTIONS.   
  
 [Button Action Reference](/SupportFiles/Documents/ButtonActionsReference.md)  
@@ -102,26 +101,6 @@ I recommend you print out the ACTIONS images for the profile you are using and h
  
 - Copy the contents of my BindFiles folder into the above bindings folder.
 
-### SCRIPT CONTROLLER CHECK 
-
-The script will check for compatible controllers each time it is run (as described under REQUIREMENTS) and will ABORT if you don't have at least;  
-
-- Thrustmaster T16000L or T16000M FCS flight stick...  
-- Thrustmaster TWCS Throttle  
-
-If you have either of the following compatible rudder pedals, they too will work with this script and the script will NOT ABORT if you don't;  
-
-- TFRPRudder  
-- TFRPHARudder  
-
-The script will also automatically assign YAW to the most appropriate device in the following order;  
-- Rudder Pedals (if one is detected)  
-- Throttle Paddles  
-- Joystick Twist axis  
-
-Alternately, you can set this manually via a variable in ED_UserSettings.tmh.  
-(this is covered in the next section)  
-
 ### USER SETTINGS  
 
 There are several CRITICAL settings which need to be set before you run the script or the game.  
@@ -154,6 +133,26 @@ If you get stuck, post a query in the Elite Dangerous forums.
 Assuming the script compiled and runs fine, start Elite Dangerous.  
 
 > NOTE: You need to always run the script before starting the game  
+
+### SCRIPT CONTROLLER CHECK 
+
+The script will check for compatible controllers each time it is run (as described under REQUIREMENTS) and will ABORT if you don't have at least;  
+
+- Thrustmaster T16000L or T16000M FCS flight stick...  
+- Thrustmaster TWCS Throttle  
+
+If you have either of the following compatible rudder pedals, they too will work with this script and the script will NOT ABORT if you don't;  
+
+- TFRPRudder  
+- TFRPHARudder  
+
+The script will also automatically assign YAW to the most appropriate device in the following order;  
+- Rudder Pedals (if one is detected)  
+- Throttle Paddles  
+- Joystick Twist axis  
+
+Alternately, you can set this manually via a variable in ED_UserSettings.tmh.  
+(this is covered in the User Settings section above)  
 
 ### LAUNCHER BATCH FILE  
 
