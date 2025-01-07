@@ -336,7 +336,7 @@ Modified actions
 
 ## HAT controllers on throttle  
 
-Thrustmaster, for reasons only known to them have positioned the HAT controllers on the throttle as follows  
+Thrustmaster, for reasons only known to themselves have positioned the HAT controllers on the throttle as follows;  
 - Top = THAT2  
 - Middle = THAT1  
 - Bottom = THAT3  
