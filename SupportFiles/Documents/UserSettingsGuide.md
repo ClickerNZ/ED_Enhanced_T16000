@@ -40,7 +40,7 @@ If you witness excessive lag, try making this variable smaller (eg 300).
 ### MyT16000StatusFile  
 
 status.json is a great file for use on keeping track of what's happening in the game.  
-However, I have come across a couple of additional things I need to track that status.json does not.  
+However, I have come across some additional things I need to track that status.json does not.  
 
 These include;
   * Voice Volume - Text-to-speech is coded into the script but is optional. A feature of the FULL Keymap is a Volume control.  
