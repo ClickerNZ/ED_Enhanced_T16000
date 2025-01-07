@@ -44,7 +44,7 @@ However, I have come across some additional things I need to track that status.j
 
 These include;
   * Voice Volume - Text-to-speech is coded into the script but is optional. A feature of the FULL Keymap is a Volume control.  
-  * Ship Dismissed - Whilst we can always call back the ship, if you decide to use the  Dismiss/Recall actions, this is the only way we can track.  
+  * Ship Dismissed - If you decide to use the  Dismiss/Recall actions, this is the only way we can track.  
   * Current Joystick Curves - Keeps tabs on which curve profile we last used  
   * Max Json Length - as above, we like to keep track of the maximum status.json file length we've seen
   * PIPMode - Keeps tabs on the last PIP Mode we used  
