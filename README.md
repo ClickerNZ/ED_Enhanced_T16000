@@ -41,7 +41,7 @@ It includes;
 
 These all provide additional joystick and throttle functionality and improves the immersion within the game.  
 
-#### ACTIONS  
+### ACTIONS  
 
 Each mapped button and switch produces an ACTION (not all buttons are mapped).  
 These may simply produce a keystroke, however the main advantage of this script is that most call a script function which does more that sending a keystroke.  
@@ -103,7 +103,10 @@ I recommend you print out the ACTIONS images for the profile you are using and h
 
 ### USER SETTINGS  
 
-There are several CRITICAL settings which need to be set before you run the script or the game.  
+**DO THIS FIRST**  
+
+> There are several **CRITICAL** settings which need to be set before you run the script for the first time.  
+
 Refer to the User Setting Guide file (below) for guidance on these.  
 
 [User Settings Guide](/SupportFiles/Documents/UserSettingsGuide.md)  
