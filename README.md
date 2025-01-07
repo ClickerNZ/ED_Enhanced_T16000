@@ -11,10 +11,13 @@ So my solution is to bind keyboard keys and get your joystick buttons and switch
 
 ### FEATURES  
 
-This script uses "layers". I can assign (map) up to 5 actions to each button thereby maximising your HOTAS to perform up to 5x more ACTIONS per button.  
-(note: maximum layers = 5. This release only maps 3 each for some of the buttons)  
+This script uses "layers".  
+This version assigns (maps) up to 3 actions to many buttons button thereby increasing your HOTAS usefulness.  
+
+> NOTE: maximum layers per button = 5.  
 
 I wrote this "ENHANCED" script because it's way better than the feeble attempt provided by Thrustmaster.  
+
 It includes;  
 - MapAxis statements for all critical axes  
 - Curve settings for all axes  
