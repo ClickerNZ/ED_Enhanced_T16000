@@ -128,12 +128,15 @@ Refer to the User Setting Guide file (below) for guidance on these.
 ### SCRIPT USAGE
 
 - Open the TARGET Script Editor program.  
-- Select Munu, Open, then navigate to where you copied the package and select *ED_ENHANCED_T16000.tmc* file found in the *ScriptFiles* subfolder  
+- Select Munu, Open, then navigate to where you copied the package and select **ED_ENHANCED_T16000.tmc** file found in the **ScriptFiles subfolder**  
 - Click 'compile'  
 - If you get no errors, hit 'run'  
 
-If you get a syntax error, try to resolve the issue, then save, compile and run.  
-(this usually only happens if you've made changes to the script)  
+> Errors can happen if you've made changes to the script or have not set the required file paths correctly  
+
+You are likely to get an error or two when you run the script for the first time.   
+Read the console messages carefully.  
+Try to resolve the errors, then save, compile and run.  
 
 Repeat as necessary until you see 'main returned 0'.    
 If you get stuck, contact me via the E:D forum.  
@@ -148,17 +151,42 @@ Assuming the script compiled and runs fine, start Elite Dangerous.
 
 > NOTE: You need to always run the script before starting the game  
 
-### SET SCRIPT BINDS IN GAME TO  'Clicker-ENHANCED_T16000'  
+### LAUNCHER BATCH FILE  
 
-Once the game is running, hit escape key and choose OPTIONS then CONTROLS then each of GENERAL, SHIP and SRV.  
-Set the PRESET for each of these to 'Clicker-BASIC_T16000' and hit APPLY for each one then go flying!  
+Once you get a clean compile and run via the script editor, you can use the optional "Launcher" batch file that I've provided in the SupportFiles folder.  
+
+This launcher command file will try to run the Elite Dangerous Launcher and then this script via the TARGET GUI program.  
+
+Before running this file, do the following;  
+
+- Create a shortcut to ED_Launcher_T16000.cmd file on your desktop  
+- Right click and select properties and select 'Advanced'  
+- Tick the 'Run as Administrator' check box and click 'Ok'  
+- Click 'Apply' then 'ok'  
+- Right click the shortcut again but this time choose 'edit'  
+- In the EDLauncher section check/change the drive letter and folder if you have installed Elite somewhere else on your PC  
+
+> I have included example sections for other supporting programs you may wish to take advantage of.  
+> To use these, remove the 'rem ' at the start of the lines and ensure the disk letter and folders are correct.  
+
+- In the Target Script section, check/change the drive letter and folder to accurately reflect where you installed the TARGET software.  
+- On the line which starts with 'start targetgui -r ...' make sure the full path to this script is correct.  
+- If you have changed anything, do not forget to **save** before exiting the editor.  
+
+Go ahead and run the Launcher shortcut!  
+Assuming evrything is configured correctly, the Launcher will fire up the game launcher, any additional apps you've enabled then the script.  
+
+### SET CONTROLLER BINDS IN GAME TO 'Clicker-ENHANCED_T16000'  
+
+Once the game is running, hit escape key and choose OPTIONS then CONTROLS.    
+Set the PRESET for each of GENERAL, SHIP and SRV. to 'Clicker-BASIC_T16000' and hit APPLY for each one then go flying!  
 
 > NOTE: 'Clicker-ENHANCED_T16000' will only appeear as a menu option if the script is running AND you have copied the BINDS files from the package to the game folder correctly  
 
 ### PLAYING ELITE:DANGEROUS WITH THIS SCRIPT  
 
 >RECOMMENDATION: Print the following files and have handy as reference to become familiar with the Joystick and Throttle button actions.
-- Quick Reference guide spreadsheet  
+- Quick Reference guide spreadsheet for either BASIC or ENHANCED (set within ED_UserSettings.tmh)   
 - The image files for each of the Joystick and Throttle  
   * T16000-Joystick-BUTTONS.png  
   * TWCSThrottle-BUTTONS.png  
@@ -167,31 +195,37 @@ Set the PRESET for each of these to 'Clicker-BASIC_T16000' and hit APPLY for eac
   
 ### NOTES  
 
-- ALWAYS Open the TARGET Script editor program and load, compile and run the script FIRST  
-- THEN launch Elite:Dangerous  
+> ALWAYS Open the TARGET Script editor program and load, compile and run the script FIRST then launch Elite:Dangerous  
+> Alternately, once everything is working as expected, run the Launcher shortcut you created on the desktop (as above)  
+
+
+### QUICK START USAGE (In Game)  
 
 The script assigns ("maps") multiple ACTIONS to some buttons.  
 (these are marked alongside 'U' and 'D' in the Quick Reference Guide)  
 
 To use the alternate actions do the following;  
-- Press and hold Throttle TBTN2 then the required button for the alternate "UP" actions, or  
-- Press and hold Throttle TBTN3 then the required button for the alternate "DOWN" actions  
+- Press and hold Throttle TBTN2 then the required button for the alternate "UP" action, or  
+- Press and hold Throttle TBTN3 then the required button for the alternate "DOWN" action  
 
-EXAMPLE - TBTN2+H1L (H1L-Up)
+EXAMPLE - TBTN2+H1L (H1L-U)
 >  To toggle the Landing gear, press and hold the TBTN2 button on the Throttle then press and release the Joystick Hat button to the left (H1L)  
 
 NOTE: Joystick H1D Hat switch  
->  The H1D hat switch on the joystick allows you to select each Wingman in sequence.  
+>  H1D on the joystick allows you to select each Wingman in sequence.  
 >  First press selects Wingman 1, second press selects Wingman 2, third press selects Wingman 3  
 >  Fourth press selects Wingman 1 again, and so on  
 
-[User Guide](./SupportFiles/Documents/UserGuide.md)  
+For more information refer the following file;  
+[Button Action Reference](/SupportFiles/Documents/ButtonActionReference.md)  
+
+[User Guide](/SupportFiles/Documents/UserGuide.md)  
 
 ### SUPPORT  
   
 If you get stuck or just want to understand more, post a question in the forum, or PM me.  
 
-Fly dangerously commands!  
+Fly dangerously!  
 
 o7  
 
