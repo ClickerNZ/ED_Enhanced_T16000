@@ -185,4 +185,4 @@ Each block assigns either BASIC or FULL (Enhanced) button/switch actions dependi
 |Function | Purpose |  
 |:-------:|:--------|  
 |MainKeyMap()						|This MapKey set is called from fnGameStarted() when we detect Game is running|  
-|TrainingMap()						|This MapKey set is called at script startup and 'TrainingMode' is set to ENABLED in ED_UserSettings.tmh|  
+|TrainingMap()						|This MapKey set is called at script startup and when game is stopped and 'TrainingMode' is ENABLED in ED_UserSettings.tmh|  
