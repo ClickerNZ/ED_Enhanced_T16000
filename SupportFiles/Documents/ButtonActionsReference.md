@@ -88,7 +88,7 @@ Modified actions
 
 ## H1 (Joystick Hat)  
 
-The hat on the joystick has 8 physical positions, however we only use four, Up, Down, Left and Right.  
+The hat on the joystick has 8 physical positions, however we only use four; Up, Down, Left and Right.  
 These are designated as H1U, H1D, H1L and H1R respectively.  
 Each of these positions may also be modified via TBTN2 and TBTN3 as follows;  
 
