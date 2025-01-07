@@ -267,7 +267,7 @@ Standard action
 - B16-M: B16. Fires a keystroke macro to exit to the menu in game then select SOLO.
 
 Modified actions  
-- B16-U: TBTN2+B16. Menulog to Private Group. This will select thee top most group if you're in more than one. The macro can be edited to select the second, or third etc.    
+- B16-U: TBTN2+B16. Menulog to Private Group. This will select the top most group if you're a member of more than one. The macro can be edited via the ED_Macros.tmh file to select the second, or third etc.    
 - B16-D: TBTN3+B16. Menulog to OPEN mode.  
 
 
