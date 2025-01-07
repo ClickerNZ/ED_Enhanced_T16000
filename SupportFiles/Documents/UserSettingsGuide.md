@@ -23,7 +23,7 @@ You can usually find it by opening explorer and navigating to C:\Users. A list o
 "status.json" is a single line JSON file and written by the game and updated everytime a status variable changes.  
 This script reads status.json every 500 milliseconds and decodes over 50 status flags.  
 
-MaxStatusFFile is a copy of status.json and is written every time status.json exceeds the previously longest length status.json file we've seen.  
+MaxStatusFile is a copy of status.json and is written every time status.json exceeds the previously longest length status.json file we've seen.  
 I track this length in case status.json ever exceeds the read buffer I've set in the script.  
 
 - alias	JournalFolder		= "C:\\Users\\<username>\\Saved Games\\Frontier Developments\\Elite Dangerous\\";  
