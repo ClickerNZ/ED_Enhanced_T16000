@@ -411,19 +411,19 @@ Standard action
 - THAT2U-M: THAT2U. Fire Engine focussed PIP sequence  
 
 Modified actions  
-- THAT2U-U: TBTN2+THAT2U. Increment PIP Mode (0-5). Wraps from 5 back to 0  
+- THAT2U-U: TBTN2+THAT2U. Increment PIP Mode (0-5). After 5, mode wraps back to 0  
 - THAT2U-D: TBTN3+THAT2U. empty  
 
-### THAT2D (top-down)  
+### THAT2D  
 
 Standard action  
 - THAT2D-M: THAT2D. Balance PIPS (2 PIPS each)  
 
 Modified actions  
-- THAT2D-U: TBTN2+THAT2D. Decrement PIP Mode (5-0). Wraps from 0 back to 5  
+- THAT2D-U: TBTN2+THAT2D. Decrement PIP Mode (5-0). After 0, mode wraps back to 5  
 - THAT2D-D: TBTN3+THAT2D. empty  
 
-### THAT2L (top-left)
+### THAT2L  
 
 Standard action  
 - THAT2L-M: THAT2L. Fire System focussed PIP sequence  
@@ -432,7 +432,7 @@ Modified actions
 - THAT2L-U: TBTN2+THAT2L. Focus weapons on next subsystem of targetted ship  
 - THAT2L-D: TBTN3+THAT2L. empty  
 
-### THAT2R (top-right)
+### THAT2R  
 
 Standard action  
 - THAT2R-M: THAT2R. Fire Weapons focussed PIP sequence  
@@ -441,7 +441,7 @@ Modified actions
 - THAT2R-U: TBTN2+THAT2R. Focus weapons on previous subsystem of targetted ship  
 - THAT2R-D: TBTN3+THAT2R. empty  
 
-### THAT3U (bottom-up)  
+### THAT3U  
 
 This HAT is predominantly used for countermeasures  
 
@@ -450,31 +450,32 @@ Standard action
 
 Modified actions  
 - THAT3U-U: TBTN2+THAT3U. Double-bank. Fires an SCB, then 2 heat sinks seperated by several seconds  
-- THAT3U-D: TBTN3+THAT3U. Fires an SCB then a heat sink  
+- THAT3U-D: TBTN3+THAT3U. Fires an SCB then 1 heat sink  
 
-### THAT3D (bottom-down)  
+### THAT3D  
 
 Standard action  
-- THAT3D-M: THAT3D. Fire a heat sink.
+- THAT3D-M: THAT3D. Fire a heat sink. 
 
-NOTE: The script checks the status.json "Overheating" flag twice per second.  
-If overheating is detected and "AutoHeatsink" in ED_UserSettings.tmh is ENABLED, a heatsink will automatically be fired.  
+> NOTE: The script checks the status.json "Overheating" flag twice per second.  
+> If overheating is detected and "AutoHeatsink" in ED_UserSettings.tmh is ENABLED, a heatsink will automatically be fired.  
 
 Modified actions  
 - THAT3D-U: TBTN2+THAT3D. empty  
 - THAT3D-D: TBTN3+THAT3D. empty  
 
-### THAT3L (bottom-left)
+### THAT3L  
 
 Standard action  
 - THAT3L-M: THAT3L. Electronic Counter Measure (ECM). Press to start charging, Release to fire.  
-NOTE: The longer you charge the ECM the greater the effective range  
+
+> NOTE: The longer you charge the ECM the greater the effective range  
 
 Modified actions  
 - THAT3L-U: TBTN2+THAT3L. empty  
 - THAT3L-D: TBTN3+THAT3L. empty  
 
-### THAT3R (-right)
+### THAT3R  
 
 Standard action  
 - THAT3R-M: THAT3R. Fire a chaff canister  
