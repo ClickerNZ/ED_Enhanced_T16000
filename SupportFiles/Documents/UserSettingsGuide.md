@@ -52,11 +52,9 @@ These include;
 These flags are saved to MyStatusFile each time we quit the game or menulog so they'll be available next time we log in  
 
 If you followed my installation instructions and unzipped the script package to C:\Thrustmaster\ED_TargetScript\ then the following will not need changing.  
-If you unzipped the package elsewhere or named the folder something else, you will need to change the following setting  
+If however you unzipped the package elsewhere or named the folder something else, you will need to change the following setting  
 
-The location for MyT16000StatusFile.json is set via...  
-
-- alias	MyStatusFile		= "C:\\Thrustmaster\\ED_TargetScript\\MyT16000StatusFile.json";  
+- alias	MyStatusFile		= "C:\\Thrustmaster\\ED_TargetScript\\MyT16000StatusFile.tdf";  
 
 ### Text-to-speech and SoundFX
 
