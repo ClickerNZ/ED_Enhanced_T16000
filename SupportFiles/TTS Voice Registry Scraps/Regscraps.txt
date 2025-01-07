@@ -1,0 +1,4 @@
+These REGSCRAPS were taken from a Windows 10 Pro System.
+
+Refer to the Text-to-speech section within ED_UserSettings.tmh for more in depth information
+
