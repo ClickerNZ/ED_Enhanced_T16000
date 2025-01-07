@@ -56,7 +56,7 @@ Modified actions
 - TS2-D: TBTN3+TS2. This uses the alternate fire mode as follows...
   * Modes are  
     * Discovery Scanner - Press TS2-D to fire the discovery scanner, no need to hold the trigger for 6.1 seconds.  
-    * Mining Laser - Press TS2-D to fire the Mining Laser. This holds the trigger dowwn for you. Press TS1 to stop.	 
+    * Mining Laser - Press TS2-D to fire the Mining Laser. This holds the trigger down for you. Press TS1 to stop.	 
 	* Pulse Wave Scanner - Press TS2-D to fire the Pulse Wave Scanner. This automatically repeats every 7 seconds. Press TS1 to stop.  
 
 Example: If you have a mining laser set to '1' in the currently selected firegroup and a pulse wave scanner set to '2' in the same firegroup.  
