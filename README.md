@@ -25,7 +25,7 @@ It includes;
   * It uses layers to map up to 3 actions to many buttons  
 - Associated BIND files  
 - Game state engine which checks the game's status.json file every half second  
-- Text to speech (TTS) functionality to add verbal feedback  
+- Text to speech (TTS) functionality to add verbal feedback (this is NOT a Voice-to-Text alternative to VoiceAttack)  
 - Sound effects functionality to allow various wav files to be played as ound effects  
 - Customised and advanced PIP management
 - Automated joystick curve profiles depending on which flight mode you are currently in  
@@ -111,6 +111,22 @@ Refer to the User Setting Guide file (below) for guidance on these.
 
 [User Settings Guide](/SupportFiles/Documents/UserSettingsGuide.md)  
 
+The ED_UserSettings.tmh file also allows you to select one of 2x different script profiles, FULL (default) or BASIC.  
+
+- BASIC uses straight keypresses for the actions defined to the buttons.  
+  * No TTS in game  
+  * No SoundFX in game  
+  * No Smarts associated with status.json flags
+  * Best button response in game  
+  
+- FULL uses the ENHANCED script functions to perform the actions defined to the buttons  
+  * Uses TTS in game to provide a richer game experience via spoken queues and updates  
+  * Uses SoundFX in game  
+  * Reads ststus.json to perform extended checks on many game state variables  
+  * Performs more than a simple keypress in many circumstances  
+  * Prints extensive information to the TARGET console which greatly aids if needing to troubleshoot  
+  * ...and more  
+
 ### SCRIPT USAGE
 
 - Open the TARGET Script Editor program.  
@@ -162,7 +178,7 @@ Alternately, you can set this manually via a variable in ED_UserSettings.tmh.
 
 Once you get a clean compile and run via the script editor, you can use the optional "Launcher" batch file that I've provided in the SupportFiles folder.  
 
-This launcher command file will try to run the Elite Dangerous Launcher and then this script via the TARGET GUI program.  
+This windows command file will try to run the Elite Dangerous Launcher and then this script via the TARGET GUI program.  
 
 Before running this file, do the following;  
 
@@ -172,28 +188,27 @@ Before running this file, do the following;
 - Click 'Apply' then 'ok'  
 - Right click the shortcut again but this time choose 'edit'  
 - In the EDLauncher section check/change the drive letter and folder if you have installed Elite somewhere else on your PC  
-
-> I have included example sections for other supporting programs you may wish to take advantage of.  
-> To use these, remove the 'rem ' at the start of the lines and ensure the disk letter and folders are correct.  
-
 - In the Target Script section, check/change the drive letter and folder to accurately reflect where you installed the TARGET software.  
 - On the line which starts with 'start targetgui -r ...' make sure the full path to this script is correct.  
 - If you have changed anything, do not forget to **save** before exiting the editor.  
 
+> I have included example sections for other supporting programs you may wish to take advantage of.  
+> To use these, remove the 'rem ' at the start of the lines and ensure the disk letter and folders are correct.  
+
 Go ahead and run the Launcher shortcut!  
-Assuming evrything is configured correctly, the Launcher will fire up the game launcher, any additional apps you've enabled then the script.  
+Assuming everything is configured correctly, the Launcher will fire up the game launcher, any additional apps you've enabled then the script.  
 
 ### SET CONTROLLER BINDS IN GAME TO 'Clicker-ENHANCED_T16000'  
 
 Once the game is running, hit escape key and choose OPTIONS then CONTROLS.    
-Set the PRESET for each of GENERAL, SHIP and SRV. to 'Clicker-BASIC_T16000' and hit APPLY for each one then go flying!  
+Set the PRESET for each of GENERAL, SHIP and SRV to 'Clicker-BASIC_T16000' and hit APPLY for each one then go flying!  
 
 > NOTE: 'Clicker-ENHANCED_T16000' will only appeear as a menu option if the script is running AND you have copied the BINDS files from the package to the game folder correctly  
 
 ### PLAYING ELITE:DANGEROUS WITH THIS SCRIPT  
 
 >RECOMMENDATION: Print the following files and have handy as reference to become familiar with the Joystick and Throttle button actions.
-- Quick Reference guide spreadsheet for either BASIC or ENHANCED (set within ED_UserSettings.tmh)   
+- Quick Reference guide spreadsheet for either BASIC or ENHANCED    
 - The image files for each of the Joystick and Throttle  
   * T16000-Joystick-BUTTONS.png  
   * TWCSThrottle-BUTTONS.png  
@@ -219,11 +234,11 @@ EXAMPLE - TBTN2+H1L (H1L-U)
 >  To toggle the Landing gear, press and hold the TBTN2 button on the Throttle then press and release the Joystick Hat button to the left (H1L)  
 
 NOTE: Joystick H1D Hat switch  
->  H1D on the joystick allows you to select each Wingman in sequence.  
+>  Pressing Hat 1 down on the joystick allows you to select each Wingman in sequence.  
 >  First press selects Wingman 1, second press selects Wingman 2, third press selects Wingman 3  
 >  Fourth press selects Wingman 1 again, and so on  
 
-For more information refer the following file;  
+For more information refer the following files;  
 [Button Action Reference](/SupportFiles/Documents/ButtonActionReference.md)  
 
 [User Guide](/SupportFiles/Documents/UserGuide.md)  
