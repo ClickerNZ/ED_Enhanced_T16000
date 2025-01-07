@@ -1,6 +1,6 @@
 # ED_ENHANCED_T16000
 
-Elite:Dangerous Enhanced T16000 TARGET script for Thrustmaster T16000 Joystick with TWCS Throttle 
+Elite:Dangerous Enhanced TARGET script for Thrustmaster T16000 Joystick with TWCS Throttle 
 
 ### PURPOSE
 
