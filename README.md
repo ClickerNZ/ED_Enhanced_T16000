@@ -103,7 +103,7 @@ I recommend you print out the ACTIONS images for the profile you are using and h
 
 ### USER SETTINGS  
 
-#### **!!! DO THIS FIRST!!!**  
+#### **!!! DO THIS FIRST !!!**  
 
 > There are several **CRITICAL** settings which need to be set before you run the script for the first time.  
 
@@ -144,7 +144,8 @@ The script will check for compatible controllers each time it is run (as describ
 - Thrustmaster T16000L or T16000M FCS flight stick...  
 - Thrustmaster TWCS Throttle  
 
-If you have either of the following compatible rudder pedals, they too will work with this script and the script will NOT ABORT if you don't;  
+If you have either of the following compatible rudder pedals, they too will work with this script  
+(the script will not abort if you don't)  
 
 - TFRPRudder  
 - TFRPHARudder  
