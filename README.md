@@ -12,7 +12,7 @@ So my solution is to bind keyboard keys and get your joystick buttons and switch
 ### FEATURES  
 
 This script uses "layers".  
-This version assigns (maps) up to 3 actions to many buttons button thereby increasing your HOTAS usefulness.  
+This version assigns (maps) up to 3 actions to many buttons thereby increasing your HOTAS usefulness.  
 
 > NOTE: maximum layers per button = 5.  
 
@@ -26,9 +26,10 @@ It includes;
 - Associated BIND files  
 - Game state engine which checks the game's status.json file every half second  
 - Text to speech (TTS) functionality to add verbal feedback  
-- Sound effects functionality to allow various wav files to be played  
+- Sound effects functionality to allow various wav files to be played as ound effects  
 - Customised and advanced PIP management
-- Automated joystick curve profiles depending on which flight mode you are currently in (ie FA-Off v Normal v Supercruise etc)  
+- Automated joystick curve profiles depending on which flight mode you are currently in  
+  * (ie FA-Off v Normal v Supercruise etc)  
 - On the fly TTS Volume  
 - On the fly manual joystick curve profiles selection to suit your own preferences  
 - On the fly shifted trigger action  
