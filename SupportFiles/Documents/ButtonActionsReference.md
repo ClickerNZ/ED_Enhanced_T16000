@@ -303,7 +303,7 @@ Modified ACTIONS
 
 > NOTE: TTS default volume can be set in ED_UserSettings.tmh
 
-> NOTE: Volume setting will be saved to MyStates file when you exit the game or menulog
+> NOTE: Volume setting will be saved to MyStates file when you exit the game or menulog  
 > It will be reloaded each time you run the script or after game start is detected after a menulog   
 
 ### TBTN5 (Up/Down switch on right of TBTN3)   
