@@ -75,6 +75,31 @@ Likewise, the wav file sounds that I use in this scripts is usually found in the
 
 - alias	WAVPath				= "C:\\Thrustmaster\\ED_TargetScript\\SupportFiles\\sounds\\";  
 
+### Setting a preferred YAW controller  
+
+The following settings found within ED_UserSettings.tmh allow you to force the script to use your preferred contoller for YAW  
+
+- EnableMyRudder  
+  * Set to DISABLED if you do not have a Thrustmaster TFRP or TFRPHA Rudder  
+  * Default YAW contoller will be set to Throttle Paddle  
+  
+- YAWDeviceOverride	 
+  * If ENABLED, overrides autodetection and sets YAWDevice on next line  
+  
+- YAWDevice  
+  * Options = "JSTwist",  "THRPaddles", "RudderPedals"  
+  
+By default the Controller Check routine will assign YAW in the following order;  
+- Rudder peddles  
+- Throttle paddle  
+- Joystick twist  
+
+Example: Set Joystick Twist as YAW device  
+- Set YAWDeviceOverride to EENABLED as follows;
+  * define YAWDeviceOverride ENABLED  // If ENABLED, overrides autodetection and sets YAWDevice on next line  
+- Set YAWDevice to "JSTwist" as follws;
+  * int YAWDevice = "JSTwist";       // Options = "JSTwist",  "THRPaddles", "RudderPedals"  
+
 ## Non-critical settings  
 
 All of the rest of the settings in ED_UserSettings.tmh are personal preference.  
