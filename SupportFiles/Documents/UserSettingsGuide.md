@@ -61,15 +61,15 @@ If however you unzipped the package elsewhere or named the folder something else
 The TTS and sound effects functionality is optional, however they are strongly recommended.  
 Critical settings for these relate to where you copied the script package to.  
 "voice.exe" is the applet which does the text to speech.  
-"sounder.exe" is the wav file player applet used to play the odd sound effect (Modifier key pressed, when reversing etc).  
+"sounder.exe" is the wav file player applet used to play the odd sound effect (modifier key, when reversing etc).  
 
 - alias	VoicePath			= "C:\\Thrustmaster\\ED_TargetScript\\SupportFiles\\voice.exe";  
 - alias	SoundPath			= "C:\\Thrustmaster\\ED_TargetScript\\SupportFiles\\sounder.exe";  
 
 Additionally, for TTS to work, you need to have at least one of the Microsoft narator languages installed.  
-Additional infformation on how to check, install and configure the voices can be found in ED_UserSettings.tmh file.  
+Additional information on how to check, install and configure the voices can be found in ED_UserSettings.tmh file.  
 
-Likewise, the wav file sounds that I use in this scripts is usually found in the following folder;  
+Likewise, the wav file sounds that I use in this script can be found in the following folder;  
 
 - alias	WAVPath				= "C:\\Thrustmaster\\ED_TargetScript\\SupportFiles\\sounds\\";  
 
@@ -79,10 +79,10 @@ The following settings found within ED_UserSettings.tmh allow you to force the s
 
 - EnableMyRudder  
   * Set to DISABLED if you do not have a Thrustmaster TFRP or TFRPHA Rudder  
-  * Default YAW contoller will be set to Throttle Paddle  
+  * If DISABLED the default YAW contoller will be set to Throttle Paddle  
   
 - YAWDeviceOverride	 
-  * If ENABLED, overrides autodetection and sets YAWDevice on next line  
+  * If ENABLED, overrides autoselection of the YAW device and sets YAWDevice on next line  
   
 - YAWDevice  
   * Options = "JSTwist",  "THRPaddles", "RudderPedals"  
@@ -93,14 +93,14 @@ By default the Controller Check routine will assign YAW in the following order;
 - Joystick twist  
 
 Example: Set Joystick Twist as YAW device  
-- Set YAWDeviceOverride to EENABLED as follows;
+- Set YAWDeviceOverride to ENABLED as follows;
   * define YAWDeviceOverride ENABLED  // If ENABLED, overrides autodetection and sets YAWDevice on next line  
 - Set YAWDevice to "JSTwist" as follws;
   * int YAWDevice = "JSTwist";       // Options = "JSTwist",  "THRPaddles", "RudderPedals"  
 
 ## Non-critical settings  
 
-All of the rest of the settings in ED_UserSettings.tmh are personal preference.  
+The rest of the settings in ED_UserSettings.tmh are largely personal preference.  
 The commentary within the file accompanying each setting should be relatively straight forward.  
 
 If you get stuck, or, simply wish to know more, PM me in the Elite Dangerous forums.  
