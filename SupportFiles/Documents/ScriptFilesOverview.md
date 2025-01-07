@@ -34,19 +34,19 @@ There are also some options in order for you to personalise, customise and tweak
 
 ### ED_GameBindings.ttm  
 
-This file creates script label variables aligned to the game's BINDS file.  
-Not all of the variables are used in this script package however, they could be.  
-The extras are included here for completeness and makes customisation of the script much easier by not having to create a new label variable or change the BIND file in-game.  
+This file declares script label variables aligned to the game's BINDS file.  
+Not all of the variables are used in this script package, however they could be.  
+The extras are included inthe file for completeness and makes customisation of the script much easier by not having to create a new label variable or change the BIND file in-game.  
 
-It is recommended that if you change a definition in this file, you should also make the coresponding change to the BIND file in-game.  
-Likewise, if you make a change in the BIND file in-game, you should make the coresponding change in this file.  
+It is recommended that if you change a definition in this file, you should also make the corresponding change to the BIND file in-game.  
+Likewise, if you make a change in the BIND file in-game, you should make the corresponding definition change in this file.  
 
 ### ED_GlobalVars.tmh  
 
-Variables, as the name suggests can have different values applied during code execution.  
+Variables, as the name suggests may be assigned different values during code execution.  
 Variables can be 'Global' or 'Local'.  
-'Local' Variables are declared inside the routine (function) and their values are lost when the routine exists.  
-'Global' variables are used by 2 or more different routines or functions across multiple files and their values remain available for any routine to use or change.  
+- 'Local' Variables are declared inside a subroutine (function) and their values are lost when the routine exists.  
+- 'Global' variables are used by 2 or more different routines or functions across multiple files and their values remain available for any routine to use or change.  
 
 Rather than scatter required global variables throughout the code, I put them all in one place.  
 Saying that, there are one or two instances where I've defined global variables just prior to the main routine (function) that initially uses them.  
