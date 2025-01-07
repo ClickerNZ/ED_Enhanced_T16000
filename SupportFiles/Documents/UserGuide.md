@@ -1,6 +1,6 @@
 # ED_ENHANCED_T16000 - USER GUIDE
 
-At time of release my script uses 73 seperate pre-defined actions mapped to the Joystick grip and Throttle.  
+At time of release my script uses 73 seperate pre-defined actions mapped to the Joystick and Throttle.  
 
 Until you build up some muscle memory, I recommend you print the following images and keep them handy.  
 
@@ -66,7 +66,7 @@ The following images can be found within the Mapfiles subfolder
 
 Some buttons/switches can have up to 3 seperate actions.  
 These are indicated in the images by an adjacent "U" or "D".  
-The "M" represnts the "MIDDLE" or unshifted action (ie simple press, no modifier button)  
+The "M" represents the "MIDDLE" or unshifted action (ie simple press, no modifier button)  
 
 The following two buttons on the throttle serve as modifier or SHIFT buttons.  
 - TBTN2 - Press and hold then press the button/switch you wish to use the "U" or "UP" action  
