@@ -23,7 +23,8 @@ For TS1 as an example...
 NOTE: "empty" actions are available should you wish to assign the button an action.
 - Coded routines in the script which are not currently used are listed in the following document  
 [Script Files Overview](/SupportFiles/Documents/SScriptFilesOverview.md)  
-- Action labels may also be assigned using PULSE+"label" within ED_MapKeyAssignment.tmh. Action labels are defined within ED_GameBindings.ttm  
+- Action labels may also be assigned using PULSE+"label" within ED_MapKeyAssignment.tmh.  
+> Action labels are defined within ED_GameBindings.ttm  
 
 I do not go into customising my code here, however if you want to know how to add an action to an empty button, first...  
 - Open the ED_MapKeyAssignment.tmh file in notepad (I use notepad++) and take a look at what's already been done, or...  
@@ -41,9 +42,9 @@ Modified actions
 - TS1-U: TBTN2+TS1. This increments the firing mode used for TS1-D  
 - TS1-D: TBTN3+TS1. This uses the alternate fire mode as follows...
   *  Modes are  
-    * Discovery Scanner - Press TS1-D to fire the discovery scanner, no need to hold the trigger for 6.1 seconds.  
-    * Mining Laser - Press TS1-D to fire the Mining Laser. This holds the trigger dowwn for you. Press TS1 to stop.	 
-	* Pulse Wave Scanner - Press TS1-D to fire the Pulse Wave Scanner. This automatically repeats every 7 seconds. Press TS1 to stop.  
+     * Discovery Scanner - Press TS1-D to fire the discovery scanner, no need to hold the trigger for 6.1 seconds.  
+     * Mining Laser - Press TS1-D to fire the Mining Laser. This holds the trigger down for you. Press TS1 to stop.	 
+     * Pulse Wave Scanner - Press TS1-D to fire the Pulse Wave Scanner. This automatically repeats every 7 seconds. Press TS1 to stop.  
 	
 ### TS2 - Secondary Fire  
 
@@ -55,8 +56,8 @@ Modified actions
 - TS2-D: TBTN3+TS2. This uses the alternate fire mode as follows...
   * Modes are  
     * Discovery Scanner - Press TS2-D to fire the discovery scanner, no need to hold the trigger for 6.1 seconds.  
-    * Mining Laser - Press TS2-D to fire the Mining Laser. This holds the trigger dowwn for you. Press TS1 to stop.	 
-	* Pulse Wave Scanner - Press TS2-D to fire the Pulse Wave Scanner. This automatically repeats every 7 seconds. Press TS1 to stop.  
+    * Mining Laser - Press TS2-D to fire the Mining Laser. This holds the trigger down for you. Press TS1 to stop.	 
+	* Pulse Wave Scanner - Press TS2-D to fire the Pulse Wave Scanner. This automatically repeats every 7 seconds. Press TS2 to stop.  
 
 Example: If you have a mining laser set to '1' in the currently selected firegroup and a pulse wave scanner set to '2' in the same firegroup.  
 - Press TS1-U to cycle/set mode to 'Mining Laser'  
