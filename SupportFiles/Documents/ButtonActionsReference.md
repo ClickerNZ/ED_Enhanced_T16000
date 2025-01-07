@@ -223,7 +223,7 @@ Standard action
 - B13-M: B13. Fires a macro to cycle your ship's NAV Beacon between WING/OFF  
 
 NOTE: This only works if your System's Panel (RHS Panel in Ship) is at the "home" position.  
-Unfortuneately the games does not let me determine which TABS or previous selection has been made.  
+Unfortunately the games does not let me determine which TABS or previous selection has been made.  
 So, if not at HOME, you will get a random result.  
 
 Modified actions  
