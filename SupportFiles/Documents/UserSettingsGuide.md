@@ -17,7 +17,7 @@ There are plenty of comments which hopefully make things clear as to what the se
 ### status.json  
 
 If these settings are not correct, the script will abort.  
-Change "<username>" to match the Windows username you use to log into Windows.  
+Change "username" to match the Windows username you use to log into Windows.  
 You can usually find it by opening explorer and navigating to C:\Users. A list of known users  will be shown as subfolders.  
 
 "status.json" is a single line JSON file and written by the game and updated everytime a status variable changes.  
