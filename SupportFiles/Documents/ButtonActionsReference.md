@@ -341,9 +341,9 @@ Thrustmaster, for reasons only known to themselves have positioned the HAT contr
 - Middle = THAT1  
 - Bottom = THAT3  
 
-These 3 hats have 4 positions each, up, down, left and right.  
+These 3 hats have 4 positions each; up, down, left and right.  
 
-### THAT1U (middle-up)  
+### THAT1U  
 
 Standard action  
 - THAT1U-M: THAT1U. Supercruise ENGAGE/DISENGAGE  
@@ -352,7 +352,7 @@ Modified actions
 - THAT1U-U: TBTN2+THAT1U. Toggle FSS mode ON/OFF  
 - THAT1U-D: TBTN3+THAT1U. Toggle DSS mode OFF  
 
-### THAT1D (middle-down)  
+### THAT1D    
 
 Standard action  
 - THAT1D-M: THAT1D. Hyperjump ENGAGE/DISENGAGE
@@ -361,7 +361,7 @@ Modified actions
 - THAT1D-U: TBTN2+THAT1D. Toggle Planet view in FSS Mode FRONT/BACK  
 - THAT1D-D: TBTN3+THAT1D. empty  
 
-### THAT1L (middle-left)
+### THAT1L  
 
 Standard action  
 - THAT1L-M: THAT1L. Select next system in NAV route  
@@ -370,7 +370,7 @@ Modified actions
 - THAT1L-U: TBTN2+THAT1L. FSS Mode ZOOM OUT  
 - THAT1L-D: TBTN3+THAT1L. empty  
 
-### THAT1R (middle-right)
+### THAT1R  
 
 Standard action  
 - THAT1R-M: THAT1R. Orbit lines OFF/ON  
@@ -379,10 +379,10 @@ Modified actions
 - THAT1R-U: TBTN2+THAT1R. FSS Mode ZOOM IN  
 - THAT1R-D: TBTN3+THAT1R. empty  
 
-### THAT2U (top-up)  
+### THAT2U  
 
 This hat is dedicated predominantly to PIP Management.  
-Depending on which PIP Mode is active, the code will set different balance of PIPs between the areas.  
+Depending on which PIP Mode is active, the code will set a different balance of PIPs between the areas.  
 
 Selection of active PIP Mode is announced via TTS and TARGET console printout  
 
