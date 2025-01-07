@@ -103,7 +103,7 @@ I recommend you print out the ACTIONS images for the profile you are using and h
 
 ### USER SETTINGS  
 
-**DO THIS FIRST**  
+#### **!!! DO THIS FIRST!!!**  
 
 > There are several **CRITICAL** settings which need to be set before you run the script for the first time.  
 
