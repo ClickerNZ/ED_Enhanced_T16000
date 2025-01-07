@@ -6,7 +6,7 @@ For the script to work, you must install the latest version of Thrustmaster's Dr
 Whilst I could have incorporated all of the below files within one single ".tmc" file it would have been a couple thousand lines long and a nightmare to maintain.  
 I've separated the code into 11 seperate files which does make it easier for me to maintain.  
 
-Each file contains comments which add context and useage information.
+Each file contains comments which add context and usage information.  
 
 ## Main Code File  
 
