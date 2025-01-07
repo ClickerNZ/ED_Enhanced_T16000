@@ -23,7 +23,8 @@ For TS1 as an example...
 NOTE: "empty" actions are available should you wish to assign the button an action.
 - Coded routines in the script which are not currently used are listed in the following document  
 [Script Files Overview](/SupportFiles/Documents/SScriptFilesOverview.md)  
-- Action labels may also be assigned using PULSE+"label" within ED_MapKeyAssignment.tmh. Action labels are defined within ED_GameBindings.ttm  
+- Action labels may also be assigned using PULSE+"label" within ED_MapKeyAssignment.tmh.  
+> Action labels are defined within ED_GameBindings.ttm  
 
 I do not go into customising my code here, however if you want to know how to add an action to an empty button, first...  
 - Open the ED_MapKeyAssignment.tmh file in notepad (I use notepad++) and take a look at what's already been done, or...  
