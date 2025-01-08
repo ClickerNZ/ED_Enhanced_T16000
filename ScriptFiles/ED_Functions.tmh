@@ -49,8 +49,8 @@
 //			Line 1034:	int fnVPOutput()
 //			Line 1046: 	int fnPrintState()
 //			Line 1057: 	int fnStateDump()
-//			Line 1218:	int fnGetTOD()
-//			Line 1238:	int findstr()
+//			Line 1222:	int fnGetTOD()
+//			Line 1242:	int findstr()
 
 //------------------//
 // CUSTOM FUNCTIONS //
@@ -1206,10 +1206,11 @@
 				printf("Oxygen Level:	%s%,		%0.2f\x0a", O2Lvl, O2);
 				printf("Weapon:		%s,	Perspective:	%s\x0a", &Weapon, Perspective);
 
-				if (strlen(&myJson) > 68) {
-					printf("-----------------------------------------------------------------------------------------------------------------------------------------------\x0a");
-				}
-			}	
+			}
+
+			if (strlen(&myJson) > 68) {
+				printf("-----------------------------------------------------------------------------------------------------------------------------------------------\x0a");
+			}			
 		}
 	}
 
