@@ -1156,57 +1156,60 @@
 		}
 		
 		if (Odyssey & Flags2 != 0) {
-		
-			stfnProcessFlags2();			// refresh Flags2 bits or else we'll get unpredictable results below (???)
 
-			Body2 = "Normal";
+			if (!fFSDJump) {					// Avoid the below printout if calling this function whilst in Witchspace
 			
-			if (fOnFoot)				Locn1 		= "On Foot";	else Locn1 			= "fOnFoot Not Set";
-			if (fInTaxi)				Locn2		= "in Taxi";
-			if (fInMultiCrew)			MC 			= "Multicrew";	else MC 			= "Alone";
-			if (fOnFootInStation)		Locn2		= "in Station";
-			if (fOnFootOnPlanet)		Locn2		= "on Planet";
-			if (fAimDownSight)			Perspective = "Sights"; 	else Perspective	= "Normal";
-			if (fLowOxygen)				O2Lvl 		= "LOW"; 		else O2Lvl 			= "Fine";
-			if (fLowHealth)				Body1 		= "Injured";	else Body1 			= "Healthy";
-			if (fCold)					Body2 		= "Cold";
-			if (fHot)					Body2 		= "Hot";
-			if (fVeryCold)				Body2 		= "Very Cold";
-			if (fVeryHot)				Body2 		= "Very Hot";
-			if (fGlideMode)				Glide 		= "YES"; 		else Glide 			= "NO";
-			if (fOnFootInHanger)		Locn2 		= "in Hanger";
-			if (fOnFootSocialSpace)		Locn2 		= "in Social Space";
-			if (fOnFootExterior)		Locn2 		= "outside";
-			if (fBreathableAtmosphere)	Atmos 		= "Breathable"; else Atmos 			= "Unbreathable";
-			
-			Temp 	= stfnGetKeyValue("Temperature", FLOAT);
-			O2		= stfnGetKeyValue("Oxygen", FLOAT);
-			Health	= stfnGetKeyValue("Health", FLOAT);
-			Gravity	= stfnGetKeyValue("Gravity", FLOAT);
-			
-			stfnGetKeyValue("SelectedWeapon_Localised", STRING);
-			Dim(&Weapon, strlen(&keyvalue)+1);
-			Weapon[0] = 0;
-			strcat(&Weapon, &keyvalue);			
+				stfnProcessFlags2();			// refresh Flags2 bits or else we'll get unpredictable results below (???)
 
-			printf("\x0aPersonal States @ %s       JSON-Timestamp: %s       Flags2: %u\x0a", fnGetTOD(), &TimeStamp, Flags2);
-			printf("-----------------------------------------------------------------------------------------------------------------------------------------------\x0a");
+				Body2 = "Normal";
+				
+				if (fOnFoot)				Locn1 		= "On Foot";	else Locn1 			= "fOnFoot Not Set";
+				if (fInTaxi)				Locn2		= "in Taxi";
+				if (fInMultiCrew)			MC 			= "Multicrew";	else MC 			= "Alone";
+				if (fOnFootInStation)		Locn2		= "in Station";
+				if (fOnFootOnPlanet)		Locn2		= "on Planet";
+				if (fAimDownSight)			Perspective = "Sights"; 	else Perspective	= "Normal";
+				if (fLowOxygen)				O2Lvl 		= "LOW"; 		else O2Lvl 			= "Fine";
+				if (fLowHealth)				Body1 		= "Injured";	else Body1 			= "Healthy";
+				if (fCold)					Body2 		= "Cold";
+				if (fHot)					Body2 		= "Hot";
+				if (fVeryCold)				Body2 		= "Very Cold";
+				if (fVeryHot)				Body2 		= "Very Hot";
+				if (fGlideMode)				Glide 		= "YES"; 		else Glide 			= "NO";
+				if (fOnFootInHanger)		Locn2 		= "in Hanger";
+				if (fOnFootSocialSpace)		Locn2 		= "in Social Space";
+				if (fOnFootExterior)		Locn2 		= "outside";
+				if (fBreathableAtmosphere)	Atmos 		= "Breathable"; else Atmos 			= "Unbreathable";
+				
+				Temp 	= stfnGetKeyValue("Temperature", FLOAT);
+				O2		= stfnGetKeyValue("Oxygen", FLOAT);
+				Health	= stfnGetKeyValue("Health", FLOAT);
+				Gravity	= stfnGetKeyValue("Gravity", FLOAT);
+				
+				stfnGetKeyValue("SelectedWeapon_Localised", STRING);
+				Dim(&Weapon, strlen(&keyvalue)+1);
+				Weapon[0] = 0;
+				strcat(&Weapon, &keyvalue);			
 
-			printf("Location:	%s %s\x0a", Locn1, Locn2);
-			if (fLatLong) {
-				printf("Lat/Long:	%0.3f, %0.3f\x0a", LT, LN);
-			}			
-			printf("Atmosphere:	%s	Temp: %0.2f degrees\x0a", Atmos, Temp);
-			printf("Gravity:		%0.2f\x0a", Gravity);
-			printf("Situation:	%s\x0a", MC);
-			printf("Health:		%s,		%0.2f\x0a", Body1, Health);
-			printf("Environment:	%s\x0a", Body2);
-			printf("Oxygen Level:	%s%,		%0.2f\x0a", O2Lvl, O2);
-			printf("Weapon:		%s,	Perspective:	%s\x0a", &Weapon, Perspective);
-		}
+				printf("\x0aPersonal States @ %s       JSON-Timestamp: %s       Flags2: %u\x0a", fnGetTOD(), &TimeStamp, Flags2);
+				printf("-----------------------------------------------------------------------------------------------------------------------------------------------\x0a");
 
-		if (strlen(&myJson) > 68) {
-			printf("-----------------------------------------------------------------------------------------------------------------------------------------------\x0a");
+				printf("Location:	%s %s\x0a", Locn1, Locn2);
+				if (fLatLong) {
+					printf("Lat/Long:	%0.3f, %0.3f\x0a", LT, LN);
+				}			
+				printf("Atmosphere:	%s	Temp: %0.2f degrees\x0a", Atmos, Temp);
+				printf("Gravity:		%0.2f\x0a", Gravity);
+				printf("Situation:	%s\x0a", MC);
+				printf("Health:		%s,		%0.2f\x0a", Body1, Health);
+				printf("Environment:	%s\x0a", Body2);
+				printf("Oxygen Level:	%s%,		%0.2f\x0a", O2Lvl, O2);
+				printf("Weapon:		%s,	Perspective:	%s\x0a", &Weapon, Perspective);
+
+				if (strlen(&myJson) > 68) {
+					printf("-----------------------------------------------------------------------------------------------------------------------------------------------\x0a");
+				}
+			}	
 		}
 	}
 
