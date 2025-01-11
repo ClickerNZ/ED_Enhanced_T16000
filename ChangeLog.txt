@@ -10,6 +10,11 @@ v1.0.0.0_main
 	-	Test all mapped Joystick and Throttle switches and buttons and make any required corrections
 	-	Enabled Heatsinks in Supercruise
 	-	Test Menulog
-	-	
 	-	Refactor indexes
-	-	
+
+- 	Bug fixes
+	-	Recode tgLights()
+	-	Recode tgCargoScoop()
+	-	Recode tgLandingGear()
+	-	Recode tgReverseThrust()
+	-	Recode tgHUDMode()
