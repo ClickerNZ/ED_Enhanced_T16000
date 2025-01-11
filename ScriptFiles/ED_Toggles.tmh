@@ -191,6 +191,7 @@
 			}
 			else {
 				fnVPOutput("Night vision unhandled exception");
+			}
 		}
 	}
 
