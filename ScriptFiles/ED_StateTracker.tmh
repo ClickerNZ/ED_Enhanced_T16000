@@ -26,10 +26,10 @@
 //			Line 153:	int stfnWriteMaxJson()
 //			Line 194: 	int stfnGetKeyValue()
 //			Line 301: 	int stfnProcessFlags()
-//			Line 794:	int stfnProcessFlags2()
-//			Line 1067: 	int stfnProcessGuiFocus()
-//			Line 1094: 	int stfnStartCheck()
-//			Line 1165:	int stfnMyStates()
+//			Line 767:	int stfnProcessFlags2()
+//			Line 1040: 	int stfnProcessGuiFocus()
+//			Line 1067: 	int stfnStartCheck()
+//			Line 1138:	int stfnMyStates()
 	
 // START
 
@@ -491,7 +491,7 @@
 						fnVPOutput(VoiceTxt);												//  Announce drop type
 						if (fInterdicted | fDanger) {
 							if (fHUDAnalysis) {	
-								tgHUDMode(0);												// Select Combat HUD
+								tgHUDMode(1);												// Select Combat HUD
 							}
 							if (!fHardpoints) {
 								tgHardpoints();												// Deploy weapons
@@ -507,7 +507,7 @@
 				fnGetFlightMode();															// Line up slider curves
 			}
 
-			if (fMainShip & (fFAOff != lFAOff)) {											// Handled within tgAdvancedFAOff()	
+			if (fFAOff != lFAOff) {															// Handled within tgAdvancedFAOff()	
 				if (fMainShip) {															// Announced via in game setting
 					if (fFAOff) {
 						printf("Flight Assist:	OFF\x0a");
@@ -515,6 +515,9 @@
 					else {
 						printf("Flight Assist:	ON\x0a");					
 					}
+				}
+				else {
+					fnVPOutput("F A off unandled exception");
 				}
 			}
 
@@ -536,23 +539,8 @@
 				}				
 			}
 
-			if (fLights != lLights) {									// Print to console handled by tgLights()
-				if (fMainShip) {										
-					if (fLights) {
-						fnTextToSpeech("Ship lights");
-					}
-					else {
-						fnTextToSpeech("Ship lights OFF");					
-					}
-				}
-				else if (fSRV) {										// Only announce when we switch lights on/off and not when boarding or disembarking SRV
-					if (fLights) {
-						fnTextToSpeech("SRV lights");					
-					}
-					else {
-						fnTextToSpeech("SRV lights OFF");					
-					}				
-				}
+			if (fLights != lLights) {									// notifications handled by tgLights()
+				// NOTHING TO DO
 			}
 
 			if (fCargoScoop != lCargoScoop & ((fMainShip | fSRV) & !fSupercruise)) {					
@@ -602,10 +590,10 @@
 
 			if (fSRVDriveAssist != lSRVDriveAssist & fSRV) {
 				if (fSRVDriveAssist) {
-					printf("SRVDriveAssist: ON\x0a");
+					printf("SRV DriveAssist: ON\x0a");
 				}
 				else {
-					printf("SRVDriveAssist: OFF\x0a");				
+					printf("SRV DriveAssist: OFF\x0a");				
 				}				
 			}
 
@@ -715,23 +703,8 @@
 				}
 			}
 
-			if (fHUDAnalysis != lHUDAnalysis) {
-				if (fMainShip & (!fDocked & !fLanded)) {
-					if (fHUDAnalysis) {
-						fnTextToSpeech("Analysis mode");
-					}
-					else {
-						fnTextToSpeech("Combat mode");
-					}				
-				}
-				if (fSRV) {
-					if (fHUDAnalysis) {
-						DeferCall(750, &fnTextToSpeech, "Analysis mode");
-					}
-					else {
-						DeferCall(750, &fnTextToSpeech, "Combat mode");
-					}				
-				}
+			if (fHUDAnalysis != lHUDAnalysis) {											// Notifications handled by tgHUDMode()
+				// NOTHING TO DO
 			}
 			
 			if ((fNightVision != lNightVision) & (fMainShip | fSRV)) {
@@ -763,17 +736,17 @@
 					printf("FSD Jump flag set\x0a");
 					
 					if (!fHUDAnalysis & AutoHUD) {							// Toggle HUD to Discovery mode if AutoHUD is set in ED_ UserSettings	
-						DeferCall(500, &tgHUDMode, 0);				
+						tgHUDMode(1);										// Delays announcing change
 					}
 				}
 			}
 
 			if (fSRVHiBeam != lSRVHiBeam) {
 				if (fSRVHiBeam & (fSRV == lSRV)) {
-					fnVPOutput("SRV Hi Beam");
+					// HI BEAM NOTIFICATION HANDLED IN tgLights()
 				}
 				else {
-					// Lights OFF - handled elsewhere
+					// LIGHTS NOTIFICATIONS HANDLED IN tgLights()
 				}				
 			}
 						
