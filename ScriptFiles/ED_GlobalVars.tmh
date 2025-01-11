@@ -72,6 +72,6 @@
 	int SilentStrobe		= 0;		// Used to track when we are using the Silent Running Strobe feature
 	int XAxisYAW			= 0;		// Used to track which mode X-Axis is, Roll (default) or Yaw
 	
-	int MassLockCounter		= 0;		// Failed Warpdrive retry count (eg MassLocked when trying to go to supercruise)
+	int RetryCounter		= 0;		// Failed Warpdrive retry count (eg MassLocked when trying to go to supercruise)
 				
 // END
