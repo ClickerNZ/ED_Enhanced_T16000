@@ -103,7 +103,7 @@ I recommend you print out the ACTIONS images for the profile you are using and h
 
 ### USER SETTINGS  
 
-#### **!!! DO THIS FIRST !!!**  
+#### **!!! DO THIS FIRST BEFORE RUNNING SCRIPT !!!**  
 
 > There are several **CRITICAL** settings which need to be set before you run the script for the first time.  
 
@@ -220,6 +220,14 @@ Set the PRESET for each of GENERAL, SHIP and SRV to 'Clicker-BASIC_T16000' and h
 > ALWAYS Open the TARGET Script editor program and load, compile and run the script FIRST then launch Elite:Dangerous  
 > Alternately, once everything is working as expected, run the Launcher shortcut you created on the desktop (as above)  
 
+### NOTES FOR TEXT-TO-speech  
+
+> If using the Text-To-Speech function (if not, why not???)  
+  * This script replaces some of the announcements made by ship's COVAS  
+  * Go to the Game menu and select Options, Audio, Voice Volume, Ship Voice Volume then...  
+    * Flight, Driving and Frame Shift, Turn off Flight Assist Engaged and Disengeged and Drive Assist   
+	* Landing and Docking, Turn off Landing Gear Deployed and Retracted    
+	* Cargo and Fuel, Turn off Landing Gear Deployed and Retracted  
 
 ### QUICK START USAGE (In Game)  
 
