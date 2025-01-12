@@ -545,10 +545,10 @@
 
 			if (fCargoScoop != lCargoScoop & ((fMainShip | fSRV) & !fSupercruise)) {					
 				if(fCargoScoop) {
-					printf("Cargo scoop:		DEPLOYED\x0a");					// Vocalised in game
+		//			printf("Cargo scoop:		DEPLOYED\x0a");					// Vocalised in game
 				}
 				else {
-					printf("Cargo scoop:		RETRACTED\x0a");
+		//			printf("Cargo scoop:		RETRACTED\x0a");
 				}				
 			}
 
