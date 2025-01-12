@@ -84,7 +84,13 @@
 			reason = "we are currently in Supercruise";
 		}
 		else if (fSRV) {
-			ActKey(PULSE+KEYON+DriveAssist);										// 'z' - Toggles Drive Assist in SRV 		
+			ActKey(PULSE+KEYON+DriveAssist);										// 'z' - Toggles Drive Assist in SRV 
+			if (fFAOff) {
+				fnTextToSpeech("Drive assist, OFF");
+			}
+			else {
+				fnTextToSpeech("Drive assist, ON");
+			}
 		}
 		else if (fMainShip) {		
 			if (fFAOff) {															// Turn FA-OFF OFF, Set JSCurves to default  
@@ -94,6 +100,13 @@
 					fnSetCurves(OldCurves, CurveInfo, TRUE, FALSE);					// Announce curve profile, don't save curve info					
 			}
 			ActKey(PULSE+KEYON+FlightAssist);										// 'z' - FA-OFF On/Off 
+			if (fFAOff) {
+				fnTextToSpeech("Flight assist, OFF");
+			}
+			else {
+				fnTextToSpeech("Flight assist, ON");
+			}
+			
 		}
 					
 		if (reason != 0) fnNotValid(fnName, reason);		
@@ -212,7 +225,7 @@
 				fnNotValid(fnName, "we are in the SRV");
 			}
 			else if (fOnFoot) {
-				fnNotValid(fname, "we are on foot");
+				fnNotValid(fnName, "we are on foot");
 			}
 			else {
 				if (x == STROBE & SilentStrobe == DISABLED) {
@@ -296,12 +309,12 @@
 			reason = "unhandled exception!";
 		}
 		if (fCargoScoop) {
-			fnVPOutput("Cargo scoop retracted");
+			fnVPOutput("Cargo scoop:		RETRACTED");
 		}
 		else {
-			fnVPOutput("Cargo scoop deployed");
+			fnVPOutput("Cargo scoop:		DEPLOYED");
 		}
-		if (reason != 0) fnNotValid(fName, reason);
+		if (reason != 0) fnNotValid(fnName, reason);
 	}
 
 
@@ -422,7 +435,7 @@
 			reason = "unhandled exception";
 		}
 		if (reason != 0) {
-			fnNotValid(fname, reason);
+			fnNotValid(fnName, reason);
 		}
 	}
 
@@ -578,12 +591,12 @@
 				
 		if (JumpType) {
 			fnName = "Hyper Drive";
-			EngineText = "Hyper Drive:	";
+			EngineText = "Hyper Drive:";
 			WarpDrive = HyperJump;				// USB[0x0D] = "J"
 		}
 		else {
 			fnName = "Supercruise";
-			EngineText = "Supercruise:	";
+			EngineText = "Supercruise:";
 			WarpDrive = Supercruise;			// USB[0x54] = "/"
 		}
 
@@ -624,7 +637,7 @@
 		if (fSupercruise & !JumpType) {
 			ActKey(PULSE+KEYON+WarpDrive);										// This *should* work even if we don't drop due to velocity
 			SelectDrop = YES;													// Drop selected, not forced
-			printf("%s:	DISENGAGED\x0a", EngineText);
+			printf("%s	DISENGAGED\x0a", EngineText);
 			InitWarpDrive = DISABLED;
 		}
 		else {
@@ -632,7 +645,7 @@
 			if (fLandingGear)	tgLandingGear(RETRACT);							// Retract landing gear if deployed
 			if (fCargoScoop)	tgCargoScoop(RETRACT);							// Retract cargo scoop if deployed			
 			ActKey(PULSE+KEYON+WarpDrive);										// ...and...punch it!
-			printf("%s:	ENGAGED\x0a", EngineText);
+			printf("%s	ENGAGED\x0a", EngineText);
 			RetryCounter = 0;												// Reset failed Warpdrive counter
 			AutoRepeat(hFSDCharge, 500, &fnCheckFSDCharge, EngineText);			// Check for FSD Charge failure
 			InitWarpDrive = ENABLED;
