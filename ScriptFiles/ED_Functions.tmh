@@ -205,13 +205,15 @@
 			SliderProfile = "FSS Mode";
 		}
 		if (x == 1)	{													// Normal flight
-			SliderCurve = LIST(0,0, 40,25, 75,50, 85,75, 100,100);
+//			SliderCurve = LIST(0,0, 40,25, 75,50, 85,75, 100,100);
+			SliderCurve = LIST(0,0, 25,25, 50,50, 75,75, 100,100);		// Linear 
 			SetCustomCurve(&MyThrottle, TANT, SliderCurve);
 			SliderProfile = "Normal Flight";
 			
 		}
 		if (x == 2)	{													// Supercruise
-			SliderCurve = LIST(0,0, 50,10, 75,30, 90,50, 100,100);
+//			SliderCurve = LIST(0,0, 50,10, 75,30, 90,50, 100,100);
+			SliderCurve = LIST(0,0, 25,25, 50,50, 75,75, 100,100);		// Linear 
 			SetCustomCurve(&MyThrottle, TANT, SliderCurve);
 			SliderProfile = "Supercruise";
 		}
@@ -366,6 +368,7 @@
 		
 		if (EnableSoundFX) {
 			if (vol != 100) SFXVol = vol;										// set SFXVol if vol is parsed
+			if (wavfile == "beep") SFXVol = 75;									// Vol parameter for reverse beep cannot be sent, so we set this manually here 
 			if (loops != 1) SFXLoops = loops;									// set SFXLoops if loops is parsed
 			
 			sprintf(&SFXSysCmd, "start %s %s /vol %d /loop %d %s%s", &SoundPath, &SoundCMD, SFXVol, SFXLoops, &WAVPath, wavfile);
@@ -766,8 +769,8 @@
 			ActKey(PULSE+KEYON+SRVRecallDismissShip);							// 'LeftALT+x'
 			
 			printf("Ship Status: ");
-			fnVPOutput(VoiceTxt);
-			
+//			fnVPOutput(VoiceTxt);												// Let COVAS announce as we don't always use this function?
+	
 			ShipDismissed = !ShipDismissed;
 			stfnMyStates(SAVE);													// saves my status variables 			
 		}
@@ -970,7 +973,7 @@
 
 	int fnModeSwitch(int mode) {
 	
-		int fName = "Mode Switch";
+		int fnName = "Mode Switch";
 		int reason;
 		
 		int GUIMode;
@@ -994,7 +997,7 @@
 	
 		if (fDanger | fInterdicted) {		
 			reason = "clogging is not allowed";
-			fnNotValid(fName, reason);
+			fnNotValid(fnName, reason);
 		}
 		else {
 			if (mode == 0) {
