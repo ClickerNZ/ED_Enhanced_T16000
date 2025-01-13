@@ -379,7 +379,7 @@
 	}
 
 
-	// FUNCTION:	Announce Game Start,, TTS and SoundFX status, Game version
+	// FUNCTION:	Announce Game Start, TTS and SoundFX status, Game version
 	
 	int fnGameStarted() {
 
@@ -693,13 +693,22 @@
 	
 	int fnChaff() {
 		int fnName = "Chaff";
+		int reason = 0;
 		
 		if(!fSupercruise & fMainShip & !fDocked & !fLanded) {
 			ActKey(PULSE+KEYON+FireChaff);
 			printf("!!!   Chaff  Fired   !!!\x0a");
 		}
 		else {
-			fnVPOutput("Chaff may not be fired at this time");
+			if (fSupercruise) reason = "we are in supercruise";
+			if (fDocked) reason = "we are docked";
+			if (fLanded) reason = "we are landed";	
+			if (fSRV) reason = "we are in the SRV";
+			if (fFighter) reason = "I don't think the fighter has chaff");
+			if (fOnFoot) reason = "we are on foot";
+		}
+		if (reason != 0) {
+			fnNotValid(fnName, reason);
 		}
 	}
 
@@ -709,7 +718,7 @@
 
 	int fnDeploySRV(int x) {
 		int fnName;
-		int reason;
+		int reason = 0;
 
 		if (!StartupLock) {
 			if (x == DEPLOY) {
@@ -722,7 +731,6 @@
 					else {
 						if (!fLanded) reason = "we are not landed";
 						if (fOnFoot) reason = "we are on foot";
-						fnNotValid(fnName, reason);
 					}
 				}
 				else {
@@ -743,9 +751,9 @@
 					if (!fSRVTurretRetracted) {
 						reason = "turret not retracted";
 					}
-					fnNotValid(fnName, reason);
 				}
 			}
+			if (reason !=0) fnNotValid(fnName, reason);
 		}
 	}
 	
@@ -785,7 +793,7 @@
 
 	int fnRequestDock() {
 		int fnName = "Docking request";
-		int reason;
+		int reason = 0;
 		if (!fSupercruise & fMainShip & !fDocked & !fLanded) {
 			ActKey(PULSE+KEYON+m_RequestDock);
 			printf("\x0a=	Docking request sent	=\x0a");
@@ -802,8 +810,8 @@
 			else if (fDocked)		reason = "we are already docked";
 			else if (fLanded)		reason = "we are already landed";
 			else 					reason = "we are in no position to request docking";
-			fnNotValid(fnName, reason);
 		}
+		if (reason !=0) fnNotValid(fnName, reason);
 	}
 
 
@@ -894,7 +902,7 @@
 		
 		if(fMassLocked) {
 			printf("%s	MASSLOCKED	... Retry #%d of 4\x0a", EngineText, RetryCounter);
-			if(RetryCounter > 4) {
+			if(RetryCounter >= 4) {
 				reason = "we are currently masslocked";
 				fnNotValid(EngineText, reason);
 				printf("%s:	DISENGAGED\x0a", EngineText);
@@ -1024,6 +1032,7 @@
 				Sleep(1000);																		// Sleep is ok here as game is not effectively running
 				counter = counter + 1;
 			}
+			
 			printf("\x0a\x0a\- Game has reloaded -\x0a");
 			fnGameStarted();																		// We're still guessing when game has actually retsrated as Flags and Flags2 do not change 
 		}
@@ -1157,7 +1166,6 @@
 				printf("Fighter states not yet coded in this version\x0a\x0a");
 			}
 		}
-		
 		if (Odyssey & Flags2 != 0) {
 
 			if (!fFSDJump) {					// Avoid the below printout if calling this function whilst in Witchspace
@@ -1213,7 +1221,7 @@
 
 			if (strlen(&myJson) > 68) {
 				printf("-----------------------------------------------------------------------------------------------------------------------------------------------\x0a");
-			}			
+			}
 		}
 	}
 
@@ -1236,7 +1244,6 @@
 			return TOD;
 		}	
 	}
-	
 	
 	//	FUNCTION:	Find substring within a string and return first char position or -1 if not found
 	//	NOTE:		sys.tmh has strstr() listed to provide this functionality, however it seems to always
