@@ -43,6 +43,12 @@
 //   !!!   THE SCRIPT WILL ABORT IF NO COMPATIBLE JOYSTICK OR THROTTLE IS FOUND   !!!
 
 	int CheckControllers() {
+	
+		// Aliases MyJoystick, MyThrottle and MyRudder declared in ED_GlobalVars.tmh
+		// The following method eliminates user having to set compatible connected hardware manually
+		// Alternate method would be to get user to declare which alias to use depending on what hardware they own
+		
+		//   !!!   THE SCRIPT WILL ABORT IF NO COMPATIBLE JOYSTICK OR THROTTLE IS FOUND   !!!
 		
 		// There are 4 Joystick combos compatible with this script...
 
