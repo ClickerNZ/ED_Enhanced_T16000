@@ -704,7 +704,7 @@
 			if (fDocked) reason = "we are docked";
 			if (fLanded) reason = "we are landed";	
 			if (fSRV) reason = "we are in the SRV";
-			if (fFighter) reason = "I don't think the fighter has chaff");
+			if (fFighter) reason = "I don't think the fighter has chaff";
 			if (fOnFoot) reason = "we are on foot";
 		}
 		if (reason != 0) {
