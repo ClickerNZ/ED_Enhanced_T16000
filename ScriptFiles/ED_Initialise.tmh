@@ -21,15 +21,17 @@
 // User Config Settings					refer to ED_UserSettings file
 // ========================================================================
 
-// Index:	Line		FUNCTION
-//			Line 45:	int CheckControllers()
-//			Line 143: 	int initJoystickAxis()
-//			Line 171: 	int initThrottleAxis()
-//			Line 192: 	int initRudderAxis()
-//			Line 213:	int initSliderAxis()
-//			Line 228:	int initSlewAxis()
-//			Line 248: 	int initTextToSpeech()
-//			Line 266: 	int initSoundFX()
+/*
+	Index:		FUNCTION
+	Line  46:	int CheckControllers()
+	Line 149: 	int initJoystickAxis()
+	Line 177: 	int initThrottleAxis()
+	Line 198: 	int initRudderAxis()
+	Line 219: 	int initSliderAxis()
+	Line 234: 	int initSlewAxis()
+	Line 254: 	int initTextToSpeech()
+	Line 272: 	int initSoundFX()
+*/
 
 // START
 

@@ -21,15 +21,17 @@
 // User Config Settings					refer to ED_UserSettings file
 // ========================================================================
 
-// Index:	Line		FUNCTION
-//			Line 51: 	int stfnReadStatusJson()
-//			Line 153:	int stfnWriteMaxJson()
-//			Line 194: 	int stfnGetKeyValue()
-//			Line 301: 	int stfnProcessFlags()
-//			Line 767:	int stfnProcessFlags2()
-//			Line 1040: 	int stfnProcessGuiFocus()
-//			Line 1067: 	int stfnStartCheck()
-//			Line 1138:	int stfnMyStates()
+/*
+	Index:		FUNCTION
+	Line   53: 	int stfnReadStatusJson()
+	Line  155: 	int stfnWriteMaxJson()
+	Line  196: 	int stfnGetKeyValue(alias pattern, int vtype)
+	Line  303: 	int stfnProcessFlags()
+	Line  769: 	int stfnProcessFlags2()
+	Line 1042: 	int stfnProcessGuiFocus()
+	Line 1069: 	int stfnStartCheck()
+	Line 1140: 	int stfnMyStates(int action)
+*/
 	
 // START
 
