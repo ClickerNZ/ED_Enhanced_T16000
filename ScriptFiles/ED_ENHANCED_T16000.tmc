@@ -23,11 +23,13 @@
 // User Configuration Settings			refer to ED_UserSettings file
 // ==============================================================================================
 
-// Index:	Line		FUNCTION
-//			Line 58:	include statements
-//			Line 90: 	int main()
-//			Line 129:	initialise flight controls 
-//			Line 174:	int EventHandle()
+/*
+	Index:		FUNCTION
+	Line 60:	include statements
+	Line 92: 	int main()
+	Line 132:	initialise flight controls 
+	Line 175:	int EventHandle()
+*/
 
 // PREFACE
 //

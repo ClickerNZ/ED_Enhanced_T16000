@@ -24,13 +24,15 @@
 // User Config Settings					refer to ED_UserSettings file
 // ========================================================================
 
-// Index:	Line		FUNCTION
-//			Line 43: 	int MainKeyMap()
-//			Line 56:		Joystick Buttons
-//			Line 355:		Throttle Buttons 
-//			Line 589: 	int TrainingMap()
-//			Line 599:		Joystick buttons
-//			Line 884:		Throttle buttons
+/* 
+	Index:		FUNCTION
+	Line 45: 	int MainKeyMap()
+	Line 58:		Joystick Buttons
+	Line 352:		Throttle Buttons 
+	Line 610: 	int TrainingMap()
+	Line 620:		Joystick buttons
+	Line 905:		Throttle buttons
+*/
 
 // START
 

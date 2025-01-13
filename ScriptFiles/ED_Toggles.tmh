@@ -21,24 +21,25 @@
 // User Config Settings					refer to ED_UserSettings file
 // ========================================================================
 
-// Index:	Line		FUNCTION
-//			Line 51: 	int tgTxt2Speech()
-//			Line 75: 	int tgEnhancedFAOFF()
-//			Line 108: 	int tgTriggerMode()
-//			Line 150: 	int tgLights()
-//			Line 202: 	int tgSilentRunning()
-//			Line 248: 	int tgCargoScoop()
-//			Line 310: 	int tgLandingGear()
-//			Line 356: 	int tgReverseThrust()
-//			Line 432:	int tgBoost()
-//			Line 451: 	int tgHardpoints()
-//			Line 490: 	int tgHUDMode()
-//			Line 518: 	int tgFSSMode()
-//			Line 545: 	int tgPlanetView()
-//			Line 571: 	int tgWarpDrive()
-//			Line 644: 	int tgExtCamera()
-//			Line 664:	int tgXAxis()
-	
+/* 
+	Index:		FUNCTION
+	Line  51: 	int tgTxt2Speech() {
+	Line  75: 	int tgEnhancedFAOFF(int dummy = 0)
+	Line 121: 	int tgTriggerMode(int x)
+	Line 163: 	int tgLights(int x)
+	Line 216: 	int tgSilentRunning(int x)
+	Line 262: 	int tgCargoScoop(int x)
+	Line 324: 	int tgLandingGear(int Speedbrake)
+	Line 369: 	int tgReverseThrust(int EnableSpeedBrake)
+	Line 445: 	int tgBoost()
+	Line 464: 	int tgHardpoints()
+	Line 503: 	int tgHUDMode(int delayannounce=0)
+	Line 531: 	int tgFSSMode()
+	Line 558: 	int tgPlanetView()
+	Line 584: 	int tgWarpDrive(int JumpType)
+	Line 657: 	int tgExtCamera()
+	Line 677: 	int tgXAxis(int param = RESET)	
+*/
 	
 // START
 
