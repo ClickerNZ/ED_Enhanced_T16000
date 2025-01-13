@@ -55,7 +55,7 @@
 	int StartupLock			= 1;		// Prevent triggering keystrokes during initialisation
 	int GameLoaded			= 0;		// Set in fnGameStarted() when game is detected as running
 	
-	int Odyssey				= 0;		// 0 = Legacy Client, 1 = Latest Client. We check this when game starts running via presence of 'Flags2' Key in status.json
+	int Odyssey				= 0;		// 0 = Horizons Legacy, 1 = Odyssey. We check this when game starts running via presence of 'Flags2' Key in status.json
 	
 	int ConnectionStatus	= 0;		// Track if "ShowConnectionStatus" is on or off to avoid accidental toggle off during mode switch
 	int ReverseThrust		= 0;		// Set/Reset in tgReverseThrust()
