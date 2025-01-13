@@ -87,8 +87,7 @@ include "ED_Toggles.tmh"
 // Main Program //
 //--------------//
 	
-	int main()
-	{
+	int main() {
 
 		printf("\x0a\++	Initialise hardware	...	Start	++\x0a\x0a");			// Eliminates error messages relating to unfound devices
 																				// Refer target.tmh alias list
