@@ -340,7 +340,6 @@
 				else fnTextToSpeech("Landing gear retracted");
 			}
 			ActKey(PULSE+KEYON+LandingGear);
-
 		}
 		else {																		// Landing gear / Speedbrake function not valid  
 			if (fSupercruise) {
@@ -515,7 +514,7 @@
 			}
 		}
 		else {
-			printf("HUD Mode:		ANALYSIS\x0a");		// Swicthing to Analysis Mode
+			printf("HUD Mode:		ANALYSIS\x0a");		// Switching to Analysis Mode
 			if (delayannounce) {
 				DeferCall(1000, &fnTextToSpeech, "Analysis mode");
 			} 
@@ -646,7 +645,7 @@
 			if (fCargoScoop)	tgCargoScoop(RETRACT);							// Retract cargo scoop if deployed			
 			ActKey(PULSE+KEYON+WarpDrive);										// ...and...punch it!
 			printf("%s	ENGAGED\x0a", EngineText);
-			RetryCounter = 0;												// Reset failed Warpdrive counter
+			RetryCounter = 0;													// Reset failed Warpdrive counter
 			AutoRepeat(hFSDCharge, 500, &fnCheckFSDCharge, EngineText);			// Check for FSD Charge failure
 			InitWarpDrive = ENABLED;
 		}
