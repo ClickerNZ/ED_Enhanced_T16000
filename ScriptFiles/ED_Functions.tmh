@@ -1233,16 +1233,42 @@
 
 	int fnGetTOD() {
 
-		int	TOD	= " NOW ";								// Set type and format
+		int	TOD	= "HH:MM PM";							// Set type and format
+		int AmPm = "XX";
+		int HH = "HH";
+		int MM = ":MM";
 
-		system("time /T > c:\\tod.txt");				// Create local timestamp
+		alias TOD24 = "HH:MM";
 
-		int fp = fopen("c:\\tod.txt", "r");
+
+		system("time /T > c:\\tod.txt");				// Create local timestamp and write to a file at C:\
+
+		int fp = fopen("c:\\tod.txt", "r");				// Open the file to read
 
 		if (fp) {
-			fread(TOD, 1, 5, fp);						// Read local timestamp
+			fread(TOD, 1, 8, fp);						// Reads contents of file into TOD
 			fclose(fp);
-			return TOD;
+
+			strsub(HH, TOD, 0, 1);						// Extract 'HH'
+			strsub(MM, TOD, 2, 4);						// Extract ":MM'
+			strsub(AmPm, TOD, 6, 7); 					// Extract 'AM' or 'PM'
+
+			if (strcmp(AmPm, "PM") == 0) {				// If so...convert 'HH' to 24hr equivalent
+				if (strcmp(HH, "01") == 0) HH = "13";		
+				if (strcmp(HH, "02") == 0) HH = "14";		
+				if (strcmp(HH, "03") == 0) HH = "15";		
+				if (strcmp(HH, "04") == 0) HH = "16";		
+				if (strcmp(HH, "05") == 0) HH = "17";		
+				if (strcmp(HH, "06") == 0) HH = "18";		
+				if (strcmp(HH, "07") == 0) HH = "19";		
+				if (strcmp(HH, "08") == 0) HH = "20";		
+				if (strcmp(HH, "09") == 0) HH = "21";		
+				if (strcmp(HH, "10") == 0) HH = "22";		
+				if (strcmp(HH, "11") == 0) HH = "23";		
+			}
+
+			sprintf(&TOD24, "%s%s", HH, MM);			// Reconstruct TOD as TOD24
+			return &TOD24;								// Return the result
 		}	
 	}
 	
