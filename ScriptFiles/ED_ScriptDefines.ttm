@@ -273,7 +273,7 @@
 	define ED_SupercruiseOvercharge	0x0000000000100000
 	define ED_SupercruiseAssist    	0x0000000000200000
 	define ED_NPCCrewActive        	0x0000000000400000
-	define ED_RESERVED24   			0x0000000000800000		\\ Placeholder for future Flags2 bits
+	define ED_RESERVED24   			0x0000000000800000		// Placeholder for future Flags2 bits
 
 	define ED_RESERVED25           	0x0000000001000000
 	define ED_RESERVED26           	0x0000000002000000
