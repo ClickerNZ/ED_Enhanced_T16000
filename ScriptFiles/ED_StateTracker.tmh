@@ -24,13 +24,13 @@
 /*
 	Index:		FUNCTION
 	Line   53: 	int stfnReadStatusJson()
-	Line  155: 	int stfnWriteMaxJson()
-	Line  196: 	int stfnGetKeyValue(alias pattern, int vtype)
-	Line  303: 	int stfnProcessFlags()
-	Line  769: 	int stfnProcessFlags2()
-	Line 1042: 	int stfnProcessGuiFocus()
-	Line 1069: 	int stfnStartCheck()
-	Line 1140: 	int stfnMyStates(int action)
+	Line  151: 	int stfnWriteMaxJson()
+	Line  192: 	int stfnGetKeyValue(alias pattern, int vtype)
+	Line  299: 	int stfnProcessFlags()
+	Line  765: 	int stfnProcessFlags2()
+	Line 1083: 	int stfnProcessGuiFocus()
+	Line 1110: 	int stfnStartCheck()
+	Line 1176: 	int stfnMyStates(int action)
 */
 	
 // START
@@ -90,7 +90,6 @@
 				printf("\x0a Error reading status.json. Check buffer length\x0a");
 			}
 			else {
-				// Debug: check myJson string length to ensure buffer size is set high enough
 				if (loop == 9) {
 					if(maxjson > NewMaxJson) {
 						printf("\x0a\++	Max json length seen = %d ...\x0a", maxjson);
@@ -100,9 +99,6 @@
 						json100 = (NewMaxJson - (NewMaxJson % 100))/100;
 						json10	= (NewMaxJson % 100) / 10;
 						json1 	= (NewMaxJson % 100) % 10;
-
-				//		sprintf(&jason, "jason %d %d%d", json100, json10, json1);	// Speaks each digit ... eg 5,9,8
-				//		fnTextToSpeech(&jason);
 						
 						loop = 0;
 						stfnWriteMaxJson();
@@ -547,10 +543,10 @@
 
 			if (fCargoScoop != lCargoScoop & ((fMainShip | fSRV) & !fSupercruise)) {					
 				if(fCargoScoop) {
-		//			printf("Cargo scoop:		DEPLOYED\x0a");					// Vocalised in game
+		//			printf("Cargo scoop:		DEPLOYED\x0a");			// Vocalised in game. Remove comment markers if you want this output to console
 				}
 				else {
-		//			printf("Cargo scoop:		RETRACTED\x0a");
+		//			printf("Cargo scoop:		RETRACTED\x0a");		// Vocalised in game. Remove comment markers if you want this output to console
 				}				
 			}
 
@@ -798,15 +794,31 @@
 		int lTelepresenceMulticrew 	= fTelepresenceMulticrew;
 		int lPhysicalMulticrew		= fPhysicalMulticrew;
 		int lFSDHyperdriveChg		= fFSDHyperdriveChg;
+		
+		int lSupercruiseOvercharge	= fSupercruiseOvercharge;
+		int lSupercruiseAssist 		= fSupercruiseAssist;
+		int lNPCCrewActive 			= fNPCCrewActive;
+		int lRESERVED24 			= fRESERVED24;
+
+		int lRESERVED25 			= fRESERVED25;								// Currently unused Flags2 bits 
+		int lRESERVED26 			= fRESERVED26;
+		int lRESERVED27 			= fRESERVED27;
+		int lRESERVED28 			= fRESERVED28;
+
+		int lRESERVED29 			= fRESERVED29;
+		int lRESERVED30 			= fRESERVED30;
+		int lRESERVED31 			= fRESERVED31;
+		int lRESERVED32 			= fRESERVED32;
+
 
 		// Process 'Flags2' value...most significant bit order
 		
-	//	if (Flags2 < 0) {														// Most significant bit is set 
-	//		fRESERVED			= ON;
-	//	}
-	//	else {
-	//		fRESERVED			= OFF;
-	//	}
+		if (Flags2 < 0) {														// Most significant bit is set 
+			fRESERVED32			= ON;
+		}
+		else {
+			fRESERVED32			= OFF;
+		}
 
 		// Bitwise-And of the negative number works for all bits other than most significant bit 
 
@@ -835,22 +847,22 @@
 		fPhysicalMulticrew		= ((Flags2 & ED_PhysicalMulticrew) > 0);
 		fFSDHyperdriveChg		= ((Flags2 & ED_FSDHyperdriveChg) > 0);
 
-	//	fRESERVED				= ((Flags2 & ED_RESERVED) > 0);
-	//	fRESERVED				= ((Flags2 & ED_RESERVED) > 0);
-	//	fRESERVED				= ((Flags2 & ED_RESERVED) > 0);
-	//	fRESERVED				= ((Flags2 & ED_RESERVED) > 0);
+		fSupercruiseOvercharge	= ((Flags2 & ED_SupercruiseOvercharge) > 0);
+		fSupercruiseAssist		= ((Flags2 & ED_SupercruiseAssist) > 0);
+		fNPCCrewActive			= ((Flags2 & ED_NPCCrewActive) > 0);
+		fRESERVED24				= ((Flags2 & ED_RESERVED24) > 0);
 
-	//	fRESERVED				= ((Flags2 & ED_RESERVED) > 0);
-	//	fRESERVED				= ((Flags2 & ED_RESERVED) > 0);
-	//	fRESERVED				= ((Flags2 & ED_RESERVED) > 0);
-	//	fRESERVED				= ((Flags2 & ED_RESERVED) > 0);
+		fRESERVED25				= ((Flags2 & ED_RESERVED25) > 0);
+		fRESERVED26				= ((Flags2 & ED_RESERVED26) > 0);
+		fRESERVED27				= ((Flags2 & ED_RESERVED27) > 0);
+		fRESERVED28				= ((Flags2 & ED_RESERVED28) > 0);
 
-	//	fRESERVED				= ((Flags2 & ED_RESERVED) > 0);
-	//	fRESERVED				= ((Flags2 & ED_RESERVED) > 0);
-	//	fRESERVED				= ((Flags2 & ED_RESERVED) > 0);
+		fRESERVED29				= ((Flags2 & ED_RESERVED29) > 0);
+		fRESERVED30				= ((Flags2 & ED_RESERVED30) > 0);
+		fRESERVED31				= ((Flags2 & ED_RESERVED31) > 0);
 
 		if (OldFlags2 != Flags2) {
-			if (fOnFoot != lOnFoot) {									// Track when on foot
+			if (fOnFoot != lOnFoot) {											// Track when on foot
 				if(fOnFoot){
 					if (!StartupLock) printf("On Foot\x0a");
 				}
@@ -1029,6 +1041,35 @@
 					// FSD Hyperdrive no longer charging									
 				}
 			}
+
+			if (fSupercruiseOvercharge != lSupercruiseOvercharge) {
+				if (fSupercruiseOvercharge) {
+					DeferCall(2000, &fnVPOutput, "Supercruise Overcharge");
+				}
+				else {
+					DeferCall(1000, &fnVPOutput, "Supercruise Overcharge Off");
+				}
+			}
+			
+			if (fSupercruiseAssist != lSupercruiseAssist) {
+				if (fSupercruiseAssist) {
+					fnVPOutput("Supercruise Assist Active");
+				}
+				else {
+					fnVPOutput("Supercruise Assist OFF");				
+				}
+			}
+
+			if (fNPCCrewActive != lNPCCrewActive) {								// Fighter present and NPC Pilot assigned
+
+				if (fNPCCrewActive) {
+					fnVPOutput("NPC crew active");
+				}
+				else {
+					fnVPOutput("NPC crew not active");				
+				}
+			}
+
 		}
 
 		OldFlags2 = Flags2;												// Keep track of last Flags2 Value to track when Flags2 bits change		
@@ -1105,11 +1146,6 @@
 				json100 = (NewMaxJson - (NewMaxJson % 100))/100;
 				json10	= (NewMaxJson % 100) / 10;
 				json1 	= (NewMaxJson % 100) % 10;
-
-		//		sprintf(&jason, "jason %d %d%d", json100, json10, json1);						// Speaks each digit
-				
-		//		SerialText = 1;
-		//		fnTextToSpeech(&jason);
 				
 				SerialText = 1;				
 				fnTextToSpeech("Waiting for game to load");
