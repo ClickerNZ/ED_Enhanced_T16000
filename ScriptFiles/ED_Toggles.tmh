@@ -23,22 +23,22 @@
 
 /* 
 	Index:		FUNCTION
-	Line  51: 	int tgTxt2Speech() {
-	Line  75: 	int tgEnhancedFAOFF(int dummy = 0)
-	Line 121: 	int tgTriggerMode(int x)
-	Line 163: 	int tgLights(int x)
-	Line 216: 	int tgSilentRunning(int x)
-	Line 262: 	int tgCargoScoop(int x)
-	Line 324: 	int tgLandingGear(int Speedbrake)
-	Line 369: 	int tgReverseThrust(int EnableSpeedBrake)
-	Line 445: 	int tgBoost()
-	Line 464: 	int tgHardpoints()
-	Line 503: 	int tgHUDMode(int delayannounce=0)
-	Line 531: 	int tgFSSMode()
-	Line 558: 	int tgPlanetView()
-	Line 584: 	int tgWarpDrive(int JumpType)
-	Line 657: 	int tgExtCamera()
-	Line 677: 	int tgXAxis(int param = RESET)	
+	Line  52: 	int tgTxt2Speech()
+	Line  76: 	int tgEnhancedFAOFF(int dummy = 0)
+	Line 122: 	int tgTriggerMode(int x)
+	Line 164: 	int tgLights(int x)
+	Line 217: 	int tgSilentRunning(int x)
+	Line 263: 	int tgCargoScoop(int x)
+	Line 325: 	int tgLandingGear(int Speedbrake)
+	Line 370: 	int tgReverseThrust(int EnableSpeedBrake)
+	Line 438: 	int tgBoost()
+	Line 457: 	int tgHardpoints()
+	Line 496: 	int tgHUDMode(int delayannounce=0)
+	Line 524: 	int tgFSSMode()
+	Line 551: 	int tgPlanetView()
+	Line 577: 	int tgWarpDrive(int JumpType)
+	Line 650: 	int tgExtCamera()
+	Line 670: 	int tgXAxis(int param = RESET)
 */
 	
 // START
@@ -367,24 +367,25 @@
 	//				2	Align Switch - not used in this script
 	//				3	Forward Thrust
 
-	int tgReverseThrust(int EnableSpeedBrake) {				////////////// NEEDS FURTHER TESTING
+	int tgReverseThrust(int EnableSpeedBrake) {
 		int fnName = "Reverse";
 		int reason = 0;
 
 		if (EnableSpeedBrake == 3) {
-			ReverseThrust = 0;
+			ReverseThrust = 0;								// Alas there is no status.json flag for "Reverse", so we need to track 
+			StopAutoRepeat(hBeepFX);
 		}
 		else {
 			ReverseThrust = 1;
+			AutoRepeat(hBeepFX, 1000, &fnSoundFX, "beep");										// Sound Reversing "beep" until reverse cancelled
 		}
 
 		if (fMainShip) {
 			if (!fSupercruise & !fLanded & !fDocked) {
-				ActKey(PULSE+KEYON+ReverseThrottle);											// or press NUMPAD *
+				if (EnableSpeedBrake != 2) ActKey(KEYON+PULSE+ReverseThrottle);					// Moved this to MapKey. // Align switch if '2' parsed. Or press NUMPAD *
 				if (ReverseThrust) {
-					printf("Throttle:			REVERSE\x0a");
-					AutoRepeat(hBeepFX, 1000, &fnSoundFX, "beep");								// Sound Reversing "beep" until reverse cancelled	
-
+					printf("==	Throttle:			REVERSE\x0a");
+	
 					// TOGGLE: Speedbrake
 					if (EnableSpeedBrake & (fHardpoints & !fLandingGear)) {						// If TBTN2 or (hardpoints deployed AND landing gear Retracted)...
 						SpeedbrakeDeployed = YES;
@@ -393,7 +394,7 @@
 					}
 				}
 				else {
-					printf("Throttle:			FORWARD\x0a");
+					printf("==	Throttle:			FORWARD\x0a");
 					StopAutoRepeat(hBeepFX);
 				}		
 			}
@@ -403,40 +404,31 @@
 				else if (fDocked) reason = "we are docked";
 			}
 		}
-		// NOT TESTED ++++			We may be able to bundle this in with fMainShip above IF fighter has landing gear and a Reverse ability
 		else if (fFighter) {
-			ActKey(PULSE+KEYON+ReverseThrottle);											// or press NUMPAD *
+			ActKey(KEYON+PULSE+ReverseThrottle);											// or press NUMPAD *
 			if (ReverseThrust) {
-				printf("Throttle:			REVERSE\x0a");
-				AutoRepeat(hBeepFX, 1000, &fnSoundFX, "beep");								// Sound Reversing "beep" until reverse cancelled				
+				printf("==	Throttle:			REVERSE\x0a");
 			}
 			else {
-				printf("Throttle:			FORWARD\x0a");
-				StopAutoRepeat(hBeepFX);
+				printf("==	Throttle:			FORWARD\x0a");
 			}		
 		}
-		// NOT TESTED ++++
-		
 		else if (fSRV) {
-			ActKey(PULSE+KEYON+ReverseThrottle);											// or press NUMPAD *
+			ActKey(KEYON+PULSE+ReverseThrottle);											// or press NUMPAD *
 			if (ReverseThrust) {
-				printf("Throttle:			REVERSE\x0a");
-				AutoRepeat(hBeepFX, 1000, &fnSoundFX, "beep");								// Sound Reversing "beep" until reverse cancelled				
+				printf("==	Throttle:			REVERSE\x0a");
 			}
 			else {
-				printf("Throttle:			FORWARD\x0a");
-				StopAutoRepeat(hBeepFX);
+				printf("==	Throttle:			FORWARD\x0a");
 			}		
 		}
-		else if (fOnFoot) {
+		else if (fOnFoot) {													  
 			reason = "we are on foot, just walk backwards, silly!";
 		}
 		else {
 			reason = "unhandled exception";
 		}
-		if (reason != 0) {
-			fnNotValid(fnName, reason);
-		}
+		if (reason != 0) fnNotValid(fnName, reason);
 	}
 
 
