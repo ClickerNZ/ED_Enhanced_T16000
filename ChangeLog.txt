@@ -27,6 +27,8 @@ v1.1
 			-	Include placeholder defines for Flags2 for future use
 		ED_Gamebindings.ttm
 			-	Add warning comment for on-foot defines
+		ED_UserSettings.tmh 
+			-	Update some comments
 
 -	Initial script taken from ED_TargetSscript-503
 	-	Removed WARTHOG specific functions and button references
