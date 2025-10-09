@@ -4,10 +4,8 @@
 //--------------------------------------------------------------------------------------//
 
 // This file:	ED_ENHANCED_T16000.tmc
-// Supports:	Elite Dangerous 	v4.0.0.1904
+// Supports:	Elite Dangerous		v4.2.1.1				// Does not support Legacy Horizons
 // Requires:	TARGET 				v3.0.24.618_rev1		https://support.thrustmaster.com/en/product/t-16000m-fcs-flight-pack-en/
-//				Joystick firmware	v12
-//				Throttle firmware 	v23
 
 // LEGEND: This script calls functions within the support files with the following naming formats
 // ==============================================================================================
@@ -25,10 +23,10 @@
 
 /*
 	Index:		FUNCTION
-	Line 60:	include statements
-	Line 92: 	int main()
-	Line 132:	initialise flight controls 
-	Line 175:	int EventHandle()
+	Line 58:	include statements
+	Line 90: 	int main()
+	Line 130:	initialise flight controls 
+	Line 173:	int EventHandle()
 */
 
 // PREFACE
