@@ -25,8 +25,8 @@
 	Index:		FUNCTION
 	Line 58:	include statements
 	Line 90: 	int main()
-	Line 130:	initialise flight controls 
-	Line 173:	int EventHandle()
+	Line 145:	initialise flight controls 
+	Line 188:	int EventHandle()
 */
 
 // PREFACE
