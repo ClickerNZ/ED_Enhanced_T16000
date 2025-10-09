@@ -21,6 +21,10 @@ v1.1
 		ED_Initialise.tmh 
 			-	Very minor tidy
 			-	Reindex 
+		ED_ScriptDefines.ttm
+			-	Minor comment change at top
+			-	Updated defines for new Flags2 bits
+			-	Include placeholder defines for Flags2 for future use
 
 -	Initial script taken from ED_TargetSscript-503
 	-	Removed WARTHOG specific functions and button references
