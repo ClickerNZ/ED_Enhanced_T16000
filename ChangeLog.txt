@@ -10,6 +10,12 @@ v1.1
 		ED_Functions.tmh
 			-	Remove commented code
 			-	Reindex
+		ED_StateTracker.tmh 
+			-	Remove commented code
+			-	Include new Flags2 bits
+			-	Include future Flags2 bits placeholders
+			-	Reindex
+			
 
 -	Initial script taken from ED_TargetSscript-503
 	-	Removed WARTHOG specific functions and button references
