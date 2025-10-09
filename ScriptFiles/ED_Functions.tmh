@@ -23,34 +23,35 @@
 
 /*
 	Index:		FUNCTION
-	Line   62: 	int fnNotValid(int fnName, int reason=0)
-	Line   79: 	int fnStartupMapKeyMode()
-	Line  105: 	int fnSetCurves(int profile, int print=NO, int announce=YES, int SaveCurveInfo=TRUE)
-	Line  198: 	int fnSetSliderCurve(int x)
-	Line  231: 	int fnGetFlightMode()
-	Line  273: 	int fnTextToSpeech(int text, int VolumeOverride=0, int Voice=DefaultVoice)
-	Line  305: 	int fnVoiceVolume(int x)
-	Line  365: 	int fnSoundFX(int wavfile, int vol=100, int loops=1)
-	Line  384: 	int fnGameStarted()
-	Line  452: 	int fnPIPMode(int x)
-	Line  503: 	int fnPIPManager(int PwrPriority)
-	Line  540: 	int fnPIPMapper(int maxPIPx=0, int minPIPy=0, int balPIPz=0)
-	Line  580: 	int fnAdvFireControl(int x)
-	Line  651: 	int fnAdvancedSCB(int x=0)
-	Line  681: 	int fnHeatsink()
-	Line  694: 	int fnChaff()
-	Line  719: 	int fnDeploySRV(int x)
-	Line  765: 	int fnDRShip()
-	Line  794: 	int fnRequestDock()
-	Line  821: 	int fnHangerServices(int x)
-	Line  870: 	int fnCheckFSDCharge(int EngineText)
-	Line  898: 	int fnCheckFSDMasslocked(int EngineText)
-	Line  926: 	int fnClearChatBox(int mode = 0)
-	Line  982: 	int fnModeSwitch(int mode)
-	Line 1046: 	int fnVPOutput(int VPOutput, int VolumeOverride=0)
-	Line 1058: 	int fnPrintState()
-	Line 1069: 	int fnStateDump()
-	Line 1233: 	int fnGetTOD()
+	Line   64: 	int fnNotValid(int fnName, int reason=0) {
+	Line   81: 	int fnStartupMapKeyMode() {
+	Line  107: 	int fnSetCurves(int profile, int print=NO, int announce=YES, int SaveCurveInfo=TRUE) {
+	Line  200: 	int fnSetSliderCurve(int x) {
+	Line  231: 	int fnGetFlightMode() {
+	Line  273: 	int fnTextToSpeech(int text, int VolumeOverride=0, int Voice=DefaultVoice) {
+	Line  305: 	int fnVoiceVolume(int x) {
+	Line  365: 	int fnSoundFX(int wavfile, int vol=100, int loops=1) {
+	Line  384: 	int fnGameStarted() {
+	Line  452: 	int fnPIPMode(int x) {
+	Line  503: 	int fnPIPManager(int PwrPriority) {
+	Line  540: 	int fnPIPMapper(int maxPIPx=0, int minPIPy=0, int balPIPz=0) {
+	Line  580: 	int fnAdvFireControl(int x) {
+	Line  651: 	int fnAdvancedSCB(int x=0) {
+	Line  681: 	int fnHeatsink() {
+	Line  694: 	int fnChaff() {
+	Line  719: 	int fnDeploySRV(int x) {
+	Line  765: 	int fnDRShip() {
+	Line  793: 	int fnRequestDock() {
+	Line  820: 	int fnHangerServices(int x) {
+	Line  869: 	int fnCheckFSDCharge(int EngineText) {
+	Line  897: 	int fnCheckFSDMasslocked(int EngineText) {
+	Line  925: 	int fnClearChatBox(int mode = 0) {
+	Line  981: 	int fnModeSwitch(int mode) {
+	Line 1045: 	int fnVPOutput(int VPOutput, int VolumeOverride=0) {
+	Line 1057: 	int fnPrintState() {
+	Line 1068: 	int fnStateDump() {
+	Line 1232: 	int fnGetTOD() {	Line 1280: 	int findstr(alias string, alias substring) {
+	Line 1280: 	int findstr(alias string, alias substring)		
 */
 
 //------------------//
@@ -206,14 +207,12 @@
 			SliderProfile = "FSS Mode";
 		}
 		if (x == 1)	{													// Normal flight
-//			SliderCurve = LIST(0,0, 40,25, 75,50, 85,75, 100,100);
 			SliderCurve = LIST(0,0, 25,25, 50,50, 75,75, 100,100);		// Linear 
 			SetCustomCurve(&MyThrottle, TANT, SliderCurve);
 			SliderProfile = "Normal Flight";
 			
 		}
 		if (x == 2)	{													// Supercruise
-//			SliderCurve = LIST(0,0, 50,10, 75,30, 90,50, 100,100);
 			SliderCurve = LIST(0,0, 25,25, 50,50, 75,75, 100,100);		// Linear 
 			SetCustomCurve(&MyThrottle, TANT, SliderCurve);
 			SliderProfile = "Supercruise";
@@ -778,7 +777,6 @@
 			ActKey(PULSE+KEYON+SRVRecallDismissShip);							// 'LeftALT+x'
 			
 			printf("Ship Status: ");
-//			fnVPOutput(VoiceTxt);												// Let COVAS announce as we don't always use this function?
 	
 			ShipDismissed = !ShipDismissed;
 			stfnMyStates(SAVE);													// saves my status variables 			
