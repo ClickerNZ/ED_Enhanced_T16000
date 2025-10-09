@@ -2,10 +2,14 @@ v1.1
 
 -	2025-10-09
 	- 	Create v1-1 branch
-		-	Update Elite Dangerous supported version
-		-	Update TARGET software supported version
-		-	Exclude additional controllers for new TARGET software version
-		-	Reindex
+		ED_ENHANCED_T16000.tmc
+			-	Update Elite Dangerous supported version
+			-	Update TARGET software supported version
+			-	Exclude additional controllers for new TARGET software version
+			-	Reindex
+		ED_Functions.tmh
+			-	Remove commented code
+			-	Reindex
 
 -	Initial script taken from ED_TargetSscript-503
 	-	Removed WARTHOG specific functions and button references
