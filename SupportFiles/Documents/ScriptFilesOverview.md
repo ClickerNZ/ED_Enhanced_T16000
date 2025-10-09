@@ -4,7 +4,7 @@ For the script to work, you must install the latest version of Thrustmaster's Dr
 (https://support.thrustmaster.com/en/product/t16000mfcs-en/)  
 
 Whilst I could have incorporated all of the below files within one single ".tmc" file it would have been a couple thousand lines long and a nightmare to maintain.  
-I've separated the code into 11 seperate files which does make it easier for me to maintain.  
+I've separated the code into 11 separate files which does make it easier for me to maintain.  
 
 Each file contains comments which add context and usage information.  
 
@@ -30,13 +30,13 @@ There are many comments in each file which hopefully describe what each does or 
 ### ED_UserSettings.tmh  
 
 This file's key purpose is to allow you to set critical file and folder locations required for this entire script to work properly.
-There are also some options in order for you to personalise, customise and tweak the script to your own personal prefference.  
+There are also some options in order for you to personalise, customise and tweak the script to your own personal preference.  
 
 ### ED_GameBindings.ttm  
 
 This file declares script label variables aligned to the game's BINDS file.  
 Not all of the variables are used in this script package, however they could be.  
-The extras are included inthe file for completeness and makes customisation of the script much easier by not having to create a new label variable or change the BIND file in-game.  
+The extras are included in the file for completeness and makes customisation of the script much easier by not having to create a new label variable or change the BIND file in-game.  
 
 It is recommended that if you change a definition in this file, you should also make the corresponding change to the BIND file in-game.  
 Likewise, if you make a change in the BIND file in-game, you should make the corresponding definition change in this file.  
@@ -57,7 +57,7 @@ This file also serves to declare initial values for certain flag variables.
 
 Defines are global variables with static values which cannot be changed within the script.  
 
-This file contains thesse global defines.  
+This file contains these global defines.  
 It also contains Global Variables associated with some of these Defines for ease of understanding (eg. status.json flags)  
 
 ## Code Files  
