@@ -201,7 +201,7 @@ Assuming everything is configured correctly, the Launcher will fire up the game 
 ### SET CONTROLLER BINDS IN GAME TO 'Clicker-ENHANCED_T16000'  
 
 Once the game is running, hit escape key and choose OPTIONS then CONTROLS.    
-Set the PRESET for each of GENERAL, SHIP and SRV to 'Clicker-BASIC_T16000' and hit APPLY for each one then go flying!  
+Set the PRESET for each of GENERAL, SHIP and SRV to 'Clicker-ENHANCED_T16000' and hit APPLY for each one then go flying!  
 
 > NOTE: 'Clicker-ENHANCED_T16000' will only appeear as a menu option if the script is running AND you have copied the BINDS files from the package to the game folder correctly  
 
