@@ -3,7 +3,7 @@
 //	CMDR Clicker's Elite Dangerous Enhanced Script - T16000, TWCSThrottle, TFRP Rudder	//
 //--------------------------------------------------------------------------------------//
 
-// This file: ED_GlobalVars.tmh ... supports Elite Dangerous (Cobra V)
+// This file: ED_GlobalVars.tmh
 
 // NOTE:	All user related settings can be found in the ED_UserSettings.tmh file
 //			Changing any of the below global variables will have significant effect on the script
