@@ -23,35 +23,35 @@
 
 /*
 	Index:		FUNCTION
-	Line   64: 	int fnNotValid(int fnName, int reason=0) {
-	Line   81: 	int fnStartupMapKeyMode() {
-	Line  107: 	int fnSetCurves(int profile, int print=NO, int announce=YES, int SaveCurveInfo=TRUE) {
-	Line  200: 	int fnSetSliderCurve(int x) {
-	Line  231: 	int fnGetFlightMode() {
-	Line  273: 	int fnTextToSpeech(int text, int VolumeOverride=0, int Voice=DefaultVoice) {
-	Line  305: 	int fnVoiceVolume(int x) {
-	Line  365: 	int fnSoundFX(int wavfile, int vol=100, int loops=1) {
-	Line  384: 	int fnGameStarted() {
-	Line  452: 	int fnPIPMode(int x) {
-	Line  503: 	int fnPIPManager(int PwrPriority) {
-	Line  540: 	int fnPIPMapper(int maxPIPx=0, int minPIPy=0, int balPIPz=0) {
-	Line  580: 	int fnAdvFireControl(int x) {
-	Line  651: 	int fnAdvancedSCB(int x=0) {
-	Line  681: 	int fnHeatsink() {
-	Line  694: 	int fnChaff() {
-	Line  719: 	int fnDeploySRV(int x) {
-	Line  765: 	int fnDRShip() {
-	Line  793: 	int fnRequestDock() {
-	Line  820: 	int fnHangerServices(int x) {
-	Line  869: 	int fnCheckFSDCharge(int EngineText) {
-	Line  897: 	int fnCheckFSDMasslocked(int EngineText) {
-	Line  925: 	int fnClearChatBox(int mode = 0) {
-	Line  981: 	int fnModeSwitch(int mode) {
-	Line 1045: 	int fnVPOutput(int VPOutput, int VolumeOverride=0) {
-	Line 1057: 	int fnPrintState() {
-	Line 1068: 	int fnStateDump() {
-	Line 1232: 	int fnGetTOD() {	Line 1280: 	int findstr(alias string, alias substring) {
-	Line 1280: 	int findstr(alias string, alias substring)		
+	Line   64: 	int fnNotValid(int fnName, int reason=0)
+	Line   81: 	int fnStartupMapKeyMode()
+	Line  107: 	int fnSetCurves(int profile, int print=NO, int announce=YES, int SaveCurveInfo=TRUE)
+	Line  200: 	int fnSetSliderCurve(int x)
+	Line  231: 	int fnGetFlightMode()
+	Line  273: 	int fnTextToSpeech(int text, int VolumeOverride=0, int Voice=DefaultVoice)
+	Line  305: 	int fnVoiceVolume(int x)
+	Line  365: 	int fnSoundFX(int wavfile, int vol=100, int loops=1)
+	Line  384: 	int fnGameStarted()
+	Line  452: 	int fnPIPMode(int x)
+	Line  503: 	int fnPIPManager(int PwrPriority)
+	Line  540: 	int fnPIPMapper(int maxPIPx=0, int minPIPy=0, int balPIPz=0)
+	Line  580: 	int fnAdvFireControl(int x)
+	Line  651: 	int fnAdvancedSCB(int x=0)
+	Line  681: 	int fnHeatsink()
+	Line  694: 	int fnChaff()
+	Line  719: 	int fnDeploySRV(int x)
+	Line  765: 	int fnDRShip()
+	Line  793: 	int fnRequestDock()
+	Line  820: 	int fnHangerServices(int x)
+	Line  869: 	int fnCheckFSDCharge(int EngineText)
+	Line  897: 	int fnCheckFSDMasslocked(int EngineText)
+	Line  925: 	int fnClearChatBox(int mode = 0)
+	Line  981: 	int fnModeSwitch(int mode)
+	Line 1045: 	int fnVPOutput(int VPOutput, int VolumeOverride=0)
+	Line 1057: 	int fnPrintState()
+	Line 1068: 	int fnStateDump()
+	Line 1232: 	int fnGetTOD()
+	Line 1280: 	int findstr(alias string, alias substring)
 */
 
 //------------------//
