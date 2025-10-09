@@ -18,6 +18,9 @@ v1.1
 		ED_Toggles.tmh
 			-	Update tgReverseThrust()
 			-	Reindex
+		ED_Initialise.tmh 
+			-	Very minor tidy
+			-	Reindex 
 
 -	Initial script taken from ED_TargetSscript-503
 	-	Removed WARTHOG specific functions and button references
