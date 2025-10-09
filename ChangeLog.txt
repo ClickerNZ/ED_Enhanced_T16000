@@ -15,7 +15,9 @@ v1.1
 			-	Include new Flags2 bits
 			-	Include future Flags2 bits placeholders
 			-	Reindex
-			
+		ED_Toggles.tmh
+			-	Update tgReverseThrust()
+			-	Reindex
 
 -	Initial script taken from ED_TargetSscript-503
 	-	Removed WARTHOG specific functions and button references
