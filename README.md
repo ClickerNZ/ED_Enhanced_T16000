@@ -220,7 +220,7 @@ Set the PRESET for each of GENERAL, SHIP and SRV to 'Clicker-ENHANCED_T16000' an
 > ALWAYS Open the TARGET Script editor program and load, compile and run the script FIRST then launch Elite:Dangerous  
 > Alternately, once everything is working as expected, run the Launcher shortcut you created on the desktop (as above)  
 
-### NOTES FOR TEXT-TO-speech  
+### NOTES FOR TEXT-TO-SPEECH  
 
 > If using the Text-To-Speech function (if not, why not???)  
   * This script replaces some of the announcements made by ship's COVAS  
