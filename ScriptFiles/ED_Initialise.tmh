@@ -3,7 +3,7 @@
 //	CMDR Clicker's Elite Dangerous Enhanced Script - T16000, TWCSThrottle, TFRP Rudder	//
 //--------------------------------------------------------------------------------------//
 
-// This file: ED_Initialise.tmh ... supports Elite Dangerous (Cobra V)
+// This file: ED_Initialise.tmh
 
 // Refer Change Log.txt in parent folder
 
@@ -23,14 +23,14 @@
 
 /*
 	Index:		FUNCTION
-	Line  46:	int CheckControllers()
-	Line 149: 	int initJoystickAxis()
-	Line 177: 	int initThrottleAxis()
-	Line 198: 	int initRudderAxis()
-	Line 219: 	int initSliderAxis()
-	Line 234: 	int initSlewAxis()
-	Line 254: 	int initTextToSpeech()
-	Line 272: 	int initSoundFX()
+	Line  47:	int CheckControllers()
+	Line 148: 	int initJoystickAxis()
+	Line 176: 	int initThrottleAxis()
+	Line 197: 	int initRudderAxis()
+	Line 218: 	int initSliderAxis()
+	Line 233: 	int initSlewAxis()
+	Line 253: 	int initTextToSpeech()
+	Line 271: 	int initSoundFX()
 */
 
 // START
@@ -49,13 +49,10 @@
 		// Aliases MyJoystick, MyThrottle and MyRudder declared in ED_GlobalVars.tmh
 		// The following method eliminates user having to set compatible connected hardware manually
 		// Alternate method would be to get user to declare which alias to use depending on what hardware they own
-		
-		//   !!!   THE SCRIPT WILL ABORT IF NO COMPATIBLE JOYSTICK OR THROTTLE IS FOUND   !!!
-		
-		// There are 4 Joystick combos compatible with this script...
+				
+		// There are 2 Joysticks compatible with this script...
 
 		printf("\x0a++	Start Hardware Check\x0a");
-
 
 		&MyJoystick = &joy0;													// set to equivalent of 'nul' by default
 		
