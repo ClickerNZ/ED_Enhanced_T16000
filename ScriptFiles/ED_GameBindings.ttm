@@ -240,7 +240,9 @@
 	define CameraFocusOut												// Same as ZoomOut
 
 
-		// ON FOOT - Not used in script // CHECK AND UPDATE 
+		// ON FOOT - Not used in script
+		// WARNING!!! The below defines do not match the in-game binds for on foot.
+		
 	define WalkForward							USB[0x1A]				// w
 	define WalkBackward							USB[0x16] 				// s
 	define StrafeLeft							USB[0x04]				// a
