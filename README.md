@@ -93,7 +93,7 @@ I recommend you print out the ACTIONS images for the profile you are using and h
 > Make sure you have already installed the Windows drivers and TARGET software before installing this script  
 
 - Unzip the package to a local drive/folder of your choice.  
-> I suggest creating c:\Thrustmaster\ED_TargetScript\ and copying the entire package into there.  
+> I suggest creating c:\Thrustmaster\ED_TargetScript_T16000\ and copying the entire package into there.  
 - Create a backup of your current game bind files which can be found at...  
 	
 	C:\Users\\<username\>\AppData\Local\Frontier Developments\Elite Dangerous\Options\Bindings  
