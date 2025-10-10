@@ -47,7 +47,7 @@ echo.
 
 c:
 cd "\program files (x86)\thrustmaster\target\x64\"
-start targetgui.exe -r "c:\Thrustmaster\ED_TargetScript\ScriptFiles\ed_enhanced_t16000.tmc"
+start targetgui.exe -r "c:\Thrustmaster\ED_TargetScript_T16000\ScriptFiles\ed_enhanced_t16000.tmc"
 
 timeout /t 5
 
