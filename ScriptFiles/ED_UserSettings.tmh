@@ -66,7 +66,7 @@
 	//				I've included an example below but so long as you CREATE THE FOLDER STRUCTURE, you can put this anywhere on your PC
 	//				Saves the script states after a game restart or relog. 
 	
-	alias	MyStatusFile		= "C:\\Thrustmaster\\ED_TargetScript\\MyT16000StatusFile.tdf";
+	alias	MyStatusFile		= "C:\\Thrustmaster\\ED_TargetScript_T16000\\MyT16000StatusFile.tdf";
 
 //----------------//
 // Text To Speech //
@@ -91,7 +91,7 @@
 	int		EnableVoice			= ENABLED;				// ENABLED or DISABLED. Enable this if you wish to use "voice.exe". 
 														// Also toggled via tgTxt2Speech();
 														
-	alias	VoicePath			= "C:\\Thrustmaster\\ED_TargetScript\\SupportFiles\\voice.exe";
+	alias	VoicePath			= "C:\\Thrustmaster\\ED_TargetScript_T16000\\SupportFiles\\voice.exe";
 	
 	int		VoiceVolume			= 75;					// Default Volume set at 75% Settable via fnVoiceVolume()
 														// Note: VoiceVolume gets saved to MyStatus file when game halts and is reloaded at script start
@@ -144,8 +144,8 @@
 
 	int		EnableSoundFX		= ENABLED; 				// ENABLED or DISABLED. Enable this if you wish to use "sounder.exe"
 	
-	alias	SoundPath			= "C:\\Thrustmaster\\ED_TargetScript\\SupportFiles\\sounder.exe";
-	alias	WAVPath				= "C:\\Thrustmaster\\ED_TargetScript\\SupportFiles\\sounds\\";
+	alias	SoundPath			= "C:\\Thrustmaster\\ED_TargetScript_T16000\\SupportFiles\\sounder.exe";
+	alias	WAVPath				= "C:\\Thrustmaster\\ED_TargetScript_T16000\\SupportFiles\\sounds\\";
 	alias	SoundCMD			= "";
 
 
