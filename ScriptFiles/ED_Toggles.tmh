@@ -1,25 +1,25 @@
 
-//--------------------------------------------------------------------------------------//
-//	CMDR Clicker's Elite Dangerous Enhanced Script - T16000, TWCSThrottle, TFRP Rudder	//
-//--------------------------------------------------------------------------------------//
+	//--------------------------------------------------------------------------------------//
+	//	CMDR Clicker's Elite Dangerous Enhanced Script - T16000, TWCSThrottle, TFRP Rudder	//
+	//--------------------------------------------------------------------------------------//
 
-// This file: ED_Toggles.tmh
+	// This file: ED_Toggles.tmh
 
-// Refer Change Log.txt in parent folder
+	// Refer Change Log.txt in parent folder
 
-// LEGEND: 
-// ========================================================================
-// fnName()								refer to ED_Functions file
-// initName()							refer to ED_Initialise file
-// stfnName()							refer to ED_StateTracker file
-// tgName()								refer to ED_Toggles file
-// mName								refer to ED_Macros file
-// MapKey statements					refer to ED_MapKeyAssignment file
-// Global State and Boolean Defines		refer to ED_ScriptDefines file
-// Global Game Key Bind Defines			refer to ED_GameBindings file 
-// Global Script Variables				refer to ED_GlobalVars file
-// User Config Settings					refer to ED_UserSettings file
-// ========================================================================
+	// LEGEND: 
+	// ========================================================================
+	// fnName()								refer to ED_Functions file
+	// initName()							refer to ED_Initialise file
+	// stfnName()							refer to ED_StateTracker file
+	// tgName()								refer to ED_Toggles file
+	// mName								refer to ED_Macros file
+	// MapKey statements					refer to ED_MapKeyAssignment file
+	// Global State and Boolean Defines		refer to ED_ScriptDefines file
+	// Global Game Key Bind Defines			refer to ED_GameBindings file 
+	// Global Script Variables				refer to ED_GlobalVars file
+	// User Config Settings					refer to ED_UserSettings file
+	// ========================================================================
 
 /* 
 	Index:		FUNCTION
@@ -41,11 +41,11 @@
 	Line 670: 	int tgXAxis(int param = RESET)
 */
 	
-// START
+	// START
 
-//---------//
-// TOGGLES //
-//---------//
+	//---------//
+	// TOGGLES //
+	//---------//
 
 	// TOGGLE: Turn Text to Speech function ON/OFF 
 	
@@ -98,7 +98,7 @@
 				if (CurveInfo == PRINT) {
 						printf("FA-ON Curves:\x0a");
 					}
-					fnSetCurves(OldCurves, CurveInfo, TRUE, FALSE);					// Announce curve profile, don't save curve info					
+					initCurves(OldCurves, CurveInfo, TRUE, FALSE);					// Announce curve profile, don't save curve info					
 			}
 			ActKey(PULSE+KEYON+FlightAssist);										// 'z' - FA-OFF On/Off 
 			if (fFAOff) {
@@ -531,12 +531,12 @@
 			if (!FSSMode) {	
 				ActKey(PULSE+KEYON+FSSModeON);
 				printf("FSS Mode:		ON\x0a");
-				DeferCall(500, &fnSetSliderCurve, 0);
+				DeferCall(500, &initSliderCurve, 0);
 			}
 			else {
 				ActKey(PULSE+KEYON+FSSModeOFF);
 				printf("FSS Mode:		OFF\x0a");
-				DeferCall(500, &fnSetSliderCurve, 2);
+				DeferCall(500, &initSliderCurve, 2);
 			}
 		}
 		else {
