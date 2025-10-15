@@ -1,25 +1,25 @@
 
-//--------------------------------------------------------------------------------------//
-//	CMDR Clicker's Elite Dangerous Enhanced Script - T16000, TWCSThrottle, TFRP Rudder	//
-//--------------------------------------------------------------------------------------//
+	//--------------------------------------------------------------------------------------//
+	//	CMDR Clicker's Elite Dangerous Enhanced Script - T16000, TWCSThrottle, TFRP Rudder	//
+	//--------------------------------------------------------------------------------------//
 
-// This file: ED_Initialise.tmh
+	// This file: ED_Initialise.tmh
 
-// Refer Change Log.txt in parent folder
+	// Refer Change Log.txt in parent folder
 
-// LEGEND: 
-// ========================================================================
-// fnName()								refer to ED_Functions file
-// initName()							refer to ED_Initialise file
-// stfnName()							refer to ED_StateTracker file
-// tgName()								refer to ED_Toggles file
-// mName								refer to ED_Macros file
-// MapKey statements					refer to ED_MapKeyAssignment file
-// Global State and Boolean Defines		refer to ED_ScriptDefines file
-// Global Game Key Bind Defines			refer to ED_GameBindings file 
-// Global Script Variables				refer to ED_GlobalVars file
-// User Config Settings					refer to ED_UserSettings file
-// ========================================================================
+	// LEGEND: 
+	// ========================================================================
+	// fnName()								refer to ED_Functions file
+	// initName()							refer to ED_Initialise file
+	// stfnName()							refer to ED_StateTracker file
+	// tgName()								refer to ED_Toggles file
+	// mName								refer to ED_Macros file
+	// MapKey statements					refer to ED_MapKeyAssignment file
+	// Global State and Boolean Defines		refer to ED_ScriptDefines file
+	// Global Game Key Bind Defines			refer to ED_GameBindings file 
+	// Global Script Variables				refer to ED_GlobalVars file
+	// User Config Settings					refer to ED_UserSettings file
+	// ========================================================================
 
 /*
 	Index:		FUNCTION
@@ -29,20 +29,31 @@
 	Line 197: 	int initRudderAxis()
 	Line 218: 	int initSliderAxis()
 	Line 233: 	int initSlewAxis()
+//-	Line  107: 	int initCurves(int profile, int print=NO, int announce=YES, int SaveCurveInfo=TRUE)
+//-	Line  200: 	int initSliderCurve(int x)
 	Line 253: 	int initTextToSpeech()
 	Line 271: 	int initSoundFX()
 */
 
-// START
+	// START
 
-//--------------------------//
-// INITIALISATION FUNCTIONS //
-//--------------------------//
+	//----------------------------------------------------------------------//
+	// SCRIPT VERSION VARIABLES                                             //		MOVED FROM ED_ScriptDefines.ttm
+	//----------------------------------------------------------------------//
 
-// Check what controllers we have connected
-// Define All Axis Curves/Trim/Deadzones for Included Devices
+	define VMajor		 						1						// Script Version Major Value			ie. 2xx
+	define VMinor		 						1						// Script Version Minor Value			ie. x3x
+	define VPoint								0						// Script Version Point Update			ie. xx4
+	define VBranch								"dev"					// Script Version Branch				ie. xxx.01
 
-//   !!!   THE SCRIPT WILL ABORT IF NO COMPATIBLE JOYSTICK OR THROTTLE IS FOUND   !!!
+	//--------------------------//
+	// INITIALISATION FUNCTIONS //
+	//--------------------------//
+
+	// Check what controllers we have connected
+	// Define All Axis Curves/Trim/Deadzones for Included Devices
+
+	//   !!!   THE SCRIPT WILL ABORT IF NO COMPATIBLE JOYSTICK OR THROTTLE IS FOUND   !!!
 
 	int CheckControllers() {
 	
@@ -58,6 +69,7 @@
 		
 		if (&T16000 != &joy0) {
 			&MyJoystick = &T16000;
+			ControllerType = "T16000";
 			if (YAWDeviceOverride == DISABLED) {
 				YAWDevice = "JSTwist";
 			}
@@ -65,6 +77,7 @@
 		}
 		else if (&T16000L != &joy0) {
 			&MyJoystick = &T16000L;
+			ControllerType = "T16000";
 			if (YAWDeviceOverride == DISABLED) {
 				YAWDevice = "JSTwist";
 			}
@@ -83,7 +96,7 @@
 			}
 		}
 
-//===================================================================================================
+	//===================================================================================================
 
 		// There is only one Throttle compatible with this script...
 		
@@ -106,7 +119,7 @@
 			printf("++	Connected throttle	is TWCS Throttle\x0a");
 		}
 
-//===================================================================================================
+	//===================================================================================================
 
 		// If no rudder is found the script will not abort.
 		// There are two Rudders compatible with this script...
@@ -136,13 +149,13 @@
 	
 	}
 
-//----------------------//
-// End CheckControllers //
-//----------------------//
+	//----------------------//
+	// End CheckControllers //
+	//----------------------//
 
-// ------------------- //
-// INITIALISE all AXES //
-// ------------------- //
+	// ------------------- //
+	// INITIALISE all AXES //
+	// ------------------- //
 
 	// FUNCTION: Initialise Joystick Axes 
 	int initJoystickAxis() { 																	// Set Default Joystick Axis
@@ -207,21 +220,21 @@
 		MapAxis(&MyRudder, TRPLEFT, 0);												// Left foot pedal  - not used
 	
 		if (EnableMyRudder) {
-			if (StartupLock) printf("		Rudder Axis	... done\x0a");
+			if (StartupLock) printf("Rudder Axis	... done\x0a");
 		}
 		else {
 			if (StartupLock) printf("Rudder Axis	... disabled\x0a");		
 		}
 	}
 
-
+	// FUNCTION: Initialise Slider Axis 
 	int initSliderAxis() {
 	
 		// Slider Mapping...
 		
 		MapAxis(&MyThrottle, TANT, DX_SLIDER_AXIS, AXIS_REVERSED);					// Pinky wheel
 		
-		fnSetSliderCurve(1);
+		initSliderCurve(1);
 		if (StartupLock) {
 			printf("Slider Axis	... done		");
 		}
@@ -230,6 +243,7 @@
 		}
 	}
 
+	// FUNCTION: Initialise Slew Axis 
 	int initSlewAxis() {
 	
 		// Slew Control Mapping...
@@ -247,6 +261,135 @@
 
 		if (StartupLock) printf("-----------------------------------------------------------------------------------------------------------------------------------------------\x0a");
 	}	
+
+
+	// FUNCTION:	Set Joystick and rudder curves 
+	// Parameters:	profile			=	0 - 5 (see JSProfile in EDGlobalVars)
+	// 				print			=	NO (default) to supress console print of Curve settings, YES to print
+	//				announce		=	NO to supress voice announcement at game start/restart, else YES (default) to announce
+	//				SaveCurveInfo	=	TRUE (default) when called by B14 button, FALSE when called via tgEnhancedFAOff()
+	//									...this saves last manually selected state for FA-ON
+	
+	int initCurves(int profile, int print=NO, int announce=YES, int SaveCurveInfo=TRUE) {
+
+		int VoiceTxt;
+
+		JSProfile = profile;
+		if (SaveCurveInfo == TRUE) {
+			OldCurves = profile;
+		}
+
+		if (profile == NONE) {
+			JSCurveSetting = "NONE";
+			VoiceTxt = "Curves None";
+		}
+		if (profile == MILD) {
+			JSCurveSetting = "MILD";
+			VoiceTxt = "Curves mild";
+		}
+		if (profile == MEDIUM) {
+			JSCurveSetting = "MEDIUM";
+			VoiceTxt = "Curves medium";			
+		}
+		if (profile == SLOW) {
+			JSCurveSetting = "SLOW";
+			VoiceTxt = "Curves slow";					
+		}
+		if (profile == SLOWEST) {
+			JSCurveSetting = "SLOWEST";
+			VoiceTxt = "Curves slowest";					
+		}
+		
+		// SetSCurve() Syntax:
+		// SetSCurve(&Device, axis name, left_deadzone%, center_deadzone%, right_deadzone%, curve, scale);
+		//		curve = -20 to +20. Negative values more sensitive around center, positive values better control in the center
+		//		scale = -20 to +20. Negative value limits travel on axis. Positive will reach minimum and maximum values quicker
+		// Refer: Values options set in ED_UserSettings.tmh
+		// SetCustomCurve() Syntax:
+		// SetCustomCurve(&device, axis name, LIST(Axis physical position 1, Axis output value 1, Axis physical position 2, Axis output value 2, …);
+		// values are %  
+
+		// Set Joystick curves and force re-read of axes
+				
+		SetSCurve(&MyJoystick, JOYX,		Joystick_L_DZ,	Joystick_C_DZ,	Joystick_R_DZ,	Joystick_Curve[profile],	Joystick_Zoom);
+		SetSCurve(&MyJoystick, JOYY,		Joystick_L_DZ,	Joystick_C_DZ,	Joystick_R_DZ,	Joystick_Curve[profile],	Joystick_Zoom);		
+		DefEventHandler(EV_HID_INPUT_DATA, &MyJoystick, JOYX);
+		DefEventHandler(EV_HID_INPUT_DATA, &MyJoystick, JOYY);
+		
+		if (strcmp(YAWDevice, "JSTwist") == 0) {
+			SetSCurve(&Myjoystick,	RUDDER, Rudder_L_DZ,	Rudder_C_DZ,	Rudder_R_DZ,	Rudder_Curve[profile],	Rudder_Zoom);	// Set mild curve for YAW 
+			DefEventHandler(EV_HID_INPUT_DATA, &MyJoystick, RUDDER);
+		}
+
+		SetSCurve(&MyThrottle,	TTHR,		0, 0, 0, 0,	0);					// No curve for Throttle
+
+		// Set Slew Control curves and force re-read of axes 
+		SetSCurve(&MyThrottle, SCX, 		Slew_L_DZ,		Slew_C_DZ,		Slew_R_DZ,		Slew_Curve[profile],		Slew_Zoom);
+		SetSCurve(&MyThrottle, SCY, 		Slew_L_DZ,		Slew_C_DZ,		Slew_R_DZ,		Slew_Curve[profile],		Slew_Zoom);
+		DefEventHandler(EV_HID_INPUT_DATA, &MyThrottle, SCX);
+		DefEventHandler(EV_HID_INPUT_DATA, &MyThrottle, SCY);
+
+		if (strcmp(YAWDevice, "THRPaddles") == 0) {
+			SetSCurve(&MyThrottle,	TRDR,	0, 1, 0, 3, 0);					// Set mild curve for YAW 
+			DefEventHandler(EV_HID_INPUT_DATA, &MyThrottle, TRDR);			
+		}
+
+		// Set Rudder curve and force re-read of axis
+
+		if (strcmp(YAWDevice, "RudderPedals") == 0) {
+			SetSCurve(&MyRudder, TRUDDER, Rudder_L_DZ,	Rudder_C_DZ,	Rudder_R_DZ,	Rudder_Curve[profile],	Rudder_Zoom);
+			DefEventHandler(EV_HID_INPUT_DATA, &MyRudder, TRUDDER);
+		}
+
+		if (StartupLock) {
+			printf("Joystick & Pedal Curves	... done.\x0a");
+			printf("-----------------------------------------------------------------------------------------------------------------------------------------------\x0a");
+		}
+		else if (announce) {
+			fnTextToSpeech(VoiceTxt);
+		}
+		
+		if (print) {
+			printf("Joystick Curves[%s]	: LDZ=%d, CDZ=%d,  RDZ=%d, Curve= %d, Zoom= %d\x0a", JSCurveSetting, Joystick_L_DZ, Joystick_C_DZ, Joystick_R_DZ, Joystick_Curve[profile], Joystick_Zoom);
+			printf("Rudder Curves[%s]	: LDZ=%d, CDZ=%d, RDZ=%d, Curve= %d, Zoom= %d\x0a", JSCurveSetting, Rudder_L_DZ, Rudder_C_DZ, Rudder_R_DZ, Rudder_Curve[profile], Rudder_Zoom);
+			printf("Slew Curves[%s]	: LDZ=%d, CDZ=%d, RDZ=%d, Curve= %d, Zoom= %d\x0a", JSCurveSetting, Slew_L_DZ, Slew_C_DZ, Slew_R_DZ, Slew_Curve[profile], Slew_Zoom);
+		}
+		else if (announce) {
+			printf("Curve Profile: [%s]\x0a", JSCurveSetting);
+		}
+	}
+
+
+	// FUNCTION:	Set context driven DX-SLIDER curves
+	// Parameter:	0 = linear, 1 or 2 = non-linear
+
+	int initSliderCurve(int x) {
+		DXCurveSetting = x;												// Variable used in Status Printout
+		int SliderProfile;
+		int SliderCurve;												// Used to define the LIST and can use within EXEC
+		
+		if (x == 0) {													// FSS Mode Radar
+			SetJCurve(&MyThrottle, TANT, 50, 50);						// Linear progression. Low sensitivity
+			SliderProfile = "FSS Mode";
+		}
+		if (x == 1)	{													// Normal flight
+			SliderCurve = LIST(0,0, 25,25, 50,50, 75,75, 100,100);		// Linear 
+			SetCustomCurve(&MyThrottle, TANT, SliderCurve);
+			SliderProfile = "Normal Flight";
+			
+		}
+		if (x == 2)	{													// Supercruise
+			SliderCurve = LIST(0,0, 25,25, 50,50, 75,75, 100,100);		// Linear 
+			SetCustomCurve(&MyThrottle, TANT, SliderCurve);
+			SliderProfile = "Supercruise";
+		}
+		
+		DefEventHandler(EV_HID_INPUT_DATA, &MyThrottle, TANT);		// Forces re-read of slider axis
+
+		if (!StartupLock) {
+			printf("Slider Curve Profile:	[%d] %s\x0a", x, SliderProfile);
+		}
+	}
 
 
 	// FUNCTION: Initialise Text To Speech Engine	
