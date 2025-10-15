@@ -1,41 +1,43 @@
 
-//--------------------------------------------------------------------------------------//
-//	CMDR Clicker's Elite Dangerous Enhanced Script - T16000, TWCSThrottle, TFRP Rudder	//
-//--------------------------------------------------------------------------------------//
+	//--------------------------------------------------------------------------------------//
+	//	CMDR Clicker's Elite Dangerous Enhanced Script - T16000, TWCSThrottle, TFRP Rudder	//
+	//--------------------------------------------------------------------------------------//
 
-// This file: ED_GlobalVars.tmh
+	// This file: ED_GlobalVars.tmh
 
-// NOTE:	All user related settings can be found in the ED_UserSettings.tmh file
-//			Changing any of the below global variables will have significant effect on the script
-//			and may cause errors. Change these at your own risk
+	// NOTE:	All user related settings can be found in the ED_UserSettings.tmh file
+	//			Changing any of the below global variables will have significant effect on the script
+	//			and may cause errors. Change these at your own risk
 
-// LEGEND: 
-// ========================================================================
-// fnName()								refer to ED_Functions file
-// initName()							refer to ED_Initialise file
-// stfnName()							refer to ED_StateTracker file
-// tgName()								refer to ED_Toggles file
-// mName								refer to ED_Macros file
-// MapKey statements					refer to ED_MapKeyAssignment file
-// Global State and Boolean Defines		refer to ED_ScriptDefines file
-// Global Game Key Bind Defines			refer to ED_GameBindings file 
-// Global Script Variables				refer to ED_GlobalVars file
-// User Config Settings					refer to ED_UserSettings file
-// ========================================================================
+	// LEGEND: 
+	// ========================================================================
+	// fnName()								refer to ED_Functions file
+	// initName()							refer to ED_Initialise file
+	// stfnName()							refer to ED_StateTracker file
+	// tgName()								refer to ED_Toggles file
+	// mName								refer to ED_Macros file
+	// MapKey statements					refer to ED_MapKeyAssignment file
+	// Global State and Boolean Defines		refer to ED_ScriptDefines file
+	// Global Game Key Bind Defines			refer to ED_GameBindings file 
+	// Global Script Variables				refer to ED_GlobalVars file
+	// User Config Settings					refer to ED_UserSettings file
+	// ========================================================================
 
-// START
+	// START
 
-//--------------------//
-// Connected Hardware //
-//--------------------//
+	//--------------------//
+	// Connected Hardware //
+	//--------------------//
 
 	alias	MyJoystick;					// Global Joystick handle. This is set in ED_Main depending on which compatible Joystic/Base is detected 
 	alias	MyThrottle;					// Global Throttle handle. This is set in ED_Main depending on which compatible Throttle is detected 
 	alias	MyRudder;					// Global Rudder handle. This is set in ED_Main depending on which compatible Rudder is detected 	
+
+	int		ControllerType;				// Set in ED-Initialise during Controller check
 	
-//----------------//
-// DEFAULT STATES //   					// GLOBAL VARIABLE INITIALISATION, DESCRIPTION & USAGE
-//----------------//
+	//----------------//
+	// DEFAULT STATES //   				// GLOBAL VARIABLE INITIALISATION, DESCRIPTION & USAGE
+	//----------------//
 
 	int VoiceExists;					// Declared here and set in initTextToSpeech()
 	int SerialText			= 0;		// Default TextToSpeech action is Parallel (call voice.exe and immediately process next instruction)
@@ -43,7 +45,7 @@
 	
 	int SounderExists;					// Declared here and set in initSoundFX()
 
-	int JSProfile;						// Used in fnSetCurves() and fnEnhancedFAOFF() (see EDFunctions.tmh) Values = 0, 1 or 2
+	int JSProfile;						// Used in initCurves() and fnEnhancedFAOFF() (see EDFunctions.tmh) Values = 0, 1 or 2
 	int JSCurveSetting;
 	int DXCurveSetting;
 	int OldCurves;
@@ -64,8 +66,8 @@
 	int SAAMode				= 0;		// Used in tgPlanetView()
 	int CameraMode			= 0;		// Set/Reset in tgExtCamera() and used in fnAdvancedSCB() and fnHeatsink() (for console Zoom messages)
 	int SelectDrop			= 0;		// Use to detect if Supercruise drop was selected or forced
-	int InHanger			= 0;		// Set/Reset in fnHangerServices()
-	int OrbitalCruise		= 0;		// Track when entering Orbital Cruise
+//-	int InHangar			= 0;		// Set/Reset in fnHangarServices()
+//-	int OrbitalCruise		= 0;		// Track when entering Orbital Cruise
 	int FireModeP			= 0;		// 0 = Press to fire/Release to Stop, 1 = Press to fire, Press again to stop
 	int FireModeS			= 0;		// 0 = Press to fire/Release to Stop, 1 = Press to fire, Press again to stop
 	int ShipDismissed		= 0;		// Track when Ship is dismissed/recalled via EORIGN-U
@@ -74,4 +76,4 @@
 	
 	int RetryCounter		= 0;		// Failed Warpdrive retry count (eg MassLocked when trying to go to supercruise)
 				
-// END
+	// END
