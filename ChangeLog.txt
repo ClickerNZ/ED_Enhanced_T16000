@@ -29,6 +29,12 @@ v1.1
 			-	Add warning comment for on-foot defines
 		ED_UserSettings.tmh 
 			-	Update some comments
+			-	Change suggested installation folder name
+			
+		- Rename fnSetCurves() as initCurves() and move into ED_Initialise 
+		- Rename fnSetSliderCurve() as initSliderCurve() and move into ED_Initialise 
+
+		
 
 -	Initial script taken from ED_TargetSscript-503
 	-	Removed WARTHOG specific functions and button references
