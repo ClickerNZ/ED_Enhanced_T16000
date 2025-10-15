@@ -22,7 +22,7 @@ For TS1 as an example...
 
 > NOTE: "empty" actions are available should you wish to assign the button an action.
 - Coded routines in the script which are not currently used are listed in the following document  
-[Script Files Overview](/SupportFiles/Documents/SScriptFilesOverview.md)  
+[Script Files Overview](/SupportFiles/Documents/ScriptFilesOverview.md)  
 - Action labels may also be assigned using PULSE+"label" within ED_MapKeyAssignment.tmh.  
 > Action labels are defined within ED_GameBindings.ttm  
 
