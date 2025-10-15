@@ -1,25 +1,25 @@
 
-//--------------------------------------------------------------------------------------//
-//	CMDR Clicker's Elite Dangerous Enhanced Script - T16000, TWCSThrottle, TFRP Rudder	//
-//--------------------------------------------------------------------------------------//
+	//--------------------------------------------------------------------------------------//
+	//	CMDR Clicker's Elite Dangerous Enhanced Script - T16000, TWCSThrottle, TFRP Rudder	//
+	//--------------------------------------------------------------------------------------//
 
-// This file: ED_StateTracker.tmh
+	// This file: ED_StateTracker.tmh
 
-// Refer Change Log.txt parent folder
+	// Refer Change Log.txt parent folder
 
-// LEGEND: 
-// ========================================================================
-// fnName()								refer to ED_Functions file
-// initName()							refer to ED_Initialise file
-// stfnName()							refer to ED_StateTracker file
-// tgName()								refer to ED_Toggles file
-// mName								refer to ED_Macros file
-// MapKey statements					refer to ED_MapKeyAssignment file
-// Global State and Boolean Defines		refer to ED_ScriptDefines file
-// Global Game Key Bind Defines			refer to ED_GameBindings file 
-// Global Script Variables				refer to ED_GlobalVars file
-// User Config Settings					refer to ED_UserSettings file
-// ========================================================================
+	// LEGEND: 
+	// ========================================================================
+	// fnName()								refer to ED_Functions file
+	// initName()							refer to ED_Initialise file
+	// stfnName()							refer to ED_StateTracker file
+	// tgName()								refer to ED_Toggles file
+	// mName								refer to ED_Macros file
+	// MapKey statements					refer to ED_MapKeyAssignment file
+	// Global State and Boolean Defines		refer to ED_ScriptDefines file
+	// Global Game Key Bind Defines			refer to ED_GameBindings file 
+	// Global Script Variables				refer to ED_GlobalVars file
+	// User Config Settings					refer to ED_UserSettings file
+	// ========================================================================
 
 /*
 	Index:		FUNCTION
@@ -33,7 +33,7 @@
 	Line 1176: 	int stfnMyStates(int action)
 */
 	
-// START
+	// START
 
 
 	// FUNCTION:	Read status.json into 'myJson'
@@ -424,14 +424,14 @@
 
 			if (fMainShip & (fDocked != lDocked)) {						// Framework - currently testing - may not be viable in current form without additional information from journal						
 				if (fDocked) {							
-					if (AutoHanger) {
-						DeferCall(2500, &fnHangerServices, 1);			// Cannot use 'Auto' feature until we can determine if Starport v Carrier v Surface Port
+					if (AutoHangar) {
+						DeferCall(2500, &fnHangarServices, 1);			// Cannot use 'Auto' feature until we can determine if Starport v Carrier v Surface Port
 					}
 					DeferCall(1000, &ActKey, PULSE+KEYON+BalancePower);
 					if (!StartupLock) printf("Docked @ %s\x0a", fnGetTOD());
 				}
 				else	{	
-					InHanger = NO;
+					InHangar = NO;
 					if (AutoGearUP) {
 						DeferCall(1500, &ActKey, PULSE+KEYON+LandingGear);
 					}
@@ -480,7 +480,8 @@
 				else {
 					printf("Supercruise flag reset\x0a");
 					if (SelectDrop == NO) {													// Uninitiated drop				
-						if (OrbitalCruise & !fInterdicted) {
+//-						if (OrbitalCruise & !fInterdicted) {
+						if (fGlideMode & !fInterdicted) {
 							VoiceTxt = "Entering Glide Mode";
 						}
 						else { 
@@ -649,10 +650,10 @@
 
 			if ((fLatLong != lLatLong) & fMainShip) {									// Detect when we cross the Orbital Cruise boundary
 				if (fLatLong) {
-					OrbitalCruise = YES;
+//-					OrbitalCruise = YES;
 				}
 				else {
-					OrbitalCruise = NO;
+//-					OrbitalCruise = NO;
 				}	
 			}
 
@@ -786,7 +787,7 @@
 		int lVeryHot				= fVeryHot;
 
 		int lGlideMode				= fGlideMode;
-		int lOnFootInHanger 		= fOnFootInHanger;
+		int lOnFootInHangar 		= fOnFootInHangar;
 		int lOnFootSocialSpace 		= fOnFootSocialSpace;
 		int lOnFootExterior 		= fOnFootExterior;
 
@@ -838,7 +839,7 @@
 		fVeryHot				= ((Flags2 & ED_VeryHot) > 0);
 
 		fGlideMode				= ((Flags2 & ED_GlideMode) > 0);
-		fOnFootInHanger			= ((Flags2 & ED_OnFootInHanger) > 0);
+		fOnFootInHangar			= ((Flags2 & ED_OnFootInHangar) > 0);
 		fOnFootSocialSpace		= ((Flags2 & ED_OnFootSocialSpace) > 0);
 		fOnFootExterior			= ((Flags2 & ED_OnFootExterior) > 0);
 
@@ -979,12 +980,12 @@
 				}
 			}
 
-			if (fOnFootInHanger != lOnFootInHanger) {
-				if (fOnFootInHanger) {
-					printf("We've entered the hanger on foot\x0a");					
+			if (fOnFootInHangar != lOnFootInHangar) {
+				if (fOnFootInHangar) {
+					printf("We've entered the Hangar on foot\x0a");					
 				}
 				else {
-					printf("We've left the hanger on foot\x0a");
+					printf("We've left the Hangar on foot\x0a");
 				}
 			}
 
