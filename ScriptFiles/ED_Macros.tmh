@@ -1,23 +1,23 @@
 
-//--------------------------------------------------------------------------------------//
-//	CMDR Clicker's Elite Dangerous Enhanced Script - T16000, TWCSThrottle, TFRP Rudder	//
-//--------------------------------------------------------------------------------------//
+	//--------------------------------------------------------------------------------------//
+	//	CMDR Clicker's Elite Dangerous Enhanced Script - T16000, TWCSThrottle, TFRP Rudder	//
+	//--------------------------------------------------------------------------------------//
 
-// This file: ED_Macros.tmh
+	// This file: ED_Macros.tmh
 
-// LEGEND: 
-// ========================================================================
-// fnName()								refer to ED_Functions file
-// initName()							refer to ED_Initialise file
-// stfnName()							refer to ED_StateTracker file
-// tgName()								refer to ED_Toggles file
-// mName								refer to ED_Macros file
-// MapKey statements					refer to ED_MapKeyAssignment file
-// Global State and Boolean Defines		refer to ED_ScriptDefines file
-// Global Game Key Bind Defines			refer to ED_GameBindings file 
-// Global Script Variables				refer to ED_GlobalVars file
-// User Config Settings					refer to ED_UserSettings file
-// ========================================================================
+	// LEGEND: 
+	// ========================================================================
+	// fnName()								refer to ED_Functions file
+	// initName()							refer to ED_Initialise file
+	// stfnName()							refer to ED_StateTracker file
+	// tgName()								refer to ED_Toggles file
+	// mName								refer to ED_Macros file
+	// MapKey statements					refer to ED_MapKeyAssignment file
+	// Global State and Boolean Defines		refer to ED_ScriptDefines file
+	// Global Game Key Bind Defines			refer to ED_GameBindings file 
+	// Global Script Variables				refer to ED_GlobalVars file
+	// User Config Settings					refer to ED_UserSettings file
+	// ========================================================================
 
 /* 
 	Index:			FUNCTION
@@ -32,21 +32,21 @@
 	Line 148: 		m_ReportCrimesToggle
 	Line 169: 		m_NAVBeaconWing
 	Line 195: 		m_NAVBeaconOff
-	Line 220: 		m_EnterHanger
+	Line 220: 		m_EnterHangar
 	Line 236: 		m_Launch
 	Line 247: 		m_ChangeColours
 */
 
-// START
+	// START
 
 	// Declare macros (must be declared as global)
 
 	int	m_RequestDock, m_DeploySRV, m_ShowGameStats, m_ReportCrimesToggle, m_NAVBeaconWing, m_NAVBeaconOff;
-	int	m_FastModeSwitch0, m_FastModeSwitch1, m_FastModeSwitch2, m_BoardShip, m_EnterHanger, m_Launch, m_ChangeColours;
+	int	m_FastModeSwitch0, m_FastModeSwitch1a, m_FastModeSwitch1b, m_FastModeSwitch2, m_BoardShip, m_EnterHangar, m_Launch, m_ChangeColours;
 
-//---------------//			// MACROS fire a sequence of key presses within a 'CHAIN()' to perform a specific task within the game.
-// CUSTOM MACROS //			// The action identifiers (keystroke labels) used below can be found within the 'ED_Defines.ttm' file.
-//---------------//			// NOTE: Keys pressed are also defined within the game's bind file and MUST match what we're using here. 
+	//---------------//			// MACROS fire a sequence of key presses within a 'CHAIN()' to perform a specific task within the game.
+	// CUSTOM MACROS //			// The action identifiers (keystroke labels) used below can be found within the 'ED_Defines.ttm' file.
+	//---------------//			// NOTE: Keys pressed are also defined within the game's bind file and MUST match what we're using here. 
 
 	int fnCustomCommands() {
 		
@@ -112,23 +112,45 @@
 			PULSE+UISelect, D(600),								// Select OPEN Mode
 			LOCK);
 
-		// MACRO: Menulog to PRIVATE GROUP
-		m_FastModeSwitch1 = CHAIN(
+		// MACRO: Menulog to PRIVATE GROUP (top)				Duration = 14200 (min), add 1370 for each addition UIDown+UISelect optional pair enabled
+		m_FastModeSwitch1a = CHAIN(
 			LOCK+PULSE+RolePanel, D(250),						// Select any panel to ensure GUIFocus is set (!=0) <-- Required???
-			PULSE+MenuLog, D(600),								// Keystroke sequence = 3, p, up, spc, spc, <wait>, spc, right, spc, spc, right, spc
-			PULSE+UIUp, D(600),
+			PULSE+MenuLog, D(650),								//  Keystroke sequence = p, up, spc, spc, <wait>, spc, right, spc, spc, right, spc
+			PULSE+UIUp, D(650),
 			PULSE+UISelect, D(650),
 			PULSE+UISelect, D(8500),							// ** Depending on the load times of your PC, this value may need to be
 			PULSE+UISelect, D(650),								//    changed/increased
 			PULSE+UIRight, D(650),
+			PULSE+UISelect, D(650),								// Top option selected by default 
+//-			PULSE+UIRight, D(650),								// Moved down to second last instruction
+	//		PULSE+UIDown, D(650),								// Optional #1 Remove comment marks to highlight 2nd option in list...
+	//		PULSE+UISelect, D(650),								// ...and select it 
+	//		PULSE+UIDown, D(650),								// Optional #2 Remove comment marks to highlight 3rd option in list
+	//		PULSE+UISelect, D(650),								// ...and select it 
+	//		PULSE+UIDown, D(650),								// Optional #3 etc. ... and so on 
+	//		PULSE+UISelect, D(650),								// ...and select it 
+			PULSE+UIRight, D(650),
+			PULSE+UISelect, D(1000),							// Selects Private Group
+			LOCK);
+
+		// MACRO: Menulog to PRIVATE GROUP (2nd)				Duration = 14200 (min), add 1370 for each addition UIDown+UISelect optional pair enabled
+		m_FastModeSwitch1b = CHAIN(
+			LOCK+PULSE+RolePanel, D(250),						// Select any panel to ensure GUIFocus is set (!=0) <-- Required???
+			PULSE+MenuLog, D(650),								//  Keystroke sequence = p, up, spc, spc, <wait>, spc, right, spc, spc, right, spc
+			PULSE+UIUp, D(650),
 			PULSE+UISelect, D(650),
-			PULSE+UIRight, D(650),								// Top option selected by default 
-		//	PULSE+UIDown, D(650),								// Remove comment to highlight 2nd option in list...
-		//	PULSE+UISelect, D(650),								// ...and select it 
-		//	PULSE+UIDown, D(650),								// Remove comment to highlight 3rd option in list
-		//	PULSE+UISelect, D(650),								// ...and select it 
-		//	PULSE+UIDown, D(650),								// etc. ... and so on 
-		//	PULSE+UISelect, D(650),								// ...and select it 
+			PULSE+UISelect, D(8500),							// ** Depending on the load times of your PC, this value may need to be
+			PULSE+UISelect, D(650),								//    changed/increased
+			PULSE+UIRight, D(650),
+			PULSE+UISelect, D(650),								// Top option selected by default 
+//-			PULSE+UIRight, D(650),								// Moved down to second last instruction
+			PULSE+UIDown, D(650),								// Optional #1 Remove comment marks to highlight 2nd option in list...
+			PULSE+UISelect, D(650),								// ...and select it 
+	//		PULSE+UIDown, D(650),								// Optional #2 Remove comment marks to highlight 3rd option in list
+	//		PULSE+UISelect, D(650),								// ...and select it 
+	//		PULSE+UIDown, D(650),								// Optional #3 etc. ... and so on 
+	//		PULSE+UISelect, D(650),								// ...and select it 
+			PULSE+UIRight, D(650),
 			PULSE+UISelect, D(1000),							// Selects Private Group
 			LOCK);
 
@@ -217,8 +239,8 @@
 			PULSE+UIBack,
 			LOCK);
 
-		// MACRO: Enter hanger then facilities + refuel/repair/restock >>> NOTE: Works for Robigo Mines. Need to test for stations and carriers
-		m_EnterHanger = CHAIN(
+		// MACRO: Enter Hangar then facilities + refuel/repair/restock >>> NOTE: Works for Robigo Mines. Need to test for stations and carriers
+		m_EnterHangar = CHAIN(
 			LOCK,												// Keystroke sequence = up, spc, right, spc, right, spc, right, spc, down, spc 
 			PULSE+UIUp, D(),
 			PULSE+UISelect, D(1500),							// Refuel >>> Note delay shortened to 1500 from 2000
@@ -227,7 +249,7 @@
 			PULSE+UIRight, D(),
 			PULSE+UISelect, D(1500),							// Restock
 			PULSE+UIRight, D(),
-			PULSE+UISelect, D(1500),							// Enter Hanger		
+			PULSE+UISelect, D(1500),							// Enter Hangar		
 			PULSE+UIDown, D(),
 			PULSE+UISelect, D(),								// Market			
 			LOCK);
