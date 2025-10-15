@@ -1,32 +1,32 @@
 
-//--------------------------------------------------------------------------------------//
-//	CMDR Clicker's Elite Dangerous Enhanced Script - T16000, TWCSThrottle, TFRP Rudder	//
-//--------------------------------------------------------------------------------------//
+	//--------------------------------------------------------------------------------------//
+	//	CMDR Clicker's Elite Dangerous Enhanced Script - T16000, TWCSThrottle, TFRP Rudder	//
+	//--------------------------------------------------------------------------------------//
 
-// This file: ED_Functions.tmh
+	// This file: ED_Functions.tmh
 
-// Refer Change Log.txt in parent folder
+	// Refer Change Log.txt in parent folder
 
-// LEGEND: 
-// ========================================================================
-// fnName()								refer to ED_Functions file
-// initName()							refer to ED_Initialise file
-// stfnName()							refer to ED_StateTracker file
-// tgName()								refer to ED_Toggles file
-// mName								refer to ED_Macros file
-// MapKey statements					refer to ED_MapKeyAssignment file
-// Global State and Boolean Defines		refer to ED_ScriptDefines file
-// Global Game Key Bind Defines			refer to ED_GameBindings file 
-// Global Script Variables				refer to ED_GlobalVars file
-// User Config Settings					refer to ED_UserSettings file
-// ========================================================================
+	// LEGEND: 
+	// ========================================================================
+	// fnName()								refer to ED_Functions file
+	// initName()							refer to ED_Initialise file
+	// stfnName()							refer to ED_StateTracker file
+	// tgName()								refer to ED_Toggles file
+	// mName								refer to ED_Macros file
+	// MapKey statements					refer to ED_MapKeyAssignment file
+	// Global State and Boolean Defines		refer to ED_ScriptDefines file
+	// Global Game Key Bind Defines			refer to ED_GameBindings file 
+	// Global Script Variables				refer to ED_GlobalVars file
+	// User Config Settings					refer to ED_UserSettings file
+	// ========================================================================
 
 /*
 	Index:		FUNCTION
 	Line   64: 	int fnNotValid(int fnName, int reason=0)
 	Line   81: 	int fnStartupMapKeyMode()
-	Line  107: 	int fnSetCurves(int profile, int print=NO, int announce=YES, int SaveCurveInfo=TRUE)
-	Line  200: 	int fnSetSliderCurve(int x)
+//-	Line  107: 	int fnSetCurves(int profile, int print=NO, int announce=YES, int SaveCurveInfo=TRUE)
+//-	Line  200: 	int fnSetSliderCurve(int x)
 	Line  231: 	int fnGetFlightMode()
 	Line  273: 	int fnTextToSpeech(int text, int VolumeOverride=0, int Voice=DefaultVoice)
 	Line  305: 	int fnVoiceVolume(int x)
@@ -42,7 +42,7 @@
 	Line  719: 	int fnDeploySRV(int x)
 	Line  765: 	int fnDRShip()
 	Line  793: 	int fnRequestDock()
-	Line  820: 	int fnHangerServices(int x)
+	Line  820: 	int fnHangarServices(int x)
 	Line  869: 	int fnCheckFSDCharge(int EngineText)
 	Line  897: 	int fnCheckFSDMasslocked(int EngineText)
 	Line  925: 	int fnClearChatBox(int mode = 0)
@@ -54,9 +54,9 @@
 	Line 1280: 	int findstr(alias string, alias substring)
 */
 
-//------------------//
-// CUSTOM FUNCTIONS //
-//------------------//
+	//------------------//
+	// CUSTOM FUNCTIONS //
+	//------------------//
 
 	// FUNCTION:	Announce if function called is not valid
 	// Parameters:	fnName = function that called here. reason = reason text parsed from calling fnName
@@ -96,6 +96,7 @@
 		}
 	}
 	
+/*		MOVED TO ED_Initialise.tmmh
 
 	// FUNCTION:	Set Joystick and rudder curves 
 	// Parameters:	profile			=	0 - 5 (see JSProfile in EDGlobalVars)
@@ -224,7 +225,7 @@
 			printf("Slider Curve Profile:	[%d] %s\x0a", x, SliderProfile);
 		}
 	}
-
+*/
 
 	// FUNCTION: Determine current flight mode and set Slider Curves appropriately
 	
@@ -239,7 +240,7 @@
 		if (GUIMode == GUI_FSSMode)		 	FlightMode = 0;		// FSSMode = ON
 		if (GUIMode == GUI_SAAMode)			FlightMode = 2;		// DSSMode = ON
 		
-		fnSetSliderCurve(FlightMode);	
+		initSliderCurve(FlightMode);	
 	}
 
 
@@ -393,9 +394,15 @@
 		GameLoaded = YES;
 		StartupLock = OFF;
 
-		DefEventHandler(EV_HID_INPUT_DATA, &MyThrottle, TANT);			// Forces re-read of slider axis								
+		if (strcmp(ControllerType, "T16000") == 0) {
+			DefEventHandler(EV_HID_INPUT_DATA, &MyThrottle, TANT);			// Forces re-read of slider axis
+		}
+		if (strcmp(ControllerType, "WARTHOG") == 0) {
+			DefEventHandler(EV_HID_INPUT_DATA, &MyThrottle, THR_FC);		// Forces re-read of slider axis
+		}
 		
-		if (fDocked) 			InHanger = YES;
+		
+		if (fDocked) 			InHangar = YES;
 		
 		if (!ConnectionStatus) {
 			ActKey(PULSE+KEYON+ShowConnectionStatus);					// ...turn on connection status. Alternate="m_ShowGameStats"
@@ -814,11 +821,11 @@
 	}
 
 
-	// FUNCTION: Enter/Exit Hanger
+	// FUNCTION: Enter/Exit Hangar
 	// Parameter: x = 0 (EXIT), 1 (ENTER)
 	
-	int fnHangerServices(int x) {
-		int fnName = "Hanger Services";
+	int fnHangarServices(int x) {
+		int fnName = "Hangar Services";
 		int GUIMode;
 		int reason;
 		int VoiceTxt;
@@ -826,13 +833,13 @@
 		if (GameLoaded) {
 			if(fDocked) {
 				if(x == ENTER) {	
-					if(!InHanger) {
-						VoiceTxt = "Enter Hanger and Station Services";
+//-					if(!InHangar) {
+						VoiceTxt = "Enter Hangar and Station Services";
 						fnVPOutput(VoiceTxt, VoiceVolume-15);
 						fnPIPMapper();
-						ActKey(PULSE+KEYON+m_EnterHanger);
-						InHanger = YES;
-					}
+						ActKey(PULSE+KEYON+m_EnterHangar);
+//-						InHangar = YES;
+//-					}
 				}
 				else {				
 					fnName = "Launch Sequence";
@@ -845,7 +852,7 @@
 						VoiceTxt = "Initiating launch sequence";
 						fnVPOutput(VoiceTxt);
 						ActKey(PULSE+KEYON+m_Launch);
-						InHanger = NO;
+//-						InHangar = NO;
 					}
 				}
 			}
@@ -1013,7 +1020,7 @@
 			}
 			else if (mode == 1) {
 				fnVPOutput("Menu log to private group selected.. please wait for game reload\x0a");			
-				ActKey(PULSE+KEYON+m_FastModeSwitch1);												// Selects PRIVATE mode
+				ActKey(PULSE+KEYON+m_FastModeSwitch1a);												// Selects PRIVATE mode
 			}
 			else {
 				fnVPOutput("Menu log to solo selected.. please wait for game reload\x0a");			
@@ -1186,7 +1193,7 @@
 				if (fVeryCold)				Body2 		= "Very Cold";
 				if (fVeryHot)				Body2 		= "Very Hot";
 				if (fGlideMode)				Glide 		= "YES"; 		else Glide 			= "NO";
-				if (fOnFootInHanger)		Locn2 		= "in Hanger";
+				if (fOnFootInHangar)		Locn2 		= "in Hangar";
 				if (fOnFootSocialSpace)		Locn2 		= "in Social Space";
 				if (fOnFootExterior)		Locn2 		= "outside";
 				if (fBreathableAtmosphere)	Atmos 		= "Breathable"; else Atmos 			= "Unbreathable";
