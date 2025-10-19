@@ -1,9 +1,10 @@
 
 	//--------------------------------------------------------------------------------------//
-	//	CMDR Clicker's Elite Dangerous Enhanced Script - T16000, TWCSThrottle, TFRP Rudder	//
+	//		  CMDR Clicker's Elite Dangerous Enhanced Thrustmaster TARGET Script			//
 	//--------------------------------------------------------------------------------------//
 
-	// DX# versus keyboard keys:
+	// This file: ED_GameBindings.ttm
+
 	// 1 - By default, each individual controller (Joystick and Throttle) can generate up to 56 DX buttons, 8 DX Axes and 8 DX POV directions per device
 	// 2 - Using TARGET script or configuring via the TARGET GUI combines the controllers into a single virtual device resulting in a limit of 56 DX buttons, 8 Axes and 8 DX POV total.
 	// 3 - Elite Dangerous game only allows 32 DX buttons   !!!!!!!
@@ -37,8 +38,7 @@
 	// BINDINGS SECTION STARTS HERE											//
 	//----------------------------------------------------------------------//
 
-		// WEAPON CONTROL //
-		
+	// WEAPON CONTROL //
 	define PrimaryFire 							DX1						// JOY1
 	define SecondaryFire 						DX2						// JOY2
 	
@@ -46,7 +46,7 @@
 	define NextFireGroup 						USB[0x36]				// ,
 	define PrevFireGroup 						USB[0x37]				// .
 
-		// TARGET CONTROL //
+	// TARGET CONTROL //
 	define SelectTargetAhead 					USB[0x17] 				// t
 	define SelectNextShip 						USB[0x0A] 				// g
 	define SelectPrevShip 						USB[0x05] 				// b 
@@ -57,7 +57,7 @@
 	define TargetPrevSubsystem 					USB[0x0E]				// k 
 	define SelectNextSystemInRoute 				USB[0x10] 				// m 
 
-		// FLIGHT CONTROL //
+	// FLIGHT CONTROL //
 	define ThrustUp 							USB[0x15]				// r - Alternate Lateral Thrust control
 	define ThrustDown 							USB[0x09]				// f 
 	define ThrustLeft 							USB[0x14]				// q 
@@ -92,7 +92,7 @@
 	define MouseReset							L_SHIFT+USB[0x4A]		// LSHIFT+HOME
 	define MouseRelativeToggle					L_SHIFT+USB[0x4D]		// LSHIFT+END
 
-		// SHIP SYSTEMS //
+	// SHIP SYSTEMS //
 	define CargoScoop 							USB[0x4A] 				// HOME
 	define EjectCargo		 					USB[0x4D] 				// END
 	define LandingGear 							USB[0x0F] 				// l 
@@ -105,39 +105,39 @@
 	define FSSZoomOUT 							USB[0x2F] 				// [	(same as CameraZoomOut)
 	define DSSModeON							USB[0x2D]				// -  (should be USB[0x38] '/' ??)
 	define DSSModeOFF							USB[0x2A]				// BACKSPACE
-	define FBView								'|'						// LSHIFT+\
-	define SensorZoomUP		 					USB[0x4B] 				// PAGE UP		(PGUP)
+	define FBView								'|'						// LSHIFT+'\'	
+	define SensorZoomUP							USB[0x4B]				// PAGE UP		(PGUP)
 	define SensorZoomDN 						USB[0x4E] 				// PAGE DOWN	(PGDN)
 
-		// PIP MANAGEMENT //
+	// PIP MANAGEMENT //
 	define PowerEng 							L_SHIFT+USB[0x52]		// LSHIFT+UP Arrow	// Using unshifted arrow keys for PIPs conflicts with Panel navigation within the game 
 	define PowerWep 							L_SHIFT+USB[0x4F]		// LSHIFT+RIGHT Arrow
 	define PowerSys 							L_SHIFT+USB[0x50]		// LSHIFT+LEFT Arrow
 	define BalancePower 						L_SHIFT+USB[0x51]		// LSHIFT+DOWN Arrow
 
-		// COOLING & COUNTERMEASURES //
+	// COOLING & COUNTERMEASURES //
 	define SilentRunning 						USB[0x4C] 				// DELETE (called "ToggleButtonUpInput" within the .bind file)
 	define DeployHeatSink 						USB[0x19] 				// v 
 	define FireChaff		 					USB[0x06] 				// c 
 	define UseShieldCell 						USB[0x34]				// '
 	define ChargeECM 							'C'						// LSHIFT+C
 
-		// WINGS & FIGHTERS //
+	// WINGS & FIGHTERS //
 	define SelectWingman1 						USB[0x25] 				// 8
 	define SelectWingman2 						USB[0x26] 				// 9
 	define SelectWingman3 						USB[0x27] 				// 0
 	define WingmanTarget 						USB[0x22]				// 5
 	define WingmanNavLock 						USB[0x23]				// 6
-	define FighterDock 							L_ALT+USB[0x05]			// LALT+B
-	define FighterDefend	 					L_ALT+USB[0x07]			// LALT+D
-	define FighterAggr		 					L_ALT+USB[0x04]			// LALT+A
-	define FighterAttack						L_ALT+USB[0x17]			// LALT+T
-	define FighterNoFire 						L_ALT+USB[0x0B]			// LALT+H
-	define FighterHold		 					L_ALT+USB[0x16]			// LALT+S
-	define FighterFollow 						L_ALT+USB[0x09]			// LALT+F
-	define FighterOpen	 						L_ALT+USB[0x12]			// LALT+O
+	define FighterDock 							L_ALT+USB[0x05]			// LALT+B - Recover the fighter
+	define FighterDefend	 					L_ALT+USB[0x07]			// LALT+D - Defend Mothership
+	define FighterAggr		 					L_ALT+USB[0x04]			// LALT+A - Engage hostiles at will
+	define FighterAttack						L_ALT+USB[0x17]			// LALT+T - Attack my target 
+	define FighterNoFire 						L_ALT+USB[0x0B]			// LALT+H - Follow - no fire 
+	define FighterHold		 					L_ALT+USB[0x16]			// LALT+S - Hold position - fire if engaged
+	define FighterFollow 						L_ALT+USB[0x09]			// LALT+F - Follow me
+	define FighterOpen	 						L_ALT+USB[0x12]			// LALT+O - ???
 
-		// MULTICREW //							(Note: These are not currently mapped in ED)
+	// MULTICREW //							(Note: These are not currently mapped in ED)
 	define MultiCrewModeToggle							 				// <not mapped>
 	define MultiCrewPrimaryFire							 				// <not mapped>
 	define MultiCrewSecondaryFire						 				// <not mapped>
@@ -146,13 +146,13 @@
 	define MultiCrewCycleUIForward						 				// <not mapped>
 	define MultiCrewCycleUIBack							 				// <not mapped>
 
-		// SRV CONTROLS //
+	// SRV CONTROLS //
 	define SRVHandbrake 						USB[0x1B] 				// x
 	define SRVTurret 							USB[0x18]				// u	(same as deploy/retract Hardpoints)
 	define SRVVerticalThrust 					USB[0x15] 				// r
-	define SRVRecallDismissShip					L_ALT+USB[0x1B]			// LALT+X
+	define SRVRecallDismissShip					L_ALT+USB[0x0E]			// LALT+k
 
-		// UI NAVIGATION //
+	// UI NAVIGATION //
 	define UISelect 							USB[0x2C] 				// Space
 	define UIBack 								USB[0x2A]				// BACKSPACE
 	define UIUp 								USB[0x1A] 				// w 
@@ -172,18 +172,18 @@
 	define GalMap 								':'				 		// LSHIFT+;
 	define FriendView									 				// <not mapped>
 
-		// HOLO-ME //							(Note: These are not currently mapped in ED)
+	// HOLO-ME //								(Note: These are not currently mapped in ED)
 	define HoloMEUndo									 				// <not mapped>
 	define HoloMERedo									 				// <not mapped>
 	define HoloMEMouseRotation											// mapped to Mouse 3 in ED Bindings
 
-		// GALNET AUDIO //
+	// GALNET AUDIO //
 	define GalNetPlay							R_ALT+USB[0x44]			// RALT+F11
 	define GalNetPrev							R_ALT+USB[0x43]			// RALT+F10
 	define GalNetNext							R_ALT+USB[0x45]			// RALT+F12
 	define GalNetClear							R_ALT+USB[0x42]			// RALT+F9
 
-		// GALAXY MAP //						(Note: These are mapped in ED Bindings directly)
+	// GALAXY MAP //							(Note: These are mapped in ED Bindings directly)
 	define GalMapPitchUp						USB[0x17]				// t 
 	define GalMapPitchDown						USB[0x0A]				// g 
 	define GalMapYawLeft						USB[0x14]				// q
@@ -197,15 +197,15 @@
 	define GalMapZoomIn							USB[0x1D]				// z 
 	define GalMapZoomOut						USB[0x1B]				// x 
 
-		// HEADLOOK //
+	// HEADLOOK //
 	define LookUp 										 				// <not mapped>
 	define LookDown 									 				// <not mapped>
 	define LookLeft 									 				// <not mapped>
 	define LookRight 									 				// <not mapped>
 	define LookCenter 									 				// <not mapped>
-	define LookOnOff							USB[0x12]				// o 
+	define LookOnOff							USB[0x44]				// F11  
 
-		// CAMERA SUITE //						(Note: These are mapped in ED Bindings directly)
+	// CAMERA SUITE //							(Note: These are mapped in ED Bindings directly)
 	define PreviousCamera						L_ALT+USB[0x1E]			// LALT+1
 	define NextCamera							L_ALT+USB[0x1F]			// LALT+2
 	define EnterFreeCameraMode					USB[0x62]				// NUMPAD 0
@@ -240,58 +240,60 @@
 	define CameraFocusOut												// Same as ZoomOut
 
 
-		// ON FOOT - Not used in script
-		// WARNING!!! The below defines do not currently match the in-game binds for on foot.
-		
+	// ON FOOT - Not used in script		NOTE: The below commented defines do not match in game binds at present
 	define WalkForward							USB[0x1A]				// w
 	define WalkBackward							USB[0x16] 				// s
 	define StrafeLeft							USB[0x04]				// a
 	define StrafeRight							USB[0x07]				// d
 	define TurnLeft														// Mouse Left
 	define TurnRight													// Mouse Right 
-	define Sprint 								USB[0x0D] 				// j
-	define Walk									USB[0x1C]				// y
-	define Crouch		 						USB[0x06] 				// c
+//	define Sprint 								USB[0x0D] 				// j
+//	define Walk									USB[0x1C]				// y
+//	define Crouch		 						USB[0x06] 				// c
 	define Jump 								USB[0x2C] 				// Space
 	define Interact								USB[0x08]				// e
-	define SecondaryInteract					USB[0x2B]				// TAB
+//	define SecondaryInteract					USB[0x2B]				// TAB
 	define Reload								USB[0x15]				// r
 	define SelectTool							USB[0x17]				// t
-	define FlashLight 							USB[0x49] 				// INSERT
-	define SelectSuitTool						USB[0x09]				// f
+//	define FlashLight 							USB[0x49] 				// INSERT
+//	define SelectSuitTool						USB[0x09]				// f
 	define InsightHub 							USB[0x0B]				// h
-	define EnergyLink 							USB[0x0F] 				// l
-	define Melee 								USB[0x10] 				// m
-	define ProfileAnalyzer						USB[0x13]				// p
-	define ToggleShields 						USB[0x19] 				// v 
-	define ClearAuthLevel						L_ALT+USB[0x04]			// LALT+a
-	define EnergyCell 							USB[0x34]				// '
-	define HealthPack		 					L_ALT+USB[0x06]			// LALT+c
-	define ThrowGrenade							USB[0x1B]				// x
-	define NextGrenadeType						L_ALT+USB[0x36]			// LALT+,
-	define PrevGrenadeType 						L_ALT+USB[0x37]			// LALT+.
-	define EMPGrenade							L_ALT+USB[0x08]			// LALT+e
-	define FragGrenade							L_ALT+USB[0x09]			// LALT+f
-	define ShieldGrenade						L_ALT+USB[0x16]			// LALT+s
-	define PrimaryWeapon						L_ALT+USB[0x1E]			// LALT+1
-	define SecondaryWeapon						L_ALT+USB[0x1F]			// LALT+2
-	define SwitchWeapon							USB[0x1D]				// z
-	define NextWeapon							USB[0x36]				// ,
-	define PrevWeapon 							USB[0x37]				// .
+//	define EnergyLink 							USB[0x0F] 				// l
+//	define Melee 								USB[0x10] 				// m
+//	define ProfileAnalyzer						USB[0x13]				// p
+//	define ToggleShields 						USB[0x19] 				// v 
+//	define ClearAuthLevel						L_ALT+USB[0x04]			// LALT+a
+//	define EnergyCell 							USB[0x34]				// '
+//	define HealthPack		 					L_ALT+USB[0x06]			// LALT+c
+
+	define EnergyCell 							USB[0x24]				// 7
+	define HealthPack		 					USB[0x23]				// 6
+	
+//	define ThrowGrenade							USB[0x1B]				// x
+//	define NextGrenadeType						L_ALT+USB[0x36]			// LALT+,
+//	define PrevGrenadeType 						L_ALT+USB[0x37]			// LALT+.
+//	define EMPGrenade							L_ALT+USB[0x08]			// LALT+e
+//	define FragGrenade							L_ALT+USB[0x09]			// LALT+f
+//	define ShieldGrenade						L_ALT+USB[0x16]			// LALT+s
+//	define PrimaryWeapon						L_ALT+USB[0x1E]			// LALT+1
+//	define SecondaryWeapon						L_ALT+USB[0x1F]			// LALT+2
+//	define SwitchWeapon							USB[0x1D]				// z
+//	define NextWeapon							USB[0x36]				// ,
+//	define PrevWeapon 							USB[0x37]				// .
 	define HolsterWeapon 						USB[0x18] 				// u
-	define AimSights							USB[0x14]				// q
+//	define AimSights							USB[0x14]				// q
 	define FireWeapon							L_ALT+USB[0x28]			// LALT+Enter - used on Mouse Button 1
-	define ItemWheelUp							L_ALT+USB[0x52]			// LALT+UP Arrow
-	define ItemWheelDown						L_ALT+USB[0x51]			// LALT+DOWN Arrow
-	define ItemWheelLeft						L_ALT+USB[0x50]			// LALT+LEFT Arrow
-	define ItemWheelRight						L_ALT+USB[0x4F]			// LALT+RIGHT Arrow
-	define ItemWheelSelect						L_ALT+USB[0x2C]			// LALT+Space - used on Mouse Button 3
-	define BattleStats							USB[0x05]				// b
-	define tgToolMode							USB[0x0A]				// g
-	define tgHelp								L_ALT+USB[0x0B]			// LALT+h
+//	define ItemWheelUp							L_ALT+USB[0x52]			// LALT+UP Arrow
+//	define ItemWheelDown						L_ALT+USB[0x51]			// LALT+DOWN Arrow
+//	define ItemWheelLeft						L_ALT+USB[0x50]			// LALT+LEFT Arrow
+//	define ItemWheelRight						L_ALT+USB[0x4F]			// LALT+RIGHT Arrow
+//	define ItemWheelSelect						L_ALT+USB[0x2C]			// LALT+Space - used on Mouse Button 3
+//	define BattleStats							USB[0x05]				// b
+//	define tgToolMode							USB[0x0A]				// g
+//	define tgHelp								L_ALT+USB[0x0B]			// LALT+h
 
 
-		// MISCELLANEOUS //
+	// MISCELLANEOUS //
 	define ExtCamera		 					USB[0x5D] 				// NUMPAD 5
 	define ExtCameraSRV							USB[0x5D]				// NUMPAD 5
 	define OrbitLines	 						USB[0x2E] 				// =
@@ -301,10 +303,11 @@
 	define ShowConnectionStatus 				L_CTL+USB[0x05]			// LCTRL+B
 	define ShowCQCScoreboard 					L_ALT+USB[0x3E]			// LALT+F5
 	define HighResScreenshot 					L_ALT+USB[0x43]			// LALT+F10
+	define Screenshot							USB[0x43]				// F10 			
 	define WeaponColour		 					L_ALT+USB[0x1A]			// LALT+W
 	define EngineColour 						L_ALT+USB[0x08]			// LALT+E
 
-		// EXTERNAL BINDINGS //
+	// EXTERNAL BINDINGS //
 	define ResetHeadOrientation 				USB[0x35] 				// ~
 	define GPUCaptureVideoAuto 					L_ALT+USB[0x43] 		// LALT+F10		(Note: Default NVidia Capture of ALT+F10 conflicts with HiRes Screenshots)
 	define GPUCaptureManual 					L_ALT+USB[0x42]			// LALT+F9		(Map this & above to your NVidia/AMD/Fraps capture software)
