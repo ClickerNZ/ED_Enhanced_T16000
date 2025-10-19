@@ -1,10 +1,14 @@
 
 	//--------------------------------------------------------------------------------------//
-	//	CMDR Clicker's Elite Dangerous Enhanced Script - T16000, TWCSThrottle, TFRP Rudder	//
+	//		  CMDR Clicker's Elite Dangerous Enhanced Thrustmaster TARGET Script			//
+	//																						//
+	//		   Contact:  https://forums.frontier.co.uk/members/clicker.19039/				//
 	//--------------------------------------------------------------------------------------//
 
+	//								T16000 + TWCS REQUIRED									//
+
 	// This file:	ED_ENHANCED_T16000.tmc						// v1-1 (update)
-	// Supports:	Elite Dangerous		v4.2.1.1				// Does not support Legacy Horizons
+	// Supports:	Elite Dangerous		v4.2.1.2				// Does not support Legacy Horizons
 	// Requires:	TARGET 				v3.0.25.127_rev1		// https://support.thrustmaster.com/
 
 	// LEGEND: This script calls functions within the support files with the following naming formats
@@ -82,7 +86,9 @@
 	include "ED_Functions.tmh"
 	include "ED_StateTracker.tmh"
 	include "ED_Toggles.tmh"
-	
+
+//-	include "C:\\Thrustmaster\\ED_TargetScript_Warthog\\ScriptFiles\\ED_Development.tmh"
+
 	//--------------//
 	// Main Program //
 	//--------------//
@@ -138,6 +144,8 @@
 
 		fnPIPMode(RESET);														// Reset PIPMode. Refer ED_UserSettings.tmh to set your preferred default PIP Mode
 																				// Do this before calling stfnMyStates(LOAD) call
+		initUserSettings(0);													// Save default user settings. On the fly customisation available for most settings.
+
 		printf("\x0a\++	Load MyStates from file...\x0a");
 		stfnMyStates(LOAD);														// Load my status variables
 
@@ -163,7 +171,7 @@
 		initSoundFX();															// Initialise Sound Effects engine
 
 		printf("\x0a\++	Initialise Custom Commands...\x0a");
-		fnCustomCommands();														// Initialise Custom Macros (See ED_Macros.tmh)
+		initMacroChains();														// Initialise Custom Macros (See ED_Macros.tmh)
 		
 		fnStartupMapKeyMode();													// Select MapKey assignments on script startup
 		
