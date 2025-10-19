@@ -1,6 +1,6 @@
 
 	//--------------------------------------------------------------------------------------//
-	//	CMDR Clicker's Elite Dangerous Enhanced Script - T16000, TWCSThrottle, TFRP Rudder	//
+	//		  CMDR Clicker's Elite Dangerous Enhanced Thrustmaster TARGET Script			//
 	//--------------------------------------------------------------------------------------//
 
 	// This file: ED_ScriptDefines.ttm
@@ -8,148 +8,138 @@
 	// Below are the global, static, state and boolean definitions used within the script package
 	// Also contains global status.json integer variable flags for ease of maintenance and readability
 
-	// LEGEND: 
-	// ========================================================================
-	// fnName()								refer to ED_Functions file
-	// initName()							refer to ED_Initialise file
-	// stfnName()							refer to ED_StateTracker file
-	// tgName()								refer to ED_Toggles file
-	// mName								refer to ED_Macros file
-	// MapKey statements					refer to ED_MapKeyAssignment file
-	// Global State and Boolean Defines		refer to ED_ScriptDefines file
-	// Global Game Key Bind Defines			refer to ED_GameBindings file 
-	// Global Script Variables				refer to ED_GlobalVars file
-	// User Config Settings					refer to ED_UserSettings file
-	// ========================================================================
-
-
 						//  -- WARNING --  //
 
-	// Do not define a variable as ALT+F4 (L_ALT+USB[0x3D] or R_ALT+USB[0x3D])
+	// Do not define a variable as 'ALT+F4' (L_ALT+USB[0x3D] or R_ALT+USB[0x3D])
 	// Why??? - PULSE an ALT+F4 to the current active window will close it!
 
 						//   -- NOTES --   //
 
-	// Assigning ALT+F3 results in a 'brrringg' noise in TARGET Script Editor/GUI 
-	
+	// Assigning ALT+F3 results in a 'brrringg' noise in TARGET Script Editor/GUI and is not advised
+
 	// START
 
-	define KBLayout 							KB_ENG					// Default Keyboard Layout. Options = KB_FR or KB_GER
+	define KBLayout 				KB_ENG					// Default Keyboard Layout. Options = KB_FR or KB_GER
 
-//-	//----------------------------------------------------------------------//
-//-	// SCRIPT VERSION VARIABLES                                             //		MOVED INTO ED_Initialise.tmh 
-//-	//----------------------------------------------------------------------//
+	//---------------//
+	// DEBUG DEFINES //										// Options = OFF (0), ON (1),  LOG (2), VERBOSE (3). 
+	//---------------//
 
-//-	define VMajor		 						1						// Script Version Major Value			ie. 2xx
-//-	define VMinor		 						1						// Script Version Minor Value			ie. x3x
-//-	define VPoint								0						// Script Version Point Update			ie. xx4
-//-	define VBranch								"dev"					// Script Version Branch				ie. xxx.01
+	define OFF						0
+	define ON						1
 
+//	int		DEBUG					= OFF;					// InputCMD disabled. Many DEBUG outputs supressed
+	int		DEBUG					= ON;					// InputCMD enabled
+//	int		DEBUG					= LOG;					// Many DEBUG outputs go to console
+//	int		DEBUG					= VERBOSE;				// Many DEBUG outputs go to console and TTS
+	
+	define	ControllerCheck			ENABLED					// ENABLED:		Abort script if compatible Joystick or Throttle not found during CheckControllers() function at script start
 
 	//---------//
 	// Timings //
 	//---------//
 
-	// These delay settings affect how fast the script executes key presses etc.
+	// These delay settings affect how fast the script executes key press sequences etc.
 	// If you find the macros are dropping characters, then the delay is too short.
-	// "LongPress" is a personal setting. I find a half second is about right for me.
+	// "LongPress" is a personal setting. I find a half second is about right for me when using with TEMPO.
 	
-	define 	PulseTime 			33						// PULSE+ Delay time (ms) - Used as key-hold-down time.
-	define 	DelayTime 			100						// D() Delay time 	 (ms) - Used in macros as the time between releasing one key and pressing the next. Increase from 75 for Odyssey
-	define 	LongPress	 		500						// Tempo Delay 		 (ms) - Used in Tempos. ie hold switch/button for 0.5 seconds for alternate function
-	
-	define 	DiscoDelay			6100					// Discovery scanner 'hold-trigger' timer (6.1 seconds)
-	
+	define 	PulseTime 				35						// PULSE+ Delay time (ms) - Used as key-hold-down time.
+	define 	DelayTime 				100						// D() Delay time 	 (ms) - Used in macros as the time between releasing one key and pressing the next
+	define 	LongPress	 			500						// Tempo Delay 		 (ms) - Used in Tempos. ie hold switch/button for 0.5 seconds for alternate function
 
+	// Verify timers reqd for the below 
+	define 	CompoScanDelay			5000					// Composition scanner	'hold-trigger' timer (5 seconds)
+	define	DataLinkScanDelay		5000					// Datalink scanner		'hold-trigger' timer (5 seconds)
+	define	KWSDelay				5000					// Kill Warrant Scanner	'hold-trigger' timer (5 seconds)
+	define 	DiscoDelay				6100					// Discovery scanner	'hold-trigger' timer (6.1 seconds)	- VERIFIED 
+	define	WakeScanDelay			10100					// Wake Scanner			'hold-trigger' timer (10.1 seconds)	- VERIFIED
+	define	ManifestScanDelay		9000					// Manifest Scanner		'hold-trigger' timer (9 seconds)
+	
 	//-------------------//
 	// PIPMAPPER DEFINES //
 	//-------------------//
 
-	define SYS									1						// Used in fnPIPMapper for managing System  PIPs (see EDFunctions.tmh) (DO NOT modify!)
-	define ENG									2						// Used in fnPIPMapper for managing Engine  PIPs (see EDFunctions.tmh) (DO NOT modify!)
-	define WEP									3						// Used in fnPIPMapper for managing Weapon  PIPs (see EDFunctions.tmh) (DO NOT modify!)
-	define MID									4						// Used in fnPIPMapper for managing Balance PIPs (see EDFunctions.tmh) (DO NOT modify!)
+	define SYS						1						// Used in fnPIPMapper for managing System  PIPs (see EDFunctions.tmh) (DO NOT modify!)
+	define ENG						2						// Used in fnPIPMapper for managing Engine  PIPs (see EDFunctions.tmh) (DO NOT modify!)
+	define WEP						3						// Used in fnPIPMapper for managing Weapon  PIPs (see EDFunctions.tmh) (DO NOT modify!)
+	define MID						4						// Used in fnPIPMapper for managing Balance PIPs (see EDFunctions.tmh) (DO NOT modify!)
 
 	//------------------------------//
 	// REXEC and AutoRepeat Handles //
 	//------------------------------//
 
-	define hPWS									0						// Used in ED_Functions.tmh						- PWS fire option on primary/secondary trigger
-	define hReadStatusJson						1						// Used in ED_StateTracker.tmh					- main read ststus.json background loop
-	define hSRStrobe							2						// Used in ED_Toggles.tmh						- Silent Running Strobe
-	define hFSDCharge							3						// Used in ED_Toggles.tmh & ED_Functions.tmh	- FSD Charge detection
-	define hMassLocked							4						// Used in ED_Toggles.tmh & ED_Functions.tmh	- FSD Masslocked check/retry
-	define hSoundFX								5						// Used in ED_MapKeyAssignment.tmh 				- TBTN2 & TBTN3 reminder sound
-	define hBeepFX								6						// Used in ED_Toggles.tmh						- Reverse thrust
-
+	define hPWS						0						// Used in ED_Functions.tmh						- PWS fire option on primary/secondary trigger
+	define hReadStatusJson			1						// Used in ED_StateTracker.tmh					- main read ststus.json background loop
+	define hSRStrobe				2						// Used in ED_Toggles.tmh						- Silent Running Strobe
+	define hFSDCharge				3						// Used in ED_Toggles.tmh & ED_Functions.tmh	- FSD Charge detection
+	define hSoundFX					4						// Used in ED_MapKeyAssignment.tmh 				- PSF & PSB reminder sound
+	define hBeepFX					5						// Used in ED_Toggles.tmh						- Reverse thrust
+	define hReadMyJournalData		6						// Used in ED_StateTracker.tmh					- main read MyJournalData.json background loop
+	define hTerrain					7
+	
 	//----------------------------------------------------------------------//
 	// SCRIPT BOOLEAN and STATE DEFINES										//
 	//----------------------------------------------------------------------//
-		
-	define OFF									0
-	define ON									1
-	define STROBE								2						// Used in tgSilentRunning()
-	
-	define TRUE									1
-	define FALSE								0
-	
-	define YES									1
-	define NO									0
-	
-	define ENABLED								1
-	define DISABLED								0
-	
-	define SET									1
-	define RESET								0
-	
-	define PREVIOUS								0
-	define NEXT									1
+			
+	define LOG						2						// DEBUG Levels
+	define VERBOSE					3						// DEBUG Levels
 
-	define HOLD									0
-	define PUSH									1
+	define STROBE					2						// Used in tgSilentRunning()
 	
-	define EXIT									0
-	define ENTER								1
-
-	define BASIC								0
-	define FULL									1
-	define CUSTOM								2
+	define TRUE						1
+	define FALSE					0
 	
-	define DEPLOY								1
-	define RETRACT								0
-	define RECOVER								0
+	define YES						1
+	define NO						0
 	
-	define NOCHANGE								0
-	define INCREASE								1
-	define DECREASE								2
+	define ENABLED					1
+	define DISABLED					0
 	
-	define FLOAT								0
-	define INTEGER								1
-	define STRING								2
+	define SET						1
+	define RESET					0
 	
-	define NUL									0
-	define NONE									0						// used for initCurves()
-	define MILD									1						// used for initCurves()
-	define MEDIUM								2						// used for initCurves()
-	define SLOW									3						// used for initCurves()
-	define SLOWEST								4						// used for initCurves()
+	define NEXT						1
+	define PREVIOUS					2
+	
+	define HOLD						0
+	define PUSH						1
+	
+	define EXIT						0
+	define ENTER					1
 
-	define NOPRINT								0						// suppress console message, or...
-	define PRINT								1						// ...don't
+	define BASIC					0
+	define FULL						1
+	define CUSTOM					2
+	
+	define DEPLOY					1
+	define RETRACT					0
+	define RECOVER					0
+	
+	define NOCHANGE					0
+	define INCREASE					1
+	define DECREASE					2
+	
+	define FLOAT					0
+	define INTEGER					1
+	define STRING					2
+	define BOOLEAN					4
+	
+	define NUL						0						// Should be '\x0' ??? so we can use to terminate strings?
+	define NONE						0						// used for initCurves()
+	define MILD						1						// used for initCurves()
+	define MEDIUM					2						// used for initCurves()
+	define SLOW						3						// used for initCurves()
+	define SLOWEST					4						// used for initCurves()
 
-	define SAVE									1						// used in stfnMyStates()
-	define LOAD									0						// used in stfnMyStates()	
+	define NOPRINT					0						// suppress console message, or...
+	define PRINT					1						// ...don't
 
-	//---------------//
-	// DEBUG DEFINES //
-	//---------------//
-
-	define ControllerCheck						DISABLED					// ENABLED:		Abort script if compatible Joystick or Throttle not found during CheckControllers() function at script start
-																		// DISABLED:	Won't abort script if compatible Joystick or Throttle not found
+	define LOAD						0						// used in stfnMyStates()	
+	define SAVE						1						// used in stfnMyStates()
 
 	//-----------------------------------------------------------------------------------------------------------------------------//
 	//                                                                                                                             //
-	//    The following defines align to the FLAGS and FLAGS2 masks within status.json as defined in the Journal Documentation     //
+	//   The following defines align to the FLAGS and FLAGS2 bitmasks within status.json as defined in the Journal Documentation   //
 	//                                                                                                                             //
 	//        STATUS.JSON : Refer Section 14 in http://hosting.zaonce.net/community/journal/v37/Journal_Manual_v37.pdf             //
 	//                                                                                                                             //
@@ -212,34 +202,81 @@
 	int fLanded					=	0;
 	int fLandingGear			=	0;
 	int fShieldsUp				=	0;
+	
 	int fSupercruise			=	0;
 	int fFAOff					=	0;
 	int fHardpoints				=	0;
 	int fInWing					=	0;
+
 	int fLights					=	0;
 	int fCargoScoop				=	0;
 	int fSilentRunning			=	0;
 	int fFuelScoop				=	0;
+
 	int fSRVHandbrake			=	0;
 	int fSRVTurretView			=	0;
 	int fSRVTurretRetracted		=	0;
 	int fSRVDriveAssist			=	0;
+
 	int fMassLocked				=	0;
 	int fFSDCharging			=	0;
 	int fFSDCooldown			=	0;
 	int fLowFuel				=	0;
+
 	int fOverHeating			=	0;
 	int fLatLong				=	0;
 	int fDanger					=	0;
 	int fInterdicted			=	0;
+
 	int fMainShip				=	0;
 	int fFighter				=	0;
 	int fSRV					=	0;
 	int fHUDAnalysis			=	0;
+
 	int fNightVision			=	0;
 	int	fAltFromAvgRad			=	0;
 	int fFSDJump				=	0;
 	int fSRVHiBeam				=	0;
+
+	int lDocked					=	0;
+	int lLanded					=	0;
+	int lLandingGear			=	0;
+	int lShieldsUp				=	0;
+
+	int lSupercruise			=	0;
+	int lFAOff					=	0;
+	int lHardpoints				=	0;
+	int lInWing					=	0;
+
+	int lLights					=	0;
+	int lCargoScoop				=	0;
+	int lSilentRunning			=	0;
+	int lFuelScoop				=	0;
+
+	int lSRVHandbrake			=	0;
+	int lSRVTurretView			=	0;
+	int lSRVTurretRetracted		=	0;
+	int lSRVDriveAssist			=	0;
+
+	int lMassLocked				=	0;
+	int lFSDCharging			=	0;
+	int lFSDCooldown			=	0;
+	int lLowFuel				=	0;
+
+	int lOverHeating			=	0;
+	int lLatLong				=	0;
+	int lDanger					=	0;
+	int lInterdicted			=	0;
+
+	int lMainShip				=	0;
+	int lFighter				=	0;
+	int lSRV					=	0;
+	int lHUDAnalysis			=	0;
+
+	int lNightVision			=	0;
+	int	lAltFromAvgRad			=	0;
+	int lFSDJump				=	0;
+	int lSRVHiBeam				=	0;
 
 	//--------------//
 	// FLAGS2 MASKS //
@@ -273,7 +310,7 @@
 	define ED_SupercruiseOvercharge	0x0000000000100000
 	define ED_SupercruiseAssist    	0x0000000000200000
 	define ED_NPCCrewActive        	0x0000000000400000
-	define ED_RESERVED24   			0x0000000000800000		// Placeholder for future Flags2 bits
+	define ED_RESERVED24   			0x0000000000800000
 
 	define ED_RESERVED25           	0x0000000001000000
 	define ED_RESERVED26           	0x0000000002000000
@@ -284,7 +321,7 @@
 	define ED_RESERVED30    		0x0000000020000000
 	define ED_RESERVED31			0x0000000040000000	
 	define ED_RESERVED32			0x0000000080000000
-	
+
 	//----------------------------------//
 	//  Corresponding Flags2 Variables  //
 	//----------------------------------//
@@ -294,7 +331,7 @@
 	
 	int fOnFoot					=	0;
 	int fInTaxi					=	0;
-	int fInMultiCrew			=	0;	      
+	int fInMultiCrew			=	0;
 	int fOnFootInStation    	=	0;
 
 	int fOnFootOnPlanet     	=	0;
@@ -331,6 +368,86 @@
 	int fRESERVED30				= 	0;
 	int fRESERVED31				= 	0;
 	int fRESERVED32				= 	0;
+
+	int lOnFoot					=	0;
+	int lInTaxi					=	0;
+	int lInMultiCrew			=	0;	      
+	int lOnFootInStation    	=	0;
+
+	int lOnFootOnPlanet     	=	0;
+	int lAimDownSight      		=	0;
+	int lLowOxygen				=	0;
+	int lLowHealth          	=	0;
+
+	int lCold	            	=	0;
+	int lHot					=	0;
+	int lVeryCold	        	=	0;
+	int lVeryHot	        	=	0;
+
+	int lGlideMode				= 	0;
+	int lOnFootInHangar			= 	0;
+	int lOnFootSocialSpace		= 	0;
+	int lOnFootExterior			= 	0;
+
+	int lBreathableAtmosphere	= 	0;
+	int lTelepresenceMulticrew	= 	0;
+	int lPhysicalMulticrew		= 	0;
+	int lFSDHyperdriveChg		= 	0;
+
+	int lSupercruiseOvercharge	= 	0;
+	int lSupercruiseAssist		= 	0;
+	int lNPCCrewActive			= 	0;
+	int lRESERVED24				= 	0;
+
+	int lRESERVED25				= 	0;
+	int lRESERVED26				= 	0;
+	int lRESERVED27				= 	0;
+	int lRESERVED28				= 	0;
+
+	int lRESERVED29				= 	0;
+	int lRESERVED30				= 	0;
+	int lRESERVED31				= 	0;
+	int lRESERVED32				= 	0;
+
+
+	//---------------//
+	// MODULES MASKS //					// BCD encoded value within 'Modules' key in MyJournalData.json 
+	//---------------//					// These are updated by the PS_Journal helper script each time the 'Loadout' event appears in the ED Journal 
+
+	define ED_SCOPresent				0x0000000000000001	// 1	- Supercruise Overdrive Capable Frame Shift  Drive is installed 
+	define ED_FighterPresent			0x0000000000000002	// 2	- Fighter Bay (not actual fighter is installed on ship 
+	define ED_SRVPresent				0x0000000000000004	// 4	- SRV Bay is installed on ship
+	define ED_HeatsinkPresent			0x0000000000000008 	// 8	- Heatsink Launcher is installed on ship
+	
+	define ED_ChaffLauncherPresent		0x0000000000000010	// 16	- Chaff Launcher is installed on ship 
+	define ED_SCBPresent				0x0000000000000020 	// 32	- Shield Cell Bank is installed on ship 
+	define ED_ECMPresent				0x0000000000000040 	// 64	- Electronic Counter Measures installed on ship
+	define ED_LimpetPresent				0x0000000000000080	// 128	- Limpet controller installed on ship
+
+	//-----------------------------------//
+	//  Corresponding MODULES Variables  //
+	//-----------------------------------//
+
+	int Modules					=	0;						//  Read from MyJournalData.json 
+	int oldModules				=	0;						//	Track when changed via stfnProcessMyJournalData()
+															// Read and decode 'Modules' each time Modules != oldModules
+	int	fSCOPresent				=	0;
+	int fFighterPresent			= 	0;
+	int fSRVPresent				=	0;	
+	int fHeatsinkPresent		=	0;
+	int	fChaffLauncherPresent	=	0;
+	int fSCBPresent				=	0;
+	int fECMPresent				=	0;
+	int fLimpetPresent			=	0;
+
+	int	lSCOPresent				=	0;						// Granular level - which module bits have changed
+	int lFighterPresent			= 	0;
+	int lSRVPresent				=	0;
+	int lHeatsinkPresent		=	0;
+	int	lChaffLauncherPresent	=	0;
+	int lSCBPresent				=	0;
+	int lECMPresent				=	0;
+	int lLimpetPresent			=	0;
 
 	//--------------------//
 	// GUIFocus Variables //
