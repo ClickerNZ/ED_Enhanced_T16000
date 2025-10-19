@@ -1,9 +1,11 @@
 
 	//--------------------------------------------------------------------------------------//
-	//	CMDR Clicker's Elite Dangerous Enhanced Script - T16000, TWCSThrottle, TFRP Rudder	//
+	//		  CMDR Clicker's Elite Dangerous Enhanced Thrustmaster TARGET Script			//
 	//--------------------------------------------------------------------------------------//
 
-	// This file: ED_MapKeyAssignment.tmh
+	//								T16000 + TWCS REQUIRED									//
+
+	//							This file: ED_MapKeyAssignment.tmh							//
 
 	// Contains MapKey Statements for all button and switch actions
 	// Contains MapKey Statements to announce via TextToSpeech and printf to console for each button or switch action (training mode)
@@ -29,7 +31,7 @@
 	Line 45: 	int MainKeyMap()
 	Line 58:		Joystick Buttons
 	Line 352:		Throttle Buttons 
-	Line 610: 	int TrainingMap()
+	Line 610: 	int TrainingKeyMap()
 	Line 620:		Joystick buttons
 	Line 905:		Throttle buttons
 */
@@ -309,7 +311,8 @@
 		else {
 			MapKeyUMD(&MyJoystick, B13,
 				EXEC("fnVPOutput(\"not used\");"),									// U - 
-				SEQ(PULSE+m_NAVBeaconWing, PULSE+m_NAVBeaconOff),					// M - My NAV Beacon - ON/OFF
+//-				SEQ(PULSE+m_NAVBeaconWing, PULSE+m_NAVBeaconOff),					// M - My NAV Beacon - ON/OFF
+				EXEC("tgWingBeacon(0);"),											// M - My NAV Beacon - ON/OFF
 				EXEC("fnVPOutput(\"not used\");")									// D -
 				);
 		}
@@ -607,7 +610,7 @@
 	// FUNCTION:	This MapKey set is called at startup if game is not running and user setting 'TrainingMode' is set to ENABLED in ED_UserSettings.tmh 
 	//				Also called from stfnProcessFlags() when we detect Game has halted
 
-	int TrainingMap() {
+	int TrainingKeyMap() {
 
 		printf("\x0a\HOTAS Mode:	TRAINING\x0a");
 		
@@ -786,12 +789,12 @@
 		}
 
 		if (MapKeyProfile == BASIC) {			// 		
-			MapKey(&MyJoystick, B7,  EXEC("fnVPOutput(\"Ship GUI Off, On\");"));	// LeftCTRL+LeftALT+'g'
+			MapKey(&MyJoystick, B7,  EXEC("fnVPOutput(\"Ship g u i, off, on\");"));	// LeftCTRL+LeftALT+'g'
 		}
 		else {
 			MapKeyUMD(&MyJoystick, B7,
 				EXEC("fnVPOutput(\"not used\");"),									// U - 
-				EXEC("fnVPOutput(\"Ship GUI Off, On\");"),							// M - 
+				EXEC("fnVPOutput(\"Ship g u i, off, on\");"),							// M - 
 				EXEC("fnVPOutput(\"not used\");")									// D -
 				);
 
@@ -818,7 +821,7 @@
 		else {
 			MapKeyUMD(&MyJoystick, B9, 
 				EXEC("fnVPOutput(\"not used\");"),											// U -
-				EXEC("fnVPOutput(\"External Camera on/off\");"),							// M -
+				EXEC("fnVPOutput(\"External Camera on, off\");"),							// M -
 				EXEC("fnVPOutput(\"not used\");")											// D -
 				);
 		}
@@ -862,7 +865,7 @@
 		else {
 			MapKeyUMD(&MyJoystick, B13,
 				EXEC("fnVPOutput(\"not used\");"),											// U - 
-				EXEC("fnVPOutput(\"Nav Beacon on/off\");"),									// M -
+				EXEC("fnVPOutput(\"Nav Beacon on, off\");"),									// M -
 				EXEC("fnVPOutput(\"not used\");")											// D - 
 				);		
 		}
@@ -884,7 +887,7 @@
 		else {
 			MapKeyUMD(&MyJoystick, B15, 
 				EXEC("fnVPOutput(\"not used\");"),											// U - 
-				EXEC("fnVPOutput(\"Change Eninge and weapon colours\");"),					// M -
+				EXEC("fnVPOutput(\"Change Engine and weapon colours\");"),					// M -
 				EXEC("fnVPOutput(\"not used\");")											// D -
 				);
 		}
@@ -1108,5 +1111,5 @@
 
 	//===================================================================================================
 
-	}	// end of TrainingMap
+	}	// end of TrainingKeyMap
 
