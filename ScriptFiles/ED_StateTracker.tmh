@@ -6,20 +6,22 @@
 	// This file: ED_StateTracker.tmh ... supports Elite Dangerous (Vanguards)
 
 /*
-	Index:		FUNCTION
-	Line   58: 	int stfnReadMyJournalData()
-	Line  140: 	int stfnReadStatusJson()
-	Line  279: 	int stfnWriteMaxJson()
-	Line  336: 	int stfnGetKeyValue(alias pattern, int vtype, int jsonfile = 0)
-	Line  451: 	int stfnDecodeFlags()
-	Line  555: 	int stfnDecodeFlags2()
-	Line  660: 	int stfnProcessFlags(int UpdateLEDs = NO)
-	Line 1526: 	int stfnDecodeModules(int dummy = 0)
-	Line 1569: 	int stfnProcessMyJournalData(int dummy = 0)
-	Line 1639: 	int stfnProcessGuiFocus()
-	Line 1668: 	int stfnStartCheck()
-	Line 1735: 	int stfnMyStates(int action)
+	Index:			FUNCTION
+	Line    44: 		int stfnReadMyJournalData() {
+	Line   141: 		int stfnReadStatusJson() {
+	Line   303: 		int stfnWriteMaxJson() {			// This may now be redundant if the dynamic buf sizing code works.
+	Line   360: 		int stfnGetKeyValue(alias pattern, int vtype, int jsonfile = 0) {
+	Line   475: 		int stfnDecodeFlags() {
+	Line   579: 		int stfnDecodeFlags2() {
+	Line   687: 		int stfnTripTime(int dummy = 0) {
+	Line   759: 		int stfnProcessFlags(int UpdateLEDs = NO) {
+	Line  1611: 		int stfnDecodeModules(int dummy = 0) {
+	Line  1643: 		int stfnProcessMyJournalData(int dummy = 0) {
+	Line  1717: 		int stfnProcessGuiFocus() {
+	Line  1764: 		int stfnStartCheck() {
+	Line  1834: 		int stfnMyStates(int action) {
 */
+
 	// START
 
 	// FUNCTION:	Read MyJournalData.json into 'myJournalData' char variable

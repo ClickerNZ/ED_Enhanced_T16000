@@ -10,30 +10,14 @@
 	// Contains MapKey Statements for all button and switch actions
 	// Contains MapKey Statements to announce via TextToSpeech and printf to console for each button or switch action (training mode)
 
-	// Refer Change Log.txt in parent folder
-
-	// LEGEND: 
-	// ========================================================================
-	// fnName()								refer to ED_Functions file
-	// initName()							refer to ED_Initialise file
-	// stfnName()							refer to ED_StateTracker file
-	// tgName()								refer to ED_Toggles file
-	// mName								refer to ED_Macros file
-	// MapKey statements					refer to ED_MapKeyAssignment file
-	// Global State and Boolean Defines		refer to ED_ScriptDefines file
-	// Global Game Key Bind Defines			refer to ED_GameBindings file 
-	// Global Script Variables				refer to ED_GlobalVars file
-	// User Config Settings					refer to ED_UserSettings file
-	// ========================================================================
-
 /* 
-	Index:		FUNCTION
-	Line 45: 	int MainKeyMap()
-	Line 58:		Joystick Buttons
-	Line 352:		Throttle Buttons 
-	Line 610: 	int TrainingKeyMap()
-	Line 620:		Joystick buttons
-	Line 905:		Throttle buttons
+	Index:			FUNCTION
+	Line 31: 		int MainKeyMap() {
+	Line 44:			Joystick Buttons
+	Line 339:			Throttle Buttons 
+	Line 597: 		int TrainingKeyMap() {
+	Line 607:			Joystick buttons
+	Line 892:			Throttle buttons
 */
 
 	// START

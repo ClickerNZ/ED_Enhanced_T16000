@@ -7,19 +7,24 @@
 
 	//							 This file: ED_Initialise.tmh								//
 
-
 /*
-	Index:		FUNCTION
-	Line  47:	int CheckControllers()
-	Line 148: 	int initJoystickAxis()
-	Line 176: 	int initThrottleAxis()
-	Line 197: 	int initRudderAxis()
-	Line 218: 	int initSliderAxis()
-	Line 233: 	int initSlewAxis()
-//-	Line  107: 	int initCurves(int profile, int print=NO, int announce=YES, int SaveCurveInfo=TRUE)
-//-	Line  200: 	int initSliderCurve(int x)
-	Line 253: 	int initTextToSpeech()
-	Line 271: 	int initSoundFX()
+	Index:				FUNCTION
+	Line    50: 		int CheckControllers() {
+	Line   151: 		int initJoystickAxis() {
+	Line   179: 		int initThrottleAxis() {
+	Line   200: 		int initRudderAxis() {	
+	Line   221: 		int initSliderAxis() {
+	Line   237: 		int initSlewAxis() {
+	Line   263: 		int initCurves(int profile, int print=NO, int announce=YES, int SaveCurveInfo=TRUE) {
+	Line   356: 		int initSliderCurve(int x) {
+	Line   387: 		int initTextToSpeech() {
+	Line   399: 		int initSoundFX() {
+	Line   458: 		int initUserSettings(int dummy = 0) {
+	Line   512: 		int fnResetUserSettings(int dummy = 0) {
+	Line   557: 		int fnEncodeUserSettings(int dummy = 0) {
+	Line   593: 		int fnDecodeUserSettings(int DecodeSettings) {
+	Line   625: 		int fnUserSettingsDelta(int dummy = 0)	{
+	Line   672: 		int fnCompareIntSettings(int dummy = 0) {
 */
 
 	// START
