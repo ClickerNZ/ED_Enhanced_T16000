@@ -79,8 +79,6 @@
 	include "ED_StateTracker.tmh"
 	include "ED_Toggles.tmh"
 
-//-	include "C:\\Thrustmaster\\ED_TargetScript_Warthog\\ScriptFiles\\ED_Development.tmh"
-
 	//--------------//
 	// Main Program //
 	//--------------//
