@@ -1,4 +1,42 @@
-v1.0.0.0_main
+v1.1
+
+-	2025-10-16
+
+-	2025-10-09
+	- 	Create v1-1 branch
+		ED_ENHANCED_T16000.tmc
+			-	Update Elite Dangerous supported version
+			-	Update TARGET software supported version
+			-	Exclude additional controllers for new TARGET software version
+			-	Reindex
+		ED_Functions.tmh
+			-	Remove commented code
+			-	Reindex
+		ED_StateTracker.tmh 
+			-	Remove commented code
+			-	Include new Flags2 bits
+			-	Include future Flags2 bits placeholders
+			-	Reindex
+		ED_Toggles.tmh
+			-	Update tgReverseThrust()
+			-	Reindex
+		ED_Initialise.tmh 
+			-	Very minor tidy
+			-	Reindex 
+		ED_ScriptDefines.ttm
+			-	Minor comment change at top
+			-	Updated defines for new Flags2 bits
+			-	Include placeholder defines for Flags2 for future use
+		ED_Gamebindings.ttm
+			-	Add warning comment for on-foot defines
+		ED_UserSettings.tmh 
+			-	Update some comments
+			-	Change suggested installation folder name
+			
+		- Rename fnSetCurves() as initCurves() and move into ED_Initialise 
+		- Rename fnSetSliderCurve() as initSliderCurve() and move into ED_Initialise 
+
+		
 
 -	Initial script taken from ED_TargetSscript-503
 	-	Removed WARTHOG specific functions and button references

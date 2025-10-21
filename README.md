@@ -28,6 +28,7 @@ It includes;
 - Text to speech (TTS) functionality to add verbal feedback (this is NOT a Voice-to-Text alternative to VoiceAttack)  
 - Sound effects functionality to allow various wav files to be played as ound effects  
 - Customised and advanced PIP management
+- Trip timer  
 - Automated joystick curve profiles depending on which flight mode you are currently in  
   * (ie FA-Off v Normal v Supercruise etc)  
 - On the fly manual joystick curve profiles selection to suit your own preferences  
@@ -80,7 +81,16 @@ The zip file contains the following:
   * Documents subfolder with a User Guide, Button Action Reference and UserSettings Guide  
   * Sounds subfolder containing the wav files used in the script  
   * TTS Voice Registry Scraps to assist in adding voices to Windows for use within the game via this script  
-  * The sounder.exe (SoundFX) and voice.exe (TTS) executable files called from within the script  
+  * sounder.exe (SoundFX) and voice.exe (TTS)  
+- Powershell folder containing 2x Powershell helper scripts  
+  * ProcessJournal.ps1 - This helper script monitors the game journal and writes selected journal entries into SupportFiles\Output\MyJournalData.json  
+    The TARGET script reads the MyJournalData.json file several times per second and updates key script string variables eg. CMDRName and StationName etc.  
+  * TTSMonitor.ps1 - This helper script reads the contents of SupportFiles\Output\TTSQueue folder and is the text to speech engine for the script.
+    The TARGET script composes and sends text strings to this folder to be spoken in a sequential manner  
+
+> NOTE: The ProcessJournal.ps1 helper script uses a lookup module for ship names and exobiology data.  
+>       Each time FDev release a new ship or exobiology data this lookup module will need updating.  
+>       The lookup module can be found within the SupportFiles\PowerShell\Lookup folder  
 
 ### INSTALLATION
 
@@ -93,7 +103,7 @@ I recommend you print out the ACTIONS images for the profile you are using and h
 > Make sure you have already installed the Windows drivers and TARGET software before installing this script  
 
 - Unzip the package to a local drive/folder of your choice.  
-> I suggest creating c:\Thrustmaster\ED_TargetScript\ and copying the entire package into there.  
+> I suggest creating c:\Thrustmaster\ED_TargetScript_T16000\ and copying the entire package into there.  
 - Create a backup of your current game bind files which can be found at...  
 	
 	C:\Users\\<username\>\AppData\Local\Frontier Developments\Elite Dangerous\Options\Bindings  
@@ -149,9 +159,17 @@ If the script aborts, it might mean you do not have the required controllers con
 Read the abort error messages carefully.  
 If you get stuck, post a query in the Elite Dangerous forums.  
 
-Assuming the script compiled and runs fine, start Elite Dangerous.  
+Navigate to the SupportFiles\Powershell folder and run the following two batch files...  
+- ProcessJournal.cmd - this runs the ProcessJournal Powershell helper script  
+- TTSMonitor.cmd - this runs the Text to speech monitor Powershell helper SCRIPT  
 
-> NOTE: You need to always run the script before starting the game  
+> NOTE: I recommend you create a shortcut on your desktop which points to the ED_Launcher_T16000.cmd file found in the SupportFiles folder.  
+>       This batch file will start both helperscripts, the TARGET script and the Elite Dangerous Launcher app.
+>       Refer to the LAUNCHER BATCH FILE section below
+
+- Finally, start Elite Dangerous.  
+
+> NOTE: You need to always run the TARGET and helper scripts before starting the game  
 
 ### SCRIPT CONTROLLER CHECK 
 

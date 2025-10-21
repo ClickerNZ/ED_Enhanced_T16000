@@ -1,44 +1,30 @@
 
-//--------------------------------------------------------------------------------------//
-//	CMDR Clicker's Elite Dangerous Enhanced Script - T16000, TWCSThrottle, TFRP Rudder	//
-//--------------------------------------------------------------------------------------//
+	//--------------------------------------------------------------------------------------//
+	//		  CMDR Clicker's Elite Dangerous Enhanced Thrustmaster TARGET Script			//
+	//--------------------------------------------------------------------------------------//
 
-// This file: ED_MapKeyAssignment.tmh ... supports Elite Dangerous (Cobra V)
+	//								T16000 + TWCS REQUIRED									//
 
-// Contains MapKey Statements for all button and switch actions
-// Contains MapKey Statements to announce via TextToSpeech and printf to console for each button or switch action (training mode)
+	//							This file: ED_MapKeyAssignment.tmh							//
 
-// Refer Change Log.txt in parent folder
-
-// LEGEND: 
-// ========================================================================
-// fnName()								refer to ED_Functions file
-// initName()							refer to ED_Initialise file
-// stfnName()							refer to ED_StateTracker file
-// tgName()								refer to ED_Toggles file
-// mName								refer to ED_Macros file
-// MapKey statements					refer to ED_MapKeyAssignment file
-// Global State and Boolean Defines		refer to ED_ScriptDefines file
-// Global Game Key Bind Defines			refer to ED_GameBindings file 
-// Global Script Variables				refer to ED_GlobalVars file
-// User Config Settings					refer to ED_UserSettings file
-// ========================================================================
+	// Contains MapKey Statements for all button and switch actions
+	// Contains MapKey Statements to announce via TextToSpeech and printf to console for each button or switch action (training mode)
 
 /* 
-	Index:		FUNCTION
-	Line 45: 	int MainKeyMap()
-	Line 58:		Joystick Buttons
-	Line 352:		Throttle Buttons 
-	Line 610: 	int TrainingMap()
-	Line 620:		Joystick buttons
-	Line 905:		Throttle buttons
+	Index:			FUNCTION
+	Line 31: 		int MainKeyMap() {
+	Line 44:			Joystick Buttons
+	Line 339:			Throttle Buttons 
+	Line 597: 		int TrainingKeyMap() {
+	Line 607:			Joystick buttons
+	Line 892:			Throttle buttons
 */
 
-// START
+	// START
 
-// -------------------------- //
-//  KeyMaps for Running Game  //
-// -------------------------- //
+	// -------------------------- //
+	//  KeyMaps for Running Game  //
+	// -------------------------- //
 
 	// FUNCTION:	This MapKey set is called from fnGameStarted() when we detect Game is running
 	
@@ -46,20 +32,20 @@
 
 		printf("\x0a\HOTAS Mode:	GAME\x0a");
 			
-// ---------------------------------------- //
-// Map Joystick triggers, switches and hats //
-// ---------------------------------------- //
+	// ---------------------------------------- //
+	// Map Joystick triggers, switches and hats //
+	// ---------------------------------------- //
 
 		// Include MapKey for everything.
 		// Include MapKeyR only where used.
 				
-//===================================================================================================
+	//===================================================================================================
 
-//		Joystick Buttons
-//		----------------
+	//	Joystick Buttons
+	//	----------------
 
-//		(Trigger Switch 1 - Primary Fire)
-//		---------------------------------
+	//	(Trigger Switch 1 - Primary Fire)
+	//	---------------------------------
 
 		if (MapKeyProfile == BASIC) {			// ...use BASIC profile settings	// MapKeyProfile is set within ED_UserSettings.tmh
 			MapKeyUMD(&MyJoystick, TS1,
@@ -81,8 +67,8 @@
 				);
 		}
 
-//		(Trigger Switch 2 - Secondary Fire)
-//		-----------------------------------
+	//	(Trigger Switch 2 - Secondary Fire)
+	//	-----------------------------------
 
 		if (MapKeyProfile == BASIC) {			// 
 			MapKeyUMD(&MyJoystick, TS2,
@@ -104,8 +90,8 @@
 				);
 		}
 
-//		(Trigger Switch 3 - Flight Assist)
-//		----------------------------------
+	//	(Trigger Switch 3 - Flight Assist)
+	//	----------------------------------
 		
 		if (MapKeyProfile == BASIC) {			// 
 			MapKeyUMD(&MyJoystick, TS3,
@@ -122,8 +108,8 @@
 				);
 		}
 
-//		(Trigger Switch 4 - Hardpoints)
-//		-------------------------------
+	//	(Trigger Switch 4 - Hardpoints)
+	//	-------------------------------
 		
 		if (MapKeyProfile == BASIC) {			// 
 			MapKeyUMD(&MyJoystick, TS4, 
@@ -140,10 +126,10 @@
 				);
 		}
 		
-//===================================================================================================
+	//===================================================================================================
 
-//		Joystick POV Hat
-//		----------------
+	//	Joystick POV Hat
+	//	----------------
 
 		if (MapKeyProfile == BASIC) {			// 
 			MapKeyUMD(&MyJoystick, H1U, 
@@ -210,10 +196,10 @@
 		}
 		
 		
-//===================================================================================================
+	//===================================================================================================
 
-//		Joystick Base Buttons
-//		---------------------
+	//	Joystick Base Buttons
+	//	---------------------
 
 		if (MapKeyProfile == BASIC) {			// 		
 			MapKey(&MyJoystick, B5,  PULSE+GalMap);									// LeftShift+';'
@@ -254,7 +240,7 @@
 		else {
 			MapKeyUMD(&MyJoystick, B8,
 				EXEC("fnVPOutput(\"not used\");"),									// U - 
-				EXEC("fnHangerServices(ENTER);"),									// M - 
+				EXEC("fnHangarServices(ENTER);"),									// M - 
 				EXEC("fnVPOutput(\"not used\");")									// D -
 				);
 		}
@@ -309,7 +295,8 @@
 		else {
 			MapKeyUMD(&MyJoystick, B13,
 				EXEC("fnVPOutput(\"not used\");"),									// U - 
-				SEQ(PULSE+m_NAVBeaconWing, PULSE+m_NAVBeaconOff),					// M - My NAV Beacon - ON/OFF
+//-				SEQ(PULSE+m_NAVBeaconWing, PULSE+m_NAVBeaconOff),					// M - My NAV Beacon - ON/OFF
+				EXEC("tgWingBeacon(0);"),											// M - My NAV Beacon - ON/OFF
 				EXEC("fnVPOutput(\"not used\");")									// D -
 				);
 		}
@@ -319,9 +306,9 @@
 		}
 		else {
 			MapKeyUMD(&MyJoystick, B14, 
-				EXEC("fnSetCurves(MEDIUM,	CurveInfo);"),							// U - Set Curves = MEDIUM
-				EXEC("fnSetCurves(OFF,		CurveInfo);"),							// M - Set Curves = OFF
-				EXEC("fnSetCurves(SLOWEST,	CurveInfo);")							// D - Set Curves = SLOWEST
+				EXEC("initCurves(MEDIUM,	CurveInfo);"),							// U - Set Curves = MEDIUM
+				EXEC("initCurves(OFF,		CurveInfo);"),							// M - Set Curves = OFF
+				EXEC("initCurves(SLOWEST,	CurveInfo);")							// D - Set Curves = SLOWEST
 				);
 		}
 
@@ -347,10 +334,10 @@
 				);
 		}
 		
-//===================================================================================================
+	//===================================================================================================
 
-//		Throttle Buttons
-//		----------------
+	//	Throttle Buttons
+	//	----------------
 
 		
 		if (MapKeyProfile == BASIC) {			// 
@@ -424,10 +411,10 @@
 				);
 		}
 
-//===================================================================================================
+	//===================================================================================================
 
-//		Throttle HAT1 - Middle - Travel Management
-//		----------------------
+	//	Throttle HAT1 - Middle - Travel Management
+	//	------------------------------------------
 
 		if (MapKeyProfile == BASIC) {			// 
 			MapKeyUMD(&MyThrottle, THAT1U, 
@@ -489,10 +476,10 @@
 				);					
 		}
 		
-//===================================================================================================
+	//===================================================================================================
 
-//		Throttle HAT2 - Top - PIP Management
-//		------------------------------------
+	//	Throttle HAT2 - Top - PIP Management
+	//	------------------------------------
 
 		if (MapKeyProfile == BASIC) {			// 
 			MapKey(&MyThrottle, THAT2U, PULSE+PowerEng);							// LeftShift+UP		arrow key combo		
@@ -543,10 +530,10 @@
 				);		
 		}
 
-//===================================================================================================
+	//===================================================================================================
 
-//		Throttle HAT3 - Bottom - Countermeasures
-//		----------------------------------------
+	//	Throttle HAT3 - Bottom - Countermeasures
+	//	----------------------------------------
 
 		if (MapKeyProfile == BASIC) {			// 
 			MapKey(&MyThrottle, THAT3U, PULSE+UseShieldCell);						// ''' - single quote key 
@@ -596,32 +583,32 @@
 
 	} 	// End of MainKeyMap 
 
-// =============================================================================================================================================
-// =============================================================================================================================================
+	// =============================================================================================================================================
+	// =============================================================================================================================================
 
 
-// --------------------------- //
-//  KeyMaps for Training Mode  //
-// --------------------------- //
+	// --------------------------- //
+	//  KeyMaps for Training Mode  //
+	// --------------------------- //
 
 	// FUNCTION:	This MapKey set is called at startup if game is not running and user setting 'TrainingMode' is set to ENABLED in ED_UserSettings.tmh 
 	//				Also called from stfnProcessFlags() when we detect Game has halted
 
-	int TrainingMap() {
+	int TrainingKeyMap() {
 
 		printf("\x0a\HOTAS Mode:	TRAINING\x0a");
 		
-// ---------------------------------------- //
-// Map Joystick triggers, switches and hats //
-// ---------------------------------------- //
+	// ---------------------------------------- //
+	// Map Joystick triggers, switches and hats //
+	// ---------------------------------------- //
 
-//===================================================================================================
+	//===================================================================================================
 
-//		Joystick Buttons
-//		----------------
+	//	Joystick Buttons
+	//	----------------
 
-//		(Trigger Switch 1 - Primary Fire)
-//		---------------------------------
+	//	(Trigger Switch 1 - Primary Fire)
+	//	---------------------------------
 
 		if (MapKeyProfile == BASIC) {			// ...use BASIC profile settings								// MapKeyProfile is set within ED_UserSettings.tmh
 			MapKeyUMD(&MyJoystick, TS1,
@@ -638,8 +625,8 @@
 				);
 		}
 
-//		(Trigger Switch 2 - Secondary Fire)
-//		-----------------------------------
+	//	(Trigger Switch 2 - Secondary Fire)
+	//	-----------------------------------
 
 		if (MapKeyProfile == BASIC) {			// 
 			MapKeyUMD(&MyJoystick, TS2,
@@ -656,8 +643,8 @@
 				);
 		}
 
-//		(Trigger Switch 3 - Flight Assist)
-//		----------------------------------
+	//	(Trigger Switch 3 - Flight Assist)
+	//	----------------------------------
 		
 		if (MapKeyProfile == BASIC) {			// 
 			MapKeyUMD(&MyJoystick, TS3,
@@ -674,8 +661,8 @@
 				);
 		}
 
-//		(Trigger Switch 4 - Hardpoints)
-//		-------------------------------
+	//	(Trigger Switch 4 - Hardpoints)
+	//	-------------------------------
 		
 		if (MapKeyProfile == BASIC) {			// 
 			MapKeyUMD(&MyJoystick, TS4, 
@@ -692,10 +679,10 @@
 				);
 		}
 		
-//===================================================================================================
+	//===================================================================================================
 
-//		Joystick POV Hat
-//		----------------
+	//	Joystick POV Hat
+	//	----------------
 
 		if (MapKeyProfile == BASIC) {			// 
 			MapKeyUMD(&MyJoystick, H1U, 
@@ -758,10 +745,10 @@
 		}
 		
 		
-//===================================================================================================
+	//===================================================================================================
 
-//		Joystick Base Buttons
-//		---------------------
+	//	Joystick Base Buttons
+	//	---------------------
 
 		if (MapKeyProfile == BASIC) {			// 		
 			MapKey(&MyJoystick, B5,  EXEC("fnVPOutput(\"Galaxy Map On, Off\");"));	// LeftShift+';'
@@ -786,12 +773,12 @@
 		}
 
 		if (MapKeyProfile == BASIC) {			// 		
-			MapKey(&MyJoystick, B7,  EXEC("fnVPOutput(\"Ship GUI Off, On\");"));	// LeftCTRL+LeftALT+'g'
+			MapKey(&MyJoystick, B7,  EXEC("fnVPOutput(\"Ship g u i, off, on\");"));	// LeftCTRL+LeftALT+'g'
 		}
 		else {
 			MapKeyUMD(&MyJoystick, B7,
 				EXEC("fnVPOutput(\"not used\");"),									// U - 
-				EXEC("fnVPOutput(\"Ship GUI Off, On\");"),							// M - 
+				EXEC("fnVPOutput(\"Ship g u i, off, on\");"),							// M - 
 				EXEC("fnVPOutput(\"not used\");")									// D -
 				);
 
@@ -808,7 +795,7 @@
 		else {
 			MapKeyUMD(&MyJoystick, B8,
 				0,																			// U - 
-				EXEC("fnVPOutput(\"Restock and enter hanger services\");"),					// M - 
+				EXEC("fnVPOutput(\"Restock and enter Hangar services\");"),					// M - 
 				0																			// D -
 				);		}
 
@@ -818,7 +805,7 @@
 		else {
 			MapKeyUMD(&MyJoystick, B9, 
 				EXEC("fnVPOutput(\"not used\");"),											// U -
-				EXEC("fnVPOutput(\"External Camera on/off\");"),							// M -
+				EXEC("fnVPOutput(\"External Camera on, off\");"),							// M -
 				EXEC("fnVPOutput(\"not used\");")											// D -
 				);
 		}
@@ -862,7 +849,7 @@
 		else {
 			MapKeyUMD(&MyJoystick, B13,
 				EXEC("fnVPOutput(\"not used\");"),											// U - 
-				EXEC("fnVPOutput(\"Nav Beacon on/off\");"),									// M -
+				EXEC("fnVPOutput(\"Nav Beacon on, off\");"),									// M -
 				EXEC("fnVPOutput(\"not used\");")											// D - 
 				);		
 		}
@@ -884,7 +871,7 @@
 		else {
 			MapKeyUMD(&MyJoystick, B15, 
 				EXEC("fnVPOutput(\"not used\");"),											// U - 
-				EXEC("fnVPOutput(\"Change Eninge and weapon colours\");"),					// M -
+				EXEC("fnVPOutput(\"Change Engine and weapon colours\");"),					// M -
 				EXEC("fnVPOutput(\"not used\");")											// D -
 				);
 		}
@@ -900,10 +887,10 @@
 				);
 		}
 		
-//===================================================================================================
+	//===================================================================================================
 
-//		Throttle Buttons
-//		----------------
+	//	Throttle Buttons
+	//	----------------
 
 		
 		if (MapKeyProfile == BASIC) {			// 
@@ -965,10 +952,10 @@
 				);
 		}
 
-//===================================================================================================
+	//===================================================================================================
 
-//		Throttle HAT1 - Middle
-//		----------------------
+	//	Throttle HAT1 - Middle
+	//	----------------------
 
 		if (MapKeyProfile == BASIC) {			// 
 			MapKey(&MyThrottle, THAT1U, EXEC("fnVPOutput(\"Engage Super Cruise\");"));	// NP '/'	- Numberpad forward slash key 
@@ -1014,10 +1001,10 @@
 				);		
 		}
 		
-//===================================================================================================
+	//===================================================================================================
 
-//		Throttle HAT2 - Top 
-//		-------------------
+	//	Throttle HAT2 - Top 
+	//	-------------------
 
 		if (MapKeyProfile == BASIC) {			// 
 			MapKey(&MyThrottle, THAT2U, EXEC("fnVPOutput(\"Pips, Power to Engine\");"));	// LeftShift+UP		arrow key combo		
@@ -1060,10 +1047,10 @@
 				);					
 		}
 
-//===================================================================================================
+	//===================================================================================================
 
-//		Throttle HAT3 - Bottom
-//		----------------------
+	//	Throttle HAT3 - Bottom
+	//	----------------------
 
 		if (MapKeyProfile == BASIC) {			// 
 			MapKey(&MyThrottle, THAT3U, EXEC("fnVPOutput(\"Use Shield Cell Bank\");"));	// ''' - single quote key 
@@ -1106,7 +1093,7 @@
 				);			
 		}
 
-//===================================================================================================
+	//===================================================================================================
 
-	}	// end of TrainingMap
+	}	// end of TrainingKeyMap
 

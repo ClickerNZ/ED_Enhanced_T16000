@@ -17,7 +17,7 @@ There are plenty of comments which hopefully make things clear as to what the se
 ### status.json  
 
 If these settings are not correct, the script will abort.  
-Change "username" to match the Windows username you use to log into Windows.  
+Change "<username>" to match the Windows username you use to log into Windows.  
 You can usually find it by opening explorer and navigating to C:\Users. A list of known users  will be shown as subfolders.  
 
 "status.json" is a single line JSON file and written by the game and updated everytime a status variable changes.  
@@ -26,9 +26,9 @@ This script reads status.json every 500 milliseconds and decodes over 50 status 
 MaxStatusFile is a copy of status.json and is written every time status.json exceeds the previously longest length.  
 I track this length in case status.json ever exceeds the read buffer I've set in the script.  
 
-- alias	JournalFolder		= "C:\\Users\\username\\Saved Games\\Frontier Developments\\Elite Dangerous\\";  
-- alias	StatusFile			= "C:\\Users\\username\\Saved Games\\Frontier Developments\\Elite Dangerous\\status.json";  
-- alias	MaxStatusFile		= "C:\\Users\\username\\Saved Games\\Frontier Developments\\Elite Dangerous\\NewMaxJson.json";  
+- alias	JournalFolder		= "C:\\Users\\<username>\\Saved Games\\Frontier Developments\\Elite Dangerous\\";  
+- alias	StatusFile			= "C:\\Users\\<username>\\Saved Games\\Frontier Developments\\Elite Dangerous\\status.json";  
+- alias	MaxStatusFile		= "C:\\Users\\<username>\\Saved Games\\Frontier Developments\\Elite Dangerous\\NewMaxJson.json";  
 
 StatusReadRate is in milliseconds and I use this to set how often we read status.json.  
 If this is set too large you may encounter a lag for some actions.  
@@ -51,10 +51,10 @@ These include;
 
 These flags are saved to MyT16000StatusFile each time we quit the game or menulog so they'll be available next time we log in  
 
-If you followed my installation instructions and unzipped the script package to C:\Thrustmaster\ED_TargetScript\ then the following will not need changing.  
+If you followed my installation instructions and unzipped the script package to C:\Thrustmaster\ED_TargetScript_T16000\ then the following will not need changing.  
 If however you unzipped the package elsewhere or named the folder something else, you will need to change the following setting  
 
-- alias	MyStatusFile		= "C:\\Thrustmaster\\ED_TargetScript\\MyT16000StatusFile.tdf";  
+- alias	MyStatusFile		= "C:\\Thrustmaster\\ED_TargetScript_T16000\\MyT16000StatusFile.tdf";  
 
 ### Text-to-speech and SoundFX
 
@@ -63,15 +63,15 @@ Critical settings for these relate to where you copied the script package to.
 "voice.exe" is the applet which does the text to speech.  
 "sounder.exe" is the wav file player applet used to play the odd sound effect (modifier key, when reversing etc).  
 
-- alias	VoicePath			= "C:\\Thrustmaster\\ED_TargetScript\\SupportFiles\\voice.exe";  
-- alias	SoundPath			= "C:\\Thrustmaster\\ED_TargetScript\\SupportFiles\\sounder.exe";  
+- alias	VoicePath			= "C:\\Thrustmaster\\ED_TargetScript_T16000\\SupportFiles\\voice.exe";  
+- alias	SoundPath			= "C:\\Thrustmaster\\ED_TargetScript_T16000\\SupportFiles\\sounder.exe";  
 
 Additionally, for TTS to work, you need to have at least one of the Microsoft narator languages installed.  
 Additional information on how to check, install and configure the voices can be found in ED_UserSettings.tmh file.  
 
 Likewise, the wav file sounds that I use in this script can be found in the following folder;  
 
-- alias	WAVPath				= "C:\\Thrustmaster\\ED_TargetScript\\SupportFiles\\sounds\\";  
+- alias	WAVPath				= "C:\\Thrustmaster\\ED_TargetScript_T16000\\SupportFiles\\sounds\\";  
 
 ### Setting a preferred YAW controller  
 
