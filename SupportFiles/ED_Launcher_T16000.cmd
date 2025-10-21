@@ -49,7 +49,20 @@ c:
 cd "\program files (x86)\thrustmaster\target\x64\"
 start targetgui.exe -r "c:\Thrustmaster\ED_TargetScript_T16000\ScriptFiles\ed_enhanced_t16000.tmc"
 
-timeout /t 5
+timeout /t 5 /nobreak >nul
+echo. 
+echo Start TTSMonitor powershell script...
+start powershell -NoProfile -ExecutionPolicy Bypass -NonInteractive -File "C:\Thrustmaster\ED_TargetScript_T16000\SupportFiles\PowerShell\TTSMonitor.ps1"
+echo.
+
+
+timeout /t 20 /nobreak >nul
+
+rem DO THIS LAST
+
+echo Start ProcessJournal powershell script...
+start powershell -NoProfile -ExecutionPolicy Bypass -NonInteractive -File "C:\Thrustmaster\ED_TargetScript_T16000\SupportFiles\PowerShell\ProcessJournal.ps1"
+echo.
 
 rem pause
 
