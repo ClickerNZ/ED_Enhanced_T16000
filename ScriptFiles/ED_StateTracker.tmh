@@ -6,20 +6,20 @@
 	// This file: ED_StateTracker.tmh ... supports Elite Dangerous (Vanguards)
 
 /*
-	Index:			FUNCTION
-	Line    44: 		int stfnReadMyJournalData() {
-	Line   141: 		int stfnReadStatusJson() {
-	Line   303: 		int stfnWriteMaxJson() {			// This may now be redundant if the dynamic buf sizing code works.
-	Line   360: 		int stfnGetKeyValue(alias pattern, int vtype, int jsonfile = 0) {
-	Line   475: 		int stfnDecodeFlags() {
-	Line   579: 		int stfnDecodeFlags2() {
-	Line   687: 		int stfnTripTime(int dummy = 0) {
-	Line   759: 		int stfnProcessFlags(int UpdateLEDs = NO) {
-	Line  1611: 		int stfnDecodeModules(int dummy = 0) {
-	Line  1643: 		int stfnProcessMyJournalData(int dummy = 0) {
-	Line  1717: 		int stfnProcessGuiFocus() {
-	Line  1764: 		int stfnStartCheck() {
-	Line  1834: 		int stfnMyStates(int action) {
+	Index:				FUNCTION
+	Line    42: 		int stfnReadMyJournalData() {
+	Line   123: 		int stfnReadStatusJson() {
+	Line   270: 		int stfnWriteMaxJson() {	
+	Line   327: 		int stfnGetKeyValue(alias pattern, int vtype, int jsonfile = 0) {
+	Line   441: 		int stfnDecodeFlags() {
+	Line   545: 		int stfnDecodeFlags2() {
+	Line   653: 		int stfnTripTime(int dummy = 0) {
+	Line   725: 		int stfnProcessFlags(int UpdateLEDs = NO) {
+	Line  1566: 		int stfnDecodeModules(int dummy = 0) {
+	Line  1598: 		int stfnProcessMyJournalData(int dummy = 0) {
+	Line  1652: 		int stfnProcessGuiFocus() {
+	Line  1698: 		int stfnStartCheck() {
+	Line  1769: 		int stfnMyStates(int action) {
 */
 
 	// START
@@ -35,8 +35,6 @@
 	
 	int		ReadError2Count	= 0;
 	int		ReadError2Sent;
-//-	int		initmyJournalData = 0;			// flag set once per script run 
-//-	int		initlastJournalData = 0;
 	int		readloops = 0;
 	
 	// ------------
@@ -45,26 +43,13 @@
 
 		int 	fp;
 		int		rc;
-//-		int 	buf = 1024;					// Always set this larger than MyJournalData.json otherwise we'll get read errors
 		int 	buf;
 		int		myResult;
-/*		
-		if(!initmyJournalData) {			// Only need to initialise the char array once per script run
-			Dim(&myJournalData, buf);
-			myJournalData[0] = 0;
-			initmyJournalData = 1;
-		}
-		if (!initlastJournalData) {			// Only need to initialise the char array once per script run
-			Dim(&lastJournalData, buf); 
-	 		lastJournalData[0] = NUL;
-			initlastJournalData = 1;
-		}
-*/		
+
 		fp = fopen(&MyJournalData, "r");	// Open the MyJournalData file in 'read' mode 
 		
 		if (fp) {
 			
-//-	DEBUG +++++			
 			rc	= fseek(fp, 0, 2);                          // seek to end
 			buf	= ftell(fp);								// sets buf to length of status.json 
 			rc	= fseek(fp, 0, 0);                          // rewind to start
@@ -73,7 +58,6 @@
 			myJournalData[0] = NUL;
 			Dim(&lastJournalData, buf+1); 
 			lastJournalData[0] = NUL;
-//-	DEBUG +++++
 			
 			myResult = fread(&myJournalData, 1, buf, fp);	// Read the json string into global myJournalData global char array 
 			fclose(fp);
@@ -124,10 +108,8 @@
 	// GlobalVars
 
 	char myJson;	
-//-	int initmyJson = 0;	
 	
 	char lastJson;
-//-	int initlastJson = 0;
 	
 	int		ReadErrorCount	= 0;
 	int		ReadErrorSent;
@@ -142,7 +124,6 @@
 
 		int 	fp;
 		int 	rc;
-//-		int 	buf = 1024;				// Always set this larger than NewMaxJson otherwise we'll get read errors
 		int 	buf;
 		int		myResult;
 		int		newJson			= 0;	// set when myJson != lastJson...we then call stfnProcessFlags();
@@ -150,23 +131,11 @@
 		int		json10;
 		int		json1;
 		char	json; Dim(&json, 64); json[0] = 0;
-/*
-		if (!initmyJson) {
-			Dim(&myJson, buf+1);
-			myJson[0] = NUL;
-			initmyJson = 1;
-		}
-		if (!initlastJson) {	
-			Dim(&lastJson, buf+1); 
-			lastJson[0] = NUL;
-			initlastJson = 1;
-		}
-*/		
+
 		fp = fopen(&StatusFile, "r");
 		
 		if (fp) {
 			
-//-	DEBUG +++++			
 			rc	= fseek(fp, 0, 2);                          // seek to end
 			buf	= ftell(fp);								// sets buf to length of status.json 
 			rc	= fseek(fp, 0, 0);                          // rewind to start
@@ -176,8 +145,6 @@
 			Dim(&lastJson, buf+1); 
 			lastJson[0] = NUL;
 
-//-	DEBUG +++++
-			
 			myResult = fread(&myJson, 1, buf, fp);
 			fclose(fp);
 			
@@ -442,7 +409,6 @@
 				myResult = strcmp(&thischr, "}");
 				if (myResult == 0) {
 					EndValue = 1;
-//-					chrpnt = chrpnt - 1;								// assumes there's a space after last key-value and "}"
 				}
 				
 				myResult = strcmp(&thischr, " ");
@@ -773,7 +739,6 @@
 						}
 						
 						strcpy(&LandedTOD, fnGetTOD());
-//-						printf("==	Docked: %s @ %s\x0a\x0a", &StationName, fnGetTOD());
 						printf("==	Docked: %s @ %s\x0a\x0a", &StationName, &LandedTOD);
 						
 						if (fLights) tgLights(0);
@@ -798,7 +763,6 @@
 					}
 					
 					strcpy(&LiftoffTOD, fnGetTOD());
-//-					printf("==	Liftoff @ %s\x0a", fnGetTOD());
 					printf("==	Liftoff @ %s\x0a", &LiftoffTOD);
 
 					DeferCall(2500, &fnGetStationName, 0);						// Undocked: PS-Journal should have trapped "Undocked" event and reset StationName by now.
@@ -814,7 +778,6 @@
 		if (fLanded != lLanded) {												// Framework for future functionality
 			if (fLanded) {
 				strcpy(&LandedTOD, fnGetTOD());
-//-				printf("==	Landed @ %s\x0a", fnGetTOD());
 				printf("==	Landed @ %s\x0a", &LandedTOD);
 				
 				if (strcmp(&LiftoffTOD, "HH:MM") != 0) {						// Calculate and output Trip time
@@ -831,7 +794,6 @@
 				}
 				
 				strcpy(&LiftoffTOD, fnGetTOD());
-//-				printf("==	Lift off @ %s\x0a", fnGetTOD());
 				printf("==	Lift off @ %s\x0a", &LiftoffTOD);
 
 				ShipDismissed = NO;			
@@ -841,11 +803,9 @@
 		//	Placeholder for future development
 		//	LOGIC: fLandingGear gets set when Landing gear is deployed and reset when retracted
 		if (fLandingGear != lLandingGear) {									// This may be announced via in game setting
-//-			if (fLandingGear & fMainShip) {									// Do we need to trap if in ship? (eg Taxi/DropShip)
 			if (fLandingGear) {												// Dealt with in tgLandingGear
 				// Landing Gear Deployed 
 			}
-//-			else if (fMainShip) {
 			else {
 				// Landing Gear retracted  
 			}
@@ -911,9 +871,9 @@
 					}
 				}
 				else {																	// Initiated drop
-//-					SelectDrop = NO;													// Reset SelectDrop flag 
+					//
 				}
-				UpdateLEDs = YES;
+//-				UpdateLEDs = YES;		// WARTHOG Only
 			}	
 			fnGetFlightMode();															// Line up slider curves
 			SelectDrop = NO;															// Reset SelectDrop flag 
@@ -1104,7 +1064,6 @@
 			}
 		}
 
-//-		if ((fLatLong != lLatLong) & fMainShip) {									// Do we need to trap if in ship? (eg not Taxi/Dropship?)
 		if (fLatLong != lLatLong) {													// Detect when we cross the Orbital Cruise boundary
 			if (fLatLong) {
 				//
@@ -1253,9 +1212,7 @@
 			
 		OldFlags = Flags;													// Keep track of last Flags Value to track when Flag bits change
 
-//-		// END 		OLD ProcessFlags 
 		// ==========================================================================================================
-		// START	OLD ProcessFlags2
 		
 		if (OldFlags2 != Flags2) {
 			if (fOnFoot != lOnFoot) {									// Track when on foot
@@ -1428,7 +1385,6 @@
 				if (fBreathableAtmosphere) {
 					printf("==	Atmosphere is breathable\x0a");					
 				}
-//-				else if (fOnFoot) {
 				else {
 					printf("==	Atmosphere is no longer breathable\x0a");	
 				}
@@ -1483,7 +1439,6 @@
 
 				if (fNPCCrewActive) {
 					fnVPOutput("NPC crew active");
-//-					FighterPresent = 1;
 				}
 				else {
 					fnVPOutput("NPC crew not active");				
@@ -1654,23 +1609,6 @@
 			fnFighterStatus(0);																		// Determines if Fighter is active 
 			LoadGameDetect = stfnGetKeyValue("LoadGameDetect", INTEGER, 1);
 
-//-		DEVELOPMENT CODE - REMOVE BELOW FROM HERE...
-/*
-		if (DEBUG >= LOG) {
-			if (fSCOPresent)			printf("!!	DEBUG: stfnProcessMyJournalData() - SCO FSD installed\x0a");
-			if (fFighterPresent)		printf("!!	DEBUG: stfnProcessMyJournalData() - Fighter Bay installed\x0a");
-			if (fSRVPresent)			printf("!!	DEBUG: stfnProcessMyJournalData() - SRV Bay installed\x0a");	
-			if (fHeatsinkPresent)		printf("!!	DEBUG: stfnProcessMyJournalData() - Heatsink Launcher installed\x0a");
-			if (fChaffLauncherPresent)	printf("!!	DEBUG: stfnProcessMyJournalData() - Chaff Launcher installed\x0a");
-			if (fSCBPresent)			printf("!!	DEBUG: stfnProcessMyJournalData() - Shield Cell Bank installed\x0a");
-			if (fECMPresent)			printf("!!	DEBUG: stfnProcessMyJournalData() - Electronic Counter Measure installed\x0a");
-			if (fLimpetPresent)			printf("!!	DEBUG: stfnProcessMyJournalData() - Limpet controller installed\x0a");
-			if (ActiveFighter)			printf("!!	DEBUG: stfnProcessMyJournalData() - Fighter is ACTIVE\x0a");
-			printf("\x0a");
-		}
-*/			
-
-		// --- Part of ED_Development.tmh as part of DEBUG --- MOVE THIS BACK INTO PROD SCRIPTS
 		// Check if InputCMD or CMDParameter have changed...
 		if (InputCMDcharsSET == 0) {			// Dimension and clear char arrays...
 			Dim(&InputCMD, 64);					// Arbitrary buffer size
@@ -1695,20 +1633,17 @@
 		CMDParameter[strlen(&CMDParameter)] = 0;
 
 		if (strcmp(&InputCMD, "not set") == 0) {
-//-			if (DEBUG >= LOG) printf("!!	DEBUG: stfnProcessMyJournalData() - InputCMD = not set, do not call fnInputCMD()\x0a");
+			if (DEBUG >= LOG) printf("!!	DEBUG: stfnProcessMyJournalData() - InputCMD = not set, do not call fnInputCMD()\x0a");
 		}
 		else {
 			if (strcmp(&InputCMD, &lastInputCMD) == 0 & strcmp(&CMDParameter, &lastCMDParameter) == 0)	{	// New inputCMD to process?
-//-				if (DEBUG >= LOG) printf("!!	DEBUG: stfnProcessMyJournalData() - InputCMD and CMDParameter have no changes, do not call fnInputCMD()\x0a");
+				if (DEBUG >= LOG) printf("!!	DEBUG: stfnProcessMyJournalData() - InputCMD and CMDParameter have no changes, do not call fnInputCMD()\x0a");
 			}
 			else{
-//-				if (DEBUG >= LOG) printf("!!	DEBUG: stfnProcessMyJournalData() - InputCmd or CMDParameter have changed\x0a");
+				if (DEBUG >= LOG) printf("!!	DEBUG: stfnProcessMyJournalData() - InputCmd or CMDParameter have changed\x0a");
 				fnInputCMD(0);
 			}
 		}
-			
-//-		DEVELOPMENT CODE - REMOVE ABOVE HERE
-
 	}
 
 	
@@ -1718,7 +1653,6 @@
 		int GUIFocus;
 		int GUITxt = "not defined";
 
-//-		if (Flags != 0) {										// Hmmmm'k ... maybe GameLoaded or !StartupLock 
 		if (GameLoaded) {
 			GUIFocus = stfnGetKeyValue("GuiFocus", INTEGER);
 			// Not too sure of the value of this - to be reviewed	-	REVIEW 
@@ -1794,16 +1728,17 @@
 				printf("\x0a\++	Script initialised and running @ %s \x0a", fnGetTOD());
 				
 				// Tracking max string length of status.json to ensure read buffer is big enough.
-				if (DEBUG >= LOG ) printf("\x0a\++	DEBUG: fnStartCheck() - Max json length seen = %d ...\x0a\x0a", NewMaxJson);
-				// If you see errors, ensure 'buf' is set to a value exceeding this number at start of stfnReadStatusJson(), above.
+				if (DEBUG >= LOG ) {
+					printf("\x0a\++	DEBUG: fnStartCheck() - Max json length seen = %d ...\x0a\x0a", NewMaxJson);
+					// If you see errors, ensure 'buf' is set to a value exceeding this number at start of stfnReadStatusJson(), above.
 				
-				json100 = (NewMaxJson - (NewMaxJson % 100))/100;
-				json10	= (NewMaxJson % 100) / 10;
-				json1 	= (NewMaxJson % 100) % 10;
-
-//-				sprintf(&jason, "jason %d %d%d", json100, json10, json1);						// Speaks each digit
-//-				fnTextToSpeech(&jason);
+					json100 = (NewMaxJson - (NewMaxJson % 100))/100;
+					json10	= (NewMaxJson % 100) / 10;
+					json1 	= (NewMaxJson % 100) % 10;
 				
+					sprintf(&jason, "jason %d %d%d", json100, json10, json1);						// Speaks each digit
+					fnTextToSpeech(&jason);
+				}
 				fnTextToSpeech("Waiting for game to load");
 			}
 			fnSoundFX("tada", 75);																// Script has started successfully 

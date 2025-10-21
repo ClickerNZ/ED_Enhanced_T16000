@@ -28,8 +28,8 @@
 	define OFF						0
 	define ON						1
 
-//	int		DEBUG					= OFF;					// InputCMD disabled. Many DEBUG outputs supressed
-	int		DEBUG					= ON;					// InputCMD enabled
+	int		DEBUG					= OFF;					// InputCMD disabled. Many DEBUG outputs supressed
+//	int		DEBUG					= ON;					// InputCMD enabled
 //	int		DEBUG					= LOG;					// Many DEBUG outputs go to console
 //	int		DEBUG					= VERBOSE;				// Many DEBUG outputs go to console and TTS
 	

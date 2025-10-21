@@ -16,17 +16,17 @@
 	Line   113: 			m_ShowGameStats = CHAIN(								// Keystroke sequence =
 	Line   119: 			m_FastModeSwitch0 = CHAIN(
 	Line   130: 			m_FastModeSwitch1a = CHAIN(
-	Line   151: 			m_FastModeSwitch1b = CHAIN(
-	Line   172: 			m_FastModeSwitch2 = CHAIN(
-	Line   185: 			m_ReportCrimesToggle = CHAIN(
-	Line   207: 			m_WingBeaconTeam = CHAIN(
-	Line   234: 			m_WingBeaconOff = CHAIN(
-	Line   259: 			m_EnterHangar = CHAIN(
-	Line   275: 			m_Launch = CHAIN(
-	Line   286: 			m_Disembark = CHAIN(
-	Line   300: 			m_ChangeColours = CHAIN(
-	Line   306: 			m_NextFG = CHAIN(
-	Line   311: 			m_PrevFG = CHAIN(
+	Line   150: 			m_FastModeSwitch1b = CHAIN(
+	Line   171: 			m_FastModeSwitch2 = CHAIN(
+	Line   184: 			m_ReportCrimesToggle = CHAIN(
+	Line   206: 			m_WingBeaconTeam = CHAIN(
+	Line   233: 			m_WingBeaconOff = CHAIN(
+	Line   258: 			m_EnterHangar = CHAIN(
+	Line   274: 			m_Launch = CHAIN(
+	Line   285: 			m_Disembark = CHAIN(
+	Line   299: 			m_ChangeColours = CHAIN(
+	Line   305: 			m_NextFG = CHAIN(
+	Line   310: 			m_PrevFG = CHAIN(
 */
 
 	// START
@@ -136,7 +136,6 @@
 			PULSE+UISelect, D(650),								//    changed/increased
 			PULSE+UIRight, D(650),
 			PULSE+UISelect, D(650),								// Top option selected by default 
-//-			PULSE+UIRight, D(650),								// Moved down to second last instruction
 	//		PULSE+UIDown, D(650),								// Optional #1 Remove comment marks to highlight 2nd option in list...
 	//		PULSE+UISelect, D(650),								// ...and select it 
 	//		PULSE+UIDown, D(650),								// Optional #2 Remove comment marks to highlight 3rd option in list
@@ -157,7 +156,6 @@
 			PULSE+UISelect, D(650),								//    changed/increased
 			PULSE+UIRight, D(650),
 			PULSE+UISelect, D(650),								// Top option selected by default 
-//-			PULSE+UIRight, D(650),								// Moved down to second last instruction
 			PULSE+UIDown, D(650),								// Optional #1 Remove comment marks to highlight 2nd option in list...
 			PULSE+UISelect, D(650),								// ...and select it 
 	//		PULSE+UIDown, D(650),								// Optional #2 Remove comment marks to highlight 3rd option in list
