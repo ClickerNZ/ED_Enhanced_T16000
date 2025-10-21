@@ -164,7 +164,8 @@ Navigate to the SupportFiles\Powershell folder and run the following two batch f
 - TTSMonitor.cmd - this runs the Text to speech monitor Powershell helper SCRIPT  
 
 > NOTE: I recommend you create a shortcut on your desktop which points to the ED_Launcher_T16000.cmd file found in the SupportFiles folder.  
->       This batch file will start both helperscripts, the TARGET script and the Elite Dangerous Launcher app.  
+>       This batch file will start both helperscripts, the TARGET script and the Elite Dangerous Launcher app.
+>       Refer to the LAUNCHER BATCH FILE section below
 
 - Finally, start Elite Dangerous.  
 
