@@ -11,7 +11,7 @@
 	Line    81: 		int fnStartupMapKeyMode() {
 	Line   107: 		int fnGetFlightMode() {
 	Line   138: 		int fnLEDBrightness(int x = NOCHANGE) {
-	Line   159: 		int fnFlashLED(int x) {			
+	Line   159: 		int fnFlashLED(int x) {	
 	Line   177: 		int fnSetLEDs(int dummy=NUL) {
 	Line   211: 		int fnFlashStart() {
 	Line   250: 		int fnTextToSpeech(int text, int VolumeOverride=0, int Voice=DefaultVoice) {
@@ -36,21 +36,21 @@
 	Line  1139: 		int fnCheckFiregroup() {
 	Line  1155: 		int fnClearChatBox(int mode = 0) {
 	Line  1219: 		int fnModeSwitch(int mode) {
-	Line  1302: 		int fnVPOutput(int VPOutput, int VolumeOverride=0, int Type=0) {
-	Line  1324: 		int fnPrintState() {
-	Line  1335: 		int fnStateDump() {
-	Line  1501: 		int fnGetTOD() {
-	Line  1552: 		int fnMyName() {
-	Line  1583: 		int	fnGreetCMDR(int dummy = 0) {
-	Line  1637: 		int fnSelectFiregroup(int fg) {
-	Line  1675: 		int fnGetStationName(int dummy=0) {
-	Line  1697: 		int fnDockingStatus(int dummy) {
-	Line  1795: 		int fnFighterStatus(int dummy = 0) {
-	Line  1816: 		int fnPANIC(int panic = 0) {
-	Line  1853: 		int fnInputCMD(int dummy = 0) {
-	Line  1914: 		int fnDEBUG(int dummy = 0) {
-	Line  1938: 		int findstr(alias string, alias substring) {
-	Line  1963: 		int strcpy(alias dst, alias src) {
+	Line  1312: 		int fnVPOutput(int VPOutput, int VolumeOverride=0, int Type=0) {
+	Line  1334: 		int fnPrintState() {
+	Line  1345: 		int fnStateDump() {
+	Line  1511: 		int fnGetTOD() {
+	Line  1562: 		int fnMyName() {
+	Line  1593: 		int	fnGreetCMDR(int dummy = 0) {
+	Line  1647: 		int fnSelectFiregroup(int fg) {
+	Line  1685: 		int fnGetStationName(int dummy=0) {
+	Line  1713: 		int fnDockingStatus(int dummy) {
+	Line  1811: 		int fnFighterStatus(int dummy = 0) {
+	Line  1832: 		int fnPANIC(int panic = 0) {
+	Line  1869: 		int fnInputCMD(int dummy = 0) {
+	Line  1930: 		int fnDEBUG(int dummy = 0) {
+	Line  1954: 		int findstr(alias string, alias substring) {
+	Line  1979: 		int strcpy(alias dst, alias src) {
 */
 
 	//------------------//
@@ -134,7 +134,7 @@
 	//	FUNCTION:	Adjust LED Brightness
 	//	Parameter:	x = INCREASE, DECREASE, NOCHANGE (Default)
 	//	NOTE: WARTHOG only, not used on T16000/TWCS 
-	
+/*	
 	int fnLEDBrightness(int x = NOCHANGE) {
 		if (x == INCREASE) {
 			LEDLevel = LEDLevel + 1;
@@ -150,12 +150,12 @@
 			printf("++	LED Brightness [Level %d]:	%d\x0a", LEDLevel, SetLED);
 		}
 	}
-	
+*/	
 	
 	//	FUNCTION:	Flashes status LED when toggled
 	//	Parameter:	"LEDx" where x = 1 to 5
 	//	NOTE: WARTHOG only, not used on T16000/TWCS 
-
+/*
 	int fnFlashLED(int x) {																					// Flashes LED# (parsed as parameter when calling) odd number of times.
 		int counter = 0;
 		if (FlashLEDs) {
@@ -168,12 +168,12 @@
 			ActKey(KEYON+PULSE+LED(&MyThrottle, LED_ONOFF, LED_CURRENT^x));								// No Flash, just toggle the LED on or off
 		}
 	}
-
+*/
 
 	//	FUNCTION: Sets Status LEDs according to state flags
 	//	Parameter: dummy ... required so we can use defercall which must have a parameter parsed 
 	//	NOTE: WARTHOG only, not used on T16000/TWCS 
-	
+/*	
 	int fnSetLEDs(int dummy=NUL) {
 
 		alias fnName = "fnSetLEDs";
@@ -203,11 +203,11 @@
 			}
 		}		
 	}
-
+*/
 
 	//	FUNCTION: Flashes all LEDs on Throttle to signify game has loaded
 	//	NOTE: WARTHOG only, not used on T16000/TWCS 
-
+/*
 	int fnFlashStart() {
 		int i = 0;
 		
@@ -219,7 +219,7 @@
 			}
 		}
 	}
-
+*/
 
 	// FUNCTION: 	Text to Speech using external powershell script and Windows TTS engine
 	// Parameter:	'text' = string to convert to speech, 
@@ -443,8 +443,8 @@
 		stfnReadMyJournalData();
 		ActKey(KEYON+REXEC(hReadMyJournalData, JournalReadRate, "stfnReadMyJournalData();", RNOSTOP));
 
-
-		fnFlashStart();																// Flash LEDs on Throttle Base to alert user game has started
+	// --- Not User for T16000/TWCS
+	//	fnFlashStart();																// Flash LEDs on Throttle Base to alert user game has started
 				
 		if (fDocked) {
 			//
@@ -453,7 +453,7 @@
 			//
 		}
 		if (!ConnectionStatus) {
-		//	ActKey(KEYON+PULSE+ShowConnectionStatus);								// ...turn on connection status. Alternate="m_ShowGameStats()"
+//-			ActKey(KEYON+PULSE+ShowConnectionStatus);								// ...turn on connection status. Alternate="m_ShowGameStats()"
 			ActKey(KEYON+PULSE+ShowFramerate);										// ...turn on frame rate. Alternate="m_ShowGameStats()"			
 			ConnectionStatus = ON;													// tracks if above has already been turned on
 		}
@@ -511,7 +511,8 @@
 				SilentRunningState = 0;
 			}
 		}
-		DeferCall(1100, &fnSetLEDs, NUL);
+	// --- Not used for T16000/TWCS 
+	//	DeferCall(1100, &fnSetLEDs, NUL);
 	}
 
 
@@ -1255,6 +1256,12 @@
 				printf("!!	DEBUG: fnModeSwitch() - SilentRunning	= %d\x0a", SilentRunningState);
 				printf("!!	DEBUG: fnModeSwitch() - Reverse	= %\x0a", ReverseState);
 			}
+
+//-			Flags = 0;																				// Pretend the game has stopped...
+	// --- Bot used with T16000/TWCS 
+	//		fnSetLEDs();																			// Turn off Status LEDs, then...
+	//		ActKey(KEYON+PULSE+LED(&MyThrottle, LED_ONOFF, LED_CURRENT-LED0)); 						// set GLOBAL LED OFF.   IF THIS DOESN'T SET ALL LEDS OFF UN COMMENT THE ABOVE 2 LINES
+
 					
 			if (mode == 0) {
 				fnVPOutput("Menu log to open selected.. please wait for game reload", 0, 1);			
@@ -1263,9 +1270,14 @@
 			else if (mode == 1) {
 				
 				fnVPOutput("Menu log to private group selected.. please wait for game reload", 0, 1);			
-
-			//	ActKey(KEYON+PULSE+m_FastModeSwitch1b);											// Selects 2nd option in PRIVATE mode
-				ActKey(KEYON+PULSE+m_FastModeSwitch1a);											// Selects 1st option in PRIVATE mode					
+//-		Remove "Clicker check" if/else block before publish
+				if (strcmp(&CMDRName, "Clicker") == 0) {
+					ActKey(KEYON+PULSE+m_FastModeSwitch1b);											// Selects 2nd option in PRIVATE mode
+				}
+				else {
+					ActKey(KEYON+PULSE+m_FastModeSwitch1a);											// Selects 1st option in PRIVATE mode					
+				}
+//-
 			}
 			else {
 				fnVPOutput("Menu log to solo selected.. please wait for game reload", 0, 1);			
@@ -1679,13 +1691,19 @@
 		StationName[0] = 0;
 		strcpy(&StationName, &keyvalue);
 		
+//-	DEBUG +++++ START
 		if (strlen(&StationName) == 0) {
 			if (DEBUG >= LOG) printf("!!	DEBUG: fnGetStationName() - StationName has returned as zero length string\x0a");
 		}
-		else {		
+		else {
+//-	DEBUG +++++ END 
+		
 			StationName[strlen(&StationName)] = 0;
 			if (DEBUG >= LOG) printf("!!	DEBUG: fnGetStationName() - Station Name = %s\x0a", &StationName);
+		
+//-	DEBUG +++++ START
 		}
+//-	DEBUG +++++ END 
 		
 	}
 	
@@ -1733,7 +1751,7 @@
 			pad10	= (LandingPad % 100) / 10;
 			pad1 	= (LandingPad % 100) % 10;
 
-		//	sprintf(&LPMsg, "Landing Pad %d", LandingPad);				// Speak Landing pad as whole number
+//-			sprintf(&LPMsg, "Landing Pad %d", LandingPad);				// Speak Landing pad as whole number
 			sprintf(&LPMsg, "Landing Pad: %d %d", pad10, pad1);			// Speaks each digit ... eg 5,9,8
 			LPMsg[strlen(&LPMsg)] = 0;
 			fnTextToSpeech(&LPMsg);
