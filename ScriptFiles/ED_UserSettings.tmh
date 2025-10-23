@@ -73,7 +73,7 @@
 	// LED settings //		WARTHOG ONLY - LEAVE THIS IN AS WE USE A COMMON MyStatus file.
 	//--------------//
 
-	int		FlashLEDs			= ENABLED;				// Flash the Status LEDs when status changes. ENABLED or DISABLED
+	int		FlashLEDs			= DISABLED;				// Flash the Status LEDs when status changes. ENABLED or DISABLED
 	int		LEDLevel			= 1;					// Default starting LED Level. Valid Levels = 0 - 5. Refer fnLEDBrightness()
 														// LEDLevel 0: 0	- 42 (off)
 														// LEDLevel 1: 43	- 85 (dimmest)
