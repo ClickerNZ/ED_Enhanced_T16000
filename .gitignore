@@ -1,7 +1,6 @@
 Issues Register.txt
 Test Plan.xlsx
 Pipeline.txt
-"Master Index.txt"
 DO THIS BEFORE PUBLISHING.txt
 *.docx
 ED_Launcher-TEST.cmd
@@ -17,7 +16,7 @@ Archive/
 *.log
 *.tmp
 
-TARGET*.*
 ScriptFiles/TARGET Session
 ScriptFiles/Master Index.txt
 SupportFiles/PowerShell/Autopilot Functions.ps1
+ScriptFiles/TARGET_Script_Analyzer_v8.4.ps1
