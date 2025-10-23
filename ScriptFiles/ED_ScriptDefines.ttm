@@ -28,8 +28,8 @@
 	define OFF						0
 	define ON						1
 
-	int		DEBUG					= OFF;					// InputCMD disabled. Many DEBUG outputs supressed
-//	int		DEBUG					= ON;					// InputCMD enabled
+//	int		DEBUG					= OFF;					// InputCMD disabled. Many DEBUG outputs supressed
+	int		DEBUG					= ON;					// InputCMD enabled
 //	int		DEBUG					= LOG;					// Many DEBUG outputs go to console
 //	int		DEBUG					= VERBOSE;				// Many DEBUG outputs go to console and TTS
 	
@@ -429,8 +429,8 @@
 	//-----------------------------------//
 
 	int Modules					=	0;						//  Read from MyJournalData.json 
-	int oldModules				=	0;						//	Track when changed via stfnProcessMyJournalData()
-															// Read and decode 'Modules' each time Modules != oldModules
+//-	int oldModules				=	0;						//	Track when changed via stfnProcessMyJournalData()
+//-															// Read and decode 'Modules' each time Modules != oldModules
 	int	fSCOPresent				=	0;
 	int fFighterPresent			= 	0;
 	int fSRVPresent				=	0;	
