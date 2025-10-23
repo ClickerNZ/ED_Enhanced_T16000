@@ -16,7 +16,6 @@ Archive/
 *.log
 *.tmp
 
+TARGET*.*
 ScriptFiles/TARGET Session
-ScriptFiles/Master Index.txt
 SupportFiles/PowerShell/Autopilot Functions.ps1
-ScriptFiles/TARGET_Script_Analyzer_v8.4.ps1
