@@ -1,0 +1,138 @@
+﻿/*	ED_Enhanced_T16000.tmc
+	Index:				FUNCTION
+	Line    88: 		int main() {
+	Line   189: 		int EventHandle(int type, alias o, int x) {
+*/
+
+/*	ED_Functions.tmh
+	Index:				FUNCTION
+	Line    63: 		int fnNotValid(int fnName, int reason=0) {
+	Line    81: 		int fnStartupMapKeyMode() {
+	Line   107: 		int fnGetFlightMode() {
+	Line   138: 		int fnLEDBrightness(int x = NOCHANGE) {
+	Line   159: 		int fnFlashLED(int x) {		
+	Line   177: 		int fnSetLEDs(int dummy=NUL) {
+	Line   211: 		int fnFlashStart() {
+	Line   250: 		int fnTextToSpeech(int text, int VolumeOverride=0, int Voice=DefaultVoice) {
+	Line   285: 		int fnVoiceVolume(int x) {
+	Line   336: 		int fnTTSExport(alias TTSText, int TTSVoice = DefaultVoice, int TTSVolume=75 ) {
+	Line   411: 		int fnSoundFX(int wavfile, int vol = 100, int loops = 1) {
+	Line   428: 		int fnGameStarted(int dummy = 0) {
+	Line   521: 		int fnPIPMode(int x) {
+	Line   572: 		int fnPIPManager(int PwrPriority) {
+	Line   609: 		int fnPIPMapper(int maxPIPx=0, int minPIPy=0, int balPIPz=0) {
+	Line   649: 		int fnAdvFireControl(int x) {
+	Line   730: 		int fnAdvancedSCB(int x = 0) {
+	Line   788: 		int fnHeatsink(int param = 0) {
+	Line   827: 		int fnChaff(int dummy = 0) {
+	Line   855: 		int fnDeploySRV(int x) {
+	Line   907: 		int fnDeployFighter(int x) {
+	Line   960: 		int fnDRShip() {
+	Line   978: 		int fnRequestDock() {
+	Line  1002: 		int fnHangarServices(int x) {
+	Line  1073: 		int fnIdleLock(int x) {
+	Line  1108: 		int fnCheckFSDCharge(int EngineText) {
+	Line  1139: 		int fnCheckFiregroup() {
+	Line  1155: 		int fnClearChatBox(int mode = 0) {
+	Line  1219: 		int fnModeSwitch(int mode) {
+	Line  1312: 		int fnVPOutput(int VPOutput, int VolumeOverride=0, int Type=0) {
+	Line  1334: 		int fnPrintState() {
+	Line  1345: 		int fnStateDump() {
+	Line  1511: 		int fnGetTOD() {
+	Line  1562: 		int fnMyName() {
+	Line  1593: 		int	fnGreetCMDR(int dummy = 0) {
+	Line  1647: 		int fnSelectFiregroup(int fg) {
+	Line  1685: 		int fnGetStationName(int dummy=0) {
+	Line  1713: 		int fnDockingStatus(int dummy) {
+	Line  1811: 		int fnFighterStatus(int dummy = 0) {
+	Line  1832: 		int fnPANIC(int panic = 0) {
+	Line  1869: 		int fnInputCMD(int dummy = 0) {
+	Line  1930: 		int fnDEBUG(int dummy = 0) {
+	Line  1954: 		int findstr(alias string, alias substring) {
+	Line  1979: 		int strcpy(alias dst, alias src) {
+*/
+
+/*	ED_StateTracker.tmh 
+	Index:				FUNCTION
+	Line    44: 		int stfnReadMyJournalData() {
+	Line   141: 		int stfnReadStatusJson() {
+	Line   303: 		int stfnWriteMaxJson() {	
+	Line   360: 		int stfnGetKeyValue(alias pattern, int vtype, int jsonfile = 0) {
+	Line   475: 		int stfnDecodeFlags() {
+	Line   579: 		int stfnDecodeFlags2() {
+	Line   687: 		int stfnTripTime(int dummy = 0) {
+	Line   759: 		int stfnProcessFlags(int UpdateLEDs = NO) {
+	Line  1611: 		int stfnDecodeModules(int dummy = 0) {
+	Line  1643: 		int stfnProcessMyJournalData(int dummy = 0) {
+	Line  1717: 		int stfnProcessGuiFocus() {
+	Line  1764: 		int stfnStartCheck() {
+	Line  1834: 		int stfnMyStates(int action) {
+*/
+
+/*	ED_Initialise.tmh 
+	Index:				FUNCTION
+	Line    50: 		int CheckControllers() {
+	Line   151: 		int initJoystickAxis() { 		
+	Line   179: 		int initThrottleAxis() {		
+	Line   200: 		int initRudderAxis() {			
+	Line   221: 		int initSliderAxis() {
+	Line   237: 		int initSlewAxis() {
+	Line   263: 		int initCurves(int profile, int print=NO, int announce=YES, int SaveCurveInfo=TRUE) {
+	Line   356: 		int initSliderCurve(int x) {
+	Line   387: 		int initTextToSpeech() {
+	Line   399: 		int initSoundFX() {
+	Line   458: 		int initUserSettings(int dummy = 0) {
+	Line   512: 		int fnResetUserSettings(int dummy = 0) {
+	Line   557: 		int fnEncodeUserSettings(int dummy = 0) {
+	Line   593: 		int fnDecodeUserSettings(int DecodeSettings) {
+	Line   625: 		int fnUserSettingsDelta(int dummy = 0)	{
+	Line   672: 		int fnCompareIntSettings(int dummy = 0) {
+*/
+
+/*	ED_Toggles.tmh 
+	Index:				FUNCTION
+	Line    40: 		int tgTxt2Speech() {
+	Line    56: 		int tgEnhancedFAOFF(int dummy = 0) {
+	Line   102: 		int tgTriggerMode(int x) {
+	Line   150: 		int tgLights(int x) {
+	Line   211: 		int tgSilentRunning(int x) {
+	Line   268: 		int tgCargoScoop(int x) {
+	Line   330: 		int tgLandingGear(int Speedbrake) {
+	Line   390: 		int tgReverseThrust(int EnableSpeedBrake) {
+	Line   459: 		int tgBoost(int dummy = 0) {
+	Line   505: 		int tgHardpoints(int dummy = 0) {
+	Line   548: 		int tgHUDMode(int delayannounce=0) {
+	Line   587: 		int tgFSSMode() {
+	Line   614: 		int tgPlanetView() {
+	Line   647: 		int tgWarpDrive(int JumpType) {
+	Line   757: 		int tgExtCamera() {
+	Line   777: 		int tgXAxis(int param = RESET) {
+	Line   802: 		int tgGALMap (int action) {
+	Line   822: 		int tgSYSMap (int action) {
+	Line   846: 		int tgWingBeacon(int dummy = 0) {
+	Line   868: 		int tgReportCrimes(int dummy = 0) {
+*/
+
+/*	ED_Macros.tmh 
+	Index:				FUNCTION
+	Line    44: 		int initMacroChains() {
+	Line    49: 			m_RequestDock = CHAIN(
+	Line    62: 			m_DeploySRV = CHAIN(
+	Line    74: 			m_BoardShip = CHAIN(
+	Line    85: 			m_DeployNPCFighter = CHAIN(
+	Line    99: 			m_DeployFighter = CHAIN(
+	Line   113: 			m_ShowGameStats = CHAIN(	
+	Line   119: 			m_FastModeSwitch0 = CHAIN(
+	Line   130: 			m_FastModeSwitch1a = CHAIN(
+	Line   151: 			m_FastModeSwitch1b = CHAIN(
+	Line   172: 			m_FastModeSwitch2 = CHAIN(
+	Line   185: 			m_ReportCrimesToggle = CHAIN(
+	Line   207: 			m_WingBeaconTeam = CHAIN(
+	Line   234: 			m_WingBeaconOff = CHAIN(
+	Line   259: 			m_EnterHangar = CHAIN(
+	Line   275: 			m_Launch = CHAIN(
+	Line   286: 			m_Disembark = CHAIN(
+	Line   300: 			m_ChangeColours = CHAIN(
+	Line   306: 			m_NextFG = CHAIN(
+	Line   311: 			m_PrevFG = CHAIN(
+*/
