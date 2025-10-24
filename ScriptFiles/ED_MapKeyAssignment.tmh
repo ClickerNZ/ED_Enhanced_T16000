@@ -217,9 +217,9 @@
 		}
 		else {
 			MapKeyUMD(&MyJoystick, B6,
-				EXEC("fnVPOutput(\"not used\");"),									// U - 
+				SEQ(EXEC("fnDeploySRV(1);"), EXEC("fnDeploySRV(0);")),				// U - Deploy/Recover SRV 
 				EXEC("fnDRShip();"),												// M - Dismiss or recall the ship when on foot or in SRV 
-				EXEC("fnVPOutput(\"not used\");")									// D - 
+				SEQ(EXEC("fnDeployFighter(1);"), EXEC("fnDeployFighter(0);"))		// D - Deploy/Recover Fighter
 				);
 		}
 
@@ -228,7 +228,7 @@
 		}
 		else {
 			MapKeyUMD(&MyJoystick, B7,
-				EXEC("fnVPOutput(\"not used\");"),									// U - 
+				EXEC("fnDEBUG(0);"),												// U - Run Debug code
 				PULSE+HideShipGUI,													// M - LeftCTRL+LeftALT+'g'
 				EXEC("fnVPOutput(\"not used\");")									// D -
 				);
@@ -272,8 +272,8 @@
 		}
 		else {
 			MapKeyUMD(&MyJoystick, B11,
-				EXEC("fnVPOutput(\"not used\");"),									// U - 
-				PULSE+m_ShowGameStats,												// M - Show both Frame Rate and Connection Status 
+				PULSE+m_ShowGameStats,												// U - Show both Frame Rate and Connection Status  
+				EXEC("fnSetOriginStation(1);"),										// M - Sets Origin Station for TripTimer
 				EXEC("fnVPOutput(\"not used\");")									// D -
 				);
 		}
@@ -377,7 +377,7 @@
 			MapKeyUMD(&MyThrottle, TBTN4, 
 				EXEC("fnVoiceVolume(INCREASE);"),									// U - Increase Text to Speech Volume
 				EXEC("tgBoost();"),													// M - Boost
-				EXEC("fnVPOutput(\"not used\");")									// D - 
+				EXEC("tgTxt2Speech();")												// D - Turn the text to speech function off and on
 				);
 		}
 		
