@@ -1925,6 +1925,138 @@
 
 	}
 
+
+	//	FUNCTION:	Calculate and output TripTime 
+
+	//	Global vars
+	alias	LandedTOD	= "HH:MM";
+	alias	LiftoffTOD	= "HH:MM";
+	alias	TripTime	= "HH:MM";
+	
+	int fnTripTime(int dummy = 0) {
+
+		// --- string working variables
+		alias H1 = "HH";
+		alias M1 = "MM";
+		alias H2 = "HH";
+		alias M2 = "MM";
+		alias HH = "HH";
+		alias MM = "MM";
+		
+		// --- string container for spoken trip time
+		alias TT = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+
+		// --- Integer working variables ---
+		int iH1, iM1, iH2, iM2, t1, t2, diff, dh, dm;
+
+		// --- Extract hours and minutes ---
+		strsub(&H1, &LiftoffTOD, 0, 1);
+		strsub(&M1, &LiftoffTOD, 3, 4);
+		strsub(&H2, &LandedTOD, 0, 1);
+		strsub(&M2, &LandedTOD, 3, 4);
+
+		// --- Convert to integers ---
+		iH1 = ieval(&H1);
+		iM1 = ieval(&M1);
+		iH2 = ieval(&H2);
+		iM2 = ieval(&M2);
+
+		// --- Convert both to minutes since midnight ---
+		t1 = iH1 * 60 + iM1;
+		t2 = iH2 * 60 + iM2;
+
+		// --- Handle next-day rollover ---
+		if (t2 < t1) t2 = t2 + 24 * 60;
+
+		// --- Difference in total minutes ---
+		diff = t2 - t1;
+
+		// --- Split into hours/minutes ---
+		dh = diff / 60;
+		dm = diff - (dh * 60);
+
+		// --- Convert back to zero-padded strings ---
+		sprintf(&HH, "%02d", dh);
+		sprintf(&MM, "%02d", dm);
+
+		// --- Compose TripTime alias ---
+		sprintf(&TripTime, "%s:%s", &HH, &MM);
+		
+
+		// --- Output result ---
+		printf("==	TripTime = %s (from %s to %s)\x0a", &TripTime, &LiftoffTOD, &LandedTOD);
+		if (AnnounceTripTime) {
+			if (strcmp(&HH, "00") == 0) {
+				sprintf(&TT, "Elapsed trip time, %d minutes", ieval(&MM));		
+			}
+			else {
+				sprintf(&TT, "Elapsed trip time, %d hours %d minutes", ieval(&HH), ieval(&MM));
+			}
+			fnTextToSpeech(&TT);
+		}
+
+		// --- Reset Original Station and timers
+		fnSetOriginStation(0);
+		
+	}
+
+
+	//	FUNCTION:	Sets Original Station Name in order to track round trip time
+	//	Parameters:	0 - Set oStation to "not set" and reset trip timers
+	//				1 - Set oStation to current Station Name
+
+	//	Global Vars
+	
+	char oStation;
+	
+	int fnSetOriginStation(int action) {
+	
+		int fnName = "fnSetOriginStation";
+		int reason = 0;
+		
+		int msg = "Origin Station set to";
+		
+		char txtmsg;
+		Dim (&txtmsg, 96);
+		txtmsg[0] = 0;
+		
+		
+		if (action == 0) {
+			
+			strcpy(&TripTime, "HH:MM");
+			strcpy(&LandedTOD, "HH:MM");
+			strcpy(&LiftoffTOD, "HH:MM");
+
+			Dim(&oStation, 8);
+			oStation[0] = 0;
+			strcpy(&oStation, "not set");
+			oStation[7] = 0;	
+
+			AnnounceTripTime = 0;
+		}
+		
+		if (action == 1) {
+			if (fDocked) {
+				Dim(&oStation, strlen(&StationName)+1);
+				oStation[0] = 0;
+				strcpy(&oStation, &StationName);
+				oStation[strlen(&oStation)] = 0;
+				
+				sprintf(&txtmsg, "%s %s", msg, &oStation);
+				txtmsg[strlen(&txtmsg)] = 0;
+				
+				fnVPOutput(&txtmsg);
+				
+				AnnounceTripTime = 1;
+			}
+			else {
+				reason = "we are not docked";
+			}
+		}
+		if (reason != 0) fnNotValid(fnName, reason);
+	}
+
+
 	//	FUNCTION:	Use this DEBUG function to test code whilst game running
 	//	Parameter:	dummy - enables REXEC or DeferCall
 	//	Usage:		PSF+EFLNORM calls this function
