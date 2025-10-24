@@ -56,7 +56,7 @@ Modified actions
 - TS2-D: TBTN3+TS2. This uses the alternate fire mode as follows...
   * Modes are  
     * Discovery Scanner - Press TS2-D to fire the discovery scanner, no need to hold the trigger for 6.1 seconds.  
-    * Mining Laser - Press TS2-D to fire the Mining Laser. This holds the trigger down for you. Press TS1 to stop.	 
+    * Mining Laser - Press TS2-D to fire the Mining Laser. This holds the trigger down for you. Press TS2 to stop.	 
 	* Pulse Wave Scanner - Press TS2-D to fire the Pulse Wave Scanner. This automatically repeats every 7 seconds. Press TS2 to stop.  
 
 Example: If you have a mining laser set to '1' in the currently selected firegroup and a pulse wave scanner set to '2' in the same firegroup.  
@@ -158,8 +158,8 @@ Standard action
 - B6-M: B6. When on planet surface in SRV or on foot, DISMISS/RECALL the ship. Only works if the ship has not already departed due to moving beyond 600 meters  
 
 Modified actions  
-- B6-U: TBTN2+B6. empty  
-- B6-D: TBTN3+B6. empty  
+- B6-U: TBTN2+B6. Deploy/Recover the SRV. Starting point for DEPLOY = in cockpit with no panels selected. RECOVER = in SRV with the "Board" light lit  
+- B6-D: TBTN3+B6. Deploy/Recover the fighter. Starting point in cockpit for both.
 
 ### B7  
 
@@ -202,16 +202,16 @@ Modified actions
 ### B11  
 
 Standard action  
-- B11-M: B11. Shows the framerate and connection status in lower left of the screen
+- B11-M: B11. Set current station as the "origin" for the round trip timer function.
 
 Modified actions  
-- B11-U: TBTN2+B11. empty  
+- B11-U: TBTN2+B11. Shows the framerate and connection status in lower left of the screen
 - B11-D: TBTN3+B11. empty    
 
 ### B12  
 
 Standard action  
-- B12-M: B12. empty  
+- B12-M: B12. Clear the chatbox
 
 Modified actions  
 - B12-U: TBTN2+B12. empty  
@@ -303,7 +303,7 @@ Standard action
 
 Modified ACTIONS  
 - TBTN4-U: TBTN2+TBTN4. Increase Text-To-Speech Volume by 10% (default = 75%, max = 100%)  
-- TBTN4-D: TBTN3+TBTN4. empty
+- TBTN4-D: TBTN3+TBTN4. Turn the Text to speech function off and on.
 
 > NOTE: TTS default volume can be set in ED_UserSettings.tmh
 

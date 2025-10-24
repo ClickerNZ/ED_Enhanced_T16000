@@ -73,11 +73,10 @@ This file contains the following general purpose routines;
 |:-------:|:--------|  
 |fnNotValid()						|Announce if function called is not valid|  
 |fnStartupMapKeyMode()				|Sets Mapkey Mode on Script start|  
-|fnSetCurves() 						|Sets Joystick, Throttle and Rudder curves for all axes|  
-|fnSetSliderCurve()					|Set context driven DX-SLIDER curves (Radar sensitivity)|  
 |fnGetFlightMode()					|Determine current flight mode and set Slider Curves appropriately|  
 |fnTextToSpeech()					|Converts Text to Speech using voice.exe|  
 |fnVoiceVolume()					|Volume Controller for 'voice' exe / fnTextToSpeech()|  
+|fnTTSExport()						|Writes the text strings to an external queue file. Now processed by a powershell helper script|  
 |fnSoundFX()						|Plays WAV file sound effects|  
 |fnGameStarted()					|Announce Game Start, TTS and SoundFX status, Game version|  
 |fnPIPMode()						|Sets PIP Mode profiles|  
@@ -87,19 +86,32 @@ This file contains the following general purpose routines;
 |fnAdvancedSCB()					|Fire Shield Cell Bank or two and follow up with a heatsink|  
 |fnHeatsink()						|Deploy a heatsink|  
 |fnChaff()							|Deploy chaff|  
-|fnDeploySRV()						|UNUSED: Deploy/Recover SRV|  
+|fnDeploySRV()						|Deploy/Recover SRV|  
+|fnDeployFighter()					|Deploy/Recover the fighter|  
 |fnDRShip()							|Dismiss/Recall Ship|   
 |fnRequestDock()					|Calls Request Dock macro. Set power to shields|  
 |fnHangerServices()					|Calls Enter/Exit Hanger macro|   
-|fnCheckFSDCharge()					|Checks FSD starts spooling up after hitting FSD|  
-|fnCheckFSDMassLocked()				|Checks we've cleared MassLock for 2 seconds|  
+|fnCheckFSDCharge()					|Checks FSD starts spooling up after hitting FSD|   
+|fnCheckFiregroup()					|Checks which fire group we have selected. This is used to select FG 1 and fire the discovery scanner automatically|  
 |fnClearChatBox()					|Clears the chat boxes in the Comms Panel|  
 |fnModeSwitch()						|Menulog to Solo, Private Group or Open|  
 |fnVPOutput()						|Sends output to console and TTS|  
 |fnPrintState()						|Display header banner for the status of the macro toggles & user preferences at script start|  
 |fnStateDump()						|Prints state banner to console|  
 |fnGetTOD()							|Return Time-of-day for console messages|  
+|fnMyName()							|Gets current commander name from registry|  
+|fnGreetCMDR()						|Issues customised greetings using CMDR namd and Station Name etc|  
+|fnSelectFireGroup()				|Function to set which firegroup to select. Used by Auto honk functions|  
+|fnGetStationName()					|Gets currently docked Station Name. used in GreetCMDR and TripTimer functions|  
+|fnDockingStatus()					|Tracks docking request status from journal.|  
+|fnFighterStatus()					|Tracks if a fighter bay is available and fighter is deployed|  
+|fnPANIC()							|Programatically aborts the script|  
+|fnInputCMD()						|Debug function to set/reset variables on the fly|  
+|fnTripTime()						|Calculate and display/announce time taken to fly a circuit (Start & Finish at Origin Station|  
+|fnSetOriginStation()				|Set the currently docked station as an Origin for Trip timer
+|fnDEBUG()							|Empty function to be used to set and debug code whilst game is running|  
 |findstr()							|Find substring within a string and return first char position or -1 if not found|  
+|strcpy()							|Copy string from one variable into another|  
 
 ### ED_Initialise.tmh  
 
@@ -113,8 +125,17 @@ This file contains the following hardware, TTS and SoundFX initialisation routin
 |initRudderAxis()					|Initialise Rudder axes|  
 |initSliderAxis()					|Initialise Slider axis|  
 |initSlewAxis()						|Initialise Slew axis|  
+|initCurves()	 					|Sets Joystick, Throttle and Rudder curves for all axes|  
+|initSetSliderCurve()				|Set context driven DX-SLIDER curves (Radar sensitivity)|  
 |initTextToSpeech()					|Initialise TTS Engine|  
 |initSoundFX()						|Initialise Sound Effects engine|  
+|initUserSettings()					|Save all changeable user settings|  
+|fnResetUserSettings()				|Reset changeable user settings to declared values in ED_UserSettings file|    
+|fnEncodeUserSettings()				|Encodes binary user setting variable to be saved to MyStates.json|  
+|fnDecodeUserSettings()				|Decodes binary user settings read from MyStates.json file|  
+|fnUserSettingsDelta()				|Reports differences between declared User Settings and theencoded value read from MyStates.json|  
+|fnCompareIntSettings()				|Reports differences of non-binary user settings read from MyStates.json|  
+
 
 ### ED_Macros.tmh   
 
@@ -122,20 +143,27 @@ This file contains keystroke macro chains;
 
 |Function | Purpose |  
 |:-------:|:--------|  
-|fnCustomCommands()					|Container within which we declare the following macros|  
+|initMacroChains()					|Container within which we declare the following macros|  
 |m_RequestDock						|Auto docking request|  
-|m_DeploySRV						|UNUSED: SRV deploy macro|  
-|m_BoardShip						|UNUSED: SRV board ship macro|  
+|m_DeploySRV						|SRV deploy macro|  
+|m_BoardShip						|SRV board ship macro|  
+|m_DeployNPCFighter					|Deploy the fighhter crewed by NPC|  
+|m_DeployFighter					|Deploy the fighter with YOU in it|  
 |m_ShowGameStats					|Display the combined On Screen Display FPS & Bandwidth meters|  
 |m_FastModeSwitch0					|Menulog to Open|  
-|m_FastModeSwitch1					|Menulog to Private Group|  
+|m_FastModeSwitch1a					|Menulog to 1st Private Group in list|  
+|m_FastModeSwitch1b					|Menulog to 2nd Private Group in list|  
 |m_FastModeSwitch2					|Menulog to Solo|  
-|m_ReportCrimesToggle				|UNUSED: Toggle 'Report Crimes' on/off|  
+|m_ReportCrimesToggle				|Toggle 'Report Crimes' on/off|  
 |m_NAVBeaconWing					|Toggle 'Wingman Beacon' to TEAM|  
 |m_NAVBeaconOff						|Toggle 'Wingman Beacon' to OFF|  
 |m_EnterHanger						|Refuel/repair/restock, enter hanger and station services|  
-|m_Launch							|UNUSED: Launch the ship (from Launchpad screen)|  
+|m_Launch							|Launch the ship (from Launchpad screen)|  
+|m_Disembark						|Refuel/repair/restock, then disembark the ship (on foot)|  
 |m_ChangeColours					|Change Engine and Weapon Colours|  
+|m_NextFG							|Short chain to select the next firegroup|  
+|m_PrevFG							|Short chain to select the previous firegroup|  
+
 
 ### ED_Toggles.tmh  
 
@@ -143,7 +171,7 @@ Contains general purpose routines which serve to turn on/off, open/close, start/
 
 |Function | Purpose |  
 |:-------:|:--------|  
-|tgTxt2Speech()						|UNUSED: Turn Text to Speech function ON/OFF|  
+|tgTxt2Speech()						|Turn Text to Speech function ON/OFF|  
 |tgEnhancedFAOFF()					|Flight/Drive Assist OFF/ON|  
 |tgTriggerMode()					|Cycle between 'Discovery Scanner', 'Mining Laser' and 'Pulse Wave Scanner' modes|  
 |tgLights()							|Cycle Lights and Night Vision|  
@@ -159,6 +187,10 @@ Contains general purpose routines which serve to turn on/off, open/close, start/
 |tgWarpDrive()						|Engage Frameshift Drive (Supercruise/Hyperjump)|  
 |tgExtCamera()						|Toggle external camera mode ON/OFF|  
 |tgXAxis()							|Toggle Joystick X axis mode between ROLL/YAW|  
+|tgGALMap()							|Opens/closes GAL map|  
+|tgSYSMap()							|Opens/closes SYS map|  
+|tgWingBeacon()						|Toggles the Wing beacon between WING and OFF|  
+|tgReportCrimes()					|Toggles 'Report CRimes Against me' between on and off|  
 
 ### ED_StateTracker.tmh  
 
@@ -166,11 +198,15 @@ The purpose of this file is to read and process the status.json file and read/wr
 
 |Function | Purpose |  
 |:-------:|:--------|  
+|stfnReadMyJournalData()			|Reads the MyJournalData.json file written by the external powershell helper script|  
 |stfnReadStatusJson()				|Read status.json file in journal files folder|  
 |stfnWriteMaxJson()					|Tracks maximum character length of status.json so we set the buffer value correctly|  
 |stfnGetKeyValue()					|Extract json key value by name from status.json|  
-|stfnProcessFlags()					|Read and process "Flags" value from status.json|  
-|stfnProcessFlags2()				|Read and process "Flags2" value from status.json|  
+|stfnDecodeFlags()					|Read and process "Flags" value from status.json|  
+|stfnDecodeFlags2()					|Read and process "Flags2" value from status.json|  
+|stfnProcessFlags()					|Process all flags and traps any which have changed since last read|  
+|stfnDecodeModules()				|Determine which optional modules have been fitted to the ship|  
+|stfnProcessMyJournalData()			|Process the data read from MyJournalData.json 
 |stfnProcessGuiFocus()				|Read and process 'GuiFocus' key value in status.json|  
 |stfnStartCheck()					|Initial check to see if game is already running after we've restarted the script|  
 |stfnMyStates()						|Save current status of non-status.json state variables when mode switching or restarting the game|  
