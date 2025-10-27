@@ -6,51 +6,53 @@
 	// This file: ED_Functions.tmh
 
 /*
-	Index:				FUNCTION
-	Line    63: 		int fnNotValid(int fnName, int reason=0) {
-	Line    81: 		int fnStartupMapKeyMode() {
-	Line   107: 		int fnGetFlightMode() {
-	Line   138: 		int fnLEDBrightness(int x = NOCHANGE) {
-	Line   159: 		int fnFlashLED(int x) {	
-	Line   177: 		int fnSetLEDs(int dummy=NUL) {
-	Line   211: 		int fnFlashStart() {
-	Line   250: 		int fnTextToSpeech(int text, int VolumeOverride=0, int Voice=DefaultVoice) {
-	Line   285: 		int fnVoiceVolume(int x) {
-	Line   336: 		int fnTTSExport(alias TTSText, int TTSVoice = DefaultVoice, int TTSVolume=75 ) {
-	Line   411: 		int fnSoundFX(int wavfile, int vol = 100, int loops = 1) {
-	Line   428: 		int fnGameStarted(int dummy = 0) {
-	Line   521: 		int fnPIPMode(int x) {
-	Line   572: 		int fnPIPManager(int PwrPriority) {
-	Line   609: 		int fnPIPMapper(int maxPIPx=0, int minPIPy=0, int balPIPz=0) {
-	Line   649: 		int fnAdvFireControl(int x) {
-	Line   730: 		int fnAdvancedSCB(int x = 0) {
-	Line   788: 		int fnHeatsink(int param = 0) {
-	Line   827: 		int fnChaff(int dummy = 0) {
-	Line   855: 		int fnDeploySRV(int x) {
-	Line   907: 		int fnDeployFighter(int x) {
-	Line   960: 		int fnDRShip() {
-	Line   978: 		int fnRequestDock() {
-	Line  1002: 		int fnHangarServices(int x) {
-	Line  1073: 		int fnIdleLock(int x) {
-	Line  1108: 		int fnCheckFSDCharge(int EngineText) {
-	Line  1139: 		int fnCheckFiregroup() {
-	Line  1155: 		int fnClearChatBox(int mode = 0) {
-	Line  1219: 		int fnModeSwitch(int mode) {
-	Line  1312: 		int fnVPOutput(int VPOutput, int VolumeOverride=0, int Type=0) {
-	Line  1334: 		int fnPrintState() {
-	Line  1345: 		int fnStateDump() {
-	Line  1511: 		int fnGetTOD() {
-	Line  1562: 		int fnMyName() {
-	Line  1593: 		int	fnGreetCMDR(int dummy = 0) {
-	Line  1647: 		int fnSelectFiregroup(int fg) {
-	Line  1685: 		int fnGetStationName(int dummy=0) {
-	Line  1713: 		int fnDockingStatus(int dummy) {
-	Line  1811: 		int fnFighterStatus(int dummy = 0) {
-	Line  1832: 		int fnPANIC(int panic = 0) {
-	Line  1869: 		int fnInputCMD(int dummy = 0) {
-	Line  1930: 		int fnDEBUG(int dummy = 0) {
-	Line  1954: 		int findstr(alias string, alias substring) {
-	Line  1979: 		int strcpy(alias dst, alias src) {
+	Index:			FUNCTION
+	Line    65: 		int fnNotValid(int fnName, int reason=0) {
+	Line    83: 		int fnStartupMapKeyMode() {
+	Line   109: 		int fnGetFlightMode() {
+	Line   140: 		int fnLEDBrightness(int x = NOCHANGE) {
+	Line   161: 		int fnFlashLED(int x) {	
+	Line   179: 		int fnSetLEDs(int dummy=NUL) {
+	Line   213: 		int fnFlashStart() {
+	Line   252: 		int fnTextToSpeech(int text, int VolumeOverride=0, int Voice=DefaultVoice) {
+	Line   287: 		int fnVoiceVolume(int x) {
+	Line   338: 		int fnTTSExport(alias TTSText, int TTSVoice = DefaultVoice, int TTSVolume=75 ) {
+	Line   413: 		int fnSoundFX(int wavfile, int vol = 100, int loops = 1) {
+	Line   430: 		int fnGameStarted(int dummy = 0) {
+	Line   524: 		int fnPIPMode(int x) {
+	Line   575: 		int fnPIPManager(int PwrPriority) {
+	Line   612: 		int fnPIPMapper(int maxPIPx=0, int minPIPy=0, int balPIPz=0) {
+	Line   652: 		int fnAdvFireControl(int x) {
+	Line   733: 		int fnAdvancedSCB(int x = 0) {
+	Line   791: 		int fnHeatsink(int param = 0) {
+	Line   830: 		int fnChaff(int dummy = 0) {
+	Line   858: 		int fnDeploySRV(int x) {
+	Line   910: 		int fnDeployFighter(int x) {
+	Line   963: 		int fnDRShip() {
+	Line   981: 		int fnRequestDock() {
+	Line  1005: 		int fnHangarServices(int x) {
+	Line  1076: 		int fnIdleLock(int x) {
+	Line  1111: 		int fnCheckFSDCharge(int EngineText) {
+	Line  1142: 		int fnCheckFiregroup() {
+	Line  1158: 		int fnClearChatBox(int mode = 0) {
+	Line  1222: 		int fnModeSwitch(int mode) {
+	Line  1319: 		int fnVPOutput(int VPOutput, int VolumeOverride=0, int Type=0) {
+	Line  1341: 		int fnPrintState() {
+	Line  1352: 		int fnStateDump() {
+	Line  1518: 		int fnGetTOD() {
+	Line  1569: 		int fnMyName() {
+	Line  1600: 		int	fnGreetCMDR(int dummy = 0) {
+	Line  1654: 		int fnSelectFiregroup(int fg) {
+	Line  1692: 		int fnGetStationName(int dummy=0) {
+	Line  1720: 		int fnDockingStatus(int dummy) {
+	Line  1818: 		int fnFighterStatus(int dummy = 0) {
+	Line  1839: 		int fnPANIC(int panic = 0) {
+	Line  1876: 		int fnInputCMD(int dummy = 0) {
+	Line  1941: 		int fnTripTime(int dummy = 0) {
+	Line  2017: 		int fnSetOriginStation(int action) {
+	Line  2072: 		int fnDEBUG(int dummy = 0) {
+	Line  2097: 		int findstr(alias string, alias substring) {
+	Line  2122: 		int strcpy(alias dst, alias src) {
 */
 
 	//------------------//
@@ -1270,14 +1272,17 @@
 			else if (mode == 1) {
 				
 				fnVPOutput("Menu log to private group selected.. please wait for game reload", 0, 1);			
-//-		Remove "Clicker check" if/else block before publish
-				if (strcmp(&CMDRName, "Clicker") == 0) {
-					ActKey(KEYON+PULSE+m_FastModeSwitch1b);											// Selects 2nd option in PRIVATE mode
+
+ 				if (PrivateGroup == 1) {
+					ActKey(KEYON+PULSE+m_FastModeSwitch1a);											// Selects 1st option in PRIVATE GROUP
 				}
-				else {
-					ActKey(KEYON+PULSE+m_FastModeSwitch1a);											// Selects 1st option in PRIVATE mode					
+				else if (PrivateGroup == 2) {
+					ActKey(KEYON+PULSE+m_FastModeSwitch1b);											// Selects 2nd option in PRIVATE GROUP 					
 				}
-//-
+				else if (PrivateGroup == 3) {
+					ActKey(KEYON+PULSE+m_FastModeSwitch1c);											// Selects 3rd option in PRIVATE GROUP
+				}
+				else reason = "Set PrivateGroup Varaibal to 1, 2 or 3 in USer settings";
 			}
 			else {
 				fnVPOutput("Menu log to solo selected.. please wait for game reload", 0, 1);			
@@ -2060,24 +2065,28 @@
 	//	FUNCTION:	Use this DEBUG function to test code whilst game running
 	//	Parameter:	dummy - enables REXEC or DeferCall
 	//	Usage:		PSF+EFLNORM calls this function
+
+	// --- GLOBALS
+	int DebugFunction = "Reset Controllers";		// Print to console at script run time
 	
 	int fnDEBUG(int dummy = 0) {
-
-		char c;
-		Dim(&c, 64);
-		c[0] = 0;
-
-		int altflag;
-		int Altitude = stfnGetKeyValue("Altitude", INTEGER);
+		int fnName = "fnDebug";
+		reason = 0;
 		
-		if (fAltFromAvgRad) altflag = "set";
-		else altflag = "reset";
+		// Issue: joystick unresponsive
+		if (DEBUG > 0) {
+			fnVPOutput("DEBUG: Reinitialising controllers", 0, 2);					// DEBUG message
+			
+			initJoystickAxis();
+			initThrottleAxis();
+			initSliderAxis();
+			initSlewAxis();
+			initRudderAxis();
+			initCurves(NONE, PRINT, YES, FALSE);									// Parameters: Curve profile=NONE, Print to console=NO, TTS Announce= YES, Save Curves = FALSE 
+		}
+		else reason = "Debug must be set greater than 0";
 		
-		sprintf(&c, "Altitude flag %s", altflag);
-		c[strlen(&c)] = 0;
-		
-		fnVPOutput(&c, 0, 2);
-
+		if (reason != 0) fnNotValid(fnName, reason);
 	}
 
 
