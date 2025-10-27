@@ -175,6 +175,11 @@
 		
 		stfnStartCheck();														// Everything happens from there! Checks for vital files and game start
 
+		if (DEBUG > 0) {
+			printf("\x0a!!	DEBUG MODE = %s\x0a", DEBUGMODE);
+			printf("!!	DEBUG: Debug Function = %s\x0a", DebugFunction);		// Refer fnDEBUG() 
+		}
+
 	}
 
 	//------------------//
