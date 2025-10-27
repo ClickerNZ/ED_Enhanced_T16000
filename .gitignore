@@ -6,16 +6,13 @@ DO THIS BEFORE PUBLISHING.txt
 ED_Launcher-TEST.cmd
 ED_Launcher.cmd
 ScriptFiles/ED_Development.*
+ScriptFiles/TARGET Session
 SupportFiles/Output/MyJournalData.json
 SupportFiles/Output/Tracking.json
 SupportFiles/Output/TTSQueue/*.*
 SupportFiles/Output/TTSQueue/Archive/*.*
-
+SupportFiles/PowerShell/Autopilot Functions.ps1
 Output/
 Archive/
 *.log
 *.tmp
-
-ScriptFiles/TARGET Session
-SupportFiles/PowerShell/Autopilot Functions.ps1
-TARGET_Script_Analyzer_v8.4.ps1
