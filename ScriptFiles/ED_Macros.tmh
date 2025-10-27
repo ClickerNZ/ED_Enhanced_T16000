@@ -6,27 +6,28 @@
 	// This file: ED_Macros.ttm
 
 /*
-	Index:				FUNCTION
-	Line    44: 		int initMacroChains() {
-	Line    49: 			m_RequestDock = CHAIN(
-	Line    62: 			m_DeploySRV = CHAIN(
-	Line    74: 			m_BoardShip = CHAIN(
-	Line    85: 			m_DeployNPCFighter = CHAIN(
-	Line    99: 			m_DeployFighter = CHAIN(
-	Line   113: 			m_ShowGameStats = CHAIN(		
-	Line   119: 			m_FastModeSwitch0 = CHAIN(
-	Line   130: 			m_FastModeSwitch1a = CHAIN(
-	Line   151: 			m_FastModeSwitch1b = CHAIN(
-	Line   172: 			m_FastModeSwitch2 = CHAIN(
-	Line   185: 			m_ReportCrimesToggle = CHAIN(
-	Line   207: 			m_WingBeaconTeam = CHAIN(
-	Line   234: 			m_WingBeaconOff = CHAIN(
-	Line   259: 			m_EnterHangar = CHAIN(
-	Line   275: 			m_Launch = CHAIN(
-	Line   286: 			m_Disembark = CHAIN(
-	Line   300: 			m_ChangeColours = CHAIN(
-	Line   306: 			m_NextFG = CHAIN(
-	Line   311: 			m_PrevFG = CHAIN(
+	Index:			FUNCTION
+	Line    46: 		int initMacroChains() {
+	Line    51: 			m_RequestDock = CHAIN(
+	Line    64: 			m_DeploySRV = CHAIN(
+	Line    76: 			m_BoardShip = CHAIN(
+	Line    87: 			m_DeployNPCFighter = CHAIN(
+	Line   101: 			m_DeployFighter = CHAIN(
+	Line   115: 			m_ShowGameStats = CHAIN(	
+	Line   121: 			m_FastModeSwitch0 = CHAIN(
+	Line   132: 			m_FastModeSwitch1a = CHAIN(
+	Line   146: 			m_FastModeSwitch1b = CHAIN(
+	Line   162: 			m_FastModeSwitch1c = CHAIN(
+	Line   182: 			m_FastModeSwitch2 = CHAIN(
+	Line   195: 			m_ReportCrimesToggle = CHAIN(
+	Line   217: 			m_WingBeaconTeam = CHAIN(
+	Line   244: 			m_WingBeaconOff = CHAIN(
+	Line   269: 			m_EnterHangar = CHAIN(
+	Line   285: 			m_Launch = CHAIN(
+	Line   296: 			m_Disembark = CHAIN(
+	Line   310: 			m_ChangeColours = CHAIN(
+	Line   316: 			m_NextFG = CHAIN(
+	Line   321: 			m_PrevFG = CHAIN(
 */
 
 	// START
@@ -34,8 +35,9 @@
 	// Declare macros (must be declared as global)
 	
 	int	m_RequestDock,		m_DeploySRV,		m_ShowGameStats,	m_ReportCrimesToggle,	m_WingBeaconTeam,	m_WingBeaconOff;
-	int m_FastModeSwitch0,	m_FastModeSwitch1a,	m_FastModeSwitch1b,	m_FastModeSwitch2,	m_BoardShip,			m_EnterHangar,		m_ChangeColours;
-	int m_Launch,			m_NextFG,			m_PrevFG,			m_DeployNPCFighter,		m_DeployFighter,	m_Disembark;
+	int m_FastModeSwitch0,	m_FastModeSwitch1a,	m_FastModeSwitch1b,	m_FastModeSwitch1c,		m_FastModeSwitch2,	m_BoardShip;
+	int m_EnterHangar,		m_ChangeColours,	m_Launch,			m_NextFG,				m_PrevFG,			m_DeployNPCFighter;
+	int m_DeployFighter,	m_Disembark;
 
 	//---------------//			// MACROS fire a sequence of key presses within a 'CHAIN()' to perform a specific task within the game.
 	// CUSTOM MACROS //			// The action identifiers (keystroke labels) used below can be found within the 'ED_Defines.ttm' file.
@@ -136,13 +138,6 @@
 			PULSE+UISelect, D(650),								//    changed/increased
 			PULSE+UIRight, D(650),
 			PULSE+UISelect, D(650),								// Top option selected by default 
-//-			PULSE+UIRight, D(650),								// Moved down to second last instruction
-	//		PULSE+UIDown, D(650),								// Optional #1 Remove comment marks to highlight 2nd option in list...
-	//		PULSE+UISelect, D(650),								// ...and select it 
-	//		PULSE+UIDown, D(650),								// Optional #2 Remove comment marks to highlight 3rd option in list
-	//		PULSE+UISelect, D(650),								// ...and select it 
-	//		PULSE+UIDown, D(650),								// Optional #3 etc. ... and so on 
-	//		PULSE+UISelect, D(650),								// ...and select it 
 			PULSE+UIRight, D(650),
 			PULSE+UISelect, D(1000),							// Selects Private Group
 			LOCK);
@@ -157,13 +152,28 @@
 			PULSE+UISelect, D(650),								//    changed/increased
 			PULSE+UIRight, D(650),
 			PULSE+UISelect, D(650),								// Top option selected by default 
-//-			PULSE+UIRight, D(650),								// Moved down to second last instruction
 			PULSE+UIDown, D(650),								// Optional #1 Remove comment marks to highlight 2nd option in list...
 			PULSE+UISelect, D(650),								// ...and select it 
-	//		PULSE+UIDown, D(650),								// Optional #2 Remove comment marks to highlight 3rd option in list
-	//		PULSE+UISelect, D(650),								// ...and select it 
-	//		PULSE+UIDown, D(650),								// Optional #3 etc. ... and so on 
-	//		PULSE+UISelect, D(650),								// ...and select it 
+			PULSE+UIRight, D(650),
+			PULSE+UISelect, D(1000),							// Selects Private Group
+			LOCK);
+
+		// MACRO: Menulog to 3rd PRIVATE GROUP					Duration = 16940, add 1370 for each addition UIDown+UISelect optional pair enabled
+		m_FastModeSwitch1c = CHAIN(
+			LOCK+PULSE+RolePanel, D(250),						// Select any panel to ensure GUIFocus is set (!=0) <-- Required???
+			PULSE+MenuLog, D(650),								//  Keystroke sequence = p, up, spc, spc, <wait>, spc, right, spc, spc, right, spc
+			PULSE+UIUp, D(650),
+			PULSE+UISelect, D(650),
+			PULSE+UISelect, D(8500),							// ** Depending on the load times of your PC, this value may need to be
+			PULSE+UISelect, D(650),								//    changed/increased
+			PULSE+UIRight, D(650),
+			PULSE+UISelect, D(650),								// Selects first group in list
+			PULSE+UIDown, D(650),								// Selects 2nd option in list...
+			PULSE+UISelect, D(650),								// 
+			PULSE+UIDown, D(650),								// Selects 3rd option in list
+			PULSE+UISelect, D(650),								//  
+	//		PULSE+UIDown, D(650),								// Selects 4th option in list 
+	//		PULSE+UISelect, D(650),								// 
 			PULSE+UIRight, D(650),
 			PULSE+UISelect, D(1000),							// Selects Private Group
 			LOCK);
