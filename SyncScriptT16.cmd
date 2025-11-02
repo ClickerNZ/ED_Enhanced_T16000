@@ -6,7 +6,7 @@ echo.
 echo Sync Script files with development folder
 echo.
 
-pause
+rem pause
 
 del C:\Thrustmaster\ED_TargetScript_T16000\SupportFiles\Output\TTSQueue\*.*
 del C:\Thrustmaster\ED_TargetScript_T16000\SupportFiles\Output\TTSQueue\Archive\*.*
