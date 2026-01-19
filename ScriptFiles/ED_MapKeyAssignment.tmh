@@ -12,7 +12,7 @@
 
 /* 
 	Index:			FUNCTION
-	Line 31: 		int MainKeyMap() {
+	Line 31: 		int LiveKeyMap() {
 	Line 44:			Joystick Buttons
 	Line 339:			Throttle Buttons 
 	Line 597: 		int TrainingKeyMap() {
@@ -28,7 +28,7 @@
 
 	// FUNCTION:	This MapKey set is called from fnGameStarted() when we detect Game is running
 	
-	int MainKeyMap() {
+	int LiveKeyMap() {
 
 		printf("\x0a\HOTAS Mode:	GAME\x0a");
 			
@@ -345,8 +345,8 @@
 		}
 		else {
 			MapKeyUMD(&MyThrottle, TBTN1, 
-				EXEC("fnRequestDock();"),											// U - Fire Req Dock seq macro
-				PULSE+LookOnOff,													// M - 'o' - Thumb
+				PULSE+LookOnOff,													// U - 'o' - Thumb
+				EXEC("fnRequestDock();"),											// M - Fire Req Dock seq macro
 				EXEC("fnVPOutput(\"not used\");")									// D - 
 				);
 		}
@@ -581,7 +581,7 @@
 				);		
 		}
 
-	} 	// End of MainKeyMap 
+	} 	// End of LiveKeyMap 
 
 	// =============================================================================================================================================
 	// =============================================================================================================================================
