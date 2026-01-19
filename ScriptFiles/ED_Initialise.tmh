@@ -112,7 +112,7 @@
 	//===================================================================================================
 
 		// If no rudder is found the script will not abort.
-		// There are two Rudders compatible with this script...
+		// There are two external Rudders compatible with this scriptas well as the TWCS Paddle rudder and T16000 twist function...
 		
 		&MyRudder = &joy0;														// set to equivalent of 'nul' by default
 		
@@ -150,7 +150,7 @@
 	// FUNCTION: Initialise Joystick Axes 
 	int initJoystickAxis() { 																	// Set Default Joystick Axis
 		if (StartupLock) {
-			printf("\x0a\Initialising: v%d.%d.%d.%s\x0a", VMajor, VMinor, VPoint, VBranch);
+			printf("\x0a\++ Initialising: v%d.%d.%d.%s\x0a", VMajor, VMinor, VPoint, VBranch);
 			printf("-----------------------------------------------------------------------------------------------------------------------------------------------\x0a");
 		}	
 
@@ -340,12 +340,10 @@
 		}
 		
 		if (print) {
+			printf("++	Curve Profile: [%s]\x0a", JSCurveSetting);																																														   
 			printf("Joystick Curves[%s]	: LDZ=%d, CDZ=%d,  RDZ=%d, Curve= %d, Zoom= %d\x0a", JSCurveSetting, Joystick_L_DZ, Joystick_C_DZ, Joystick_R_DZ, Joystick_Curve[profile], Joystick_Zoom);
 			printf("Rudder Curves[%s]	: LDZ=%d, CDZ=%d, RDZ=%d, Curve= %d, Zoom= %d\x0a", JSCurveSetting, Rudder_L_DZ, Rudder_C_DZ, Rudder_R_DZ, Rudder_Curve[profile], Rudder_Zoom);
 			printf("Slew Curves[%s]	: LDZ=%d, CDZ=%d, RDZ=%d, Curve= %d, Zoom= %d\x0a", JSCurveSetting, Slew_L_DZ, Slew_C_DZ, Slew_R_DZ, Slew_Curve[profile], Slew_Zoom);
-		}
-		else if (announce) {
-			printf("Curve Profile: [%s]\x0a", JSCurveSetting);
 		}
 	}
 
@@ -440,7 +438,7 @@
 	int		defAutoAbort;			// ENABLED/DISABLED
 	int		defSCOLowFuelFailsafe;	// ENABLED/DISABLED
 	int		defAutoDisembark;		// ENABLED/DISABLED
-	int		defAnnounceTripTime;	// ENABLED/DISABLED
+//	int		defAnnounceTripTime;	// ENABLED/DISABLED
 
 	// Integer settings
 	int		defFAOFFCurves;			// OFF, SLOWEST, SLOW, MEDIUM, MILD 
@@ -452,7 +450,7 @@
 	int		defThrustUpTime;		// 0 - ???? (milliseconds)
 	int		defPIPMode;				// 0 - 5
 	int		defUserSettings;		// Binary encoded via fnEncodeUserSettings()
-
+	int		defPrivateGroup;		// 1 - 3
 	int		DEBUGMODE;
 	
 	int initUserSettings(int dummy = 0) {
@@ -481,7 +479,7 @@
 		defAutoAbort			= AutoAbort;			// ENABLED/DISABLED
 		defSCOLowFuelFailsafe	= SCOLowFuelFailsafe;	// ENABLED/DISABLED
 		defAutoDisembark		= AutoDisembark;		// ENABLED/DISABLED
-		defAnnounceTripTime		= AnnounceTripTime; 	// ENABLED/DISABLED
+//		defAnnounceTripTime		= AnnounceTripTime; 	// ENABLED/DISABLED
 		
 		// Integer settings
 		defFAOFFCurves			= FAOFFCurves;			// OFF, SLOWEST, SLOW, MEDIUM, MILD  
@@ -492,6 +490,7 @@
 		defLEDLevel				= LEDLevel;				// 0 - 5
 		defThrustUpTime			= ThrustUpTime;			// 0 - ???? (milliseconds)
 		defPIPMode				= PIPMode;				// 0 - 5
+		defPrivateGroup			= PrivateGroup;		 	// 1 - 3									  
 
 		defUserSettings 		= fnEncodeUserSettings(0);
 		
@@ -502,9 +501,11 @@
 		if (DEBUG == 2) DEBUGMODE = "LOG";
 		if (DEBUG == 3) DEBUGMODE = "VERBOSE";
 		if (DEBUG > 3 | DEBUG < 0)	DEBUGMODE = "NOT SET";
-				
+		
+		// --- Reset Trip timers
+		fnSetOriginStation(0);
+		
 	}
-	
 	
 	// FUNCTION:	Restore all changeable USERSETTINGS to original settings (refer ED_UserSettings.tmh)
 	// Parameter:	dummy - allows calls from REXEC and DeferCall
@@ -535,7 +536,7 @@
 		AutoAbort			= defAutoAbort;				// ENABLED/DISABLED
 		SCOLowFuelFailsafe	= defSCOLowFuelFailsafe;	// ENABLED/DISABLED
 		AutoDisembark		= defAutoDisembark;			// ENABLED/DISABLED
-		AnnounceTripTime	= defAnnounceTripTime;		// ENABLED/DISABLED 
+//		AnnounceTripTime	= defAnnounceTripTime;		// ENABLED/DISABLED 
 		
 		// Integer settings
 		FAOFFCurves			= defFAOFFCurves;			// OFF, SLOWEST, SLOW, MEDIUM, MILD 
@@ -546,6 +547,7 @@
 		LEDLevel			= defLEDLevel;				// 0 - 5
 		ThrustUpTime		= defThrustUpTime;			// 0 - ???? (milliseconds)
 		PIPMode				= defPIPMode;				// 0 - 5
+		PrivateGroup		= defPrivateGroup;			// 1 - 3									  
 
 		printf("++	User settings restored\x0a");
 	}
@@ -579,7 +581,7 @@
 		if (AutoAbort)			EncodedSettings = EncodedSettings | (1 << 18);	// Bit 18
 		if (SCOLowFuelFailsafe) EncodedSettings = EncodedSettings | (1 << 19);  // Bit 19
 		if (AutoDisembark)		EncodedSettings = EncodedSettings | (1 << 20);	// Bit 20
-		if (AnnounceTripTime)	EncodedSettings = EncodedSettings | (1 << 21);	// Bit 21
+//		if (AnnounceTripTime)	EncodedSettings = EncodedSettings | (1 << 21);	// Bit 21
 		
 		printf("++	Encoded User Settings = %d\x0a", EncodedSettings);
 		
@@ -613,7 +615,7 @@
 		if ((DecodeSettings & (1 << 18))	!= 0) AutoAbort = 1;			else AutoAbort = 0;
 		if ((DecodeSettings & (1 << 19))	!= 0) SCOLowFuelFailsafe = 1;	else SCOLowFuelFailsafe = 0;
 		if ((DecodeSettings & (1 << 20))	!= 0) AutoDisembark = 1;		else AutoDisembark = 0;
-		if ((DecodeSettings & (1 << 21))	!= 0) AnnounceTripTime = 1;		else AnnounceTripTime = 0;
+//		if ((DecodeSettings & (1 << 21))	!= 0) AnnounceTripTime = 1;		else AnnounceTripTime = 0;
 
 		printf("++	User settings decoded\x0a");
 		
@@ -650,7 +652,7 @@
 		if (AutoAbort			!= defAutoAbort)			printf("	AutoAbort		= %d	(%d)\x0a",	AutoAbort, defAutoAbort);
 		if (SCOLowFuelFailsafe	!= defSCOLowFuelFailsafe)	printf("	SCOLowFuelFailsafe	= %d	(%d)\x0a",	SCOLowFuelFailsafe, defSCOLowFuelFailsafe);
 		if (AutoDisembark		!= defAutoDisembark)		printf("	AutoDisembark		= %d	(%d)\x0a",	AutoDisembark, defAutoDisembark);
-		if (AnnounceTripTime	!= defAnnounceTripTime)		printf("	AnnounceTripTime	= %d	(%d)\x0a",	AnnounceTripTime, defAnnounceTripTime);
+//		if (AnnounceTripTime	!= defAnnounceTripTime)		printf("	AnnounceTripTime	= %d	(%d)\x0a",	AnnounceTripTime, defAnnounceTripTime);
 			
 		// Integer user settings
 		if (FAOFFCurves			!= defFAOFFCurves)			printf("	FAOFFCurves		= %d	(%d)\x0a", FAOFFCurves, defFAOFFCurves);		// OFF, SLOWEST, SLOW, MEDIUM, MILD 
@@ -661,6 +663,7 @@
 		if (LEDLevel			!= defLEDLevel)				printf("	LEDLevel		= %d	(%d)\x0a", LEDLevel, defLEDLevel);				// 0 - 5
 		if (ThrustUpTime		!= defThrustUpTime)			printf("	ThrustUpTime		= %d	(%d)\x0a", ThrustUpTime, defThrustUpTime);	// 0 - ???? (milliseconds)		
 		if (PIPMode				!= defPIPMode)				printf("	PIPMode		= %d	(%d)\x0a", PIPMode, defPIPMode);					// 0 - 5
+		if (PrivateGroup		!= defPrivateGroup)			printf("	PrivateGroup		= %d	(%d)\x0a",	PrivateGroup, defPrivateGroup);		// 1 - 3
 
 		printf("=============================================\x0a\x0a");
 
@@ -680,6 +683,7 @@
 		if (LEDLevel		!= defLEDLevel)		DeltaFound = 1;
 		if (ThrustUpTime	!= defThrustUpTime)	DeltaFound = 1;
 		if (PIPMode			!= defPIPMode)		DeltaFound = 1;
+		if (PrivateGroup	!= defPrivateGroup)	DeltaFound = 1;
 		
 		return DeltaFound;
 		
