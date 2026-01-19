@@ -8,8 +8,8 @@
 	//								T16000 + TWCS REQUIRED									//
 
 	// This file:	ED_ENHANCED_T16000.tmc						// v1-1 (update)
-	// Supports:	Elite Dangerous		v4.2.1.2				// Does not support Legacy Horizons
-	// Requires:	TARGET 				v3.0.25.127_rev1		// https://support.thrustmaster.com/
+	// Supports:	Elite Dangerous		v4.3.0.1				// Does not support Legacy Horizons
+	// Requires:	TARGET 				v3.0.25.603				// https://support.thrustmaster.com/
 
 	// LEGEND: This script calls functions within the support files with the following naming formats
 	// ==============================================================================================
@@ -58,9 +58,7 @@
 	// 		when loaded, hid.tmh includes "sys.tmh"
 	//		...this ensures these critical files are loaded in the correct order
 
-	//      The above 4x .tmh files are bundled with the TARGET software and will be replaced each time you apply an update.
-	//		90% of the rest of this package has been written by me.
-	//		10% borrowed from code found on line
+	//      The above 4x .tmh files are bundled with the TARGET software and will be replaced each update.
 
 	/////////////////////////////////////////////////////////////////////////////
 	///                                                                       ///
@@ -122,17 +120,20 @@
 		Exclude(&Sol_F18L);
 		Exclude(&Sol_SolR);
 		Exclude(&Sol_SolRL);
+		Exclude(&FarmStickPSRight);
+		Exclude(&FarmStickPSLeft);
+		Exclude(&Sol_Throttle);					// Looks to use same mapfile as TWCSThrottle 
 
-		printf("++	Connect our controllers ... \x0a\x0a");
 
 		if(Init(&EventHandle)) return 1;
 
+		printf("++	Connect our controllers ... \x0a\x0a");
 		CheckControllers();														// Call Controller check function. Finds controllers we have connected.
+		SetShiftButton(&MyJoystick, 0, &MyThrottle, TBTN2, TBTN3);				// ** DO NOT TOUCH **  IO Layer feature not used, TWCSThrottle Buttons 2 and 3 = UD
 
 		SetKBRate(PulseTime, DelayTime);										// Base Settings 	(See ED_UserSettings.tmh)
 		SetKBLayout(KBLayout);													//					(See ED_ScriptDefines.ttm)
 
-		SetShiftButton(&MyJoystick, 0, &MyThrottle, TBTN2, TBTN3);				// ** DO NOT TOUCH **  IO Layer feature not used, TWCSThrottle Buttons 2 and 3 = UD
 
 		fnPIPMode(RESET);														// Reset PIPMode. Refer ED_UserSettings.tmh to set your preferred default PIP Mode
 																				// Do this before calling stfnMyStates(LOAD) call
