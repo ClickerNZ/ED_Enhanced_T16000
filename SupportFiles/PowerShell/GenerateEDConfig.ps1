@@ -27,8 +27,8 @@ if (Test-Path $primaryStatusPath) {
 }
 
 # Define the output directory and configuration file path.
-$supportDir = "C:\Thrustmaster\ED_TargetScript_T16000\SupportFiles"
-$outputFile = Join-Path $supportDir "ED_Enhanced_T16000_Config.json"
+$supportDir = "C:\Thrustmaster\ED_TargetScript_Warthog\SupportFiles"
+$outputFile = Join-Path $supportDir "ED_Enhanced_Warthog_Config.json"
 
 # Ensure the support directory exists; create it if necessary.
 if (-not (Test-Path -Path $supportDir)) {
