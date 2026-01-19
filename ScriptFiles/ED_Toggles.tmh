@@ -457,7 +457,7 @@
 	//	Parameter:	dummy. Enables REXEC and DeferCall 
 	
 	int tgBoost(int dummy = 0) {
-		int fnName = "Engine Boost";
+		int fnName = "Engine Boost:";
 		int reason = 0;
 		
 		if (fSupercruise & fMainShip) {												// TEST: Do we need a trap for MainShip? eg Taxi/Dropship?  
