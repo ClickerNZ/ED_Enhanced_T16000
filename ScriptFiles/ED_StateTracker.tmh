@@ -9,16 +9,16 @@
 	Index:			FUNCTION
 	Line    43: 		int stfnReadMyJournalData() {
 	Line   140: 		int stfnReadStatusJson() {
-	Line   303: 		int stfnWriteMaxJson() {
-	Line   360: 		int stfnGetKeyValue(alias pattern, int vtype, int jsonfile = 0) {
-	Line   475: 		int stfnDecodeFlags() {
-	Line   579: 		int stfnDecodeFlags2() {
-	Line   685: 		int stfnProcessFlags(int UpdateLEDs = NO) {
-	Line  1539: 		int stfnDecodeModules(int dummy = 0) {
-	Line  1571: 		int stfnProcessMyJournalData(int dummy = 0) {
-	Line  1645: 		int stfnProcessGuiFocus() {
-	Line  1692: 		int stfnStartCheck() {
-	Line  1762: 		int stfnMyStates(int action) {
+	Line   302: 		int stfnWriteMaxJson() {			// This may now be redundant if the dynamic buf sizing code works.
+	Line   359: 		int stfnGetKeyValue(alias pattern, int vtype, int jsonfile = 0) {
+	Line   474: 		int stfnDecodeFlags() {
+	Line   578: 		int stfnDecodeFlags2() {
+	Line   683: 		int stfnProcessFlags(int UpdateLEDs = NO) {
+	Line  1573: 		int stfnDecodeModules(int dummy = 0) {
+	Line  1605: 		int stfnProcessMyJournalData(int dummy = 0) {
+	Line  1677: 		int stfnProcessGuiFocus() {
+	Line  1724: 		int stfnStartCheck() {
+	Line  1794: 		int stfnMyStates(int action) {
 */
 
 	// START
