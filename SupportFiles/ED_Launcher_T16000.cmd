@@ -6,6 +6,13 @@ echo.
 
 rem pause
 
+
+echo.
+echo Copy correct T16000 bindfiles...
+rem		Change destination username and ensure destination bindings folder is correct...
+copy c:\thrustmaster\ed_targetscript_t16000\bindfiles\*.* "c:\users\<USERNAME>\appdata\local\frontier developments\elite dangerous\options\bindings\" /y
+echo.
+
 echo Start EDLauncher...
 c:
 cd "\Program Files (x86)\Frontier\EDLaunch"
@@ -42,7 +49,7 @@ rem cd "\Users\<username>\AppData\Local\TeamSpeak 3 Client"
 rem start ts3client_win64.exe
 
 echo.
-echo. Start the TARGET script...
+echo. Start the T16000 TARGET script...
 echo. 
 
 c:
@@ -54,7 +61,6 @@ echo.
 echo Start TTSMonitor powershell script...
 start powershell -NoProfile -ExecutionPolicy Bypass -NonInteractive -File "C:\Thrustmaster\ED_TargetScript_T16000\SupportFiles\PowerShell\TTSMonitor.ps1"
 echo.
-
 
 timeout /t 20 /nobreak >nul
 
