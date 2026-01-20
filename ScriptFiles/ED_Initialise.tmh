@@ -16,15 +16,15 @@
 	Line   221: 		int initSliderAxis() {
 	Line   237: 		int initSlewAxis() {
 	Line   263: 		int initCurves(int profile, int print=NO, int announce=YES, int SaveCurveInfo=TRUE) {
-	Line   356: 		int initSliderCurve(int x) {
-	Line   387: 		int initTextToSpeech() {
-	Line   399: 		int initSoundFX() {
-	Line   458: 		int initUserSettings(int dummy = 0) {
-	Line   512: 		int fnResetUserSettings(int dummy = 0) {
-	Line   557: 		int fnEncodeUserSettings(int dummy = 0) {
-	Line   593: 		int fnDecodeUserSettings(int DecodeSettings) {
-	Line   625: 		int fnUserSettingsDelta(int dummy = 0)	{
-	Line   672: 		int fnCompareIntSettings(int dummy = 0) {
+	Line   354: 		int initSliderCurve(int x) {
+	Line   385: 		int initTextToSpeech() {
+	Line   397: 		int initSoundFX() {
+	Line   456: 		int initUserSettings(int dummy = 0) {
+	Line   513: 		int fnResetUserSettings(int dummy = 0) {
+	Line   559: 		int fnEncodeUserSettings(int dummy = 0) {
+	Line   595: 		int fnDecodeUserSettings(int DecodeSettings) {
+	Line   627: 		int fnUserSettingsDelta(int dummy = 0)	{
+	Line   675: 		int fnCompareIntSettings(int dummy = 0) {
 */
 
 	// START
