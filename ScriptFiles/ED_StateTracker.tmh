@@ -1021,7 +1021,8 @@
 				}
 			}
 			else {
-				if (fFighter == lFighter) {
+//				if (fFighter == lFighter) {
+				if (fMainShip | fSRV) {
 					fnVPOutput("Fuel above low threshold");
 				}
 			}				
