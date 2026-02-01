@@ -10,7 +10,8 @@ rem pause
 echo.
 echo Copy correct T16000 bindfiles...
 rem		Change destination username and ensure destination bindings folder is correct...
-copy c:\thrustmaster\ed_targetscript_t16000\bindfiles\*.* "c:\users\<USERNAME>\appdata\local\frontier developments\elite dangerous\options\bindings\" /y
+xcopy c:\thrustmaster\ed_targetscript_t16000\bindfiles\*.binds "c:\users\USERNAME\appdata\local\frontier developments\elite dangerous\options\bindings\" /d /y /i 
+xcopy c:\thrustmaster\ed_targetscript_t16000\bindfiles\*.start "c:\users\USERNAME\appdata\local\frontier developments\elite dangerous\options\bindings\" /y /i
 echo.
 
 echo Start EDLauncher...
@@ -22,6 +23,9 @@ rem timeout /t 5
 
 echo Starting supporting apps...
 echo.
+
+rem Remove "rem" from the below to enable loading of any supporting apps you use...
+
 rem echo Start EDMC...
 rem c:
 rem cd "\Program Files (x86)\EDMarketConnector\"
@@ -70,6 +74,7 @@ echo Start ProcessJournal powershell script...
 start powershell -NoProfile -ExecutionPolicy Bypass -NonInteractive -File "C:\Thrustmaster\ED_TargetScript_T16000\SupportFiles\PowerShell\ProcessJournal.ps1"
 echo.
 
+timeout /t 10 /nobreak >nul
 rem pause
 
 exit
