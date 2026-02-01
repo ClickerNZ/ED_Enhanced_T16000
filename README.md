@@ -26,7 +26,7 @@ It includes;
 - Associated BIND files  
 - Game state engine which checks the game's status.json file every half second  
 - Text to speech (TTS) functionality to add verbal feedback (this is NOT a Voice-to-Text alternative to VoiceAttack)  
-- Sound effects functionality to allow various wav files to be played as ound effects  
+- Sound effects functionality to allow various wav files to be played as sound effects  
 - Customised and advanced PIP management
 - Trip timer  
 - Automated joystick curve profiles depending on which flight mode you are currently in  
