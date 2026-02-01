@@ -505,7 +505,7 @@
 		lInterdicted		= fInterdicted;
 
 		lMainShip 			= fMainShip;							// Track in/out of MainShip
-		lFighter 			= fFighter;								// Track in/out off Fighter
+		lFighter 			= fFighter;								// Track in/out of Fighter
 		lSRV 				= fSRV;									// Track in/out of SRV
 		lHUDAnalysis		= fHUDAnalysis;
 
@@ -684,7 +684,7 @@
 	
 		stfnDecodeFlags();
 		stfnDecodeFlags2();
-			
+					
 		if (fDocked != lDocked) {
 			if (!fOnFoot & !fSRV) {
 				if (fDocked) {
@@ -1610,11 +1610,12 @@
 	// BodyName (STRING), OrganicFound (STRING), **DockingStatus (STRING), **DeniedReason (STRING), **LandingPad (INTEGER), **Modules (INTEGER), **ActiveFighter (BOOLEAN),
 	// **InputCMD (STRING), **CMDParameter (STRING)
 
-	// Time critical keys should be trapped here, otherwise create a standalone function to process
+	// Time critical keys should be trapped here, otherwise create a standalone function to process.
 	// Keys marked with ** are decoded within existing functions 
 		
 			stfnDecodeModules(0);																	// Individual flags used to enable trigger and switch functions etc
 			fnFighterStatus(0);																		// Determines if Fighter is active 
+			fnGetShipType(0);																		// Grabs ShipType and updates if changed
 			LoadGameDetect = stfnGetKeyValue("LoadGameDetect", INTEGER, 1);
 
 //-		DEVELOPMENT CODE - REMOVE BELOW FROM HERE...
