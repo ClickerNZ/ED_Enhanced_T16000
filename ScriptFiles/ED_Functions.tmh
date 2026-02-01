@@ -921,11 +921,11 @@
 				if (x == DEPLOY) {
 					if (fMainShip & !fSupercruise & !fLanded & !fDocked & !ActiveFighter) {						// DEPLOY
 						if (fNPCCrewActive) {
-							if (DEBUG >= LOG) printf("!!	DEBUG:	fnDeployFighter() - Call m_DeployNPCFighter line 1049\x0a");
+							if (DEBUG >= LOG) printf("!!	DEBUG:	fnDeployFighter() - Call m_DeployNPCFighter line 924\x0a");
 							ActKey(KEYON+PULSE+m_DeployNPCFighter);												// Duration 2185
 						}
 						else {
-							if (DEBUG >= LOG) printf("!! DEBUG:	fnDeployFighter() - Call m_DeployFighter line 1053\x0a");
+							if (DEBUG >= LOG) printf("!! DEBUG:	fnDeployFighter() - Call m_DeployFighter line 928\x0a");
 							ActKey(KEYON+PULSE+m_DeployFighter);												// Duration 2185
 						}
 					}
@@ -1709,7 +1709,7 @@
 //-	DEBUG +++++ END 
 		
 			StationName[strlen(&StationName)] = 0;
-//-			if (DEBUG >= 1) printf("!!	DEBUG: fnGetStationName() - Station Name = %s\x0a", &StationName);
+//			if (DEBUG >= 1) printf("!!	DEBUG: fnGetStationName() - Station Name = %s\x0a", &StationName);
 //-	DEBUG +++++ START
 		}
 //-	DEBUG +++++ END 
@@ -2069,6 +2069,38 @@
 			}
 		}
 		if (reason != 0) fnNotValid(fnName, reason);
+	}
+
+
+	//	FUNCTION:	Get ShipType from MyJournalData.json
+	//	Parameter:	dummy - enables DeferCall() or REXEC()
+	//	Globals:	Uses &ShipType, defined in ED_GlobalVars
+	
+	int fnGetShipType(int dummy=0) {
+
+		stfnGetKeyValue("ShipType", STRING, 1);						// sets global &keyvalue
+		Dim(&ShipType, strlen(&keyvalue)+1);						// init our ShipType char array 
+
+		if (strcmp(&keyvalue, &ShipType)==0) {						// Do nothing if &ShipType already matches what's in MyJournalData.json ...
+			// do nothing, or maybe "return"
+		}
+		else {														// ... otherwise update our variable etc.
+			ShipType[0] = 0;										// Resets char array
+			strcpy(&ShipType, &keyvalue);							// copy in results from stfnGetKeyValue call above
+			ShipType[strlen(&ShipType)] = 0;						// nul terminate char array 
+
+			if (DEBUG >= 1) { 
+				if (strlen(&ShipType) == 0) {						// trap empty string...
+					printf("!!	DEBUG: fnGetShipType() - ShipType has returned as zero length string\x0a");
+				}
+				else {												// if not empty, print result
+					printf("!!	DEBUG: fnGetShipType() - ShipType = %s\x0a", &ShipType);
+				}
+			}
+		}
+	//		Specific shiptype caode goes here, example...
+	//		Call KeyMap Profile or set "MapKeyProfile" for specific ship
+	
 	}
 
 
