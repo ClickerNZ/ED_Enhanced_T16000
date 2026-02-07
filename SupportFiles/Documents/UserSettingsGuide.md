@@ -17,7 +17,7 @@ There are plenty of comments which hopefully make things clear as to what the se
 ### status.json  
 
 If these settings are not correct, the script will abort.  
-Change "username" to match the Windows username you use to log into Windows.  
+Change "<username>" to match the Windows username you use to log into Windows.  
 You can usually find it by opening explorer and navigating to C:\Users. A list of known users  will be shown as subfolders.  
 
 "status.json" is a single line JSON file and written by the game and updated everytime a status variable changes.  
@@ -60,16 +60,17 @@ If however you unzipped the package elsewhere or named the folder something else
 
 The TTS and sound effects functionality is optional, however they are strongly recommended.  
 Critical settings for these relate to where you copied the script package to.  
-"voice.exe" is the applet which does the text to speech.  
+
+The TTSMonitor.ps1 Powershell helper script now takes care of all voice output from the TARGET script.  
 "sounder.exe" is the wav file player applet used to play the odd sound effect (modifier key, when reversing etc).  
 
-- alias	VoicePath			= "C:\\Thrustmaster\\ED_TargetScript_T16000\\SupportFiles\\voice.exe";  
 - alias	SoundPath			= "C:\\Thrustmaster\\ED_TargetScript_T16000\\SupportFiles\\sounder.exe";  
 
-Additionally, for TTS to work, you need to have at least one of the Microsoft narator languages installed.  
-Additional information on how to check, install and configure the voices can be found in ED_UserSettings.tmh file.  
+The TTS function uses the default Microsoft voice installed on your OS.  
 
-Likewise, the wav file sounds that I use in this script can be found in the following folder;  
+Additional information on how to check, install and configure  voices can be found in ED_UserSettings.tmh file.  
+
+The wav file sounds that I use in this script can be found in the following folder;  
 
 - alias	WAVPath				= "C:\\Thrustmaster\\ED_TargetScript_T16000\\SupportFiles\\sounds\\";  
 
