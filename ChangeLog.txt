@@ -1,3 +1,17 @@
+v1.2
+
+-	2026-xx-xx
+	-	Refer to Github for individual file changes
+	
+-	2025-11-xx
+	-	Merge v1-1 branch with main
+	-	Create v1-2 branch 
+	-	Convert MyStatus file from target default output to json
+	-	Start using Powershell helper scripts
+	-	Refer Github for chage details on individual files
+
+~~~
+
 v1.1
 
 -	2025-10-16
