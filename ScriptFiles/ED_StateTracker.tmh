@@ -699,8 +699,10 @@
 							DeferCall(4000, &fnHangarServices, 3);				// ... disembark
 						}
 						
-						strcpy(&LandedTOD, fnGetTOD());
-						printf("==	Docked: %s @ %s\x0a\x0a", &StationName, &LandedTOD);
+//						strcpy(&LandedTOD, fnGetTOD());
+						strcpy(&DockedTOD, fnGetTOD());
+//						printf("==	Docked: %s @ %s\x0a\x0a", &StationName, &LandedTOD);
+						printf("==	Docked: %s @ %s\x0a\x0a", &StationName, &DockedTOD);
 						
 						if (fLights) tgLights(0);
 						DeferCall(1000, &ActKey, KEYON+PULSE+BalancePower);		// Much more efficient than calling fnPIPMapper()
@@ -708,7 +710,8 @@
 
 						// --- Calculate and output Trip time
 						if (strcmp(&oStation, &StationName) == 0) {
-							if (strcmp(&LiftoffTOD, "HH:MM") != 0) {
+//							if (strcmp(&LiftoffTOD, "HH:MM") != 0) {
+							if (strcmp(&UnDockedTOD, "HH:MM") != 0) {
 								DeferCall(16000, &fnTripTime, 0);
 							}
 							else {
@@ -729,7 +732,8 @@
 					
 					if (strcmp(&oStation, "not set") != 0) {
 						if (strcmp(&oStation, &StationName) == 0 ) {			// Hoping &StationName has not yet been reset, otherwise 
-							strcpy(&LiftoffTOD, fnGetTOD());					// move this to fnSetOriginStation() and start timer there
+//							strcpy(&LiftoffTOD, fnGetTOD());					// move this to fnSetOriginStation() and start timer there
+							strcpy(&UnDockedTOD, fnGetTOD());					// move this to fnSetOriginStation() and start timer there
 							fnTextToSpeech("Trip timer started");
 						}
 					}
@@ -744,39 +748,27 @@
 			}
 		}
 
-		if (fLanded != lLanded) {												// Framework for future functionality
+		if (fLanded != lLanded) {
 			if (fLanded) {
 				if (fSRV | fOnFoot) {
-//					if (ShipDismissed) ShipDismissed = 0;						// do not need ShipDismissed if using fLanded ???
 					if (DEBUG > 0) printf("==	Ship Status:		RECALLED\x0a");
 				}
-/*
 				strcpy(&LandedTOD, fnGetTOD());
-	
-				printf("==	Landed @ %s\x0a", &LandedTOD);
-				
-				if (strcmp(&LiftoffTOD, "HH:MM") != 0) {						// Calculate and output Trip time
-					DeferCall(2000, &fnTripTime, 0);
-				}
-				else {
-					DeferCall(2000, &fnVPOutput, "Departure time not logged");
-				}
-*/				
+				printf("==	Landed @ %s\x0a", &LandedTOD);				
 			}
 			else {
-				if (AutoGearUP) {
-					DeferCall(1500, &ActKey, KEYON+PULSE+LandingGear);
+				if (AutoGearUP) {											// This may conflict with Advanced Docking Computer...
+					DeferCall(1500, &ActKey, KEYON+PULSE+LandingGear);		// ... which raises the landing gear automatically
 				}
-/*				
-				if (strcmp(&oStation, &StationName) == 0) {
-					strcpy(&LiftoffTOD, fnGetTOD());
-					printf("==	Liftoff @ %s\x0a", &LiftoffTOD);
-				}
-*/
-//				ShipDismissed = NO;
+				strcpy(&LiftoffTOD, fnGetTOD());
+				printf("==	Liftoff @ %s\x0a", &LiftoffTOD);
+				
 				if (fSRV | fOnFoot) {
-//					if (!ShipDismissed) ShipDismissed = 1;						// do not need ShipDismissed if using fLanded ???
-					if (DEBUG > 0) printf("==	Ship Status:		DISMISSED\x0a");
+					if (!ShipDismissed) {
+						fnVPOutput("Ship has departed");
+					}
+					
+					if (DEBUG > 1) printf("==	Ship Status:		DISMISSED\x0a");
 				}
 			}
 		}
