@@ -26,7 +26,7 @@ It includes;
 - Associated BIND files  
 - Game state engine which checks the game's status.json file every half second  
 - Text to speech (TTS) functionality to add verbal feedback (this is NOT a Voice-to-Text alternative to VoiceAttack)  
-- Sound effects functionality to allow various wav files to be played as sound effects  
+- Sound effects functionality to allow various wav files to be played as ound effects  
 - Customised and advanced PIP management
 - Trip timer  
 - Automated joystick curve profiles depending on which flight mode you are currently in  
@@ -56,7 +56,9 @@ Refer the following file in the SupportFiles\Documents subfolder for more inform
 To use this script you will need a Thrustmaster T16000L or T16000M and a Thrustmaster TWCS Throttle.  
 Rudder pedals are not required, but recommended.  
   
-Also, you will need the latest firmware for these devices and the very latest version of TARGET software.  
+Also, you will need the latest firmware for these devices and the very latest version of TARGET software. 
+
+Powershell v5.1 is required for the helper scripts and comes installed by default on Windows 10 and 11.  
 
 ### ZIP PACKAGE  
 
