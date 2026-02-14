@@ -961,9 +961,19 @@
 	// NOTE:		1. Use to manually dismiss/recall the ship from SRV or on-foot 
 	//				2. Console messages may be wrong if ship leaves automatically
 	
+	// Globals:
+	int	ShipDismissed = 0;
+
 	int fnDRShip() {
 		int fnName = "Dismiss or Recall Ship";
 		int reason = 0;
+
+		if (fLanded) {															// This enables fLanded trap in stfmStateTracker to differentiate auto v manual dismissal
+			ShipDismissed = 1;													// I sent the ship away
+		}
+		else {
+			ShipDismissed = 0;													// I recalled the ship
+		}
 		
 		if(fSRV | fOnFootOnPlanet) {											// TESTING: sometimes flag not set for fOnFoot or fOnFootOnPlanet
 			ActKey(KEYON+PULSE+SRVRecallDismissShip);							// 'LeftALT+k'			
