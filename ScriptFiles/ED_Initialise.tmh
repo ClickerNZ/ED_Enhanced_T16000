@@ -167,7 +167,7 @@
 		MapAxis(&MyJoystick, THR, 0);												// Slider = not used
 
 		if (StartupLock) {
-			printf("Joystick Axes	... done		");
+			printf("Joystick Axes	... T16000	");
 		}
 		else {
 			printf("Joystick Axes	... re set\x0a");
@@ -179,17 +179,17 @@
 	int initThrottleAxis() {														// Set Default Throttle Axis
 		
 		// Throttle mapping...
-		MapAxis(&MyThrottle, TTHR, DX_THROTTLE_AXIS, AXIS_NORMAL, MAP_ABSOLUTE);	// Set Left Throttle. 
+		MapAxis(&MyThrottle, TTHR, DX_THROTTLE_AXIS, AXIS_NORMAL, MAP_ABSOLUTE);	// Set Throttle. 
 
-		if (strcmp(YAWDevice, "THRPaddles") == 0) {
-			MapAxis(&MyThrottle, TRDR, DX_Z_AXIS, AXIS_REVERSED, MAP_ABSOLUTE);		// Set YAWDevice define to THRPaddles above			
-		}
-		else {
-			MapAxis(&MyThrottle, TRDR, 0);											// Otherwise = not used
-		}
+//		if (strcmp(YAWDevice, "THRPaddles") == 0) {
+//			MapAxis(&MyThrottle, TRDR, DX_Z_AXIS, AXIS_REVERSED, MAP_ABSOLUTE);		// Set YAWDevice define to THRPaddles above			
+//		}
+//		else {																		// Otherwise use for DSS Tuning
+//			MapAxis(&MyThrottle, TRDR, 0);											// Otherwise = not used
+//		}
 		
 		if (StartupLock) {
-			printf("Throttle Axes	... done");
+			printf("Throttle Axes	... TWCS	");
 		}
 		else {
 			printf("Throttle Axes	... re set\x0a");
@@ -198,9 +198,16 @@
 
 	// FUNCTION: Initialise Rudder Axis 
 	int initRudderAxis() {															// Initialise Thrustmaster TFRP or TFRPHA Rudder
+
+		if (strcmp(YAWDevice, "THRPaddles") == 0) {
+			MapAxis(&MyThrottle, TRDR, DX_Z_AXIS, AXIS_REVERSED, MAP_ABSOLUTE);		// Set YAWDevice define to THRPaddles above			
+		}
+		else {																		// Otherwise use for DSS Tuning
+//			MapAxis(&MyThrottle, TRDR, 0);											// Otherwise = not used
+		}
 		
 		if (strcmp(YAWDevice, "RudderPedals") == 0) {
-			MapAxis(&MyRudder, TRUDDER, DX_Z_AXIS, AXIS_NORMAL, MAP_ABSOLUTE);		// Set YAWDevice define to RudderPedals above			
+			MapAxis(&MyRudder, TRUDDER, DX_Z_AXIS, AXIS_NORMAL, MAP_ABSOLUTE);		// Set YAWDevice define to RudderPedals
 		}
 		else {
 			MapAxis(&MyRudder, TRUDDER, 0);											// Otherwise = not used
@@ -210,7 +217,7 @@
 		MapAxis(&MyRudder, TRPLEFT, 0);												// Left foot pedal  - not used
 	
 		if (EnableMyRudder) {
-			if (StartupLock) printf("Rudder Axis	... done\x0a");
+			if (StartupLock) printf("Rudder Axis	... TFRP\x0a");
 		}
 		else {
 			if (StartupLock) printf("Rudder Axis	... disabled\x0a");		
@@ -219,14 +226,23 @@
 
 	// FUNCTION: Initialise Slider Axis 
 	int initSliderAxis() {
-	
-		// Slider Mapping...
+
+		int MySlider;
 		
-		MapAxis(&MyThrottle, TANT, DX_SLIDER_AXIS, AXIS_REVERSED);					// Pinky wheel
-		
+		// Slider Mapping for DSS tuner...
+
+		if (strcmp(YAWDevice, "THRPaddles") == 0) {										// If using the paddles for Rudder, use the pinky wheel for tuning... 
+			MapAxis(&MyThrottle, TANT, DX_SLIDER_AXIS, AXIS_REVERSED);
+			MySlider = "TANT";
+		}
+		else {
+			MapAxis(&MyThrottle, TRDR, DX_SLIDER_AXIS, AXIS_REVERSED);					// ...otherwise use the paddles for tuning
+			MySlider = "THRPaddles";
+		}
+
 		initSliderCurve(1);
 		if (StartupLock) {
-			printf("Slider Axis	... done		");
+			printf("Slider Axis	... %s	", MySlider);
 		}
 		else {
 			printf("Slider Axis	... re set\x0aa");
@@ -241,7 +257,7 @@
 		MapAxis(&MyThrottle, TMSTY, DX_YROT_AXIS, AXIS_NORMAL, MAP_ABSOLUTE);						// Set Slew Control Y Axis (Up/Down)
 
 		if (StartupLock) {
-			printf("Slew Axis	... done		");
+			printf("Slew Axis	... TMSTX/Y	");
 		}
 		else {
 			printf("Slew Axis	... re set\x0a");
