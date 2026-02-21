@@ -6,7 +6,7 @@
 	// This file: ED_StateTracker.tmh                                       //
 
 /*
-	Index:			FUNCTION
+	Index:				FUNCTION
 	Line    43: 		int stfnReadMyJournalData() {
 	Line   140: 		int stfnReadStatusJson() {
 	Line   302: 		int stfnWriteMaxJson() {			// This may now be redundant if the dynamic buf sizing code works.
@@ -14,11 +14,11 @@
 	Line   474: 		int stfnDecodeFlags() {
 	Line   578: 		int stfnDecodeFlags2() {
 	Line   683: 		int stfnProcessFlags(int UpdateLEDs = NO) {
-	Line  1573: 		int stfnDecodeModules(int dummy = 0) {
-	Line  1605: 		int stfnProcessMyJournalData(int dummy = 0) {
-	Line  1677: 		int stfnProcessGuiFocus() {
-	Line  1724: 		int stfnStartCheck() {
-	Line  1794: 		int stfnMyStates(int action) {
+	Line  1566: 		int stfnDecodeModules(int dummy = 0) {
+	Line  1598: 		int stfnProcessMyJournalData(int dummy = 0) {
+	Line  1671: 		int stfnProcessGuiFocus() {
+	Line  1718: 		int stfnStartCheck() {
+	Line  1788: 		int stfnMyStates(int action) {
 */
 
 	// START

@@ -6,53 +6,54 @@
 	// This file: ED_Functions.tmh
 
 /*
-	Index:			FUNCTION
-	Line    65: 		int fnNotValid(int fnName, int reason=0) {
-	Line    83: 		int fnStartupMapKeyMode() {
-	Line   109: 		int fnGetFlightMode() {
-	Line   140: 		int fnLEDBrightness(int x = NOCHANGE) {
-	Line   161: 		int fnFlashLED(int x) {		
-	Line   179: 		int fnSetLEDs(int dummy=NUL) {
-	Line   213: 		int fnFlashStart() {
-	Line   252: 		int fnTextToSpeech(int text, int VolumeOverride=0, int Voice=DefaultVoice) {
-	Line   287: 		int fnVoiceVolume(int x) {
-	Line   338: 		int fnTTSExport(alias TTSText, int TTSVoice = DefaultVoice, int TTSVolume=75 ) {
-	Line   413: 		int fnSoundFX(int wavfile, int vol = 100, int loops = 1) {
-	Line   430: 		int fnGameStarted(int dummy = 0) {
-	Line   525: 		int fnPIPMode(int x) {
-	Line   576: 		int fnPIPManager(int PwrPriority) {
-	Line   613: 		int fnPIPMapper(int maxPIPx=0, int minPIPy=0, int balPIPz=0) {
-	Line   653: 		int fnAdvFireControl(int x) {
-	Line   734: 		int fnAdvancedSCB(int x = 0) {
-	Line   792: 		int fnHeatsink(int param = 0) {
-	Line   831: 		int fnChaff(int dummy = 0) {
-	Line   859: 		int fnDeploySRV(int x) {
-	Line   911: 		int fnDeployFighter(int x) {
-	Line   964: 		int fnDRShip() {
-	Line   982: 		int fnRequestDock() {
-	Line  1006: 		int fnHangarServices(int x) {
-	Line  1077: 		int fnIdleLock(int x) {
-	Line  1112: 		int fnCheckFSDCharge(int EngineText) {
-	Line  1143: 		int fnCheckFiregroup() {
-	Line  1159: 		int fnClearChatBox(int mode = 0) {
-	Line  1223: 		int fnModeSwitch(int mode) {
-	Line  1324: 		int fnVPOutput(int VPOutput, int VolumeOverride=0, int Type=0) {
-	Line  1346: 		int fnPrintState() {
-	Line  1357: 		int fnStateDump() {
-	Line  1523: 		int fnGetTOD() {
-	Line  1574: 		int fnMyName() {
-	Line  1605: 		int	fnGreetCMDR(int dummy = 0) {
-	Line  1659: 		int fnSelectFiregroup(int fg) {
-	Line  1697: 		int fnGetStationName(int dummy=0) {
-	Line  1724: 		int fnDockingStatus(int dummy) {
-	Line  1828: 		int fnFighterStatus(int dummy = 0) {
-	Line  1849: 		int fnPANIC(int panic = 0) {
-	Line  1886: 		int fnInputCMD(int dummy = 0) {
-	Line  1951: 		int fnTripTime(int dummy = 0) {
-	Line  2027: 		int fnSetOriginStation(int action) {
-	Line  2082: 		int fnDEBUG(int dummy = 0) {
-	Line  2107: 		int findstr(alias string, alias substring) {
-	Line  2132: 		int strcpy(alias dst, alias src) {
+	Index:				FUNCTION
+	Line    66: 		int fnNotValid(int fnName, int reason=0) {
+	Line    84: 		int fnStartupMapKeyMode() {
+	Line   110: 		int fnGetFlightMode() {
+	Line   141: 		int fnLEDBrightness(int x = NOCHANGE) {
+	Line   162: 		int fnFlashLED(int x) {	
+	Line   180: 		int fnSetLEDs(int dummy=NUL) {
+	Line   214: 		int fnFlashStart() {
+	Line   253: 		int fnTextToSpeech(int text, int VolumeOverride=0, int Voice=DefaultVoice) {
+	Line   288: 		int fnVoiceVolume(int x) {
+	Line   339: 		int fnTTSExport(alias TTSText, int TTSVoice = DefaultVoice, int TTSVolume=75 ) {
+	Line   414: 		int fnSoundFX(int wavfile, int vol = 100, int loops = 1) {
+	Line   431: 		int fnGameStarted(int dummy = 0) {
+	Line   526: 		int fnPIPMode(int x) {
+	Line   577: 		int fnPIPManager(int PwrPriority) {
+	Line   614: 		int fnPIPMapper(int maxPIPx=0, int minPIPy=0, int balPIPz=0) {
+	Line   654: 		int fnAdvFireControl(int x) {
+	Line   735: 		int fnAdvancedSCB(int x = 0) {
+	Line   793: 		int fnHeatsink(int param = 0) {
+	Line   832: 		int fnChaff(int dummy = 0) {
+	Line   860: 		int fnDeploySRV(int x) {
+	Line   912: 		int fnDeployFighter(int x) {
+	Line   968: 		int fnDRShip() {
+	Line   993: 		int fnRequestDock() {
+	Line  1017: 		int fnHangarServices(int x) {
+	Line  1088: 		int fnIdleLock(int x) {
+	Line  1123: 		int fnCheckFSDCharge(int EngineText) {
+	Line  1154: 		int fnCheckFiregroup() {
+	Line  1170: 		int fnClearChatBox(int mode = 0) {
+	Line  1234: 		int fnModeSwitch(int mode) {
+	Line  1335: 		int fnVPOutput(int VPOutput, int VolumeOverride=0, int Type=0) {
+	Line  1357: 		int fnPrintState() {
+	Line  1368: 		int fnStateDump() {
+	Line  1534: 		int fnGetTOD() {
+	Line  1585: 		int fnMyName() {
+	Line  1616: 		int	fnGreetCMDR(int dummy = 0) {
+	Line  1670: 		int fnSelectFiregroup(int fg) {
+	Line  1708: 		int fnGetStationName(int dummy=0) {
+	Line  1735: 		int fnDockingStatus(int dummy) {
+	Line  1839: 		int fnFighterStatus(int dummy = 0) {
+	Line  1860: 		int fnPANIC(int panic = 0) {
+	Line  1897: 		int fnInputCMD(int dummy = 0) {
+	Line  1967: 		int fnTripTime(int dummy = 0) {
+	Line  2048: 		int fnSetOriginStation(int action) {
+	Line  2102: 		int fnGetShipType(int dummy=0) {
+	Line  2137: 		int fnDEBUG(int dummy = 0) {
+	Line  2162: 		int findstr(alias string, alias substring) {
+	Line  2187: 		int strcpy(alias dst, alias src) {
 */
 
 	//------------------//
