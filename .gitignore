@@ -6,7 +6,7 @@ DO THIS BEFORE PUBLISHING.txt
 ED_Launcher-TEST.cmd
 ED_Launcher.cmd
 ScriptFiles/ED_Development.*
-ScriptFiles/TARGET Session
+ScriptFiles/TARGET_Session
 SupportFiles/Output/MyJournalData.json
 SupportFiles/Output/Tracking.json
 SupportFiles/Output/TTSQueue/*.*
