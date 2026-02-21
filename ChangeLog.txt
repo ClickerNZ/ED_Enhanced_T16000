@@ -1,5 +1,7 @@
 v1.2
 
+THIS FILE NO LONGER MAINTAINED - SEE INIDVIDUAL COMMENTS WITHIN GITHUB FOR CHANGES
+
 -	2026-xx-xx
 	-	Refer to Github for individual file changes
 	
