@@ -8,7 +8,7 @@
 	//								T16000 + TWCS REQUIRED									//
 
 	// This file:	ED_ENHANCED_T16000.tmc						// v1-1 (update)
-	// Supports:	Elite Dangerous		v4.3.0.1				// Does not support Legacy Horizons
+	// Supports:	Elite Dangerous		v4.3.1.0				// Does not support Legacy Horizons
 	// Requires:	TARGET 				v3.0.25.603				// https://support.thrustmaster.com/
 
 	// LEGEND: This script calls functions within the support files with the following naming formats
