@@ -24,3 +24,4 @@ SupportFiles/PowerShell/TTSMonitor-v20.ps1
 *.bak
 Build-Index.ps1
 SupportFiles/ED_Launcher_2.cmd
+SyncScriptT16.cmd
