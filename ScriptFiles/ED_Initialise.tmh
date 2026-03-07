@@ -112,10 +112,11 @@
 	//===================================================================================================
 
 		// If no rudder is found the script will not abort.
-		// There are two external Rudders compatible with this scriptas well as the TWCS Paddle rudder and T16000 twist function...
+		// There are two external Rudders compatible with this script as well as the TWCS Paddle rudder and T16000 twist function...
 		
 		&MyRudder = &joy0;														// set to equivalent of 'nul' by default
-		
+
+		// Always set YAW to external rudder pedals if available 
 		if (&TFRPRudder != &joy0) {
 			&MyRudder = &TFRPRudder;
 			if (YAWDeviceOverride == DISABLED) {
@@ -132,7 +133,7 @@
 		}
 		else {
 			printf("++	No compatible rudder connected. Use alt YAW control.\x0a");
-			printf("	NOTE: set YAWDevice define at top of script to JSTwist or THRPaddles\x0a");
+			printf("++	YAWDevice set to JSTwist or THRPaddles\x0a");
 		}
 
 		printf("\x0a++	Hardware checks		- COMPLETE\x0a");
@@ -230,7 +231,7 @@
 		int MySlider;
 		
 		// Slider Mapping for DSS tuner...
-
+/*
 		if (strcmp(YAWDevice, "THRPaddles") == 0) {										// If using the paddles for Rudder, use the pinky wheel for tuning... 
 			MapAxis(&MyThrottle, TANT, DX_SLIDER_AXIS, AXIS_REVERSED);
 			MySlider = "TANT";
@@ -239,13 +240,28 @@
 			MapAxis(&MyThrottle, TRDR, DX_SLIDER_AXIS, AXIS_REVERSED);					// ...otherwise use the paddles for tuning
 			MySlider = "THRPaddles";
 		}
+*/
 
+		// Testing...
+
+	//	MapAxis(&MyThrottle, TANT, DX_SLIDER_AXIS, AXIS_REVERSED);		// Pinky wheel
+	//	MySlider = "Pinky wheel";
+	
+	//	MapAxis(&MyThrottle, TRDR, DX_SLIDER_AXIS, AXIS_REVERSED);		// Throttle paddles 
+	//	MySlider = "THRPaddles";
+	
+		MapAxis(&MyJoystick, THR, DX_SLIDER_AXIS, AXIS_REVERSED);		// Joystick throttle slider 
+		MySlider = "Stick slider";
+	
+	//	MapAxis(&MyJoystick, RUDDER, DX_SLIDER_AXIS, AXIS_REVERSED);	// Joystick twist grip 
+	//	MySlider = "Stick twist";
+	
 		initSliderCurve(1);
 		if (StartupLock) {
 			printf("Slider Axis	... %s	", MySlider);
 		}
 		else {
-			printf("Slider Axis	... re set\x0aa");
+			printf("Slider Axis	... reset\x0aa");
 		}
 	}
 
