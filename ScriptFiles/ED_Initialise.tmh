@@ -231,30 +231,25 @@
 		int MySlider;
 		
 		// Slider Mapping for DSS tuner...
-/*
+
 		if (strcmp(YAWDevice, "THRPaddles") == 0) {										// If using the paddles for Rudder, use the pinky wheel for tuning... 
-			MapAxis(&MyThrottle, TANT, DX_SLIDER_AXIS, AXIS_REVERSED);
-			MySlider = "TANT";
+		//	MapAxis(&MyThrottle, TANT, DX_SLIDER_AXIS, AXIS_REVERSED);
+		//	MySlider = "TANT";
+
+		//	MapAxis(&MyThrottle, TRDR, DX_SLIDER_AXIS, AXIS_REVERSED);		// Throttle paddles 
+		//	MySlider = "TRDR";
+		
+			MapAxis(&MyJoystick, THR, DX_SLIDER_AXIS, AXIS_REVERSED);		// Joystick throttle slider 
+			MySlider = "THR";
+		
+		//	MapAxis(&MyJoystick, RUDDER, DX_SLIDER_AXIS, AXIS_REVERSED);	// Joystick twist grip 
+		//	MySlider = "RUDDER";
+
 		}
 		else {
 			MapAxis(&MyThrottle, TRDR, DX_SLIDER_AXIS, AXIS_REVERSED);					// ...otherwise use the paddles for tuning
 			MySlider = "THRPaddles";
 		}
-*/
-
-		// Testing...
-
-	//	MapAxis(&MyThrottle, TANT, DX_SLIDER_AXIS, AXIS_REVERSED);		// Pinky wheel
-	//	MySlider = "Pinky wheel";
-	
-	//	MapAxis(&MyThrottle, TRDR, DX_SLIDER_AXIS, AXIS_REVERSED);		// Throttle paddles 
-	//	MySlider = "THRPaddles";
-	
-		MapAxis(&MyJoystick, THR, DX_SLIDER_AXIS, AXIS_REVERSED);		// Joystick throttle slider 
-		MySlider = "Stick slider";
-	
-	//	MapAxis(&MyJoystick, RUDDER, DX_SLIDER_AXIS, AXIS_REVERSED);	// Joystick twist grip 
-	//	MySlider = "Stick twist";
 	
 		initSliderCurve(1);
 		if (StartupLock) {
