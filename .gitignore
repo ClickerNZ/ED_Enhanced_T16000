@@ -11,6 +11,7 @@ DO THIS BEFORE PUBLISHING.txt
 
 ED_Launcher-TEST.cmd
 ED_Launcher.cmd
+ED_UserSettings.tmh
 
 ScriptFiles/ED_Development.*
 ScriptFiles/ED_UserSettings.tmh
