@@ -35,3 +35,4 @@ BindFiles/StartPreset.4.start
 Build-Index.ps1
 SyncScriptT16.cmd
 TARGET_Script_Analyzer_v8.4.ps1
+ScriptFiles/ED_UserSettings.tmh
