@@ -2,29 +2,35 @@ Issues Register.txt
 Test Plan.xlsx
 Pipeline.txt
 DO THIS BEFORE PUBLISHING.txt
+
 *.docx
+*.log
+*.tmp
+*.orig
+*.bak
+
 ED_Launcher-TEST.cmd
 ED_Launcher.cmd
+
 ScriptFiles/ED_Development.*
+ScriptFiles/ED_UserSettings.tmh
 ScriptFiles/TARGET_Session
+
+Output/
+
 SupportFiles/Output/MyJournalData.json
 SupportFiles/Output/Tracking.json
 SupportFiles/Output/TTSQueue/*.*
 SupportFiles/Output/TTSQueue/Archive/*.*
 SupportFiles/PowerShell/Autopilot Functions.ps1
-Output/
-Archive/
-*.log
-*.tmp
 SupportFiles/PowerShell/ProcessJournal-v30.ps1
 SupportFiles/PowerShell/ProcessJournal-v31.ps1
 SupportFiles/PowerShell/ProcessJournal-v32.ps1
 SupportFiles/PowerShell/TTSMonitor-v20.ps1
-*.orig
-*.bak
-Build-Index.ps1
 SupportFiles/ED_Launcher_2.cmd
+
+BindFiles/StartPreset.4.start
+
+Build-Index.ps1
 SyncScriptT16.cmd
 TARGET_Script_Analyzer_v8.4.ps1
-ScriptFiles/ED_UserSettings.tmh
-BindFiles/StartPreset.4.start
