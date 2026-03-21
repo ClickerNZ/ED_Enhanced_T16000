@@ -9,7 +9,7 @@
 	Index:				FUNCTION
 	Line    43: 		int stfnReadMyJournalData() {
 	Line   140: 		int stfnReadStatusJson() {
-	Line   302: 		int stfnWriteMaxJson() {			// This may now be redundant if the dynamic buf sizing code works.
+	Line   302: 		int stfnWriteMaxJson() {
 	Line   359: 		int stfnGetKeyValue(alias pattern, int vtype, int jsonfile = 0) {
 	Line   474: 		int stfnDecodeFlags() {
 	Line   578: 		int stfnDecodeFlags2() {
@@ -1791,7 +1791,6 @@
 		int reason = 0;
 		int UserSettings;												// Binary encoded user settings
 		int fh;															// General File Pointer Variable 
-		int rc;
 		int fpresult;
 		int buf = 1024;													// Increase buf when required
 		int mySIZE;
