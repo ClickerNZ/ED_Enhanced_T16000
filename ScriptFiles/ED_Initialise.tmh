@@ -10,21 +10,21 @@
 /*
 	Index:				FUNCTION
 	Line    50: 		int CheckControllers() {
-	Line   151: 		int initJoystickAxis() { 	
-	Line   179: 		int initThrottleAxis() {	
-	Line   200: 		int initRudderAxis() {		
-	Line   228: 		int initSliderAxis() {		
-	Line   253: 		int initSlewAxis() {
-	Line   279: 		int initCurves(int profile, int print=NO, int announce=YES, int SaveCurveInfo=TRUE) {
-	Line   370: 		int initSliderCurve(int x) {
-	Line   401: 		int initTextToSpeech() {
-	Line   413: 		int initSoundFX() {
-	Line   472: 		int initUserSettings(int dummy = 0) {
-	Line   529: 		int fnResetUserSettings(int dummy = 0) {
-	Line   575: 		int fnEncodeUserSettings(int dummy = 0) {
-	Line   611: 		int fnDecodeUserSettings(int DecodeSettings) {
-	Line   643: 		int fnUserSettingsDelta(int dummy = 0)	{
-	Line   691: 		int fnCompareIntSettings(int dummy = 0) {
+	Line   152: 		int initJoystickAxis() {
+	Line   180: 		int initThrottleAxis() {
+	Line   201: 		int initRudderAxis() {	
+	Line   229: 		int initSliderAxis() {
+	Line   263: 		int initSlewAxis() {
+	Line   289: 		int initCurves(int profile, int print=NO, int announce=YES, int SaveCurveInfo=TRUE) {
+	Line   380: 		int initSliderCurve(int x) {
+	Line   411: 		int initTextToSpeech() {
+	Line   423: 		int initSoundFX() {
+	Line   482: 		int initUserSettings(int dummy = 0) {
+	Line   539: 		int fnResetUserSettings(int dummy = 0) {
+	Line   585: 		int fnEncodeUserSettings(int dummy = 0) {
+	Line   621: 		int fnDecodeUserSettings(int DecodeSettings) {
+	Line   653: 		int fnUserSettingsDelta(int dummy = 0)	{
+	Line   701: 		int fnCompareIntSettings(int dummy = 0) {
 */
 
 	// START
@@ -232,7 +232,7 @@
 		
 		// Slider Mapping for DSS tuner...
 
-		if (strcmp(YAWDevice, "THRPaddles") == 0) {										// If using the paddles for Rudder, use the pinky wheel for tuning... 
+		if (strcmp(YAWDevice, "THRPaddles") == 0) {							// If using the paddles for Rudder, use the pinky wheel for tuning... 
 		//	MapAxis(&MyThrottle, TANT, DX_SLIDER_AXIS, AXIS_REVERSED);
 		//	MySlider = "TANT";
 
@@ -250,7 +250,6 @@
 			MapAxis(&MyThrottle, TRDR, DX_SLIDER_AXIS, AXIS_REVERSED);					// ...otherwise use the paddles for tuning
 			MySlider = "THRPaddles";
 		}
-	
 		initSliderCurve(1);
 		if (StartupLock) {
 			printf("Slider Axis	... %s	", MySlider);
