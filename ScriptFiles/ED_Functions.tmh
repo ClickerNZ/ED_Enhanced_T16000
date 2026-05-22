@@ -368,10 +368,7 @@
 
 		// Build sequential filename using 4 digits 
 
-		if (TTSSeq > -1		& TTSSeq < 10) 		sprintf(&TTSFilename, "TTSMsg000%d.json",	TTSSeq);
-		if (TTSSeq > 9		& TTSSeq < 100)		sprintf(&TTSFilename, "TTSMsg00%d.json",	TTSSeq);
-		if (TTSSeq > 99		& TTSSeq < 1000)	sprintf(&TTSFilename, "TTSMsg0%d.json",		TTSSeq);
-		if (TTSSeq > 999	& TTSSeq < 10000)	sprintf(&TTSFilename, "TTSMsg%d.json",		TTSSeq);
+		sprintf(&TTSFilename, "TTSMsg%04d.json", TTSSeq);
 
 		Dim(&TTSFile, strlen(&TTSQueue)+strlen(&TTSFilename)+1);
 		TTSFile[0] = 0;
@@ -438,6 +435,8 @@
 		GameLoaded = YES;
 		StartupLock = OFF;
 
+		Dim(&lastJournalData, 1);		// Initialise &lastJournalData alias prior to calling stfnReadMyJournalData() for the first time 
+		lastJournalData[0] = NUL;
 		stfnReadMyJournalData();
 		ActKey(KEYON+REXEC(hReadMyJournalData, JournalReadRate, "stfnReadMyJournalData();", RNOSTOP));
 
@@ -464,6 +463,19 @@
 		sprintf(&VoiceTxt, "%s%s", &mymsg, &CMDRName);								// Builds VoiceTxt string 
 		VoiceTxt[strlen(&VoiceTxt)] = 0;											// terminates char array 
 		fnVPOutput(&VoiceTxt);
+
+//-	DEBUG:	Customised for my personal use...
+
+		if(strcmp(&CMDRName, "Clicker") == 0) {
+			PrivateGroup = 2;
+			if(DEBUG>0) fnVPOutput("Private Group set to 2");
+		}
+		else {
+			PrivateGroup = 1;
+			if(DEBUG>0) fnVPOutput("Private Group set to 1");			
+		}
+
+//-	DEBUG:	Customised for my personal use...
 		
 		Flags2 = stfnGetKeyValue("Flags2", INTEGER);								// Check if running Odyssey or Legacy Horizons
 		if (Flags2 == -1) {															// That is, keyname not found 
@@ -956,7 +968,7 @@
 	// FUNCTION: 	Dismiss/Recall Ship
 	// NOTE:		1. Use to manually dismiss/recall the ship from SRV or on-foot 
 	//				2. Console messages may be wrong if ship leaves automatically
-	
+
 	// Globals:
 	int	ShipDismissed = 0;
 
@@ -973,9 +985,6 @@
 		
 		if(fSRV | fOnFootOnPlanet) {											// TESTING: sometimes flag not set for fOnFoot or fOnFootOnPlanet
 			ActKey(KEYON+PULSE+SRVRecallDismissShip);							// 'LeftALT+k'			
-//			printf("==	Ship Status: ");
-//			ShipDismissed = !ShipDismissed;
-//			stfnMyStates(SAVE);			// Moved into fnModeSwitch()			// we save MyStates to allow ShipDismissed state to carry over in case of menulog
 		}
 		else {
 			reason = "we are not in the S R V or on foot";
@@ -1018,26 +1027,32 @@
 		if (DEBUG >= LOG) printf("!!	DEBUG: fnHangarServices() - input parameter = %d\x0a", x);
 		
 		if (GameLoaded) {
-			if (x == 2) {														// Toggle Usersetting 'AutoHangar'
-				AutoHangar = !AutoHangar;
-				if (AutoHangar) {
-					fnVPOutput("Auto Hangar set");
+			if (x==2 | x==4) {
+				if (x == 2) {														// Toggle Usersetting 'AutoHangar'
+					AutoHangar = !AutoHangar;
+					if (AutoHangar) fnVPOutput("Auto Hangar set");
+					else fnVPOutput("Auto Hangar reset");
+				}
+				else if (x == 4) {													// Toggle Usersetting 'AutoDisembark'
+					AutoDisembark = !AutoDisembark;
+					if (AutoDisembark) fnVPOutput("Auto disembark set");
+					else fnVPOutput("Auto disembark reset");
+				}
+				
+				if(AutoHangar) {
+					fnVPOutput("Arrival mode station services");
+					return 0;
+				}
+				else if(AutoDisembark) {
+					fnVPOutput("Arrival mode disembark");
+					return 0;				
 				}
 				else {
-					fnVPOutput("Auto Hangar reset");
+					fnVPOutput("Arrival mode, surface");
+					return 0;
 				}
-				return 0;
 			}
-			if (x == 4) {														// Toggle Usersetting 'AutoDisembark'
-				AutoDisembark = !AutoDisembark;
-				if (AutoDisembark) {
-					fnVPOutput("Auto disembark set");
-				}
-				else {
-					fnVPOutput("Auto disembark reset");
-				}
-				return 0;
-			}
+						
 			if(fDocked) {
 				if(x == 1) {													// Refuel, Rearm, Repair and Enter Hangar and Station Services 
 					if (stfnProcessGuiFocus() != GUI_StationSvcs) {				//
@@ -1066,11 +1081,11 @@
 				reason = "You are not docked at a station services facility";
 			}
 		}
+		fnVPOutput(VoiceTxt);
 		if (DEBUG >= LOG) {
-			printf("!!	DEBUG: fnHangarServices() - Calling fnVPOutput() line 1191\x0a");
+			printf("!!	DEBUG: fnHangarServices() - Calling fnVPOutput() line 1084\x0a");
 			printf("!!	DEBUG: fnHangarServices() - VoiceTxt = %s\x0a", VoiceTxt);
 		}
-		fnVPOutput(VoiceTxt);
 		if (reason != 0) fnNotValid(fnName, reason);
 	}
 
@@ -1269,9 +1284,7 @@
 				printf("!!	DEBUG: fnModeSwitch() - Reverse	= %\x0a", ReverseState);
 			}
 
-//-			Flags = 0;																				// Pretend the game has stopped...
 	// --- Not used with T16000/TWCS 
-	//		fnSetLEDs();																			// Turn off Status LEDs, then...
 	//		ActKey(KEYON+PULSE+LED(&MyThrottle, LED_ONOFF, LED_CURRENT-LED0)); 						// set GLOBAL LED OFF.   IF THIS DOESN'T SET ALL LEDS OFF UN COMMENT THE ABOVE 2 LINES
 
 					
@@ -1282,7 +1295,6 @@
 			else if (mode == 1) {
 				sprintf(&PVTGRP, "Menu log to private group %d selected.. please wait for game reload", PrivateGroup);
 				PVTGRP[strlen(&PVTGRP)] = 0;
-//-				fnVPOutput("Menu log to private group selected.. please wait for game reload", 0, 1);			
 				fnVPOutput(&PVTGRP, 0, 1);																										  
  				if (PrivateGroup == 1) {
 					ActKey(KEYON+PULSE+m_FastModeSwitch1a);											// Selects 1st option in PRIVATE GROUP
@@ -1645,6 +1657,7 @@
 		}
 		UseAltVoice = YES;
 		TTSMsg[strlen(&TTSMsg)] = NUL;
+		fnTextToSpeech(&TTSMsg, 100);	
 
 //	DEBUG	+++++
 		if (DEBUG >= LOG) {
@@ -1653,7 +1666,6 @@
 		}
 //	DEBUG	+++++
 
-		fnTextToSpeech(&TTSMsg, 100);	
 	}
 
 	
@@ -1705,19 +1717,15 @@
 		StationName[0] = 0;
 		strcpy(&StationName, &keyvalue);
 		
-//-	DEBUG +++++ START
 		if (strlen(&StationName) == 0) {
-			if (DEBUG >= LOG) printf("!!	DEBUG: fnGetStationName() - StationName has returned as zero length string\x0a");
+			if (DEBUG >= LOG) {
+				printf("!!	DEBUG: fnGetStationName() - StationName has returned as zero length string\x0a");
+				fnTextToSpeech("Bad station name");
+			}
 		}
 		else {
-//-	DEBUG +++++ END 
-		
 			StationName[strlen(&StationName)] = 0;
-//			if (DEBUG >= 1) printf("!!	DEBUG: fnGetStationName() - Station Name = %s\x0a", &StationName);
-//-	DEBUG +++++ START
 		}
-//-	DEBUG +++++ END 
-		
 	}
 	
 	
@@ -1757,11 +1765,10 @@
 			}
 			fnPIPMapper(SYS,ENG);		
 			printf("==	Power to shields\x0a");
-
 			if (DEBUG > 0) {
 				if (AutoHangar) fnVPOutput("Arrival mode: station services");
 				else if (AutoDisembark) fnVPOutput("Arrival mode: disembark");
-				else fnVPOutput("Arrival mode: just sit tight");
+				else fnVPOutput("Arrival mode: surface");
 			}
 			
 			LandingPad = stfnGetKeyValue("LandingPad", INTEGER, 1);
@@ -1770,11 +1777,22 @@
 			pad10	= (LandingPad % 100) / 10;
 			pad1 	= (LandingPad % 100) % 10;
 
-//-			sprintf(&LPMsg, "Landing Pad %d", LandingPad);				// Speak Landing pad as whole number
 			sprintf(&LPMsg, "Landing Pad: %d %d", pad10, pad1);			// Speaks each digit ... eg 5,9,8
 			LPMsg[strlen(&LPMsg)] = 0;
 			fnTextToSpeech(&LPMsg);
-
+			sprintf(&LPMsg, ",repeat, %d %d", pad10, pad1);			//
+			LPMsg[strlen(&LPMsg)] = 0;
+			fnTextToSpeech(&LPMsg);
+			
+			// Cut engines once Masslocked to engage the docking computer			
+			if(AutoDock) {											// AutoDock defined in ED_UserSettings.tmh
+				if(fAdvDockingPresent) {
+					fnEngageDC(0);
+				}
+				else {
+					fnVPOutput("Auto dock module not present");
+				}
+			}
 		}
 		else if (strcmp(&DockingStatus, "Denied") == 0) {
 			printf("==	Docking request DENIED\x0a");
@@ -1823,6 +1841,26 @@
 		}
 		else if (strcmp(&DockingStatus, "TimeOut") == 0)	printf("==	Docking request timed out\x0a");
 		else if (strcmp(&DockingStatus, "Cancelled") == 0)	printf("==	Docking request cancelled\x0a");
+	}
+
+
+	//	Function:	Engage Docking computer when docking request granted, AutoDock is set and masslocked
+	//	Parameters:	dummy. enables calls via REXEC and DeferCall 
+
+	//	GLOBAL
+	int AutoDC = 0;			// Checked during fMassLocked trap in ED_StateTracker.tmh 
+	
+	int fnEngageDC(int dummy) {
+
+		if (fMassLocked) {
+			ActKey(KEYON+PULSE+SetSpeed0);
+			AutoDC = 0;
+	//		fnVPOutput("Auto dock engaged");
+		}
+		else {
+			AutoDC = 1;							// wait for masslock and retry
+	//		fnVPOutput("Auto D C awaiting mass lock");
+		}		
 	}
 
 
@@ -1973,10 +2011,6 @@
 		int iH1, iM1, iH2, iM2, t1, t2, diff, dh, dm;
 
 		// --- Extract hours and minutes ---
-//		strsub(&H1, &LiftoffTOD, 0, 1);
-//		strsub(&M1, &LiftoffTOD, 3, 4);
-//		strsub(&H2, &LandedTOD, 0, 1);
-//		strsub(&M2, &LandedTOD, 3, 4);
 		strsub(&H1, &UnDockedTOD, 0, 1);
 		strsub(&M1, &UnDockedTOD, 3, 4);
 		strsub(&H2, &DockedTOD, 0, 1);
@@ -2011,7 +2045,6 @@
 		
 
 		// --- Output result ---
-//		printf("==	TripTime = %s (from %s to %s)\x0a", &TripTime, &LiftoffTOD, &LandedTOD);
 		printf("==	TripTime = %s (from %s to %s)\x0a", &TripTime, &UnDockedTOD, &DockedTOD);
 		if (AnnounceTripTime) {
 			if (strcmp(&HH, "00") == 0) {
@@ -2022,10 +2055,8 @@
 			}
 			fnTextToSpeech(&TT);
 		}
-
 		// --- Reset Original Station and timers
 		fnSetOriginStation(0);
-		
 	}
 
 
@@ -2052,9 +2083,7 @@
 		if (action == 0) {
 			
 			strcpy(&TripTime, "HH:MM");
-//			strcpy(&LandedTOD, "HH:MM");
 			strcpy(&DockedTOD, "HH:MM");
-//			strcpy(&LiftoffTOD, "HH:MM");
 			strcpy(&UnDockedTOD, "HH:MM");
 
 			Dim(&oStation, 8);
@@ -2097,7 +2126,7 @@
 		Dim(&ShipType, strlen(&keyvalue)+1);						// init our ShipType char array 
 
 		if (strcmp(&keyvalue, &ShipType)==0) {						// Do nothing if &ShipType already matches what's in MyJournalData.json ...
-			// do nothing, or maybe "return"
+			// do nothing, or maybe "return 0"
 		}
 		else {														// ... otherwise update our variable etc.
 			ShipType[0] = 0;										// Resets char array
@@ -2125,7 +2154,7 @@
 
 	// --- GLOBALS
 	int DebugFunction = "Reset Controllers";		// Print to console at script run time
-	
+
 	int fnDEBUG(int dummy = 0) {
 		int fnName = "fnDebug";
 		int reason = 0;
