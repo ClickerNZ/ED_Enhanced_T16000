@@ -34,9 +34,6 @@
 	
 	int		ReadError2Count	= 0;
 	int		ReadError2Sent;
-//-	int		initmyJournalData = 0;			// flag set once per script run 
-//-	int		initlastJournalData = 0;
-//-	int		readloops = 0;
 	
 	// ------------
 	
@@ -44,21 +41,9 @@
 
 		int 	fp;
 		int		rc;
-//-		int 	buf = 1024;					// Always set this larger than MyJournalData.json otherwise we'll get read errors
 		int 	buf;
 		int		myResult;
-/*		
-		if(!initmyJournalData) {			// Only need to initialise the char array once per script run
-			Dim(&myJournalData, buf);
-			myJournalData[0] = 0;
-			initmyJournalData = 1;
-		}
-		if (!initlastJournalData) {			// Only need to initialise the char array once per script run
-			Dim(&lastJournalData, buf); 
-	 		lastJournalData[0] = NUL;
-			initlastJournalData = 1;
-		}
-*/		
+
 		fp = fopen(&MyJournalData, "r");	// Open the MyJournalData file in 'read' mode 
 		
 		if (fp) {
@@ -70,8 +55,8 @@
 
 			Dim(&myJournalData, buf+1);
 			myJournalData[0] = NUL;
-			Dim(&lastJournalData, buf+1); 
-			lastJournalData[0] = NUL;
+//			Dim(&lastJournalData, buf+1); 
+//			lastJournalData[0] = NUL;
 //-	DEBUG +++++
 			
 			myResult = fread(&myJournalData, 1, buf, fp);	// Read the json string into global myJournalData global char array 
@@ -79,7 +64,7 @@
 			if (myResult == 0) {
 				ReadError2Count = ReadError2Count + 1;
 				if (ReadError2Count > 3) {
-					printf("!!	File Read Error Count = %d : MyJournalData.json\x0a", ReadErrorCount);
+					printf("!!	File Read Error Count = %d : MyJournalData.json\x0a", ReadError2Count);
 					printf("!!	Check file contents using notepad\x0a");
 					printf("!!	Recreate by deleting and running ProcessJournal.ps1");
 					if (!ReadError2Sent) {
@@ -103,9 +88,11 @@
 				if (strcmp(&myJournalData, &lastJournalData) != 0) {		// Process the string if different from last read
 					stfnProcessMyJournalData(0);
 				}
-				
+
+				Dim(&lastJournalData, buf+1); 								// redimension				
+				lastJournalData[0] = NUL;									// clear, then copy myJournalData into this array
 				strcpy(&lastJournalData, &myJournalData);					// enables tracking when MyJournaleData.json changes
-				lastJournalData[(strlen(&lastJournalData))] = 0;
+				lastJournalData[(strlen(&lastJournalData))] = 0;			// ensure null-terminated
 			}
 		}
 		else {																// ED must have the file locked for reading?
@@ -123,10 +110,7 @@
 	// GlobalVars
 
 	char myJson;	
-//-	int initmyJson = 0;	
-	
 	char lastJson;
-//-	int initlastJson = 0;
 	
 	int		ReadErrorCount	= 0;
 	int		ReadErrorSent;
@@ -141,7 +125,6 @@
 
 		int 	fp;
 		int 	rc;
-//-		int 	buf = 1024;				// Always set this larger than NewMaxJson otherwise we'll get read errors
 		int 	buf;
 		int		myResult;
 		int		newJson			= 0;	// set when myJson != lastJson...we then call stfnProcessFlags();
@@ -149,18 +132,7 @@
 		int		json10;
 		int		json1;
 		char	json; Dim(&json, 64); json[0] = 0;
-/*
-		if (!initmyJson) {
-			Dim(&myJson, buf+1);
-			myJson[0] = NUL;
-			initmyJson = 1;
-		}
-		if (!initlastJson) {	
-			Dim(&lastJson, buf+1); 
-			lastJson[0] = NUL;
-			initlastJson = 1;
-		}
-*/		
+
 		fp = fopen(&StatusFile, "r");
 		
 		if (fp) {
@@ -172,8 +144,8 @@
 
 			Dim(&myJson, buf+1);
 			myJson[0] = NUL;
-			Dim(&lastJson, buf+1); 
-			lastJson[0] = NUL;
+//			Dim(&lastJson, buf+1); 
+//			lastJson[0] = NUL;
 //-	DEBUG +++++
 			
 			myResult = fread(&myJson, 1, buf, fp);
@@ -282,7 +254,9 @@
 						stfnProcessFlags(0);
 					}
 				}	
-				
+
+				Dim(&lastJson, buf+1); 
+				lastJson[0] = NUL;
 				strcpy(&lastJson, &myJson);											// copy myJson to lastJson
 				lastJson[strlen(&lastJson)] = NUL;									// terminate char array ... needed?
 			}
@@ -380,8 +354,6 @@
 		Dim(&keyvalue, 128);										// keyvalue char is global
 		keyvalue[0] = NUL;
 
-//-		float	fkeyvalue;											// floating point key values
-//-		int		ikeyvalue;											// integer key value
 		int		myResult;
 
 		if(jsonfile == 0) {
@@ -441,7 +413,6 @@
 				myResult = strcmp(&thischr, "}");
 				if (myResult == 0) {
 					EndValue = 1;
-//-					chrpnt = chrpnt - 1;								// assumes there's a space after last key-value and "}"
 				}
 				
 				myResult = strcmp(&thischr, " ");
@@ -684,7 +655,6 @@
 	
 		stfnDecodeFlags();
 		stfnDecodeFlags2();
-					
 		if (fDocked != lDocked) {
 			if (!fOnFoot & !fSRV) {
 				if (fDocked) {
@@ -699,9 +669,7 @@
 							DeferCall(4000, &fnHangarServices, 3);				// ... disembark
 						}
 						
-//						strcpy(&LandedTOD, fnGetTOD());
 						strcpy(&DockedTOD, fnGetTOD());
-//						printf("==	Docked: %s @ %s\x0a\x0a", &StationName, &LandedTOD);
 						printf("==	Docked: %s @ %s\x0a\x0a", &StationName, &DockedTOD);
 						
 						if (fLights) tgLights(0);
@@ -710,7 +678,6 @@
 
 						// --- Calculate and output Trip time
 						if (strcmp(&oStation, &StationName) == 0) {
-//							if (strcmp(&LiftoffTOD, "HH:MM") != 0) {
 							if (strcmp(&UnDockedTOD, "HH:MM") != 0) {
 								DeferCall(16000, &fnTripTime, 0);
 							}
@@ -762,7 +729,6 @@
 				}
 				strcpy(&LiftoffTOD, fnGetTOD());
 				printf("==	Liftoff @ %s\x0a", &LiftoffTOD);
-				
 				if (fSRV | fOnFoot) {
 					if (!ShipDismissed) {
 						fnVPOutput("Ship has departed");
@@ -776,11 +742,9 @@
 		//	Placeholder for future development
 		//	LOGIC: fLandingGear gets set when Landing gear is deployed and reset when retracted
 		if (fLandingGear != lLandingGear) {									// This may be announced via in game setting
-//-			if (fLandingGear & fMainShip) {									// Do we need to trap if in ship? (eg Taxi/DropShip)
 			if (fLandingGear) {												// Dealt with in tgLandingGear
 				// Landing Gear Deployed 
 			}
-//-			else if (fMainShip) {
 			else {
 				// Landing Gear retracted  
 			}
@@ -844,9 +808,6 @@
 						DeferCall(3000, &ActKey, KEYON+PULSE+SelectHighestThreat);		// Select shooter
 						fnTextToSpeech("Combat Mode Initiated", 100);					// Sound warning 
 					}
-				}
-				else {																	// Initiated drop
-//-					SelectDrop = NO;													// Reset SelectDrop flag 
 				}
 				UpdateLEDs = YES;
 			}	
@@ -967,6 +928,9 @@
 		if (fMassLocked != lMassLocked) {
 			if (fMassLocked & !fLanded & !fDocked) {								// Detect when Mass Locked during flight 
 				fnVPOutput("Mass locked");
+				if(AutoDC) {
+					DeferCall(1000, &fnEngageDC, 0);								// Cuts engines to enageg Docking Computer
+				}
 			}
 			
 			if (!fMassLocked & !fLanded & !fDocked) {								// Detect when no longer Mass Locked
@@ -1013,7 +977,6 @@
 				}
 			}
 			else {
-//				if (fFighter == lFighter) {
 				if (fMainShip | fSRV) {
 					fnVPOutput("Fuel above low threshold");
 				}
@@ -1040,7 +1003,6 @@
 			}
 		}
 
-//-		if ((fLatLong != lLatLong) & fMainShip) {									// Do we need to trap if in ship? (eg not Taxi/Dropship?)
 		if (fLatLong != lLatLong) {													// Detect when we cross the Orbital Cruise boundary
 			if (fLatLong) {
 				//
@@ -1364,7 +1326,6 @@
 				if (fBreathableAtmosphere) {
 					printf("==	Atmosphere is breathable\x0a");					
 				}
-//-				else if (fOnFoot) {
 				else {
 					printf("==	Atmosphere is no longer breathable\x0a");	
 				}
@@ -1419,7 +1380,6 @@
 
 				if (fNPCCrewActive) {
 					fnVPOutput("NPC crew active");
-//-					FighterPresent = 1;
 				}
 				else {
 					fnVPOutput("NPC crew not active");				
@@ -1567,52 +1527,47 @@
 
 		Modules = stfnGetKeyValue("Modules", INTEGER, 1);
 
-//		if (DEBUG >= LOG) printf("!!	DEBUG: stfnDecodeModules() - Modules key-value = %d\x0a", Modules);
+		if (Modules == oldModules) return 0;							// Nothing has changed so nothing to process
 
-		// "lFlagName" is "Last" or previous flag value							// Allows us to track each time a flag is toggled 
-		lSCOPresent				=	fSCOPresent;								// Granular level - which module bits have changed
+		oldModules = Modules;											// Otherwise, Decode the changes 
+
+		if (DEBUG >= LOG) printf("!!	DEBUG: stfnDecodeModules() - Modules key-value = %d\x0a", Modules);
+
+	// "lFlagName" is "Last" or previous flag value							// Allows us to track each time a flag is toggled 
+		lSCOPresent				=	fSCOPresent;							// Granular level - which module bits have changed
 		lFighterPresent			= 	fFighterPresent;
 		lSRVPresent				=	fSRVPresent;
 		lHeatsinkPresent		=	fHeatsinkPresent;
+
 		lChaffLauncherPresent	=	fChaffLauncherPresent;
 		lSCBPresent				=	fSCBPresent;
 		lECMPresent				=	fECMPresent;
 		lLimpetPresent			=	fLimpetPresent;
 
+		lAdvDockingPresent		=	fAdvDockingPresent;
+	//	lReservedModule			=	fReservedModule;
+	//	lReservedModule			=	fReservedModule;
+	//	lReservedModule			=	fReservedModule;
+
+	//	---
+
+		// Decode each flag 
 		fSCOPresent				=	((Modules & ED_SCOPresent) > 0);			// 'ED_...' masks defined within 'ED_ScriptDefines' file 
 		fFighterPresent			=	((Modules & ED_FighterPresent) > 0);
 		fSRVPresent				=	((Modules & ED_SRVPresent) > 0);
 		fHeatsinkPresent		=	((Modules & ED_HeatsinkPresent) > 0);
+
 		fChaffLauncherPresent	=	((Modules & ED_ChaffLauncherPresent) > 0);
 		fSCBPresent				=	((Modules & ED_SCBPresent) > 0);
 		fECMPresent				=	((Modules & ED_ECMPresent) > 0);
 		fLimpetPresent			=	((Modules & ED_LimpetPresent) > 0);
-				
-	}
 
+		fAdvDockingPresent		=	((Modules & ED_AdvDockingPresent) > 0);
+	//	fReservedModule			=	((Modules & ED_ReservedModule) > 0);
+	//	fReservedModule			=	((Modules & ED_ReservedModule) > 0);
+	//	fReservedModule			=	((Modules & ED_ReservedModule) > 0);
 
-	//	FUNCTION:	Process key-values found within MyJournalData.json
-	//	Parameters: dummy - enables calls from REXEC() and DeferCall() 
-	//	Usage:
-	
-	int stfnProcessMyJournalData(int dummy = 0) {
-
-	// MyJournalData.json contains the following key-value pairs...
-	// timestamp (STRING), LoadGameDetect (INTEGER), **CMDRName (STRING), ShipName (STRING), ShipType (STRING), **StationName (STRING), StationType (STRING), SystemName (STRING),
-	// BodyName (STRING), OrganicFound (STRING), **DockingStatus (STRING), **DeniedReason (STRING), **LandingPad (INTEGER), **Modules (INTEGER), **ActiveFighter (BOOLEAN),
-	// **InputCMD (STRING), **CMDParameter (STRING)
-
-	// Time critical keys should be trapped here, otherwise create a standalone function to process.
-	// Keys marked with ** are decoded within existing functions 
-		
-			stfnDecodeModules(0);																	// Individual flags used to enable trigger and switch functions etc
-			fnFighterStatus(0);																		// Determines if Fighter is active 
-			fnGetShipType(0);																		// Grabs ShipType and updates if changed
-			LoadGameDetect = stfnGetKeyValue("LoadGameDetect", INTEGER, 1);
-
-//-		DEVELOPMENT CODE - REMOVE BELOW FROM HERE...
-/*
-		if (DEBUG >= LOG) {
+		if (DEBUG > 0) {
 			if (fSCOPresent)			printf("!!	DEBUG: stfnProcessMyJournalData() - SCO FSD installed\x0a");
 			if (fFighterPresent)		printf("!!	DEBUG: stfnProcessMyJournalData() - Fighter Bay installed\x0a");
 			if (fSRVPresent)			printf("!!	DEBUG: stfnProcessMyJournalData() - SRV Bay installed\x0a");	
@@ -1621,10 +1576,32 @@
 			if (fSCBPresent)			printf("!!	DEBUG: stfnProcessMyJournalData() - Shield Cell Bank installed\x0a");
 			if (fECMPresent)			printf("!!	DEBUG: stfnProcessMyJournalData() - Electronic Counter Measure installed\x0a");
 			if (fLimpetPresent)			printf("!!	DEBUG: stfnProcessMyJournalData() - Limpet controller installed\x0a");
-			if (ActiveFighter)			printf("!!	DEBUG: stfnProcessMyJournalData() - Fighter is ACTIVE\x0a");
+			if (fAdvDockingPresent)		printf("!!	DEBUG: stfnProcessMyJournalData() - Advance Docking Computer installed\x0a");
 			printf("\x0a");
-		}
-*/			
+		}		
+				
+	}
+
+
+	//	FUNCTION:	Process key-values found within MyJournalData.json
+	//	Parameters: dummy - enables calls from REXEC() and DeferCall() 
+	//	Usage:
+	
+	// MyJournalData.json contains the following key-value pairs...
+	// timestamp (STRING), LoadGameDetect (INTEGER), **CMDRName (STRING), ShipName (STRING), ShipType (STRING), **StationName (STRING), StationType (STRING), SystemName (STRING),
+	// BodyName (STRING), OrganicFound (STRING), **DockingStatus (STRING), **DeniedReason (STRING), **LandingPad (INTEGER), **Modules (INTEGER), **ActiveFighter (BOOLEAN),
+	// **InputCMD (STRING), **CMDParameter (STRING)
+
+	// Time critical keys should be trapped here, otherwise create a standalone function to process.
+	// Keys marked with ** are decoded within existing functions 
+
+	int stfnProcessMyJournalData(int dummy = 0) {
+		
+			stfnDecodeModules(0);																	// Individual flags used to enable trigger and switch functions etc
+			fnFighterStatus(0);																		// Determines if Fighter is active 
+			fnGetShipType(0);																		// Grabs ShipType and updates if changed
+			LoadGameDetect = stfnGetKeyValue("LoadGameDetect", INTEGER, 1);
+
 		// Check if InputCMD or CMDParameter have changed...
 		if (InputCMDcharsSET == 0) {			// Dimension and clear char arrays...
 			Dim(&InputCMD, 64);					// Arbitrary buffer size
@@ -1660,9 +1637,6 @@
 				fnInputCMD(0);
 			}
 		}
-			
-//-		DEVELOPMENT CODE - REMOVE ABOVE HERE
-
 	}
 
 	
@@ -1672,7 +1646,6 @@
 		int GUIFocus;
 		int GUITxt = "not defined";
 
-//-		if (Flags != 0) {										// Hmmmm'k ... maybe GameLoaded or !StartupLock 
 		if (GameLoaded) {
 			GUIFocus = stfnGetKeyValue("GuiFocus", INTEGER);
 			// Not too sure of the value of this - to be reviewed	-	REVIEW 
@@ -1738,6 +1711,9 @@
 			fnSoundFX("wstop");
 			Abort();
 		}
+
+		Dim(&lastJson, 1);																		// Initialise lastJson via dimension prior to first call of stfnReadStatusJson()
+		lastJson[0] = NUL;																		// Clear lastJson
 		
 		stfnReadStatusJson();																	// Read status.json first time before starting loop. Won't work otherwise. I don't know why.
 		ActKey(KEYON+REXEC(hReadStatusJson, StatusReadRate, "stfnReadStatusJson();", RNOSTOP));	// Start perpetual loop to read status.json. StatusReadRate is set in ED_UserSettings file
@@ -1802,7 +1778,6 @@
 
 			UserSettings = fnEncodeUserSettings(0);
 			
-//			sprintf(&MyStatesJson, "{\"ShipDismissed\":%d,\"NewMaxJson\":%d,\"VoiceVolume\":%d,\"VoiceRate\":%d,\"AltVoiceRate\":%d,\"ChatTABs\":%d,\"FAOFFCurves\":%d,\"OldCurves\":%d,\"LEDLevel\":%d,\"PIPMode\":%d,\"ThrustUpTime\":%d,\"PrivateGroup\":%d,\"UserSettings\":%d}", ShipDismissed, NewMaxJson, VoiceVolume, VoiceRate, AltVoiceRate, ChatTABs, FAOFFCurves, OldCurves, LEDLevel, PIPMode, ThrustUpTime, PrivateGroup, UserSettings);
 			sprintf(&MyStatesJson, "{\"NewMaxJson\":%d,\"VoiceVolume\":%d,\"VoiceRate\":%d,\"AltVoiceRate\":%d,\"ChatTABs\":%d,\"FAOFFCurves\":%d,\"OldCurves\":%d,\"LEDLevel\":%d,\"PIPMode\":%d,\"ThrustUpTime\":%d,\"PrivateGroup\":%d,\"UserSettings\":%d}", NewMaxJson, VoiceVolume, VoiceRate, AltVoiceRate, ChatTABs, FAOFFCurves, OldCurves, LEDLevel, PIPMode, ThrustUpTime, PrivateGroup, UserSettings);																																																																																																											   
 			mySIZE = strlen(&MyStatesJson);
 			if (mySIZE > buf) {
@@ -1825,7 +1800,6 @@
 					
 					if (DEBUG > 0) {
 						printf("=====================================\x0a\x0a");
-//						printf("	ShipDismissed		= %d\x0a", ShipDismissed);
 						printf("	NewMaxJson		= %d\x0a", NewMaxJson);
 						printf("	VoiceVolume		= %d\x0a", VoiceVolume);
 						printf("	VoiceRate		= %d\x0a", VoiceRate);
@@ -1864,7 +1838,6 @@
 				if (fpresult > 0) {	// Read from file was successful
 
 					// Extract our variables from our struct array
-//					ShipDismissed	= stfnGetKeyValue("ShipDismissed", INTEGER, 2);
 					NewMaxJson		= stfnGetKeyValue("NewMaxJson", INTEGER, 2);
 					VoiceVolume		= stfnGetKeyValue("VoiceVolume", INTEGER, 2);
 					VoiceRate		= stfnGetKeyValue("VoiceRate", INTEGER, 2);
@@ -1877,11 +1850,10 @@
 					ThrustUpTime	= stfnGetKeyValue("ThrustUpTime", INTEGER, 2);
 					PrivateGroup	= stfnGetKeyValue("PrivateGroup", INTEGER, 2);
 					UserSettings	= stfnGetKeyValue("UserSettings", INTEGER, 2);
-					
+
 					if (DEBUG > 0) {
 						printf("\x0a\++	MyStates successfully loaded @ %s\x0a", fnGetTOD());
 						printf("=====================================\x0a");
-//						printf("	ShipDismissed		= %d\x0a", ShipDismissed);
 						printf("	NewMaxJson		= %d\x0a", NewMaxJson);
 						printf("	VoiceVolume		= %d\x0a", VoiceVolume);
 						printf("	VoiceRate		= %d\x0a", VoiceRate);
