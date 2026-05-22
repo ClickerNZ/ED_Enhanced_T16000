@@ -367,9 +367,9 @@
 		
 		if (print) {
 			printf("++	Curve Profile: [%s]\x0a", JSCurveSetting);																																														   
-			printf("Joystick Curves[%s]	: LDZ=%d, CDZ=%d,  RDZ=%d, Curve= %d, Zoom= %d\x0a", JSCurveSetting, Joystick_L_DZ, Joystick_C_DZ, Joystick_R_DZ, Joystick_Curve[profile], Joystick_Zoom);
-			printf("Rudder Curves[%s]	: LDZ=%d, CDZ=%d, RDZ=%d, Curve= %d, Zoom= %d\x0a", JSCurveSetting, Rudder_L_DZ, Rudder_C_DZ, Rudder_R_DZ, Rudder_Curve[profile], Rudder_Zoom);
-			printf("Slew Curves[%s]	: LDZ=%d, CDZ=%d, RDZ=%d, Curve= %d, Zoom= %d\x0a", JSCurveSetting, Slew_L_DZ, Slew_C_DZ, Slew_R_DZ, Slew_Curve[profile], Slew_Zoom);
+			printf("++	Joystick Curves[%s]	: LDZ=%d, CDZ=%d,  RDZ=%d, Curve= %d, Zoom= %d\x0a", JSCurveSetting, Joystick_L_DZ, Joystick_C_DZ, Joystick_R_DZ, Joystick_Curve[profile], Joystick_Zoom);
+			printf("++	Rudder Curves[%s]	: LDZ=%d, CDZ=%d, RDZ=%d, Curve= %d, Zoom= %d\x0a", JSCurveSetting, Rudder_L_DZ, Rudder_C_DZ, Rudder_R_DZ, Rudder_Curve[profile], Rudder_Zoom);
+			printf("++	Slew Curves[%s]	: LDZ=%d, CDZ=%d, RDZ=%d, Curve= %d, Zoom= %d\x0a", JSCurveSetting, Slew_L_DZ, Slew_C_DZ, Slew_R_DZ, Slew_Curve[profile], Slew_Zoom);
 		}
 	}
 
@@ -464,7 +464,6 @@
 	int		defAutoAbort;			// ENABLED/DISABLED
 	int		defSCOLowFuelFailsafe;	// ENABLED/DISABLED
 	int		defAutoDisembark;		// ENABLED/DISABLED
-//	int		defAnnounceTripTime;	// ENABLED/DISABLED
 
 	// Integer settings
 	int		defFAOFFCurves;			// OFF, SLOWEST, SLOW, MEDIUM, MILD 
@@ -505,7 +504,6 @@
 		defAutoAbort			= AutoAbort;			// ENABLED/DISABLED
 		defSCOLowFuelFailsafe	= SCOLowFuelFailsafe;	// ENABLED/DISABLED
 		defAutoDisembark		= AutoDisembark;		// ENABLED/DISABLED
-//		defAnnounceTripTime		= AnnounceTripTime; 	// ENABLED/DISABLED
 		
 		// Integer settings
 		defFAOFFCurves			= FAOFFCurves;			// OFF, SLOWEST, SLOW, MEDIUM, MILD  
@@ -562,7 +560,6 @@
 		AutoAbort			= defAutoAbort;				// ENABLED/DISABLED
 		SCOLowFuelFailsafe	= defSCOLowFuelFailsafe;	// ENABLED/DISABLED
 		AutoDisembark		= defAutoDisembark;			// ENABLED/DISABLED
-//		AnnounceTripTime	= defAnnounceTripTime;		// ENABLED/DISABLED 
 		
 		// Integer settings
 		FAOFFCurves			= defFAOFFCurves;			// OFF, SLOWEST, SLOW, MEDIUM, MILD 
@@ -607,7 +604,6 @@
 		if (AutoAbort)			EncodedSettings = EncodedSettings | (1 << 18);	// Bit 18
 		if (SCOLowFuelFailsafe) EncodedSettings = EncodedSettings | (1 << 19);  // Bit 19
 		if (AutoDisembark)		EncodedSettings = EncodedSettings | (1 << 20);	// Bit 20
-//		if (AnnounceTripTime)	EncodedSettings = EncodedSettings | (1 << 21);	// Bit 21
 		
 		printf("++	Encoded User Settings = %d\x0a", EncodedSettings);
 		
@@ -641,7 +637,6 @@
 		if ((DecodeSettings & (1 << 18))	!= 0) AutoAbort = 1;			else AutoAbort = 0;
 		if ((DecodeSettings & (1 << 19))	!= 0) SCOLowFuelFailsafe = 1;	else SCOLowFuelFailsafe = 0;
 		if ((DecodeSettings & (1 << 20))	!= 0) AutoDisembark = 1;		else AutoDisembark = 0;
-//		if ((DecodeSettings & (1 << 21))	!= 0) AnnounceTripTime = 1;		else AnnounceTripTime = 0;
 
 		printf("++	User settings decoded\x0a");
 		
@@ -678,7 +673,6 @@
 		if (AutoAbort			!= defAutoAbort)			printf("	AutoAbort		= %d	(%d)\x0a",	AutoAbort, defAutoAbort);
 		if (SCOLowFuelFailsafe	!= defSCOLowFuelFailsafe)	printf("	SCOLowFuelFailsafe	= %d	(%d)\x0a",	SCOLowFuelFailsafe, defSCOLowFuelFailsafe);
 		if (AutoDisembark		!= defAutoDisembark)		printf("	AutoDisembark		= %d	(%d)\x0a",	AutoDisembark, defAutoDisembark);
-//		if (AnnounceTripTime	!= defAnnounceTripTime)		printf("	AnnounceTripTime	= %d	(%d)\x0a",	AnnounceTripTime, defAnnounceTripTime);
 			
 		// Integer user settings
 		if (FAOFFCurves			!= defFAOFFCurves)			printf("	FAOFFCurves		= %d	(%d)\x0a", FAOFFCurves, defFAOFFCurves);		// OFF, SLOWEST, SLOW, MEDIUM, MILD 
