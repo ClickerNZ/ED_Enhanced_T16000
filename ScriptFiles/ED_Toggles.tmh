@@ -452,7 +452,7 @@
 	//	Parameter:	dummy. Enables REXEC and DeferCall 
 	
 	int tgBoost(int dummy = 0) {
-		int fnName = "Engine Boost:";
+		int fnName = "Engine Boost";
 		int reason = 0;
 		
 		if (fSupercruise & fMainShip) {												// TEST: Do we need a trap for MainShip? eg Taxi/Dropship?  
@@ -527,7 +527,7 @@
 			}
 			if(fSRV | fMainShip) {
 				ActKey(KEYON+PULSE+DeployHardpoints);							// Depoy Hardpoints only if we're not in Supercruise
-				if (DEBUG >= LOG) printf("!!	DEBUG: tgHardpoints() - DeployHardpoints on Line 551\x0a");
+				if (DEBUG >= LOG) printf("!!	DEBUG: tgHardpoints() - DeployHardpoints on Line 529\x0a");
 			}
 		}
 		else {
@@ -793,7 +793,7 @@
 	// TOGGLE:		Toggle Galaxy Map ON/OFF
 	// Parameter:	Action - ON or OFF
 
-	int tgGALMap (int action=0) {
+	int tgGALMap (int action) {
 		int GUIMode = stfnProcessGuiFocus();
 		if (GUIMode != GUI_GalaxyMap) {
 	//		if (action == ON) {
@@ -813,7 +813,7 @@
 	// TOGGLE:		Toggle System Map ON/OFF
 	// Parameter:	Action - ON or OFF
 
-	int tgSYSMap (int action=0) {
+	int tgSYSMap (int action) {
 		int GUIMode = stfnProcessGuiFocus();
 		if (GUIMode != GUI_SystemMap) {
 	//		if (action == ON) {
